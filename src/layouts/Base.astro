@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A privacy-first macOS menu-bar app that watches your screen-time signals and nudges you to breathe before stress takes hold." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --orb-hue: 30;
+    --orb-sat: 70%;
+    --orb-light: 60%;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #07060f;
+    color: rgba(255, 255, 255, 0.92);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
