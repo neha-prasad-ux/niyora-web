@@ -12,10 +12,16 @@ import OrbStage from '../components/OrbStage.astro';
       <h1>Calm in 60 seconds.</h1>
       <p class="subhead">A quiet menu-bar companion for your Mac. It watches the rhythm of your day, then nudges you to breathe right before stress takes hold.</p>
       <div class="cta-row">
-        <a href="https://github.com/neha-prasad-ux/niyora/releases/latest" class="cta">Download for macOS</a>
+        <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.1.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
+          <span class="cta-label">Download for Mac</span>
+          <span class="cta-sub" id="primary-download-sub">Apple Silicon · 28 MB</span>
+        </a>
         <a href="#how" class="cta ghost">How it works</a>
       </div>
-      <div class="meta">Free. Open source. Nothing leaves your Mac.</div>
+      <div class="meta">
+        Free. Nothing leaves your Mac.
+        <a href="#downloads" id="other-builds-link">Other builds</a>
+      </div>
     </section>
 
     <section id="how" data-hue="335" data-sat="70%">
@@ -128,15 +134,72 @@ import OrbStage from '../components/OrbStage.astro';
       </div>
     </section>
 
+    <section id="downloads" class="downloads" data-hue="30" data-sat="70%">
+      <div class="eyebrow">Downloads</div>
+      <h2>Pick the build for your Mac.</h2>
+      <p class="lead">Both are signed by Apple Developer ID, notarized, and stapled. Drag to Applications and you're done.</p>
+      <div class="download-grid">
+        <a href="https://downloads.niyora.com/Niyora-0.1.0-AppleSilicon.dmg" class="download-card">
+          <div class="dl-arch">Apple Silicon</div>
+          <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
+          <div class="dl-meta">v0.1.0 · 28 MB · arm64</div>
+        </a>
+        <a href="https://downloads.niyora.com/Niyora-0.1.0-Intel.dmg" class="download-card">
+          <div class="dl-arch">Intel</div>
+          <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
+          <div class="dl-meta">v0.1.0 · 28 MB · x86_64</div>
+        </a>
+      </div>
+      <p class="meta unsure">Unsure? Apple menu → About This Mac. If it says "Apple M…" you want Apple Silicon. Otherwise Intel.</p>
+    </section>
+
     <section class="final-cta" data-hue="30" data-sat="70%">
       <h2>Take the next breath.</h2>
       <p class="lead">It takes a minute to install. Sixty seconds to feel different.</p>
       <div class="cta-row">
-        <a href="https://github.com/neha-prasad-ux/niyora/releases/latest" class="cta">Download for macOS</a>
+        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.1.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
       </div>
       <div class="meta">Apple Silicon and Intel. macOS 10.15 and later.</div>
     </section>
   </main>
+
+  <script>
+    // Detect user's Mac architecture and switch the primary CTA to the matching DMG.
+    // We default to Apple Silicon (the majority of new Macs) and only flip to Intel
+    // when we can confidently detect it. Browsers mask architecture in navigator.userAgent
+    // for privacy, but the WebGL renderer string usually reveals it on macOS.
+    (function () {
+      const apple = 'https://downloads.niyora.com/Niyora-0.1.0-AppleSilicon.dmg';
+      const intel = 'https://downloads.niyora.com/Niyora-0.1.0-Intel.dmg';
+
+      function detectArch() {
+        try {
+          const canvas = document.createElement('canvas');
+          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+          if (!gl) return null;
+          const ext = gl.getExtension('WEBGL_debug_renderer_info');
+          const renderer = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : '';
+          if (!renderer) return null;
+          if (/Apple\s*(M|GPU)/i.test(renderer)) return 'apple-silicon';
+          if (/Intel/i.test(renderer)) return 'intel';
+          return null;
+        } catch (_) { return null; }
+      }
+
+      const isMac = /Mac|iPhone|iPad/i.test(navigator.userAgent);
+      if (!isMac) return;
+
+      const arch = detectArch();
+      if (arch !== 'intel') return;
+
+      const sub = document.getElementById('primary-download-sub');
+      ['primary-download', 'final-download'].forEach(function (id) {
+        const a = document.getElementById(id);
+        if (a) { a.href = intel; a.dataset.arch = 'intel'; }
+      });
+      if (sub) sub.textContent = 'Intel · 28 MB';
+    })();
+  </script>
 
   <footer>
     <a href="/privacy/">Privacy</a>
@@ -379,6 +442,45 @@ import OrbStage from '../components/OrbStage.astro';
   .love { text-align: center; max-width: 720px; }
   .love h2 { margin-bottom: 16px; }
   .love .lead { margin-bottom: 36px; }
+
+  .cta-label { display: block; }
+  .cta-sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.3px;
+  }
+  .meta a { color: rgba(255, 255, 255, 0.55); text-decoration: underline; margin-left: 10px; }
+  .meta a:hover { color: rgba(255, 255, 255, 0.9); }
+
+  .downloads { text-align: center; max-width: 880px; }
+  .download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 36px;
+    width: 100%;
+    text-align: left;
+  }
+  .download-card {
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(20, 18, 32, 0.5);
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .download-card:hover {
+    border-color: hsla(var(--orb-hue), 60%, 60%, 0.5);
+    transform: translateY(-2px);
+  }
+  .download-card .dl-arch { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  .download-card .dl-detail { font-size: 14px; color: rgba(255, 255, 255, 0.65); margin-bottom: 14px; }
+  .download-card .dl-meta { font-size: 12px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; }
+  .meta.unsure { margin-top: 24px; }
 
   .final-cta { text-align: center; }
   .final-cta h2 { margin-bottom: 32px; }
