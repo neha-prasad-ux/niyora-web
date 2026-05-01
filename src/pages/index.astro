@@ -7,20 +7,36 @@ import OrbStage from '../components/OrbStage.astro';
   <OrbStage />
 
   <main class="content">
-    <section class="hero" data-hue="30" data-sat="70%">
+    <section class="hero" data-hue="220" data-sat="60%">
       <div class="brand">Niyora</div>
       <h1>Calm in 60 seconds.</h1>
-      <p class="subhead">A quiet menu-bar companion for your Mac. It watches the rhythm of your day, then nudges you to breathe right before stress takes hold.</p>
+      <p class="subhead">Breathing and mindfulness, right at your desk.<br />From your Mac menu bar.</p>
       <div class="cta-row">
         <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.1.1-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
           <span class="cta-label">Download for Mac</span>
           <span class="cta-sub" id="primary-download-sub">Apple Silicon · 28 MB</span>
         </a>
-        <a href="#how" class="cta ghost">How it works</a>
       </div>
-      <div class="meta">
-        Free. Nothing leaves your Mac.
-        <a href="#downloads" id="other-builds-link">Other builds</a>
+      <div class="trust">
+        <div class="trust-row">Free to use · No account · No wearables · No health data</div>
+        <div class="trust-strong">Nothing leaves your Mac.</div>
+      </div>
+    </section>
+
+    <section class="features" data-hue="225" data-sat="55%">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Notices when you're tensing up</h3>
+          <p>Niyora watches your work patterns and nudges you when stress is building.</p>
+        </div>
+        <div class="feature-card">
+          <h3>60-second guided practices</h3>
+          <p>Breathing, mindfulness, and grounding moments. Pick one or let Niyora choose.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Unlocked as you go</h3>
+          <p>Niyora grows with you. New practices unlock as you keep showing up.</p>
+        </div>
       </div>
     </section>
 
@@ -311,6 +327,59 @@ import OrbStage from '../components/OrbStage.astro';
   }
   .cta.ghost:hover { border-color: rgba(255, 255, 255, 0.4); color: rgba(255, 255, 255, 0.95); }
   .meta { margin-top: 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
+
+  .trust {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .trust-row {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.3px;
+  }
+  .trust-strong {
+    font-size: 15px;
+    font-weight: 500;
+    color: hsla(var(--orb-hue), 60%, 82%, 0.95);
+    letter-spacing: 0.3px;
+    transition: color 1.4s ease;
+  }
+
+  .features {
+    min-height: auto;
+    padding: 40px 24px 100px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    width: 100%;
+    max-width: 980px;
+  }
+  .feature-card {
+    padding: 24px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(20, 18, 32, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+  }
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 auto;
+    max-width: 100%;
+  }
 
   .signals {
     display: grid;
