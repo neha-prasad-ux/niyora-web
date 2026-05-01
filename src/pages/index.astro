@@ -282,9 +282,12 @@ import OrbStage from '../components/OrbStage.astro';
      signalling there's more page below. */
   .hero {
     min-height: auto;
-    padding: 80px 0 36px;
+    padding: 80px 24px 36px;
     max-width: none;
     width: 100%;
+  }
+  @media (min-width: 900px) {
+    .hero { padding: 80px 0 36px; }
   }
 
   .eyebrow {
