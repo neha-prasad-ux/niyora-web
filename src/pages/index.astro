@@ -7,55 +7,95 @@ import OrbStage from '../components/OrbStage.astro';
   <OrbStage />
 
   <main class="content">
-    <section class="hero" data-hue="30" data-sat="70%">
-      <div class="brand">Niyora</div>
-      <h1>Calm in 60 seconds.</h1>
-      <p class="subhead">A quiet menu-bar companion for your Mac. It watches the rhythm of your day, then nudges you to breathe right before stress takes hold.</p>
-      <div class="cta-row">
-        <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.1.1-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
-          <span class="cta-label">Download for Mac</span>
-          <span class="cta-sub" id="primary-download-sub">Apple Silicon · 28 MB</span>
-        </a>
-        <a href="#how" class="cta ghost">How it works</a>
-      </div>
-      <div class="meta">
-        Free. Nothing leaves your Mac.
-        <a href="#downloads" id="other-builds-link">Other builds</a>
-      </div>
-    </section>
-
-    <section id="how" data-hue="335" data-sat="70%">
-      <div class="eyebrow">How it knows</div>
-      <h2>No wearables. No health data. Just your Mac.</h2>
-      <p class="lead">No Apple Health. No Oura. No Apple Watch. Niyora reads what your computer already shows about your day, then nudges you at the right moment. The whole system is built on research that maps work patterns to stress and recovery.</p>
-      <div class="signals">
-        <div class="signal-card">
-          <div class="num">No wearable</div>
-          <p>You already have a device that knows when you're working hard. We use that, nothing else.</p>
+    <section class="hero" data-hue="220" data-sat="60%" data-orb-alpha="0.2" data-orb-scale="0.55">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="brand">Niyora</div>
+          <h1>Calm in 60 seconds.</h1>
+          <p class="subhead">Breathing and mindfulness, right at your desk.<br />From your Mac menu bar.</p>
+          <div class="cta-row">
+            <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
+              Download for Mac
+            </a>
+          </div>
+          <div class="trust">
+            <div class="trust-row">Free to use · No account · No wearables · No health data</div>
+            <div class="trust-strong">Nothing leaves your Mac.</div>
+          </div>
         </div>
-        <div class="signal-card">
-          <div class="num">No biometrics</div>
-          <p>We never ask for heart rate, sleep, steps, or any health information. There is no integration to opt into.</p>
-        </div>
-        <div class="signal-card">
-          <div class="num">Research backed</div>
-          <p>The signals we read map to validated stress and recovery findings, not guesswork.</p>
+        <div class="hero-image-wrap">
+          <img src="/hero-shot.png" alt="Niyora panel showing Box Breath, with Begin button" class="hero-shot" loading="eager" />
         </div>
       </div>
     </section>
 
-    <section data-hue="280" data-sat="65%">
-      <div class="eyebrow">Your soul, your way</div>
-      <h2>Five rings. Fourteen practices. The app grows with you.</h2>
-      <p class="lead">Every session lights up your soul. As you keep practicing, your ring fills and the next tier opens, unlocking new techniques and deeper sounds. You don't get a streak counter. You get a quiet sense of arrival.</p>
-      <div class="tiers">
-        <span class="tier-pill t1">Spark</span>
-        <span class="tier-pill t2">Glow</span>
-        <span class="tier-pill t3">Shine</span>
-        <span class="tier-pill t4">Radiance</span>
-        <span class="tier-pill t5">Brilliance</span>
+    <section class="features" data-hue="225" data-sat="55%">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Notices when you're tensing up</h3>
+          <p>Niyora watches your work patterns and nudges you when stress is building.</p>
+        </div>
+        <div class="feature-card">
+          <h3>60-second guided practices</h3>
+          <p>Breathing, mindfulness, and grounding moments. Pick one or let Niyora choose.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Unlocked as you go</h3>
+          <p>Niyora grows with you. New practices unlock as you keep showing up.</p>
+        </div>
       </div>
-      <p class="lead afterword">Fourteen practices in total. Pranayama breathing rooted in yoga. Mindfulness moments grounded in CBT and self-compassion. Each session paired with ambient sound that fades in as you start and out as you finish.</p>
+    </section>
+
+    <section id="problem" data-hue="245" data-sat="55%">
+      <div class="eyebrow">The problem</div>
+      <h2>The work that runs the world is wearing us down.</h2>
+      <p class="lead">Sitting at a screen for hours isn't free. The research is clear: prolonged computer work raises stress, fragments attention, and quietly compounds.</p>
+      <div class="research-grid">
+        <div class="research-card">
+          <h3>Working without breaks builds stress in your brain.</h3>
+          <p>An EEG study showed beta-wave stress activity climbs through back-to-back meetings, and only resets when you pause.</p>
+          <div class="cite">Microsoft Human Factors Lab, 2021</div>
+        </div>
+        <div class="research-card">
+          <h3>Your attention span at a screen has collapsed to 47 seconds.</h3>
+          <p>In 2004 it was 2.5 minutes. Two decades of screens later, focus shrinks every year.</p>
+          <div class="cite">Gloria Mark, UC Irvine</div>
+        </div>
+        <div class="research-card">
+          <h3>Less screen time, better mood.</h3>
+          <p>When adults reduced their daily digital screen use, well-being and mood improved within two weeks.</p>
+          <div class="cite">Nature npj Mental Health Research, 2022</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" data-hue="260" data-sat="55%">
+      <div class="eyebrow">The solution</div>
+      <h2>Recognise stress. Bring calm. Make a habit.</h2>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="orb-mini orb-pulse"></div>
+          <div class="card-eyebrow">Recognise stress</div>
+          <h3>It watches the rhythm of your work.</h3>
+          <p>Niyora reads passive signals from your Mac. How long you've been at the screen, what time of day, whether you're switching contexts. No wearables, no biometrics. Just the rhythm of your day.</p>
+        </div>
+        <div class="solution-card">
+          <div class="orb-mini orb-breathe"></div>
+          <div class="card-eyebrow">Bring calm</div>
+          <h3>Sixty seconds, when you need them.</h3>
+          <p>When stress is building, Niyora nudges you with a soft notification. One click opens a guided practice. Breathing, mindfulness, grounding. Fourteen techniques rooted in pranayama, CBT, and self-compassion.</p>
+        </div>
+        <div class="solution-card">
+          <div class="orb-mini orb-rings">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+          </div>
+          <div class="card-eyebrow">Make a habit</div>
+          <h3>Your soul, growing with you.</h3>
+          <p>Each session lights up your soul. New practices unlock as you keep showing up. No streaks to break, no guilt. Just a quiet sense of arrival, one minute at a time.</p>
+        </div>
+      </div>
     </section>
 
     <section data-hue="230" data-sat="65%">
@@ -87,7 +127,32 @@ import OrbStage from '../components/OrbStage.astro';
           <div class="title">Self-Compassion</div>
           <div class="cite">Neff, 2003. Linked to reduced anxiety and rumination.</div>
         </div>
+        <div class="paper">
+          <div class="title">Alternate Nostril (Naadishodhana)</div>
+          <div class="cite">Sharma et al, 2013. Lowers blood pressure, improves cardiovascular function.</div>
+        </div>
+        <div class="paper">
+          <div class="title">Ocean Breath (Ujjayi)</div>
+          <div class="cite">Pal et al, 2011. Activates vagus nerve, slows heart rate.</div>
+        </div>
+        <div class="paper">
+          <div class="title">5-4-3-2-1 Grounding</div>
+          <div class="cite">Linehan, 1993 (DBT). Reduces panic and dissociation.</div>
+        </div>
+        <div class="paper">
+          <div class="title">Loving Kindness Meditation</div>
+          <div class="cite">Fredrickson, 2008. Builds positive affect and social connection.</div>
+        </div>
+        <div class="paper">
+          <div class="title">Cooling Breath (Sheetali)</div>
+          <div class="cite">Pranayama tradition. Lowers body heat, reduces sympathetic arousal.</div>
+        </div>
+        <div class="paper">
+          <div class="title">Affirmations / Kind Words</div>
+          <div class="cite">Cascio et al, 2016. Reduces stress reactivity in fMRI studies.</div>
+        </div>
       </div>
+      <p class="more-line">and more, every practice rooted in research.</p>
     </section>
 
     <section data-hue="210" data-sat="60%">
@@ -110,27 +175,18 @@ import OrbStage from '../components/OrbStage.astro';
           <h3>Local storage</h3>
           <p>Sessions and check-ins live in your app container. Never read off-device.</p>
         </div>
-        <div class="privacy-point">
-          <div class="check">✓</div>
-          <h3>Open source</h3>
-          <p>Read every line on GitHub. Trust through transparency, not promises.</p>
-        </div>
       </div>
     </section>
 
     <section class="founder" data-hue="335" data-sat="60%">
       <div class="eyebrow">From the founder</div>
-      <p class="quote">"I'm a doctor in the Indian system of medicine. Studying yoga and then working in tech, I felt the gap every day. The slow, time-tested practices that actually shift the nervous system, almost never make it into the rhythm of a working day. I built Niyora for myself first. Now I'm sharing it with you."</p>
+      <img src="/neha.jpg" alt="Neha Prasad" class="founder-photo" loading="lazy" />
+      <p class="quote">I wanted calm on my own terms.</p>
+      <p class="quote-body">As a doctor in the Indian system of medicine, I knew it isn't much to ask. A minute to breathe. A way to feel less overwhelmed. To be excited before something that matters. To feel at home, even in chaos.</p>
+      <p class="quote-body">I built Niyora for myself first. Now I'm sharing it with you. If it lands well, or doesn't, I'd love to know. My inbox is open.</p>
       <div class="signature">Neha Prasad. Doctor, builder, founder of Niyora.</div>
-    </section>
-
-    <section class="love" data-hue="20" data-sat="65%">
-      <div class="eyebrow">Pay in love</div>
-      <h2>We don't want your money. We don't want your data. Just tell us how you feel.</h2>
-      <p class="lead">Most apps ask for both. We know how stressful that feels. So Niyora is free, makes no network calls, and asks for nothing. The one thing we'd love is your honest word on how it landed for you.</p>
-      <div class="cta-row">
-        <a href="mailto:support@niyora.com?subject=How%20Niyora%20made%20me%20feel" class="cta">Share what you think</a>
-        <a href="https://github.com/neha-prasad-ux/niyora/issues/new" class="cta ghost">Rate and review</a>
+      <div class="founder-cta">
+        <a href="/talk" class="cta ghost">Say hello</a>
       </div>
     </section>
 
@@ -139,15 +195,15 @@ import OrbStage from '../components/OrbStage.astro';
       <h2>Pick the build for your Mac.</h2>
       <p class="lead">Both are signed by Apple Developer ID, notarized, and stapled. Drag to Applications and you're done.</p>
       <div class="download-grid">
-        <a href="https://downloads.niyora.com/Niyora-0.1.1-AppleSilicon.dmg" class="download-card">
+        <a href="https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg" class="download-card">
           <div class="dl-arch">Apple Silicon</div>
           <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
-          <div class="dl-meta">v0.1.1 · 28 MB · arm64</div>
+          <div class="dl-meta">v0.1.2 · 29 MB · arm64</div>
         </a>
-        <a href="https://downloads.niyora.com/Niyora-0.1.1-Intel.dmg" class="download-card">
+        <a href="https://downloads.niyora.com/Niyora-0.1.2-Intel.dmg" class="download-card">
           <div class="dl-arch">Intel</div>
           <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
-          <div class="dl-meta">v0.1.1 · 28 MB · x86_64</div>
+          <div class="dl-meta">v0.1.2 · 29 MB · x86_64</div>
         </a>
       </div>
       <p class="meta unsure">Unsure? Apple menu → About This Mac. If it says "Apple M…" you want Apple Silicon. Otherwise Intel.</p>
@@ -157,7 +213,7 @@ import OrbStage from '../components/OrbStage.astro';
       <h2>Take the next breath.</h2>
       <p class="lead">It takes a minute to install. Sixty seconds to feel different.</p>
       <div class="cta-row">
-        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.1.1-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
+        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
       </div>
       <div class="meta">Apple Silicon and Intel. macOS 10.15 and later.</div>
     </section>
@@ -169,8 +225,8 @@ import OrbStage from '../components/OrbStage.astro';
     // when we can confidently detect it. Browsers mask architecture in navigator.userAgent
     // for privacy, but the WebGL renderer string usually reveals it on macOS.
     (function () {
-      const apple = 'https://downloads.niyora.com/Niyora-0.1.1-AppleSilicon.dmg';
-      const intel = 'https://downloads.niyora.com/Niyora-0.1.1-Intel.dmg';
+      const apple = 'https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg';
+      const intel = 'https://downloads.niyora.com/Niyora-0.1.2-Intel.dmg';
 
       function detectArch() {
         try {
@@ -192,20 +248,44 @@ import OrbStage from '../components/OrbStage.astro';
       const arch = detectArch();
       if (arch !== 'intel') return;
 
-      const sub = document.getElementById('primary-download-sub');
       ['primary-download', 'final-download'].forEach(function (id) {
         const a = document.getElementById(id);
         if (a) { a.href = intel; a.dataset.arch = 'intel'; }
       });
-      if (sub) sub.textContent = 'Intel · 28 MB';
     })();
+  </script>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*=".dmg"]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var arch = el.dataset.arch || 'unknown';
+          var id = el.id;
+          var location = id === 'primary-download' ? 'hero'
+            : id === 'final-download' ? 'final_cta'
+            : 'downloads_section';
+          window.posthog?.capture('download_clicked', {
+            arch: arch,
+            location: location,
+            version: '0.1.2'
+          });
+        });
+      });
+
+      var sayHello = document.querySelector('.founder-cta a[href="/talk"]');
+      if (sayHello) {
+        sayHello.addEventListener('click', function () {
+          window.posthog?.capture('say_hello_clicked');
+        });
+      }
+    });
   </script>
 
   <footer>
     <a href="/privacy/">Privacy</a>
     <a href="/terms/">Terms</a>
     <a href="https://github.com/neha-prasad-ux/niyora">GitHub</a>
-    <a href="mailto:support@niyora.com">Contact</a>
+    <a href="mailto:neha@niyora.com">Contact</a>
     <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
   </footer>
 </Base>
@@ -222,6 +302,18 @@ import OrbStage from '../components/OrbStage.astro';
     padding: 80px 24px;
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  /* Compress hero so the feature cards peek into the first viewport,
+     signalling there's more page below. */
+  .hero {
+    min-height: auto;
+    padding: 80px 24px 36px;
+    max-width: none;
+    width: 100%;
+  }
+  @media (min-width: 900px) {
+    .hero { padding: 80px 0 36px; }
   }
 
   .eyebrow {
@@ -270,6 +362,39 @@ import OrbStage from '../components/OrbStage.astro';
   p.afterword { margin-top: 36px; }
 
   .hero { text-align: center; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 56px;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+  }
+  @media (min-width: 900px) {
+    .hero-grid {
+      grid-template-columns: minmax(420px, 1fr) auto;
+      gap: 64px;
+      max-width: none;
+      padding-left: clamp(24px, 4vw, 64px);
+      padding-right: 0;
+    }
+    .hero-text { text-align: left; }
+    .hero-text h1 { margin-left: 0; margin-right: 0; }
+    .hero-text .subhead { margin-left: 0; margin-right: 0; }
+    .hero-text .cta-row { justify-content: flex-start; }
+    .hero-text .trust { align-items: flex-start; }
+    .hero-text .trust-row,
+    .hero-text .trust-strong { text-align: left; }
+    .hero-image-wrap { justify-content: flex-end; }
+    .hero-shot { border-radius: 14px 0 0 14px; }
+  }
+  .hero-image-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .hero .brand {
     font-size: 13px;
     letter-spacing: 5px;
@@ -289,28 +414,251 @@ import OrbStage from '../components/OrbStage.astro';
     display: inline-block;
     padding: 16px 36px;
     border-radius: 32px;
-    background: linear-gradient(135deg,
-      hsla(var(--orb-hue), 60%, 50%, 0.9),
-      hsla(var(--orb-hue), 50%, 35%, 0.9));
-    border: 1px solid hsla(var(--orb-hue), 50%, 65%, 0.4);
-    color: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(18, 16, 32, 0.95);
     font-size: 16px;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease, background 1.4s ease;
-    box-shadow: 0 6px 28px hsla(var(--orb-hue), 50%, 40%, 0.35);
+    letter-spacing: 0.3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow:
+      0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35),
+      0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
   }
-  .cta:hover { transform: translateY(-2px); box-shadow: 0 10px 36px hsla(var(--orb-hue), 50%, 40%, 0.5); }
+  .cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 1);
+    color: hsla(var(--orb-hue), 70%, 32%, 1);
+    box-shadow:
+      0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45),
+      0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75),
+      0 0 100px hsla(var(--orb-hue), 80%, 65%, 0.45);
+  }
   .cta.ghost {
     background: transparent;
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.22);
     box-shadow: none;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
   }
-  .cta.ghost:hover { border-color: rgba(255, 255, 255, 0.4); color: rgba(255, 255, 255, 0.95); }
+  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
   .meta { margin-top: 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
+
+  .trust {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .trust-row {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.3px;
+  }
+  .trust-strong {
+    font-size: 15px;
+    font-weight: 500;
+    color: hsla(var(--orb-hue), 60%, 82%, 0.95);
+    letter-spacing: 0.3px;
+    transition: color 1.4s ease;
+  }
+
+  .hero-shot {
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.55),
+      0 0 80px hsla(var(--orb-hue), 60%, 50%, 0.18);
+    transition: box-shadow 1.4s ease;
+  }
+  @media (max-width: 899px) {
+    .hero-shot { margin-top: 36px; max-width: 480px; }
+  }
+
+  .features {
+    min-height: auto;
+    padding: 100px 24px 100px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    width: 100%;
+    max-width: 980px;
+  }
+  .feature-card {
+    padding: 24px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(20, 18, 32, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+  }
+  .feature-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  #problem { text-align: center; }
+  #problem h2 { margin-left: auto; margin-right: auto; }
+  #problem .lead { margin-left: auto; margin-right: auto; }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 36px;
+    width: 100%;
+    max-width: 980px;
+    text-align: left;
+  }
+  .research-card {
+    padding: 24px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(20, 18, 32, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .research-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 10px;
+  }
+  .research-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 14px;
+  }
+  .research-card .cite {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    color: hsla(var(--orb-hue), 50%, 75%, 0.8);
+    transition: color 1.4s ease;
+  }
+
+  /* ── Solution section ── */
+  #solution { text-align: center; }
+  #solution h2 { margin-left: auto; margin-right: auto; margin-bottom: 56px; }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    width: 100%;
+    max-width: 980px;
+    text-align: left;
+  }
+  .solution-card {
+    padding: 28px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(20, 18, 32, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .solution-card .card-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 60%, 78%, 0.85);
+    margin-bottom: 10px;
+    transition: color 1.4s ease;
+  }
+  .solution-card h3 {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 12px;
+  }
+  .solution-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* Animated mini-orb shared base */
+  .orb-mini {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 22px;
+    position: relative;
+    background: radial-gradient(circle at 35% 30%,
+      hsla(var(--orb-hue), 70%, 75%, 0.95) 0%,
+      hsla(var(--orb-hue), 60%, 50%, 0.8) 45%,
+      hsla(var(--orb-hue), 50%, 25%, 0.5) 100%);
+    box-shadow:
+      0 0 18px hsla(var(--orb-hue), 60%, 60%, 0.45),
+      0 0 36px hsla(var(--orb-hue), 60%, 50%, 0.25);
+    transition: background 1.4s ease, box-shadow 1.4s ease;
+  }
+
+  /* Card 1: irregular pulse, like a heartbeat under load */
+  @keyframes orbHeartbeat {
+    0%, 30%, 60%, 100% { transform: scale(1); }
+    8%  { transform: scale(1.12); }
+    14% { transform: scale(1.04); }
+    20% { transform: scale(1.10); }
+    72% { transform: scale(1.06); }
+    80% { transform: scale(1.02); }
+  }
+  .orb-pulse { animation: orbHeartbeat 3.4s ease-in-out infinite; }
+
+  /* Card 2: slow box-breath in 4 / out 4 */
+  @keyframes orbBreathe {
+    0%, 100% { transform: scale(0.9); box-shadow: 0 0 12px hsla(var(--orb-hue), 60%, 50%, 0.3); }
+    50%      { transform: scale(1.18); box-shadow: 0 0 32px hsla(var(--orb-hue), 70%, 65%, 0.7); }
+  }
+  .orb-breathe { animation: orbBreathe 8s ease-in-out infinite; }
+
+  /* Card 3: concentric rings appearing one by one (the soul-tier echo) */
+  .orb-rings { overflow: visible; }
+  .orb-rings .ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1px solid hsla(var(--orb-hue), 60%, 70%, 0.55);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: border-color 1.4s ease;
+  }
+  .orb-rings .r1 { width: 80px;  height: 80px;  animation: ringFade 4.5s ease-in-out 0.0s infinite; }
+  .orb-rings .r2 { width: 110px; height: 110px; animation: ringFade 4.5s ease-in-out 0.6s infinite; }
+  .orb-rings .r3 { width: 140px; height: 140px; animation: ringFade 4.5s ease-in-out 1.2s infinite; }
+  @keyframes ringFade {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+    35%  { opacity: 0.7; }
+    70%  { opacity: 0.4; transform: translate(-50%, -50%) scale(1.0); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb-pulse, .orb-breathe { animation: none; }
+    .orb-rings .ring { display: none; }
+  }
 
   .signals {
     display: grid;
@@ -388,17 +736,28 @@ import OrbStage from '../components/OrbStage.astro';
     gap: 18px;
     margin-top: 36px;
     width: 100%;
-    max-width: 880px;
+    max-width: 980px;
     text-align: left;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
   .paper {
     padding: 18px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     background: rgba(20, 18, 32, 0.4);
+    transition: opacity 0.3s ease;
   }
+  .paper:nth-child(n+10) { opacity: 0.7; filter: blur(0.5px); }
   .paper .title { font-size: 14px; color: rgba(255, 255, 255, 0.85); font-weight: 500; margin-bottom: 4px; }
   .paper .cite { font-size: 12px; color: rgba(255, 255, 255, 0.4); }
+  .more-line {
+    margin-top: 28px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.4px;
+    text-align: center;
+  }
 
   .privacy-points {
     display: grid;
@@ -425,33 +784,48 @@ import OrbStage from '../components/OrbStage.astro';
   .privacy-point h3 { font-size: 15px; margin-bottom: 6px; }
   .privacy-point p { font-size: 14px; }
 
-  .founder { text-align: center; max-width: 640px; }
+  .founder { text-align: center; max-width: 680px; }
+  .founder-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 28px;
+    display: block;
+    border: 2px solid hsla(var(--orb-hue), 50%, 70%, 0.3);
+    box-shadow:
+      0 0 24px hsla(var(--orb-hue), 60%, 55%, 0.35),
+      0 0 48px hsla(var(--orb-hue), 60%, 50%, 0.2);
+    transition: border-color 1.4s ease, box-shadow 1.4s ease;
+  }
   .founder .quote {
-    font-size: 22px;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 22px;
+    letter-spacing: -0.2px;
+  }
+  .founder .quote-body {
+    font-size: 17px;
     font-weight: 300;
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.82);
-    margin-bottom: 24px;
-    font-style: italic;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 auto 16px;
+    max-width: 580px;
   }
   .founder .signature {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 18px;
   }
+  .founder-cta { margin-top: 28px; }
 
   .love { text-align: center; max-width: 720px; }
   .love h2 { margin-bottom: 16px; }
   .love .lead { margin-bottom: 36px; }
 
-  .cta-label { display: block; }
-  .cta-sub {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    margin-top: 4px;
-    color: rgba(255, 255, 255, 0.78);
-    letter-spacing: 0.3px;
-  }
   .meta a { color: rgba(255, 255, 255, 0.55); text-decoration: underline; margin-left: 10px; }
   .meta a:hover { color: rgba(255, 255, 255, 0.9); }
 

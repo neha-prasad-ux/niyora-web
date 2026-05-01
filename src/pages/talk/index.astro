@@ -31,6 +31,24 @@ import Base from '../../layouts/Base.astro';
       <a class="link" href="https://www.linkedin.com/in/dr-neha-prasad/" target="_blank" rel="noopener noreferrer">Find me on LinkedIn</a>
     </div>
   </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var emailLink = document.querySelector('p.email a');
+      if (emailLink) {
+        emailLink.addEventListener('click', function () {
+          window.posthog?.capture('contact_link_clicked', { method: 'email' });
+        });
+      }
+
+      var linkedinLink = document.querySelector('a.link[href*="linkedin.com"]');
+      if (linkedinLink) {
+        linkedinLink.addEventListener('click', function () {
+          window.posthog?.capture('contact_link_clicked', { method: 'linkedin' });
+        });
+      }
+    });
+  </script>
 </Base>
 
 <style>

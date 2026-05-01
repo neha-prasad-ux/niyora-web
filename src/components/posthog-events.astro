@@ -1,0 +1,122 @@
+---
+// Global PostHog event tracking: scroll depth, time on page,
+// section visibility, outbound links, email copy, and named CTAs.
+---
+<script is:inline>
+  (function () {
+    function ph() { return window.posthog; }
+
+    // Wait for posthog to be available before firing events
+    function capture(event, props) {
+      var p = ph();
+      if (p && typeof p.capture === 'function') {
+        p.capture(event, props || {});
+      }
+    }
+
+    // Scroll depth: 50 / 75 / 100 once per page load
+    var fired = { 50: false, 75: false, 100: false };
+    function onScroll() {
+      var doc = document.documentElement;
+      var scrollTop = window.scrollY || doc.scrollTop;
+      var height = (doc.scrollHeight - doc.clientHeight) || 1;
+      var pct = Math.min(100, Math.round((scrollTop / height) * 100));
+      [50, 75, 100].forEach(function (t) {
+        if (!fired[t] && pct >= t) {
+          fired[t] = true;
+          capture('scroll_depth_' + t, { path: location.pathname });
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Time on page: 30s / 60s
+    setTimeout(function () { capture('time_on_page_30s', { path: location.pathname }); }, 30000);
+    setTimeout(function () { capture('time_on_page_60s', { path: location.pathname }); }, 60000);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Section visibility: emit section_viewed once per section per page load
+      var seen = new Set();
+      var sections = document.querySelectorAll('main section');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+              var el = entry.target;
+              var name = el.id ||
+                (el.className && String(el.className).split(' ')[0]) ||
+                (el.querySelector('.eyebrow') && el.querySelector('.eyebrow').textContent.trim().toLowerCase().replace(/\s+/g, '_')) ||
+                'unknown';
+              if (!seen.has(name)) {
+                seen.add(name);
+                capture('section_viewed', { section: name, path: location.pathname });
+              }
+            }
+          });
+        }, { threshold: [0.4] });
+        sections.forEach(function (s) { io.observe(s); });
+      }
+
+      // Page-named pageview (handy named events to query alongside autocaptured $pageview)
+      if (location.pathname === '/' || location.pathname === '') capture('page_viewed_home');
+      if (location.pathname.indexOf('/privacy') === 0) capture('privacy_page_viewed');
+      if (location.pathname.indexOf('/terms') === 0) capture('terms_page_viewed');
+      if (location.pathname.indexOf('/talk') === 0) capture('talk_page_viewed');
+
+      // Nav link clicks (footer links + any nav-class anchors)
+      document.querySelectorAll('footer a, nav a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          capture('nav_link_clicked', {
+            link: a.getAttribute('href') || '',
+            label: (a.textContent || '').trim()
+          });
+        });
+      });
+
+      // Final download alias (separate event so funnels can split hero vs final)
+      var finalDl = document.getElementById('final-download');
+      if (finalDl) {
+        finalDl.addEventListener('click', function () {
+          capture('final_download_clicked', {
+            arch: finalDl.dataset.arch || 'unknown',
+            version: '0.1.2'
+          });
+        });
+      }
+
+      // Outbound link clicks (anything not on this host, excluding mailto/tel and DMG hits)
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        var href = a.getAttribute('href') || '';
+        if (!href) return;
+        var isExternal = /^https?:\/\//i.test(href) && href.indexOf(location.host) === -1;
+        if (!isExternal) return;
+        if (/\.dmg(\?|$)/i.test(href)) return; // download_clicked covers these
+        a.addEventListener('click', function () {
+          capture('outbound_link_clicked', {
+            href: href,
+            label: (a.textContent || '').trim()
+          });
+        });
+      });
+
+      // Email copy detection (selection that contains @niyora.com or @prasad)
+      document.addEventListener('copy', function () {
+        var sel = (window.getSelection() || '').toString();
+        if (/@niyora\.com|@prasad/i.test(sel)) {
+          capture('email_copied', { length: sel.length });
+        }
+      });
+
+      // Feature card hover (desktop intent signal, fires once per card per page)
+      var hovered = new Set();
+      document.querySelectorAll('.feature-card').forEach(function (card, i) {
+        card.addEventListener('mouseenter', function () {
+          var key = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'card_' + i;
+          if (hovered.has(key)) return;
+          hovered.add(key);
+          capture('feature_card_hovered', { title: key });
+        });
+      });
+    });
+  })();
+</script>
