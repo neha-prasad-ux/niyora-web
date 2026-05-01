@@ -255,6 +255,32 @@ import OrbStage from '../components/OrbStage.astro';
     })();
   </script>
 
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href*=".dmg"]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var arch = el.dataset.arch || 'unknown';
+          var id = el.id;
+          var location = id === 'primary-download' ? 'hero'
+            : id === 'final-download' ? 'final_cta'
+            : 'downloads_section';
+          window.posthog?.capture('download_clicked', {
+            arch: arch,
+            location: location,
+            version: '0.1.1'
+          });
+        });
+      });
+
+      var sayHello = document.querySelector('.founder-cta a[href="/talk"]');
+      if (sayHello) {
+        sayHello.addEventListener('click', function () {
+          window.posthog?.capture('say_hello_clicked');
+        });
+      }
+    });
+  </script>
+
   <footer>
     <a href="/privacy/">Privacy</a>
     <a href="/terms/">Terms</a>
