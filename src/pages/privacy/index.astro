@@ -6,18 +6,20 @@ import Base from '../../layouts/Base.astro';
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: April 9, 2026</p>
+    <p class="updated">Last updated: May 1, 2026</p>
 
     <h2>What Niyora Is</h2>
     <p>Niyora is a macOS menu bar application for guided breathing and mindfulness exercises. Your privacy is important to us, and we've designed the app to collect as little data as possible.</p>
 
     <h2>Data We Collect</h2>
-    <p><strong>Local data only.</strong> Niyora stores the following on your device:</p>
+    <p><strong>Local data only.</strong> Niyora stores the following on your device, inside the app's container:</p>
     <ul>
-      <li>App preferences (window size, mute state)</li>
-      <li>Session completion timestamps (for smart reminders)</li>
+      <li>App preferences and configuration (e.g., onboarding completion, snooze state)</li>
+      <li>Session history — which technique you ran, when it started, whether you completed it</li>
+      <li>Optional weekly PSS-4 mental health check-in scores (a single 0 to 16 number)</li>
+      <li>Brief situational signals used by the smart reminder loop (e.g., recent screen-time activity), kept in memory and not written to disk</li>
     </ul>
-    <p>This data never leaves your computer. We do not have access to it.</p>
+    <p>This data never leaves your computer. We do not have access to it. We never see it, copy it, or sync it anywhere.</p>
 
     <h2>Data We Do Not Collect</h2>
     <ul>
@@ -42,7 +44,7 @@ import Base from '../../layouts/Base.astro';
     <p>If we update this policy, we will post the new version here with an updated date. If our data practices materially change, for example if we begin collecting new types of data or sharing data with additional third parties, we will notify users through the app before those changes take effect.</p>
 
     <h2>Contact</h2>
-    <p>Questions about this policy? Reach out at <strong>support@niyora.com</strong>.</p>
+    <p>Questions about this policy? Reach out at <strong>neha@niyora.com</strong>.</p>
   </div>
 </Base>
 

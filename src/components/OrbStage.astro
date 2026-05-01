@@ -12,9 +12,11 @@
   const root = document.documentElement;
   const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-hue]'));
 
-  const setHue = (hue: string, sat: string) => {
+  const setOrb = (hue: string, sat: string, alpha: string, scale: string) => {
     root.style.setProperty('--orb-hue', hue);
     root.style.setProperty('--orb-sat', sat);
+    root.style.setProperty('--orb-alpha', alpha);
+    root.style.setProperty('--orb-scale', scale);
   };
 
   const observer = new IntersectionObserver(
@@ -26,7 +28,12 @@
       }
       if (best) {
         const t = best.target as HTMLElement;
-        setHue(t.dataset.hue ?? '30', t.dataset.sat ?? '70%');
+        setOrb(
+          t.dataset.hue ?? '30',
+          t.dataset.sat ?? '70%',
+          t.dataset.orbAlpha ?? '1',
+          t.dataset.orbScale ?? '1'
+        );
       }
     },
     { threshold: [0.3, 0.6, 0.9] }
@@ -75,8 +82,9 @@
     box-shadow:
       0 0 80px 20px hsla(var(--orb-hue), var(--orb-sat), 50%, 0.35),
       0 0 200px 40px hsla(var(--orb-hue), var(--orb-sat), 50%, 0.18);
-    transition: background 1.4s ease, box-shadow 1.4s ease, transform 0.2s ease-out;
-    transform: translate3d(0, var(--orb-y, 0), 0);
+    opacity: var(--orb-alpha, 1);
+    transition: background 1.4s ease, box-shadow 1.4s ease, opacity 1.4s ease, transform 1.4s ease;
+    transform: translate3d(0, var(--orb-y, 0), 0) scale(var(--orb-scale, 1));
   }
   .orb-rings {
     position: absolute;
@@ -84,7 +92,9 @@
     height: 720px;
     border-radius: 50%;
     border: 1px solid hsla(var(--orb-hue), 60%, 70%, 0.15);
-    transition: border-color 1.4s ease;
+    opacity: var(--orb-alpha, 1);
+    transform: scale(var(--orb-scale, 1));
+    transition: border-color 1.4s ease, opacity 1.4s ease, transform 1.4s ease;
   }
   .orb-rings.r2 {
     width: 920px;
