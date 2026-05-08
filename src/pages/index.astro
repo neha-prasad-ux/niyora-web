@@ -14,7 +14,7 @@ import OrbStage from '../components/OrbStage.astro';
           <h1>Calm in 60 seconds.</h1>
           <p class="subhead">Breathing and mindfulness, right at your desk.<br />From your Mac menu bar.</p>
           <div class="cta-row">
-            <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
+            <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.2.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
               Download for Mac
             </a>
           </div>
@@ -209,12 +209,12 @@ import OrbStage from '../components/OrbStage.astro';
       <h2>Pick the build for your Mac.</h2>
       <p class="lead">Both are signed by Apple Developer ID, notarized, and stapled. Drag to Applications and you're done.</p>
       <div class="download-grid">
-        <a href="https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg" class="download-card">
+        <a href="https://downloads.niyora.com/Niyora-0.2.0-AppleSilicon.dmg" class="download-card">
           <div class="dl-arch">Apple Silicon</div>
           <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
           <div class="dl-meta">v0.1.2 · 29 MB · arm64</div>
         </a>
-        <a href="https://downloads.niyora.com/Niyora-0.1.2-Intel.dmg" class="download-card">
+        <a href="https://downloads.niyora.com/Niyora-0.2.0-Intel.dmg" class="download-card">
           <div class="dl-arch">Intel</div>
           <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
           <div class="dl-meta">v0.1.2 · 29 MB · x86_64</div>
@@ -227,7 +227,7 @@ import OrbStage from '../components/OrbStage.astro';
       <h2>Take the next breath.</h2>
       <p class="lead">It takes a minute to install. Sixty seconds to feel different.</p>
       <div class="cta-row">
-        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
+        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.2.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
       </div>
       <div class="meta">Apple Silicon and Intel. macOS 10.15 and later.</div>
     </section>
@@ -239,8 +239,8 @@ import OrbStage from '../components/OrbStage.astro';
     // when we can confidently detect it. Browsers mask architecture in navigator.userAgent
     // for privacy, but the WebGL renderer string usually reveals it on macOS.
     (function () {
-      const apple = 'https://downloads.niyora.com/Niyora-0.1.2-AppleSilicon.dmg';
-      const intel = 'https://downloads.niyora.com/Niyora-0.1.2-Intel.dmg';
+      const apple = 'https://downloads.niyora.com/Niyora-0.2.0-AppleSilicon.dmg';
+      const intel = 'https://downloads.niyora.com/Niyora-0.2.0-Intel.dmg';
 
       function detectArch() {
         try {
