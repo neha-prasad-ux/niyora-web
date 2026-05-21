@@ -6,7 +6,7 @@ import Base from '../../layouts/Base.astro';
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: May 1, 2026</p>
+    <p class="updated">Last updated: May 21, 2026</p>
 
     <h2>What Niyora Is</h2>
     <p>Niyora is a macOS menu bar application for guided breathing and mindfulness exercises. Your privacy is important to us, and we've designed the app to collect as little data as possible.</p>
@@ -21,10 +21,13 @@ import Base from '../../layouts/Base.astro';
     </ul>
     <p>This data never leaves your computer. We do not have access to it. We never see it, copy it, or sync it anywhere.</p>
 
+    <p><strong>Optional anonymous analytics.</strong> If you opt in on the onboarding consent slide (or via the toggle in My Soul), the app sends a small set of anonymous events to our analytics provider: app launches, breathing session records (which technique you ran, whether you completed it), reminder firings, and snooze starts. Each event also carries the app version and operating system name. These events are tagged with a random identifier that is generated only on opt-in and is never tied to any personal information. You can turn this off any time in My Soul; once off, no further events are sent.</p>
+
     <h2>Data We Do Not Collect</h2>
     <ul>
       <li>No personal information (name, email, address)</li>
-      <li>No analytics or usage tracking</li>
+      <li>No identifiers tied to you. If you opt in to analytics, events use a random anonymous identifier only</li>
+      <li>No stress scores, breath patterns, or PSS-4 check-in data is ever sent off your device, even with analytics enabled</li>
       <li>No cookies or browser tracking</li>
       <li>No advertising identifiers</li>
       <li>No camera or microphone access</li>
@@ -32,8 +35,10 @@ import Base from '../../layouts/Base.astro';
     </ul>
 
     <h2>Third-Party Services</h2>
-    <p>The Niyora app makes no analytics, telemetry, or account-related network requests. The only outbound request the app ever makes is an update check to <strong>downloads.niyora.com</strong> when you launch Niyora. This call returns the latest published version number and release notes. It contains no information about you, your usage, or your device beyond what every HTTPS request inherently exposes (your IP address and the version of Niyora asking). We do not log or store these requests.</p>
-    <p>Fonts and all other assets are bundled inside the app. Nothing about how you use Niyora is sent off your device.</p>
+    <p>The Niyora app makes outbound requests to at most two endpoints, and nothing else.</p>
+    <p><strong>1. Update check.</strong> When you launch Niyora, it checks <strong>downloads.niyora.com</strong> for the latest published version number and release notes. This happens automatically and is not optional. It contains no information about you, your usage, or your device beyond what every HTTPS request inherently exposes (your IP address and the version of Niyora asking). We do not log or store these requests.</p>
+    <p><strong>2. Anonymous analytics (only if you opt in).</strong> If you turn on analytics, the app sends event data to <strong>PostHog EU</strong> (eu.i.posthog.com), our analytics provider. Each event contains the event name, a random anonymous identifier, a timestamp, the app version, and your operating system name. Stress scores, breath patterns, PSS-4 data, and anything that could identify you are never sent. You can opt out any time in My Soul, and once off, no further events leave your device. PostHog acts as a data processor on our behalf; see their privacy policy at posthog.com/privacy.</p>
+    <p>Fonts and all other assets are bundled inside the app. Aside from the two requests above, nothing about how you use Niyora is sent off your device.</p>
     <p><strong>This website only:</strong> The Niyora landing page and this privacy page load the Poppins font from Google Fonts. As part of that font request, Google may receive technical information such as your IP address. This applies to the website only, not to the Niyora app itself.</p>
 
     <h2>Data Retention</h2>
