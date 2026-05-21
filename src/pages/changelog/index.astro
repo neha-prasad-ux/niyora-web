@@ -1,0 +1,170 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="What's new · Niyora">
+  <div class="container">
+    <a class="back" href="/">← Back to Niyora</a>
+    <h1>What's new</h1>
+    <p class="lede">Every Niyora release, in plain language. Newest first.</p>
+
+    <article class="release">
+      <header>
+        <h2>v0.3.0</h2>
+        <span class="date">May 11, 2026</span>
+      </header>
+      <ul>
+        <li>Windows support. Tray icon, panel, native toasts, installer.</li>
+        <li>Tray icon spins gently during onboarding.</li>
+        <li>Soft glow and cross-fade on the breathing phase label.</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <header>
+        <h2>v0.2.0</h2>
+        <span class="date">May 8, 2026</span>
+      </header>
+      <ul>
+        <li>Styled installer on macOS.</li>
+        <li>First-launch panel polish.</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <header>
+        <h2>v0.1.2</h2>
+        <span class="date">May 1, 2026</span>
+      </header>
+      <ul>
+        <li>In-app auto-updates. Niyora keeps itself current.</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <header>
+        <h2>v0.1.1</h2>
+        <span class="date">May 1, 2026</span>
+      </header>
+      <ul>
+        <li>Polish pass. Small fixes and visual refinements.</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <header>
+        <h2>v0.1.0</h2>
+        <span class="date">Apr 29, 2026</span>
+      </header>
+      <p class="release-lede">First public release.</p>
+      <ul>
+        <li>Fourteen practices. Pranayama, mindfulness, grounding, self-compassion.</li>
+        <li>My Soul. Your growing visual companion.</li>
+        <li>Situational signals. Niyora reads your work rhythm and nudges when stress is building.</li>
+        <li>Smart reminders.</li>
+        <li>Practice picker and onboarding.</li>
+        <li>Mac builds for Apple Silicon and Intel. Signed by Apple Developer ID and notarized.</li>
+      </ul>
+    </article>
+
+    <p class="foot">Want to know when the next one ships? <a href="/talk">Say hello</a>.</p>
+  </div>
+</Base>
+
+<style>
+  body { background: #0a0814; }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  a.back {
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  a.back:hover { color: rgba(255, 255, 255, 0.6); }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .lede {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 48px;
+  }
+
+  .release {
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .release header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .release h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    letter-spacing: 0.2px;
+  }
+  .release .date {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.4px;
+  }
+  .release-lede {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 10px;
+  }
+  .release ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .release li {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.68);
+    padding: 6px 0 6px 18px;
+    position: relative;
+  }
+  .release li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: hsla(230, 50%, 70%, 0.5);
+  }
+
+  .foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+  }
+  .foot a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  .foot a:hover { color: rgba(255, 255, 255, 0.95); border-bottom-color: rgba(255, 255, 255, 0.6); }
+</style>
