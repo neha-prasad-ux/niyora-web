@@ -14,7 +14,7 @@ import OrbStage from '../components/OrbStage.astro';
           <h1>Calm in 60 seconds.</h1>
           <p class="subhead">Breathing and mindfulness, right at your desk.<br />From your menu bar or system tray.</p>
           <div class="cta-row">
-            <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.3.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
+            <a id="primary-download" href="https://downloads.niyora.com/Niyora-0.4.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
               Download for Mac
             </a>
           </div>
@@ -209,20 +209,20 @@ import OrbStage from '../components/OrbStage.astro';
       <h2>Pick the build for your machine.</h2>
       <p class="lead">Mac builds are signed by Apple Developer ID and notarized. Windows is unsigned for v1; the installer triggers a SmartScreen warning the first time.</p>
       <div class="download-grid">
-        <a href="https://downloads.niyora.com/Niyora-0.3.0-AppleSilicon.dmg" class="download-card" data-arch="apple-silicon">
+        <a href="https://downloads.niyora.com/Niyora-0.4.0-AppleSilicon.dmg" class="download-card" data-arch="apple-silicon">
           <div class="dl-arch">Apple Silicon</div>
           <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
-          <div class="dl-meta">v0.3.0 · 29 MB · arm64</div>
+          <div class="dl-meta">v0.4.0 · 32 MB · arm64</div>
         </a>
-        <a href="https://downloads.niyora.com/Niyora-0.3.0-Intel.dmg" class="download-card" data-arch="intel">
+        <a href="https://downloads.niyora.com/Niyora-0.4.0-Intel.dmg" class="download-card" data-arch="intel">
           <div class="dl-arch">Intel</div>
           <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
-          <div class="dl-meta">v0.3.0 · 29 MB · x86_64</div>
+          <div class="dl-meta">v0.4.0 · 33 MB · x86_64</div>
         </a>
-        <a href="https://downloads.niyora.com/Niyora-0.3.0-Windows-x64.exe" class="download-card" data-arch="windows-x64">
+        <a href="https://downloads.niyora.com/Niyora-0.4.0-Windows-x64.exe" class="download-card" data-arch="windows-x64">
           <div class="dl-arch">Windows</div>
           <div class="dl-detail">Windows 10 or 11. 64-bit. First launch: click "More info", then "Run anyway".</div>
-          <div class="dl-meta">v0.3.0 · 28 MB · x86_64</div>
+          <div class="dl-meta">v0.4.0 · 29 MB · x86_64</div>
         </a>
       </div>
       <p class="meta unsure">On a Mac and unsure which? Apple menu, About This Mac. If it says "Apple M…" you want Apple Silicon. Otherwise Intel.</p>
@@ -232,7 +232,7 @@ import OrbStage from '../components/OrbStage.astro';
       <h2>Take the next breath.</h2>
       <p class="lead">It takes a minute to install. Sixty seconds to feel different.</p>
       <div class="cta-row">
-        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.3.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
+        <a id="final-download" href="https://downloads.niyora.com/Niyora-0.4.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">Download for Mac</a>
       </div>
       <div class="meta">Mac (Apple Silicon, Intel) and Windows 10 or 11.</div>
     </section>
@@ -243,9 +243,9 @@ import OrbStage from '../components/OrbStage.astro';
     // Default in the source: Apple Silicon. JS overrides to Intel (Mac with Intel
     // GPU detected via WebGL renderer) or to Windows (Windows user agent).
     (function () {
-      const apple = 'https://downloads.niyora.com/Niyora-0.3.0-AppleSilicon.dmg';
-      const intel = 'https://downloads.niyora.com/Niyora-0.3.0-Intel.dmg';
-      const windows = 'https://downloads.niyora.com/Niyora-0.3.0-Windows-x64.exe';
+      const apple = 'https://downloads.niyora.com/Niyora-0.4.0-AppleSilicon.dmg';
+      const intel = 'https://downloads.niyora.com/Niyora-0.4.0-Intel.dmg';
+      const windows = 'https://downloads.niyora.com/Niyora-0.4.0-Windows-x64.exe';
 
       function applyCta(url, arch, label) {
         ['primary-download', 'final-download'].forEach(function (id) {
