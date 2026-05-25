@@ -2,26 +2,34 @@
 import Base from '../../layouts/Base.astro';
 ---
 
-<Base title="Privacy at Niyora" description="No data leaves this device. We don't run servers. We don't have accounts.">
+<Base title="Privacy at Niyora" description="Nothing about you leaves your device. We don't run servers. We don't have accounts.">
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
     <h1>Privacy at Niyora</h1>
 
     <div class="promise">
-      <p class="promise-text">No data leaves this device. We don't run servers. We don't have accounts.</p>
+      <p class="promise-text">Nothing about you leaves your device. We don't run servers. We don't have accounts.</p>
     </div>
 
     <h2>What stays on your device</h2>
-    <p>Everything. Session history, technique preferences, reminder schedule, HRV data when paired, tier progression. All of it lives in your app container and never leaves your device.</p>
+    <p>Everything personal. Session history, technique preferences, reminder schedule, HRV data when paired with your Mac, tier progression. All of it lives in your app container and never leaves your device. There is no cloud to lose it to.</p>
 
     <h2>What never crosses the wire</h2>
-    <p>No telemetry. No analytics. No crash reporting. No opt-in upsell. The app makes zero outbound network requests of its own.</p>
+    <p>Your stress scores, breath patterns, HRV readings, and PSS-4 check-ins are never sent off your device, ever. No advertising identifiers. No cookies. No fingerprinting. No camera or microphone access for tracking. No accounts to sign in to.</p>
 
-    <h2>Local pairing</h2>
-    <p>When your iPhone pairs with your Mac, the only network calls are Bonjour discovery and a direct TCP connection on the same Wi-Fi. No traffic leaves the LAN.</p>
+    <h2>The three outbound requests Niyora does make</h2>
+    <p>Honesty matters here. The app makes outbound network requests in three cases, all to first-party endpoints, all carrying nothing about you beyond what every HTTPS request inherently exposes (your IP address and the version of Niyora asking).</p>
+    <ol>
+      <li><strong>Update checks.</strong> A small JSON fetch to <code>downloads.niyora.com/latest.json</code> on launch, every ~24 hours while the app is running, and when you click "Check for updates" in the tray menu. No telemetry is attached.</li>
+      <li><strong>Update downloads.</strong> When a check finds a newer version, the signed binary is fetched from <code>downloads.niyora.com</code>. Manual and launch-time checks ask you first; the background check downloads silently.</li>
+      <li><strong>Anonymous analytics, only if you opted in.</strong> A small set of events (app launches, technique completions, reminder firings) is sent to PostHog EU. Each event carries a random anonymous identifier generated only on opt-in, never tied to anything that identifies you. You can turn it off any time in My Soul.</li>
+    </ol>
+
+    <h2>Local pairing with your iPhone</h2>
+    <p>When your iPhone pairs with your Mac, the only network calls are Bonjour discovery and a direct TCP connection on the same Wi-Fi. No traffic leaves the LAN. There is no server in the middle, no account to authenticate against, nothing for us to see.</p>
 
     <h2>App Store privacy nutrition label</h2>
-    <p>Data Not Collected. When iOS v1 ships, you'll see the full label on the App Store page.</p>
+    <p>When iOS v1 ships, you'll see "Data Not Collected" on the App Store page. The pairing and standalone paths both preserve that promise.</p>
 
     <h2>Questions?</h2>
     <p>Contact us at <a href="mailto:privacy@niyora.com">privacy@niyora.com</a>.</p>
@@ -71,10 +79,23 @@ import Base from '../../layouts/Base.astro';
     color: rgba(255, 255, 255, 0.8);
     margin: 32px 0 12px;
   }
-  p {
+  p, li {
     font-size: 14px;
     font-weight: 300;
     margin-bottom: 12px;
+  }
+  ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  ol li {
+    margin-bottom: 14px;
+  }
+  code {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
   }
   a {
     color: rgba(255, 255, 255, 0.85);
