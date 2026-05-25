@@ -2,56 +2,29 @@
 import Base from '../../layouts/Base.astro';
 ---
 
-<Base title="Privacy Policy · Niyora">
+<Base title="Privacy at Niyora" description="No data leaves this device. We don't run servers. We don't have accounts.">
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: May 21, 2026</p>
+    <h1>Privacy at Niyora</h1>
 
-    <h2>What Niyora Is</h2>
-    <p>Niyora is a macOS menu bar application for guided breathing and mindfulness exercises. Your privacy is important to us, and we've designed the app to collect as little data as possible.</p>
+    <div class="promise">
+      <p class="promise-text">No data leaves this device. We don't run servers. We don't have accounts.</p>
+    </div>
 
-    <h2>Data We Collect</h2>
-    <p><strong>Local data only.</strong> Niyora stores the following on your device, inside the app's container:</p>
-    <ul>
-      <li>App preferences and configuration (e.g., onboarding completion, snooze state)</li>
-      <li>Session history — which technique you ran, when it started, whether you completed it</li>
-      <li>Optional weekly PSS-4 mental health check-in scores (a single 0 to 16 number)</li>
-      <li>Brief situational signals used by the smart reminder loop (e.g., recent screen-time activity), kept in memory and not written to disk</li>
-    </ul>
-    <p>This data never leaves your computer. We do not have access to it. We never see it, copy it, or sync it anywhere.</p>
+    <h2>What stays on your device</h2>
+    <p>Everything. Session history, technique preferences, reminder schedule, HRV data when paired, tier progression. All of it lives in your app container and never leaves your device.</p>
 
-    <p><strong>Optional anonymous analytics.</strong> If you opt in on the onboarding consent slide (or via the toggle in My Soul), the app sends a small set of anonymous events to our analytics provider: app launches, breathing session records (which technique you ran, whether you completed it), reminder firings, and snooze starts. Each event also carries the app version and operating system name. These events are tagged with a random identifier that is generated only on opt-in and is never tied to any personal information. You can turn this off any time in My Soul; once off, no further events are sent.</p>
+    <h2>What never crosses the wire</h2>
+    <p>No telemetry. No analytics. No crash reporting. No opt-in upsell. The app makes zero outbound network requests of its own.</p>
 
-    <h2>Data We Do Not Collect</h2>
-    <ul>
-      <li>No personal information (name, email, address)</li>
-      <li>No identifiers tied to you. If you opt in to analytics, events use a random anonymous identifier only</li>
-      <li>No stress scores, breath patterns, or PSS-4 check-in data is ever sent off your device, even with analytics enabled</li>
-      <li>No cookies or browser tracking</li>
-      <li>No advertising identifiers</li>
-      <li>No camera or microphone access</li>
-      <li>No accounts, no sync, no cloud storage</li>
-    </ul>
+    <h2>Local pairing</h2>
+    <p>When your iPhone pairs with your Mac, the only network calls are Bonjour discovery and a direct TCP connection on the same Wi-Fi. No traffic leaves the LAN.</p>
 
-    <h2>Third-Party Services</h2>
-    <p>The Niyora app makes outbound requests to at most two endpoints, and nothing else.</p>
-    <p><strong>1. Update check.</strong> When you launch Niyora, it checks <strong>downloads.niyora.com</strong> for the latest published version number and release notes. This happens automatically and is not optional. It contains no information about you, your usage, or your device beyond what every HTTPS request inherently exposes (your IP address and the version of Niyora asking). We do not log or store these requests.</p>
-    <p><strong>2. Anonymous analytics (only if you opt in).</strong> If you turn on analytics, the app sends event data to <strong>PostHog EU</strong> (eu.i.posthog.com), our analytics provider. Each event contains the event name, a random anonymous identifier, a timestamp, the app version, and your operating system name. Stress scores, breath patterns, PSS-4 data, and anything that could identify you are never sent. You can opt out any time in My Soul, and once off, no further events leave your device. PostHog acts as a data processor on our behalf; see their privacy policy at posthog.com/privacy.</p>
-    <p>Fonts and all other assets are bundled inside the app. Aside from the two requests above, nothing about how you use Niyora is sent off your device.</p>
-    <p><strong>This website only:</strong> The Niyora landing page and this privacy page load the Poppins font from Google Fonts. As part of that font request, Google may receive technical information such as your IP address. This applies to the website only, not to the Niyora app itself.</p>
+    <h2>App Store privacy nutrition label</h2>
+    <p>Data Not Collected. When iOS v1 ships, you'll see the full label on the App Store page.</p>
 
-    <h2>Data Retention</h2>
-    <p>All data is stored locally on your device. Uninstalling Niyora removes all data. There is nothing to delete on our end because we never had it.</p>
-
-    <h2>Children's Privacy</h2>
-    <p>Niyora is not directed at children under 13. We do not knowingly collect data from children.</p>
-
-    <h2>Changes to This Policy</h2>
-    <p>If we update this policy, we will post the new version here with an updated date. If our data practices materially change, for example if we begin collecting new types of data or sharing data with additional third parties, we will notify users through the app before those changes take effect.</p>
-
-    <h2>Contact</h2>
-    <p>Questions about this policy? Reach out at <strong>neha@niyora.com</strong>.</p>
+    <h2>Questions?</h2>
+    <p>Contact us at <a href="mailto:privacy@niyora.com">privacy@niyora.com</a>.</p>
   </div>
 </Base>
 
@@ -72,10 +45,42 @@ import Base from '../../layouts/Base.astro';
     margin-bottom: 32px;
   }
   a.back:hover { color: rgba(255, 255, 255, 0.6); }
-  h1 { font-size: 28px; font-weight: 500; color: rgba(255, 255, 255, 0.9); margin-bottom: 8px; }
-  .updated { font-size: 12px; color: rgba(255, 255, 255, 0.3); margin-bottom: 40px; }
-  h2 { font-size: 16px; font-weight: 500; color: rgba(255, 255, 255, 0.8); margin: 32px 0 12px; }
-  p, li { font-size: 14px; font-weight: 300; margin-bottom: 12px; }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 8px; }
+  h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 32px;
+  }
+  .promise {
+    margin-bottom: 48px;
+    padding: 28px;
+    background: rgba(20, 18, 32, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+  .promise-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 32px 0 12px;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+  a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: underline;
+  }
+  a:hover {
+    color: rgba(255, 255, 255, 1);
+  }
 </style>
