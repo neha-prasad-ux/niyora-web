@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { downloads } from '../../config/downloads';
 ---
 
 <Base title="Niyora in motion" description="30 seconds of pranayama. No tour, no tutorial. Just one breath.">
@@ -44,7 +45,7 @@ import Base from '../../layouts/Base.astro';
       </ul>
 
       <div class="cta-row">
-        <a id="demo-download" href="https://downloads.niyora.com/Niyora-0.4.0-AppleSilicon.dmg" class="cta" data-arch="apple-silicon">
+        <a id="demo-download" href={downloads.apple} class="cta" data-arch="apple-silicon">
           Download for Mac
         </a>
         <a href="mailto:hello@niyora.com?subject=iOS%20app%20launch%20notification" class="cta ghost">Notify me for iOS</a>
@@ -52,12 +53,8 @@ import Base from '../../layouts/Base.astro';
     </main>
   </div>
 
-  <script>
+  <script define:vars={{ apple: downloads.apple, intel: downloads.intel, windows: downloads.windows }}>
     (function () {
-      const apple = 'https://downloads.niyora.com/Niyora-0.4.0-AppleSilicon.dmg';
-      const intel = 'https://downloads.niyora.com/Niyora-0.4.0-Intel.dmg';
-      const windows = 'https://downloads.niyora.com/Niyora-0.4.0-Windows-x64.exe';
-
       const a = document.getElementById('demo-download');
       if (!a) return;
 
