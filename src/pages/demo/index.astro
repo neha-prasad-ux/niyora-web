@@ -1,0 +1,272 @@
+---
+import Base from '../../layouts/Base.astro';
+import { downloads } from '../../config/downloads';
+---
+
+<Base title="Niyora in motion" description="30 seconds of pranayama. No tour, no tutorial. Just one breath.">
+  <Fragment slot="head">
+    <meta property="og:title" content="Niyora in motion" />
+    <meta property="og:description" content="30 seconds of pranayama. No tour, no tutorial. Just one breath." />
+    <meta property="og:image" content="https://assets.niyora.com/niyora-launch-poster.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://niyora.com/demo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Niyora in motion" />
+    <meta name="twitter:description" content="30 seconds of pranayama. No tour, no tutorial. Just one breath." />
+    <meta name="twitter:image" content="https://assets.niyora.com/niyora-launch-poster.jpg" />
+  </Fragment>
+
+  <div class="demo-wrap">
+    <a class="back" href="/">← Back to Niyora</a>
+
+    <main class="demo-main">
+      <div class="eyebrow">See it in motion</div>
+      <h1>Niyora in motion</h1>
+      <p class="context">30 seconds of pranayama. No tour, no tutorial. Just one breath.</p>
+
+      <div class="video-frame">
+        <video
+          autoplay
+          muted
+          controls
+          playsinline
+          poster="https://assets.niyora.com/niyora-launch-poster.jpg"
+          src="https://assets.niyora.com/niyora-launch.mp4"
+          aria-label="Niyora breathing session: box breathing with orb shifting colour each phase"
+        >
+          <p>Your browser does not support the video element. <a href="https://assets.niyora.com/niyora-launch.mp4">Download the demo video</a>.</p>
+        </video>
+      </div>
+
+      <ul class="watch-list">
+        <li>Box breathing technique</li>
+        <li>Tier-tinted orb shifts colour each phase</li>
+        <li>All on-device, no analytics</li>
+      </ul>
+
+      <div class="cta-row">
+        <a id="demo-download" href={downloads.apple} class="cta" data-arch="apple-silicon">
+          Download for Mac
+        </a>
+        <a href="mailto:hello@niyora.com?subject=iOS%20app%20launch%20notification" class="cta ghost">Notify me for iOS</a>
+      </div>
+      <p class="other-builds">Other builds at <a href="/">niyora.com</a>.</p>
+    </main>
+  </div>
+
+  <script define:vars={{ apple: downloads.apple, intel: downloads.intel, windows: downloads.windows }}>
+    (function () {
+      const a = document.getElementById('demo-download');
+      if (!a) return;
+
+      const isWindows = /Windows/i.test(navigator.userAgent);
+      if (isWindows) {
+        a.href = windows;
+        a.dataset.arch = 'windows-x64';
+        a.textContent = 'Download for Windows';
+        return;
+      }
+
+      const isMac = /Mac|iPhone|iPad/i.test(navigator.userAgent);
+      if (!isMac) return;
+
+      function detectMacArch() {
+        try {
+          const canvas = document.createElement('canvas');
+          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+          if (!gl) return null;
+          const ext = gl.getExtension('WEBGL_debug_renderer_info');
+          const renderer = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : '';
+          if (!renderer) return null;
+          if (/Apple\s*(M|GPU)/i.test(renderer)) return 'apple-silicon';
+          if (/Intel/i.test(renderer)) return 'intel';
+          return null;
+        } catch (_) { return null; }
+      }
+
+      if (detectMacArch() === 'intel') {
+        a.href = intel;
+        a.dataset.arch = 'intel';
+      }
+    })();
+  </script>
+
+  <footer>
+    <a href="/changelog/">What's new</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="https://github.com/neha-prasad-ux/niyora">GitHub</a>
+    <a href="mailto:neha@niyora.com">Contact</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
+</Base>
+
+<style>
+  .demo-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 24px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .back {
+    display: inline-block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    margin-bottom: 48px;
+    letter-spacing: 0.3px;
+  }
+  .back:hover { color: rgba(255, 255, 255, 0.8); }
+
+  .demo-main { text-align: center; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.96);
+  }
+
+  .context {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 40px;
+  }
+
+  .video-frame {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    background: #000;
+    aspect-ratio: 16 / 9;
+  }
+  .video-frame video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .watch-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 40px;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .watch-list li {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(20, 18, 32, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .watch-list li::before {
+    content: "→ ";
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 80px;
+  }
+
+  .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(18, 16, 32, 0.95);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow:
+      0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35),
+      0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
+  }
+  .cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 1);
+    color: hsla(var(--orb-hue), 70%, 32%, 1);
+    box-shadow:
+      0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45),
+      0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75),
+      0 0 100px hsla(var(--orb-hue), 80%, 65%, 0.45);
+  }
+  .cta.ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta.ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
+  }
+
+  .other-builds {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: -24px;
+    margin-bottom: 80px;
+  }
+  .other-builds a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
+  }
+
+  footer {
+    text-align: center;
+    padding: 60px 24px 80px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    position: relative;
+    z-index: 2;
+  }
+  footer a {
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    margin: 0 14px;
+  }
+  footer a:hover { color: rgba(255, 255, 255, 0.8); }
+  footer .copyright {
+    margin-top: 16px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 32px; }
+    .video-frame { border-radius: 10px; }
+    .demo-wrap { padding: 40px 20px 0; }
+  }
+</style>
