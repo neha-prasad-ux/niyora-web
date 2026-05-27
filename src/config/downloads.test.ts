@@ -30,4 +30,32 @@ describe('downloads', () => {
   it('apple and intel serve different binaries', () => {
     expect(downloads.apple).not.toBe(downloads.intel);
   });
+
+  it('windows URL is distinct from all mac URLs', () => {
+    expect(downloads.windows).not.toBe(downloads.apple);
+    expect(downloads.windows).not.toBe(downloads.intel);
+  });
+
+  it('all URLs are valid parseable URLs', () => {
+    for (const url of Object.values(downloads)) {
+      expect(() => new URL(url)).not.toThrow();
+    }
+  });
+
+  it('all URLs reference the same release version', () => {
+    const versionPattern = /(\d+\.\d+\.\d+)/;
+    const versions = Object.values(downloads).map((url) => {
+      const match = url.match(versionPattern);
+      return match ? match[1] : null;
+    });
+    const unique = new Set(versions);
+    expect(unique.size).toBe(1);
+    expect(versions[0]).not.toBeNull();
+  });
+
+  it('each URL encodes a platform identifier in the filename', () => {
+    expect(downloads.apple).toMatch(/AppleSilicon/);
+    expect(downloads.intel).toMatch(/Intel/);
+    expect(downloads.windows).toMatch(/Windows/);
+  });
 });
