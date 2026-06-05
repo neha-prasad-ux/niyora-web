@@ -12,7 +12,8 @@ describe('astro.config', () => {
   });
 
   it('sitemap integration is registered', () => {
-    const sitemap = config.integrations![0] as { name: string };
-    expect(sitemap.name).toBe('@astrojs/sitemap');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sitemap = (config.integrations! as any[]).find((i) => i?.name === '@astrojs/sitemap');
+    expect(sitemap).not.toBeUndefined();
   });
 });
