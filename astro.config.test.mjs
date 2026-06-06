@@ -12,6 +12,6 @@ describe('astro.config', () => {
   });
 
   it('includes the sitemap integration', () => {
-    expect(config.integrations.some(i => i.name === '@astrojs/sitemap')).toBe(true);
+    expect(config.integrations?.some(i => i.name === '@astrojs/sitemap')).toBe(true);
   });
 });
