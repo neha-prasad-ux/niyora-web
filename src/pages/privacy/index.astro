@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 <Base title="Privacy at Niyora" description="Nothing about you leaves your device. We don't run servers. We don't have accounts.">
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
+    <p class="last-updated">Last updated: May 21, 2026</p>
     <h1>Privacy at Niyora</h1>
 
     <div class="promise">
@@ -21,15 +22,9 @@ import Base from '../../layouts/Base.astro';
     <p>Honesty matters here. The app makes outbound network requests in three cases, all to first-party endpoints, all carrying nothing about you beyond what every HTTPS request inherently exposes (your IP address and the version of Niyora asking).</p>
     <ol>
       <li><strong>Update checks.</strong> A small JSON fetch to <code>downloads.niyora.com/latest.json</code> on launch, every ~24 hours while the app is running, and when you click "Check for updates" in the tray menu. No telemetry is attached.</li>
-      <li><strong>Update downloads.</strong> When a check finds a newer version, the signed binary is fetched from <code>downloads.niyora.com</code>. Manual and launch-time checks ask you first; the background check downloads silently.</li>
+      <li><strong>Update downloads.</strong> When a check finds a newer version, the signed binary is fetched from <code>downloads.niyora.com</code>.</li>
       <li><strong>Anonymous analytics, only if you opted in.</strong> A small set of events (app launches, technique completions, reminder firings) is sent to PostHog EU. Each event carries a random anonymous identifier generated only on opt-in, never tied to anything that identifies you. You can turn it off any time in My Soul.</li>
     </ol>
-
-    <h2>Local pairing with your iPhone</h2>
-    <p>When your iPhone pairs with your Mac, the only network calls are Bonjour discovery and a direct TCP connection on the same Wi-Fi. No traffic leaves the LAN. There is no server in the middle, no account to authenticate against, nothing for us to see.</p>
-
-    <h2>App Store privacy nutrition label</h2>
-    <p>When iOS v1 ships, you'll see "Data Not Collected" on the App Store page. The pairing and standalone paths both preserve that promise.</p>
 
     <h2>Questions?</h2>
     <p>Contact us at <a href="mailto:privacy@niyora.com">privacy@niyora.com</a>.</p>
@@ -38,6 +33,11 @@ import Base from '../../layouts/Base.astro';
 
 <style>
   body { background: #0a0814; }
+  .last-updated {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 16px;
+  }
   .container {
     max-width: 640px;
     margin: 0 auto;
