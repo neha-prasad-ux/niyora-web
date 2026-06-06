@@ -21,9 +21,8 @@ describe('astro.config', () => {
     expect((config.integrations! as any[]).length).toBe(1);
   });
 
-  it('output is not set to server or hybrid (static site invariant)', () => {
-    expect(config.output).not.toBe('server');
-    expect(config.output).not.toBe('hybrid');
+  it('output is static (static site invariant)', () => {
+    expect(config.output ?? 'static').toBe('static');
   });
 
   it('no SSR adapter is configured', () => {
