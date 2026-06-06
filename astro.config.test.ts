@@ -16,4 +16,16 @@ describe('astro.config', () => {
     const sitemap = (config.integrations! as any[]).find((i) => i?.name === '@astrojs/sitemap');
     expect(sitemap).not.toBeUndefined();
   });
+
+  it('exactly one integration is registered', () => {
+    expect((config.integrations! as any[]).length).toBe(1);
+  });
+
+  it('output is static (static site invariant)', () => {
+    expect(config.output ?? 'static').toBe('static');
+  });
+
+  it('no SSR adapter is configured', () => {
+    expect((config as any).adapter).toBeUndefined();
+  });
 });
