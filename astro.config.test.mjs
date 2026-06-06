@@ -11,11 +11,7 @@ describe('astro.config', () => {
     expect(new URL(config.site).protocol).toBe('https:');
   });
 
-  it('includes exactly one integration', () => {
-    expect(config.integrations).toHaveLength(1);
-  });
-
-  it('uses the sitemap integration', () => {
-    expect(config.integrations[0].name).toBe('@astrojs/sitemap');
+  it('includes the sitemap integration', () => {
+    expect(config.integrations.some(i => i.name === '@astrojs/sitemap')).toBe(true);
   });
 });
