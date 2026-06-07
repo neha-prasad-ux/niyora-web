@@ -5,9 +5,18 @@ import PostHogEvents from '../components/posthog-events.astro';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description = "A privacy-first macOS menu-bar app that watches your screen-time signals and nudges you to breathe before stress takes hold." } = Astro.props;
+const {
+  title,
+  description = "A privacy-first macOS menu-bar app that watches your screen-time signals and nudges you to breathe before stress takes hold.",
+  ogImage,
+  ogType = "website",
+  canonicalUrl,
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,6 +29,17 @@ const { title, description = "A privacy-first macOS menu-bar app that watches yo
     <link rel="icon" href="/icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    {ogImage && <>
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:type" content={ogType} />
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
+    </>}
     <PostHog />
     <PostHogEvents />
     <slot name="head" />

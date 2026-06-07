@@ -3,18 +3,12 @@ import Base from '../../layouts/Base.astro';
 import { downloads } from '../../config/downloads';
 ---
 
-<Base title="Niyora in motion" description="30 seconds of pranayama. No tour, no tutorial. Just one breath.">
-  <Fragment slot="head">
-    <meta property="og:title" content="Niyora in motion" />
-    <meta property="og:description" content="30 seconds of pranayama. No tour, no tutorial. Just one breath." />
-    <meta property="og:image" content="https://assets.niyora.com/niyora-launch-poster.jpg" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://niyora.com/demo" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Niyora in motion" />
-    <meta name="twitter:description" content="30 seconds of pranayama. No tour, no tutorial. Just one breath." />
-    <meta name="twitter:image" content="https://assets.niyora.com/niyora-launch-poster.jpg" />
-  </Fragment>
+<Base
+  title="Niyora in motion"
+  description="30 seconds of pranayama. No tour, no tutorial. Just one breath."
+  ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
+  canonicalUrl="https://niyora.com/demo"
+>
 
   <div class="demo-wrap">
     <a class="back" href="/">← Back to Niyora</a>
