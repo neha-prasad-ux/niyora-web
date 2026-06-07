@@ -13,10 +13,12 @@ interface Props {
 const {
   title,
   description = "A privacy-first macOS menu-bar app that watches your screen-time signals and nudges you to breathe before stress takes hold.",
-  ogImage,
+  ogImage = '/hero-shot.png',
   ogType = "website",
-  canonicalUrl,
+  canonicalUrl = Astro.url.href,
 } = Astro.props;
+
+const ogImageAbsolute = new URL(ogImage, Astro.site).href;
 ---
 
 <!DOCTYPE html>
@@ -29,17 +31,15 @@ const {
     <link rel="icon" href="/icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    {ogImage && <>
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:type" content={ogType} />
-      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
-    </>}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
     <PostHog />
     <PostHogEvents />
     <slot name="head" />
