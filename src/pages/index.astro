@@ -25,7 +25,7 @@ import { downloads } from '../config/downloads';
           </div>
           <div class="trust">
             <div class="trust-row">Free to use · No account · No wearables · No health data</div>
-            <div class="trust-strong">Nothing leaves your Mac.</div>
+            <div class="trust-strong" id="trust-tagline">Nothing leaves your Mac.</div>
           </div>
         </div>
         <div class="hero-image-wrap">
@@ -62,7 +62,7 @@ import { downloads } from '../config/downloads';
 
     <section class="launch-video" data-hue="235" data-sat="60%">
       <div class="eyebrow">See it in motion</div>
-      <h2>Sixty seconds of calm, in your menu bar.</h2>
+      <h2 id="video-tagline">Sixty seconds of calm, in your menu bar.</h2>
       <div class="video-frame">
         <video
           controls
@@ -105,7 +105,7 @@ import { downloads } from '../config/downloads';
           <div class="orb-mini orb-pulse"></div>
           <div class="card-eyebrow">Recognise stress</div>
           <h3>It watches the rhythm of your work.</h3>
-          <p>Niyora reads passive signals from your Mac. How long you've been at the screen, what time of day, whether you're switching contexts. No wearables, no biometrics. Just the rhythm of your day.</p>
+          <p id="recognition-copy">Niyora reads passive signals from your Mac. How long you've been at the screen, what time of day, whether you're switching contexts. No wearables, no biometrics. Just the rhythm of your day.</p>
         </div>
         <div class="solution-card">
           <div class="orb-mini orb-breathe"></div>
@@ -185,7 +185,7 @@ import { downloads } from '../config/downloads';
 
     <section data-hue="210" data-sat="60%">
       <div class="eyebrow">Privacy, locally</div>
-      <h2>Nothing leaves your Mac. Ever.</h2>
+      <h2 id="privacy-tagline">Nothing leaves your Mac. Ever.</h2>
       <p class="lead">Most wellness apps want your account, your data, and a server log of your worst days. Niyora wants none of it.</p>
       <div class="privacy-points">
         <div class="privacy-point">
@@ -271,6 +271,15 @@ import { downloads } from '../config/downloads';
       const isWindows = /Windows/i.test(navigator.userAgent);
       if (isWindows) {
         applyCta(windows, 'windows-x64', 'Download for Windows');
+        [
+          ['trust-tagline', 'Nothing leaves your PC.'],
+          ['video-tagline', 'Sixty seconds of calm, in your system tray.'],
+          ['privacy-tagline', 'Nothing leaves your PC. Ever.'],
+          ['recognition-copy', "Niyora reads passive signals from your PC. How long you’ve been at the screen, what time of day, whether you’re switching contexts. No wearables, no biometrics. Just the rhythm of your day."],
+        ].forEach(function(s) {
+          var el = document.getElementById(s[0]);
+          if (el) el.textContent = s[1];
+        });
         return;
       }
 
