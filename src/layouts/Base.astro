@@ -36,6 +36,7 @@ const ogImageAbsolute = new URL(ogImage, Astro.site).href;
     <meta property="og:image" content={ogImageAbsolute} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content={ogType} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
