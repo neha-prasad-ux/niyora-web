@@ -226,17 +226,17 @@ import { downloads } from '../config/downloads';
         <a href={downloads.apple} class="download-card" data-arch="apple-silicon">
           <div class="dl-arch">Apple Silicon</div>
           <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
-          <div class="dl-meta">v0.4.0 · 32 MB · arm64</div>
+          <div class="dl-meta">v{downloads.version} · {downloads.appleSizeMB} · arm64</div>
         </a>
         <a href={downloads.intel} class="download-card" data-arch="intel">
           <div class="dl-arch">Intel</div>
           <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
-          <div class="dl-meta">v0.4.0 · 33 MB · x86_64</div>
+          <div class="dl-meta">v{downloads.version} · {downloads.intelSizeMB} · x86_64</div>
         </a>
         <a href={downloads.windows} class="download-card" data-arch="windows-x64">
           <div class="dl-arch">Windows</div>
           <div class="dl-detail">Windows 10 or 11. 64-bit. First launch: click "More info", then "Run anyway".</div>
-          <div class="dl-meta">v0.4.0 · 29 MB · x86_64</div>
+          <div class="dl-meta">v{downloads.version} · {downloads.windowsSizeMB} · x86_64</div>
         </a>
       </div>
       <p class="meta unsure">On a Mac and unsure which? Apple menu, About This Mac. If it says "Apple M…" you want Apple Silicon. Otherwise Intel.</p>
