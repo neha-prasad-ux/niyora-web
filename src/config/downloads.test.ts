@@ -1,12 +1,20 @@
 import { describe, it, expect } from 'vitest';
 import { downloads } from './downloads';
 
+const desktopKeys = ['apple', 'intel', 'windows'] as const;
+const desktopUrls = desktopKeys.map((k) => downloads[k]);
+
 describe('downloads', () => {
-  it('exports all three platform keys', () => {
+  it('exports the App Store key plus all three desktop keys', () => {
+    expect(downloads).toHaveProperty('appStore');
     expect(downloads).toHaveProperty('apple');
     expect(downloads).toHaveProperty('intel');
     expect(downloads).toHaveProperty('windows');
-    expect(Object.keys(downloads)).toHaveLength(3);
+    expect(Object.keys(downloads)).toHaveLength(4);
+  });
+
+  it('App Store URL points to apps.apple.com over HTTPS', () => {
+    expect(downloads.appStore).toMatch(/^https:\/\/apps\.apple\.com\//);
   });
 
   it('macOS URLs point to .dmg files over HTTPS', () => {
@@ -21,8 +29,8 @@ describe('downloads', () => {
     expect(downloads.windows).toMatch(/\.exe$/);
   });
 
-  it('all URLs use the downloads.niyora.com origin', () => {
-    for (const url of Object.values(downloads)) {
+  it('all desktop URLs use the downloads.niyora.com origin', () => {
+    for (const url of desktopUrls) {
       expect(url).toMatch(/^https:\/\/downloads\.niyora\.com\//);
     }
   });
@@ -42,9 +50,9 @@ describe('downloads', () => {
     }
   });
 
-  it('all URLs reference the same release version', () => {
+  it('all desktop URLs reference the same release version', () => {
     const versionPattern = /(\d+\.\d+\.\d+)/;
-    const versions = Object.values(downloads).map((url) => {
+    const versions = desktopUrls.map((url) => {
       const match = url.match(versionPattern);
       return match ? match[1] : null;
     });

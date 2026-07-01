@@ -17,37 +17,39 @@ import { downloads } from '../config/downloads';
         <div class="hero-text">
           <div class="brand">Niyora</div>
           <h1>Calm in 60 seconds.</h1>
-          <p class="subhead">Breathing and mindfulness, right at your desk.<br />From your menu bar or system tray.</p>
+          <p class="subhead">Breathing and mindfulness, in your pocket.<br />One quiet minute, whenever the day tightens.</p>
           <div class="cta-row">
-            <a id="primary-download" href={downloads.apple} class="cta" data-arch="apple-silicon">
-              Download for Mac
+            <a id="primary-download" href={downloads.appStore} class="app-store-cta">
+              <svg class="apple-logo" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              <span class="ascta-copy"><span class="ascta-top">Download on the</span><span class="ascta-big">App Store</span></span>
             </a>
           </div>
           <div class="trust">
             <div class="trust-row">Free to use · No account · No wearables · No health data</div>
-            <div class="trust-strong" id="trust-tagline">Nothing leaves your Mac.</div>
+            <div class="trust-strong" id="trust-tagline">Nothing leaves your iPhone.</div>
           </div>
         </div>
         <div class="hero-image-wrap">
-          <img src="/hero-shot.png" alt="Niyora panel showing Box Breath, with Begin button" class="hero-shot" loading="eager" />
+          <div class="phone" role="img" aria-label="Niyora on iPhone, showing the Box Breath card with a glowing orb and a Begin button">
+            <div class="phone-screen">
+              <div class="app-bar"><span class="app-profile"></span></div>
+              <div class="app-card">
+                <div class="app-orb"></div>
+                <div class="app-technique">Box Breath</div>
+                <div class="app-sub">4 in · 4 hold · 4 out · 4 hold</div>
+                <div class="app-begin">Begin</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="ios-coming-soon" data-hue="223" data-sat="58%">
-      <div class="eyebrow">Coming soon</div>
-      <h2>Niyora on iPhone</h2>
-      <p class="lead">Same Niyora, native on iOS. Breath + My Soul, standalone or paired with your Mac.</p>
-      <div class="cta-row">
-        <a href="mailto:hello@niyora.com?subject=iOS%20app%20launch%20notification" class="cta ghost">Notify me at launch</a>
       </div>
     </section>
 
     <section class="features" data-hue="225" data-sat="55%">
       <div class="feature-grid">
         <div class="feature-card">
-          <h3>Notices when you're tensing up</h3>
-          <p>Niyora watches your work patterns and nudges you when stress is building.</p>
+          <h3>Open and breathe in one tap</h3>
+          <p>One card, one practice, one Begin button. No setup, no menus. Just start.</p>
         </div>
         <div class="feature-card">
           <h3>60-second guided practices</h3>
@@ -62,7 +64,7 @@ import { downloads } from '../config/downloads';
 
     <section class="launch-video" data-hue="235" data-sat="60%">
       <div class="eyebrow">See it in motion</div>
-      <h2 id="video-tagline">Sixty seconds of calm, in your menu bar.</h2>
+      <h2 id="video-tagline">Sixty seconds of calm. That's the whole app.</h2>
       <div class="video-frame">
         <video
           controls
@@ -104,8 +106,8 @@ import { downloads } from '../config/downloads';
         <div class="solution-card">
           <div class="orb-mini orb-pulse"></div>
           <div class="card-eyebrow">Recognise stress</div>
-          <h3>It watches the rhythm of your work.</h3>
-          <p id="recognition-copy">Niyora reads passive signals from your Mac. How long you've been at the screen, what time of day, whether you're switching contexts. No wearables, no biometrics. Just the rhythm of your day.</p>
+          <h3>Check in, in four taps.</h3>
+          <p id="recognition-copy">When you want to know where you stand, a short validated check-in (the PSS-4 scale) reads your stress in four questions. No wearables, no biometrics. You decide when to look.</p>
         </div>
         <div class="solution-card">
           <div class="orb-mini orb-breathe"></div>
@@ -185,7 +187,7 @@ import { downloads } from '../config/downloads';
 
     <section data-hue="210" data-sat="60%">
       <div class="eyebrow">Privacy, locally</div>
-      <h2 id="privacy-tagline">Nothing leaves your Mac. Ever.</h2>
+      <h2 id="privacy-tagline">Nothing leaves your iPhone. Ever.</h2>
       <p class="lead">Most wellness apps want your account, your data, and a server log of your worst days. Niyora wants none of it.</p>
       <div class="privacy-points">
         <div class="privacy-point">
@@ -219,104 +221,73 @@ import { downloads } from '../config/downloads';
     </section>
 
     <section id="downloads" class="downloads" data-hue="30" data-sat="70%">
-      <div class="eyebrow">Downloads</div>
-      <h2>Pick the build for your machine.</h2>
-      <p class="lead">Mac builds are signed by Apple Developer ID and notarized. Windows is unsigned for v1; the installer triggers a SmartScreen warning the first time.</p>
-      <div class="download-grid">
-        <a href={downloads.apple} class="download-card" data-arch="apple-silicon">
-          <div class="dl-arch">Apple Silicon</div>
-          <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
-          <div class="dl-meta">v0.4.0 · 32 MB · arm64</div>
-        </a>
-        <a href={downloads.intel} class="download-card" data-arch="intel">
-          <div class="dl-arch">Intel</div>
-          <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
-          <div class="dl-meta">v0.4.0 · 33 MB · x86_64</div>
-        </a>
-        <a href={downloads.windows} class="download-card" data-arch="windows-x64">
-          <div class="dl-arch">Windows</div>
-          <div class="dl-detail">Windows 10 or 11. 64-bit. First launch: click "More info", then "Run anyway".</div>
-          <div class="dl-meta">v0.4.0 · 29 MB · x86_64</div>
+      <div class="eyebrow">Get Niyora</div>
+      <h2>Start on your iPhone.</h2>
+      <p class="lead">Free on the App Store. No account, nothing to configure. Open it and breathe.</p>
+      <div class="cta-row">
+        <a id="downloads-appstore" href={downloads.appStore} class="app-store-cta">
+          <svg class="apple-logo" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span class="ascta-copy"><span class="ascta-top">Download on the</span><span class="ascta-big">App Store</span></span>
         </a>
       </div>
-      <p class="meta unsure">On a Mac and unsure which? Apple menu, About This Mac. If it says "Apple M…" you want Apple Silicon. Otherwise Intel.</p>
+      <div class="desktop-downloads">
+        <div class="eyebrow">Prefer your desktop?</div>
+        <p class="lead">Niyora also runs on Mac and Windows, where it can quietly notice when stress is building through the day. Mac builds are signed by Apple Developer ID and notarized. Windows is unsigned for v1; the installer triggers a SmartScreen warning the first time.</p>
+        <div class="download-grid">
+          <a href={downloads.apple} class="download-card" data-arch="apple-silicon">
+            <div class="dl-arch">Apple Silicon</div>
+            <div class="dl-detail">M1, M2, M3, M4. macOS 11 Big Sur or later.</div>
+            <div class="dl-meta">v0.4.0 · 32 MB · arm64</div>
+          </a>
+          <a href={downloads.intel} class="download-card" data-arch="intel">
+            <div class="dl-arch">Intel</div>
+            <div class="dl-detail">Pre-2020 MacBook, iMac, Mac mini. macOS 10.15 Catalina or later.</div>
+            <div class="dl-meta">v0.4.0 · 33 MB · x86_64</div>
+          </a>
+          <a href={downloads.windows} class="download-card" data-arch="windows-x64">
+            <div class="dl-arch">Windows</div>
+            <div class="dl-detail">Windows 10 or 11. 64-bit. First launch: click "More info", then "Run anyway".</div>
+            <div class="dl-meta">v0.4.0 · 29 MB · x86_64</div>
+          </a>
+        </div>
+        <p class="meta unsure">On a Mac and unsure which? Apple menu, About This Mac. If it says "Apple M…" you want Apple Silicon. Otherwise Intel.</p>
+      </div>
     </section>
 
     <section class="final-cta" data-hue="30" data-sat="70%">
       <h2>Take the next breath.</h2>
-      <p class="lead">It takes a minute to install. Sixty seconds to feel different.</p>
+      <p class="lead">It takes seconds to install. Sixty seconds to feel different.</p>
       <div class="cta-row">
-        <a id="final-download" href={downloads.apple} class="cta" data-arch="apple-silicon">Download for Mac</a>
+        <a id="final-download" href={downloads.appStore} class="app-store-cta">
+          <svg class="apple-logo" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span class="ascta-copy"><span class="ascta-top">Download on the</span><span class="ascta-big">App Store</span></span>
+        </a>
       </div>
-      <div class="meta">Mac (Apple Silicon, Intel) and Windows 10 or 11.</div>
+      <div class="meta">iPhone, iOS 16 or later. Also on Mac and Windows.</div>
     </section>
   </main>
 
-  <script define:vars={{ apple: downloads.apple, intel: downloads.intel, windows: downloads.windows }}>
-    // Route the primary and final CTAs to the right installer for the visitor.
-    // Default in the source: Apple Silicon. JS overrides to Intel (Mac with Intel
-    // GPU detected via WebGL renderer) or to Windows (Windows user agent).
-    (function () {
-
-      function applyCta(url, arch, label) {
-        ['primary-download', 'final-download'].forEach(function (id) {
-          const a = document.getElementById(id);
-          if (!a) return;
-          a.href = url;
-          a.dataset.arch = arch;
-          if (label) a.textContent = label;
-        });
-      }
-
-      const isWindows = /Windows/i.test(navigator.userAgent);
-      if (isWindows) {
-        applyCta(windows, 'windows-x64', 'Download for Windows');
-        [
-          ['trust-tagline', 'Nothing leaves your PC.'],
-          ['video-tagline', 'Sixty seconds of calm, in your system tray.'],
-          ['privacy-tagline', 'Nothing leaves your PC. Ever.'],
-          ['recognition-copy', "Niyora reads passive signals from your PC. How long you’ve been at the screen, what time of day, whether you’re switching contexts. No wearables, no biometrics. Just the rhythm of your day."],
-        ].forEach(function(s) {
-          var el = document.getElementById(s[0]);
-          if (el) el.textContent = s[1];
-        });
-        return;
-      }
-
-      const isMac = /Mac|iPhone|iPad/i.test(navigator.userAgent);
-      if (!isMac) return;
-
-      function detectMacArch() {
-        try {
-          const canvas = document.createElement('canvas');
-          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-          if (!gl) return null;
-          const ext = gl.getExtension('WEBGL_debug_renderer_info');
-          const renderer = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : '';
-          if (!renderer) return null;
-          if (/Apple\s*(M|GPU)/i.test(renderer)) return 'apple-silicon';
-          if (/Intel/i.test(renderer)) return 'intel';
-          return null;
-        } catch (_) { return null; }
-      }
-
-      if (detectMacArch() === 'intel') applyCta(intel, 'intel');
-    })();
-  </script>
-
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
+      var appStoreLocations = {
+        'primary-download': 'hero',
+        'downloads-appstore': 'downloads_section',
+        'final-download': 'final_cta'
+      };
+      Object.keys(appStoreLocations).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', function () {
+          window.posthog?.capture('app_store_clicked', { location: appStoreLocations[id] });
+        });
+      });
+
       document.querySelectorAll('a[href*=".dmg"], a[href*=".exe"]').forEach(function (el) {
         el.addEventListener('click', function () {
-          var arch = el.dataset.arch || 'unknown';
-          var id = el.id;
-          var location = id === 'primary-download' ? 'hero'
-            : id === 'final-download' ? 'final_cta'
-            : 'downloads_section';
           window.posthog?.capture('download_clicked', {
-            arch: arch,
-            location: location,
-            version: '0.3.0'
+            arch: el.dataset.arch || 'unknown',
+            location: 'downloads_section',
+            version: '0.4.0'
           });
         });
       });
@@ -437,8 +408,7 @@ import { downloads } from '../config/downloads';
     .hero-text .trust { align-items: flex-start; }
     .hero-text .trust-row,
     .hero-text .trust-strong { text-align: left; }
-    .hero-image-wrap { justify-content: flex-end; }
-    .hero-shot { border-radius: 14px 0 0 14px; }
+    .hero-image-wrap { justify-content: flex-end; padding-right: clamp(24px, 4vw, 64px); }
   }
   .hero-image-wrap {
     display: flex;
@@ -496,6 +466,35 @@ import { downloads } from '../config/downloads';
   .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
   .meta { margin-top: 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
 
+  /* App Store badge-style button, Apple's dark variant. */
+  .app-store-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 22px;
+    border-radius: 14px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow:
+      0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.28),
+      0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.15);
+  }
+  .app-store-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.35),
+      0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.55),
+      0 0 100px hsla(var(--orb-hue), 80%, 65%, 0.35);
+  }
+  .app-store-cta .apple-logo { width: 26px; height: 26px; flex: none; }
+  .ascta-copy { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+  .ascta-top { font-size: 11px; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.85); }
+  .ascta-big { font-size: 21px; font-weight: 500; font-family: 'Poppins', sans-serif; letter-spacing: 0.2px; }
+
   .trust {
     margin-top: 36px;
     display: flex;
@@ -516,28 +515,108 @@ import { downloads } from '../config/downloads';
     transition: color 1.4s ease;
   }
 
-  .hero-shot {
-    width: 100%;
-    max-width: 540px;
-    height: auto;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  /* iPhone device mockup rendering the app's pre-session screen. */
+  .phone {
+    width: 300px;
+    max-width: 78vw;
+    aspect-ratio: 300 / 620;
+    border-radius: 46px;
+    padding: 12px;
+    background: linear-gradient(160deg, #2a2740, #131120);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow:
       0 30px 80px rgba(0, 0, 0, 0.55),
-      0 0 80px hsla(var(--orb-hue), 60%, 50%, 0.18);
+      0 0 90px hsla(var(--orb-hue), 60%, 50%, 0.22);
     transition: box-shadow 1.4s ease;
   }
-  @media (max-width: 899px) {
-    .hero-shot { margin-top: 36px; max-width: 480px; }
+  .phone-screen {
+    position: relative;
+    height: 100%;
+    border-radius: 36px;
+    background: radial-gradient(120% 90% at 50% 0%, hsla(var(--orb-hue), 45%, 22%, 0.9), #0d0b16 65%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
-
-  .ios-coming-soon {
+  /* notch */
+  .phone-screen::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 26px;
+    border-radius: 14px;
+    background: #000;
+    z-index: 3;
+  }
+  .app-bar {
+    display: flex;
+    padding: 22px 22px 0;
+    z-index: 2;
+  }
+  .app-profile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: hsla(var(--orb-hue), 45%, 55%, 0.35);
+    border: 1px solid hsla(var(--orb-hue), 50%, 70%, 0.5);
+  }
+  .app-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 24px 40px;
     text-align: center;
-    min-height: auto;
-    padding: 80px 24px;
   }
-  .ios-coming-soon h2 { margin-left: auto; margin-right: auto; margin-bottom: 24px; }
-  .ios-coming-soon .lead { margin-left: auto; margin-right: auto; margin-bottom: 36px; }
+  .app-orb {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    background: radial-gradient(circle at 35% 30%,
+      hsla(var(--orb-hue), 75%, 88%, 0.98) 0%,
+      hsla(var(--orb-hue), 65%, 62%, 0.9) 42%,
+      hsla(var(--orb-hue), 55%, 32%, 0.7) 100%);
+    box-shadow:
+      0 0 34px hsla(var(--orb-hue), 65%, 65%, 0.55),
+      0 0 70px hsla(var(--orb-hue), 60%, 55%, 0.3);
+    animation: orbBreathe 8s ease-in-out infinite;
+    transition: background 1.4s ease, box-shadow 1.4s ease;
+  }
+  .app-technique {
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.2px;
+  }
+  .app-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.4px;
+    margin-bottom: 30px;
+  }
+  .app-begin {
+    padding: 13px 44px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.96);
+    color: rgba(18, 16, 32, 0.95);
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 28px hsla(var(--orb-hue), 60%, 55%, 0.4);
+  }
+  @media (max-width: 899px) {
+    .phone { margin-top: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .app-orb { animation: none; }
+  }
 
   .features {
     min-height: auto;
@@ -889,6 +968,13 @@ import { downloads } from '../config/downloads';
   .meta a:hover { color: rgba(255, 255, 255, 0.9); }
 
   .downloads { text-align: center; max-width: 880px; }
+  .desktop-downloads {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+  }
+  .desktop-downloads .lead { font-size: 16px; margin: 12px auto 0; }
   .download-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
