@@ -1,0 +1,144 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+
+<Base
+  title={`${post.data.title} · Niyora`}
+  description={post.data.description}
+  ogType="article"
+  ogImage={post.data.ogImage}
+  canonicalUrl={post.data.canonical ?? `https://niyora.com/blog/${post.id}/`}
+>
+  <article class="container">
+    <a class="back" href="/blog/">← All writing</a>
+    <div class="meta">
+      <span class="cat">{post.data.category}</span>
+      <span class="date">{fmt(post.data.date)}</span>
+    </div>
+    <h1>{post.data.title}</h1>
+    <p class="lede">{post.data.description}</p>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <p class="foot">
+      Niyora is a quiet minute of breathing, whenever the day tightens. <a href="/">See the app</a>.
+    </p>
+  </article>
+</Base>
+
+<style>
+  body { background: #0a0814; }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  a.back {
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  a.back:hover { color: rgba(255, 255, 255, 0.6); }
+
+  .meta {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .cat {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: hsla(335, 60%, 78%, 0.9);
+  }
+  .date {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.4px;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.94);
+    margin-bottom: 16px;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+  }
+  .lede {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.66);
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .prose { font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.78); }
+  .prose :global(p) { margin: 0 0 22px; }
+  .prose :global(h2) {
+    font-size: 21px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 44px 0 16px;
+    letter-spacing: -0.2px;
+  }
+  .prose :global(h3) {
+    font-size: 17px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 32px 0 12px;
+  }
+  .prose :global(strong) { color: rgba(255, 255, 255, 0.95); font-weight: 500; }
+  .prose :global(a) {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    border-bottom: 1px solid hsla(335, 55%, 72%, 0.5);
+  }
+  .prose :global(a:hover) { border-bottom-color: hsla(335, 60%, 78%, 0.95); }
+  .prose :global(ul) { margin: 0 0 22px; padding-left: 20px; }
+  .prose :global(li) { margin: 0 0 10px; }
+  .prose :global(blockquote) {
+    margin: 0 0 22px;
+    padding-left: 18px;
+    border-left: 2px solid hsla(335, 50%, 70%, 0.4);
+    color: rgba(255, 255, 255, 0.66);
+  }
+
+  .foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    text-align: center;
+  }
+  .foot a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .foot a:hover { color: #fff; border-bottom-color: rgba(255, 255, 255, 0.6); }
+</style>
