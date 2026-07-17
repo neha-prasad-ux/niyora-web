@@ -16,7 +16,6 @@ import { downloads } from '../config/downloads';
     <section class="hero" data-hue="335" data-sat="58%" data-orb-alpha="0.2" data-orb-scale="0.55">
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="brand">Niyora</div>
           <h1>Make your emotional roller coaster in PMS a breeze.</h1>
           <p class="subhead">The days before your period turn the volume up on everything. Niyora learns when that week is coming, helps you steady in about a minute, and shows you why it's happening.</p>
           <div class="cta-row">
@@ -28,19 +27,6 @@ import { downloads } from '../config/downloads';
           <div class="trust">
             <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
             <div class="trust-strong" id="trust-tagline">Nothing leaves your iPhone.</div>
-          </div>
-        </div>
-        <div class="hero-image-wrap">
-          <div class="phone" role="img" aria-label="Niyora on iPhone, showing a PMS check-in that asks how you feel, with a glowing orb">
-            <div class="phone-screen">
-              <div class="app-bar"><span class="app-profile"></span></div>
-              <div class="app-card">
-                <div class="app-orb"></div>
-                <div class="app-technique">How are you?</div>
-                <div class="app-sub">Irritable · Anxious · Low · Foggy · Overwhelmed</div>
-                <div class="app-begin">Start</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -378,35 +364,13 @@ import { downloads } from '../config/downloads';
   .hero { text-align: center; }
 
   .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 56px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 1100px;
+    max-width: 760px;
   }
-  @media (min-width: 900px) {
-    .hero-grid {
-      grid-template-columns: minmax(420px, 1fr) auto;
-      gap: 64px;
-      max-width: none;
-      padding-left: clamp(24px, 4vw, 64px);
-      padding-right: 0;
-    }
-    .hero-text { text-align: left; }
-    .hero-text h1 { margin-left: 0; margin-right: 0; }
-    .hero-text .subhead { margin-left: 0; margin-right: 0; }
-    .hero-text .cta-row { justify-content: flex-start; }
-    .hero-text .trust { align-items: flex-start; }
-    .hero-text .trust-row,
-    .hero-text .trust-strong { text-align: left; }
-    .hero-image-wrap { justify-content: flex-end; padding-right: clamp(24px, 4vw, 64px); }
-  }
-  .hero-image-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  .hero-text { width: 100%; }
 
   .hero .brand {
     font-size: 13px;
@@ -419,7 +383,7 @@ import { downloads } from '../config/downloads';
   .hero .subhead {
     font-size: 22px;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 48px;
+    margin: 0 auto 48px;
     max-width: 580px;
   }
   .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }

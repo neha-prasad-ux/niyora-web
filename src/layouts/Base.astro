@@ -1,6 +1,7 @@
 ---
 import PostHog from '../components/posthog.astro';
 import PostHogEvents from '../components/posthog-events.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 
 interface Props {
   title: string;
@@ -46,6 +47,7 @@ const ogImageAbsolute = new URL(ogImage, Astro.site).href;
     <slot name="head" />
   </head>
   <body>
+    <SiteHeader />
     <slot />
   </body>
 </html>
