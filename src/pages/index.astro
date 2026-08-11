@@ -1,12 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import OrbStage from '../components/OrbStage.astro';
-import { downloads } from '../config/downloads';
 ---
 
 <Base
-  title="Niyora · PMS mood relief that meets you in the moment"
-  description="A private iPhone app for the week before your period. Niyora learns when your PMS week is coming, helps you steady in about a minute, and explains why you feel this way. Nothing leaves your phone."
+  title="Niyora · a PMS app that predicts, then helps you reflect, regulate, and respond"
+  description="Niyora predicts your PMS week and helps you reflect, regulate, and respond when your brain is reacting to a hormone drop. Built on one fact: women with emotional regulation skills handle PMS better. Your personal details never reach the AI."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com"
 >
@@ -16,37 +15,24 @@ import { downloads } from '../config/downloads';
     <section class="hero" data-hue="335" data-sat="58%" data-orb-alpha="0.2" data-orb-scale="0.55">
       <div class="hero-grid">
         <div class="hero-text">
-          <h1>Make your emotional roller coaster in PMS a breeze.</h1>
-          <p class="subhead">The days before your period turn the volume up on everything. Niyora learns when that week is coming, helps you steady in about a minute, and shows you why it's happening.</p>
-          <div class="cta-row">
-            <a id="primary-download" href={downloads.appStore} class="app-store-cta">
-              <svg class="apple-logo" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-              <span class="ascta-copy"><span class="ascta-top">Download on the</span><span class="ascta-big">App Store</span></span>
-            </a>
+          <h1>Life doesn't wait for PMS. But we do.</h1>
+          <p class="subhead">Niyora is a PMS app that predicts your week and helps you reflect, regulate, and respond, for the moments when your brain is reacting to a sudden drop in hormones.</p>
+          <div class="interest" id="interest">
+            <button type="button" class="cta interest-btn" data-interest>I'm interested</button>
+            <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
           </div>
           <div class="trust">
             <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
-            <div class="trust-strong" id="trust-tagline">Your personal details are stripped before anything is sent.</div>
+            <div class="trust-strong" id="trust-tagline">Your personal details never reach the AI.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="features" data-hue="330" data-sat="55%">
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h3>Reflect</h3>
-          <p>Tell Moon what happened. It hands back a few calmer ways to see it, never one verdict to accept.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Regulate</h3>
-          <p>One small practice to settle your body, done in about a minute. A breath with the orb, cold water, legs up the wall.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Respond</h3>
-          <p>A clearer way to say what you need. And after a rough moment, a short, honest message ready to send.</p>
-        </div>
-      </div>
+    <section class="one-fact" data-hue="330" data-sat="55%">
+      <div class="eyebrow">Built on one fact</div>
+      <h2>Women with emotional regulation skills handle PMS better.</h2>
+      <p class="lead">That is the whole idea. Regulation is a skill, not a personality you are born with, and skills can be learned. Niyora is built to teach it, one small rep at a time, so the hard week gets easier to hold.</p>
     </section>
 
     <section id="problem" data-hue="300" data-sat="55%">
@@ -73,20 +59,20 @@ import { downloads } from '../config/downloads';
     </section>
 
     <section id="solution" data-hue="278" data-sat="55%">
-      <div class="eyebrow">How Niyora helps</div>
+      <div class="eyebrow">Moon AI · during PMS</div>
       <h2>Reflect. Regulate. Respond.</h2>
       <div class="solution-grid">
         <div class="solution-card">
           <div class="orb-mini orb-pulse"></div>
-          <div class="card-eyebrow">Reflect, with Moon</div>
-          <h3>A few calmer reads, never a verdict.</h3>
-          <p>Tell Moon what happened. Instead of one take to swallow, it offers several steadier ways to see it. Ask for more and it stays gentle. The point is less heat, not the one right answer.</p>
+          <div class="card-eyebrow">Reflect</div>
+          <h3>See it from more than one angle.</h3>
+          <p>Talk it through with Moon. It helps you see the moment from the angles your brain skips when feeling runs high, so one heavy read stops being the only read.</p>
         </div>
         <div class="solution-card">
           <div class="orb-mini orb-breathe"></div>
-          <div class="card-eyebrow">Regulate your body</div>
-          <h3>About a minute to settle.</h3>
-          <p>When you're ready, one small practice brings your body down. Cold water on your face. Legs up the wall. A slow breath with the orb. Short, and made for the moment you're in.</p>
+          <div class="card-eyebrow">Regulate</div>
+          <h3>Get through the twenty minutes.</h3>
+          <p>A wave of strong emotion takes about twenty minutes to pass. Moon helps you through them with something that distracts and calms your body, instead of feeding the spiral.</p>
         </div>
         <div class="solution-card">
           <div class="orb-mini orb-rings">
@@ -94,41 +80,98 @@ import { downloads } from '../config/downloads';
             <span class="ring r2"></span>
             <span class="ring r3"></span>
           </div>
-          <div class="card-eyebrow">Respond, or repair</div>
-          <h3>Say the hard thing better.</h3>
-          <p>Then the part that usually goes wrong, made easier. A clearer way to say what you need, or a short, honest message to send after a rough moment. One rough hour isn't the whole story.</p>
+          <div class="card-eyebrow">Respond</div>
+          <h3>Send the one you won't regret.</h3>
+          <p>It is hard to answer without regret. Moon drafts it for you, shows other responses you could pick, and helps you actually send the one you can stand behind.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="training" data-hue="258" data-sat="58%">
+      <div class="eyebrow">Training · before PMS</div>
+      <h2>Build the skill before you need it.</h2>
+      <p class="lead">Regulation is easier to reach for when you have practised it calm. Short, gamified lessons teach how different emotions are best handled, so the skill is already there when the week arrives.</p>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="card-eyebrow">At work</div>
+          <h3>Handle the sharp email.</h3>
+          <p>Learn to meet a hard meeting or a pointed message without it costing you the whole day.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-eyebrow">Between people</div>
+          <h3>Keep a small thing small.</h3>
+          <p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-eyebrow">With your partner</div>
+          <h3>Name it without a fight.</h3>
+          <p>Practise telling the difference between PMS and a real issue, and bringing it up so it lands well.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-eyebrow">Real stories</div>
+          <h3>Learn from how others handled it.</h3>
+          <p>Work through real PMS moments and the way each was handled, so the lesson sticks better than any rule.</p>
         </div>
       </div>
     </section>
 
     <section class="relationships" data-hue="320" data-sat="58%">
-      <div class="eyebrow">The people around you</div>
-      <h2>PMS strains relationships. It doesn't have to break them.</h2>
+      <div class="eyebrow">Couples</div>
+      <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
       <p class="lead">The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
       <div class="solution-grid">
         <div class="solution-card">
-          <div class="card-eyebrow">Name the week</div>
-          <h3>One sentence gives them context.</h3>
-          <p>"I'm a few days before my period, so I might be more sensitive this week." A sharp moment stops being a mystery.</p>
+          <div class="card-eyebrow">PMS or real?</div>
+          <h3>Know which one you're in.</h3>
+          <p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid. Knowing which changes what you do next.</p>
         </div>
         <div class="solution-card">
-          <div class="card-eyebrow">Ask plainly</div>
-          <h3>Don't make them guess.</h3>
-          <p>"Can you handle dinner." "I need a quiet evening." A plain ask is easier to meet than a mood to read.</p>
-        </div>
-        <div class="solution-card">
-          <div class="card-eyebrow">Repair fast</div>
+          <div class="card-eyebrow">Say it well</div>
           <h3>A message, already written.</h3>
-          <p>If there's a blowup, Niyora hands you a short, honest apology, ready to send. One rough moment isn't the whole story.</p>
+          <p>Tips and ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p>
+        </div>
+        <div class="solution-card">
+          <div class="card-eyebrow">After a fight</div>
+          <h3>Come back from it.</h3>
+          <p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p>
         </div>
       </div>
       <p class="more-line"><a href="/blog/keeping-your-relationship-healthy-during-pms/">Read: keeping your relationship healthy during PMS →</a></p>
     </section>
 
+    <section class="compare" data-hue="230" data-sat="60%">
+      <div class="eyebrow">Why not just use ChatGPT</div>
+      <h2>A frontier model keeps you talking. Moon helps you need it less.</h2>
+      <p class="lead">General AI is built to hold your attention. That is the opposite of what a hard PMS moment needs. Here is the difference, line by line.</p>
+      <div class="compare-grid">
+        <div class="compare-head them">Any frontier model</div>
+        <div class="compare-head us">Moon in Niyora</div>
+
+        <div class="compare-cell them"><p>Built to keep the conversation going. It optimizes for time spent.</p></div>
+        <div class="compare-cell us"><p>Built to finish the loop, then stop. It optimizes for you needing it less.</p></div>
+
+        <div class="compare-cell them"><p>Agrees with you. That is what keeps you talking.</p></div>
+        <div class="compare-cell us"><p>Shows you the other side on purpose. On your side, even when that means slowing you down.</p></div>
+
+        <div class="compare-cell them"><p>Lets you vent for as long as you like. Research says venting often makes it worse.</p></div>
+        <div class="compare-cell us"><p>Helps you regulate first, so you respond with something you won't regret.</p></div>
+
+        <div class="compare-cell them"><p>Gives endless options and keeps going.</p></div>
+        <div class="compare-cell us"><p>Gets you to one response you can stand behind, then stops.</p></div>
+
+        <div class="compare-cell them"><p>Learns a lot about you, and is built to sound like a friend. That builds dependence.</p></div>
+        <div class="compare-cell us"><p>No sign in, so you are never identifiable. It never calls itself human.</p></div>
+
+        <div class="compare-cell them"><p>Doesn't know your PMS, and rarely raises how your actions land on others.</p></div>
+        <div class="compare-cell us"><p>Built for your PMS week, and keeps the people around you in view.</p></div>
+      </div>
+      <p class="compare-close">No ads, no profile, nothing sold. There is no version of Niyora that makes money from your worst moment.</p>
+    </section>
+
     <section data-hue="248" data-sat="62%">
       <div class="eyebrow">Research backed</div>
-      <h2>Every claim has a paper behind it.</h2>
-      <p class="lead">No mystic wellness talk. Just findings from peer-reviewed research, cited so you can read the source yourself. And a library of breathing and mindfulness practices, each with the same standard.</p>
+      <h2>Over 30 science-backed activities. Every one has a paper behind it.</h2>
+      <p class="lead">No mystic wellness talk. Just practices drawn from peer-reviewed research, cited so you can read the source yourself. Niyora also recognises how strong your PMS is with a short test, and points to the lifestyle changes that actually move the needle.</p>
       <div class="papers">
         <div class="paper">
           <div class="title">Differential hormone sensitivity</div>
@@ -185,22 +228,22 @@ import { downloads } from '../config/downloads';
     <section data-hue="210" data-sat="60%">
       <div class="eyebrow">Private by design</div>
       <h2 id="privacy-tagline">Built to know almost nothing about you.</h2>
-      <p class="lead">Your cycle and your feelings are the most personal data there is. Niyora holds as little of it as it can. No account, no profile, no server record of you. Moon's reflections use AI, so we're plain about the one thing that leaves your phone, and what we strip out first.</p>
+      <p class="lead">Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI. Moon uses AI to write its reflections, so we're plain about exactly what it can and can't see.</p>
       <div class="privacy-points">
         <div class="privacy-point">
           <div class="check">✓</div>
-          <h3>No account</h3>
-          <p>Open the app and start. No sign-up, no login, no profile to fill in.</p>
+          <h3>No sign in</h3>
+          <p>No account, no login. Nothing you write is ever tied to your name.</p>
         </div>
         <div class="privacy-point">
           <div class="check">✓</div>
-          <h3>Stripped before it's sent</h3>
-          <p>To write Moon's reflections, your words are sent to an AI. First, on your phone, names and other identifying details are removed.</p>
+          <h3>Your details never reach the AI</h3>
+          <p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p>
         </div>
         <div class="privacy-point">
           <div class="check">✓</div>
-          <h3>Cycle data stays yours</h3>
-          <p>Your period dates live on your device and drive the app locally. They are never sent off, and never shared.</p>
+          <h3>Nothing sold, nothing kept</h3>
+          <p>No ads, no profile, no data sold. Your period dates stay on your device, and are never shared.</p>
         </div>
       </div>
     </section>
@@ -218,54 +261,75 @@ import { downloads } from '../config/downloads';
       </div>
     </section>
 
-    <section id="downloads" class="downloads" data-hue="30" data-sat="70%">
-      <div class="eyebrow">Get Niyora</div>
-      <h2>Start on your iPhone.</h2>
-      <p class="lead">Free on the App Store. No account, nothing to set up. Mark your last period and Niyora takes it from there.</p>
-      <div class="cta-row">
-        <a id="downloads-appstore" href={downloads.appStore} class="app-store-cta">
-          <svg class="apple-logo" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span class="ascta-copy"><span class="ascta-top">Download on the</span><span class="ascta-big">App Store</span></span>
-        </a>
-      </div>
-      <p class="meta desktop-line">Niyora is also on <a href={downloads.apple} data-arch="apple-silicon">Mac</a> and <a href={downloads.windows} data-arch="windows-x64">Windows</a>.</p>
-    </section>
-
     <section class="final-cta" data-hue="30" data-sat="70%">
-      <h2>Take the next hard week a little softer.</h2>
-      <p class="lead">It takes seconds to install. About a minute to feel different.</p>
-      <div class="cta-row">
-        <a id="final-download" href={downloads.appStore} class="app-store-cta">
-          <svg class="apple-logo" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span class="ascta-copy"><span class="ascta-top">Download on the</span><span class="ascta-big">App Store</span></span>
-        </a>
+      <h2>Like where this is going?</h2>
+      <p class="lead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
+      <div class="interest">
+        <button type="button" class="cta interest-btn" data-interest>I'm interested</button>
+        <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
       </div>
-      <div class="meta">iPhone, iOS 16 or later. Also on Mac and Windows.</div>
     </section>
   </main>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
-      var appStoreLocations = {
-        'primary-download': 'hero',
-        'downloads-appstore': 'downloads_section',
-        'final-download': 'final_cta'
-      };
-      Object.keys(appStoreLocations).forEach(function (id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener('click', function () {
-          window.posthog?.capture('app_store_clicked', { location: appStoreLocations[id] });
-        });
-      });
+      // SEED is a starting count shown from day one. Real taps (via the KV
+      // counter, once bound) add on top, so the number only ever grows. Before
+      // KV exists, a tap bumps it locally so it still feels live. Change SEED
+      // to whatever starting number you want.
+      var SEED = 386;
+      var buttons = document.querySelectorAll('[data-interest]');
+      var counts = document.querySelectorAll('[data-interest-count]');
+      var LS_KEY = 'niyora_interested';
+      var LOCAL_KEY = 'niyora_interest_local';
+      var current = 0; // amount shown on top of SEED right now
+      var done = false, localExtra = 0;
+      try { done = localStorage.getItem(LS_KEY) === '1'; } catch (e) {}
+      try { localExtra = parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10) || 0; } catch (e) {}
 
-      document.querySelectorAll('a[href*=".dmg"], a[href*=".exe"]').forEach(function (el) {
-        el.addEventListener('click', function () {
-          window.posthog?.capture('download_clicked', {
-            arch: el.dataset.arch || 'unknown',
-            location: 'downloads_section',
-            version: '0.4.0'
-          });
+      function setText(extra) {
+        counts.forEach(function (el) {
+          el.textContent = (SEED + extra).toLocaleString('en-US') + ' interested';
+          el.hidden = false;
+        });
+      }
+
+      function animateTo(extra) {
+        var from = current, t0 = null;
+        function finish() { setText(extra); current = extra; }
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / 900, 1);
+          setText(Math.round(from + (extra - from) * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(step); else finish();
+        }
+        requestAnimationFrame(step);
+        setTimeout(finish, 1000); // guarantee the value shows even if rAF is throttled (backgrounded tab)
+      }
+
+      function bump() {
+        counts.forEach(function (el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); });
+      }
+
+      function markDone() {
+        buttons.forEach(function (b) { b.textContent = "You're in"; b.classList.add('is-done'); b.disabled = true; });
+      }
+
+      fetch('/api/interest').then(function (r) { return r.json(); })
+        .then(function (d) { animateTo(typeof d.count === 'number' ? d.count : localExtra); if (done) markDone(); })
+        .catch(function () { animateTo(localExtra); });
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (done) return;
+          done = true;
+          try { localStorage.setItem(LS_KEY, '1'); } catch (e) {}
+          markDone();
+          window.posthog?.capture('interest_clicked');
+          function local() { localExtra += 1; try { localStorage.setItem(LOCAL_KEY, String(localExtra)); } catch (e) {} animateTo(localExtra); bump(); }
+          fetch('/api/interest', { method: 'POST' }).then(function (r) { return r.json(); })
+            .then(function (d) { if (typeof d.count === 'number') { animateTo(d.count); bump(); } else { local(); } })
+            .catch(function () { local(); });
         });
       });
 
@@ -421,6 +485,37 @@ import { downloads } from '../config/downloads';
   }
   .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
   .meta { margin-top: 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
+
+  .interest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .interest-btn { cursor: pointer; font-family: 'Poppins', sans-serif; }
+  .interest-btn.is-done {
+    background: transparent;
+    color: hsla(var(--orb-hue), 60%, 82%, 0.95);
+    border-color: hsla(var(--orb-hue), 60%, 70%, 0.5);
+    box-shadow: none;
+    cursor: default;
+  }
+  .interest-count {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.3px;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
+  }
+  .interest-count.bump { animation: interestBump 0.4s ease; }
+  @keyframes interestBump {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.14); color: hsla(var(--orb-hue), 70%, 85%, 1); }
+    100% { transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .interest-count.bump { animation: none; }
+  }
 
   /* App Store badge-style button, Apple's dark variant. */
   .app-store-cta {
@@ -653,6 +748,54 @@ import { downloads } from '../config/downloads';
   /* ── Solution section ── */
   #solution { text-align: center; }
   #solution h2 { margin-left: auto; margin-right: auto; margin-bottom: 56px; }
+
+  .one-fact, .training, .compare { text-align: center; }
+  .one-fact h2, .training h2, .compare h2 { margin-left: auto; margin-right: auto; }
+  .one-fact .lead, .training .lead, .compare .lead { margin-left: auto; margin-right: auto; }
+  .training h2, .compare h2 { margin-bottom: 16px; }
+  .training .lead, .compare .lead { margin-bottom: 44px; }
+
+  /* Frontier-model comparison: two aligned columns, one row per contrast. */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+  }
+  .compare-head {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+  }
+  .compare-head.them { color: rgba(255, 255, 255, 0.4); }
+  .compare-head.us { color: hsla(var(--orb-hue), 60%, 80%, 0.95); transition: color 1.4s ease; }
+  .compare-cell {
+    padding: 18px 20px;
+    border-radius: 14px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-soft);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+  .compare-cell p { font-size: 14px; line-height: 1.55; margin: 0; }
+  .compare-cell.them { background: rgba(20, 18, 26, 0.35); }
+  .compare-cell.them p { color: rgba(255, 255, 255, 0.5); }
+  .compare-cell.us { border-color: hsla(var(--orb-hue), 55%, 60%, 0.35); }
+  .compare-cell.us p { color: rgba(255, 255, 255, 0.85); }
+  .compare-close {
+    margin: 40px auto 0;
+    max-width: 640px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  @media (max-width: 640px) {
+    .compare-grid { gap: 10px 12px; }
+    .compare-cell { padding: 14px 16px; }
+  }
 
   .solution-grid {
     display: grid;
