@@ -35,6 +35,6 @@ You cannot always think your way calm. Your body has to lead. A few things that 
 
 None of this means swallowing your feelings. It means giving your body a minute to catch up with you before you speak.
 
-Niyora is built for exactly this week. It helps you name what you feel, understand why, and settle it in about a minute. It also has a soft, ready-to-send message for after a hard moment, so repair is easy. No account. Nothing leaves your phone.
+Niyora is built for exactly this week. It helps you name what you feel, understand why, and settle it in about a minute. It also has a soft, ready-to-send message for after a hard moment, so repair is easy. No account, and your personal details are stripped before anything is sent.
 
 **[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**

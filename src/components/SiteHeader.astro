@@ -1,0 +1,63 @@
+---
+import { downloads } from '../config/downloads';
+---
+
+<header class="site-header">
+  <a href="/" class="site-brand" aria-label="Niyora home">Niyora</a>
+  <nav class="site-nav">
+    <a href="/blog/">Writing</a>
+    <a href={downloads.appStore} class="site-nav-cta">Get the app</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px clamp(20px, 4vw, 40px);
+    background: rgba(7, 6, 15, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .site-brand {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+  }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .site-nav a {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+  }
+  .site-nav a:hover { color: rgba(255, 255, 255, 0.95); }
+  .site-nav-cta {
+    padding: 8px 18px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.92) !important;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .site-nav-cta:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.09);
+  }
+  @media (max-width: 520px) {
+    .site-nav { gap: 16px; }
+    .site-brand { font-size: 14px; letter-spacing: 2px; }
+  }
+</style>

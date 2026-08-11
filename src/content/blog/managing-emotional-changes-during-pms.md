@@ -40,6 +40,6 @@ Some days the kind thing is less, not more. Fewer plans, quieter evening, notifi
 
 Hold onto this. What you feel is tied to a passing hormonal moment. When researchers switched these hormones off, the symptoms cleared. It shows up with the shift, and it eases with the next one, every single cycle. This is weather. It rolls in, and it rolls out.
 
-Niyora is built around this exact approach. It helps you name the feeling, understand why in a short read, and settle it in about a minute with the right small practice for how you feel. No account. Nothing leaves your phone.
+Niyora is built around this exact approach. It helps you name the feeling, understand why in a short read, and settle it in about a minute with the right small practice for how you feel. No account, and your personal details are stripped before anything is sent.
 
 **[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
