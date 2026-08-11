@@ -7,7 +7,6 @@
 
 <div class="orb-stage" aria-hidden="true">
   <div class="moon-field">
-    <div class="halo"></div>
     <div class="moon"></div>
     <span class="mote m1"></span>
     <span class="mote m2"></span>
@@ -191,8 +190,8 @@
   }
   .moon-field {
     position: relative;
-    width: 340px;
-    height: 340px;
+    width: 700px;
+    height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,32 +200,19 @@
     transition: opacity 1.4s ease, transform 1.4s ease;
   }
 
-  /* Crisp calm mint-white sphere: highlight top-left, depth bottom-right, body. */
+  /* One circle: the mint sphere, its teal terminator, and the rose glow are all
+     layers of the same radial-gradient, so the glow can never detach from the
+     sphere (highlight and shadow on top, opaque body, rose glow beneath). */
   .moon {
-    width: 300px;
-    height: 300px;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
     background:
-      radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 14%, transparent 42%),
-      radial-gradient(circle at 76% 82%, hsla(178, 44%, 30%, 0.62) 0%, hsla(178, 38%, 40%, 0.28) 40%, transparent 72%),
-      radial-gradient(circle at 38% 32%, #ffffff 0%, hsl(166, 24%, 93%) 40%, hsl(172, 27%, 84%) 88%, hsl(174, 28%, 79%) 100%);
+      radial-gradient(circle at 44% 41%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 6%, transparent 16%),
+      radial-gradient(circle at 56% 60%, hsla(178, 44%, 30%, 0.6) 0%, hsla(178, 38%, 40%, 0.28) 14%, transparent 27%),
+      radial-gradient(circle, #ffffff 0%, hsl(166, 24%, 93%) 16%, hsl(172, 27%, 84%) 40%, hsl(174, 28%, 79%) 43%, transparent 44%),
+      radial-gradient(circle, rgba(217, 146, 176, 0) 40%, rgba(217, 146, 176, 0.85) 47%, rgba(156, 92, 134, 0.42) 64%, rgba(87, 48, 114, 0.2) 82%, rgba(58, 31, 92, 0) 100%);
     animation: moonBreathe 4.2s ease-in-out infinite;
-  }
-  .halo {
-    position: absolute;
-    width: 540px;
-    height: 540px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(217, 146, 176, 0) 48%,
-      rgba(217, 146, 176, 0.95) 56%,
-      rgba(156, 92, 134, 0.6) 70%,
-      rgba(87, 48, 114, 0.3) 84%,
-      rgba(58, 31, 92, 0) 100%
-    );
-    filter: blur(8px);
-    animation: haloBreathe 4.2s ease-in-out infinite;
   }
 
   .mote {
@@ -245,22 +231,17 @@
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.045); }
   }
-  @keyframes haloBreathe {
-    0%, 100% { transform: scale(1); opacity: 0.72; }
-    50% { transform: scale(1.06); opacity: 1; }
-  }
   @keyframes drift {
     0%, 100% { transform: translate(0, 0); opacity: 0.15; }
     50% { transform: translate(18px, -26px); opacity: 0.55; }
   }
 
   @media (max-width: 720px) {
-    .moon-field { width: 260px; height: 260px; }
-    .moon { width: 220px; height: 220px; }
-    .halo { width: 400px; height: 400px; }
+    .moon-field { width: 480px; height: 480px; }
+    .moon { width: 480px; height: 480px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .orb-stage { animation: none; }
-    .moon, .halo, .mote { animation: none; }
+    .moon, .mote { animation: none; }
   }
 </style>
