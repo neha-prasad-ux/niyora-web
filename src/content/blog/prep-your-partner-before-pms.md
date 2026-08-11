@@ -39,6 +39,6 @@ If you know which days tend to be hard, plan lighter around them. Fewer commitme
 
 Your partner may feel helpless or worn down during this week. Tell them that staying steady is enough, and that they do not have to feel bad about a hard moment either. A relationship gets through this as a team, not with one person carrying it all.
 
-Niyora can help you spot the pattern. It tracks your cycle privately, so you and your partner can see the hard days coming and plan around them. It also helps you name and settle what you feel in about a minute. No account. Nothing leaves your phone.
+Niyora can help you spot the pattern. It tracks your cycle privately, so you and your partner can see the hard days coming and plan around them. It also helps you name and settle what you feel in about a minute. No account, and your personal details are stripped before anything is sent.
 
 **[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**

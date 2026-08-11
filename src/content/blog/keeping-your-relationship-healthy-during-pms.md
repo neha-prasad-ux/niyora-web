@@ -35,6 +35,6 @@ A lot of relationship strain in this week is really your nervous system running 
 
 When researchers switched these hormones off, the symptoms cleared, and switched them back on, they returned. What you feel is tied to a passing moment, and your body moves through it every cycle. So does the strain. This is weather, not the climate of your relationship.
 
-Niyora helps with the part that starts with you. It helps you name what you feel before your period, understand why, and settle it in about a minute. It even has a soft, ready-to-send message for after a hard moment. No account. Nothing leaves your phone.
+Niyora helps with the part that starts with you. It helps you name what you feel before your period, understand why, and settle it in about a minute. It even has a soft, ready-to-send message for after a hard moment. No account, and your personal details are stripped before anything is sent.
 
 **[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**

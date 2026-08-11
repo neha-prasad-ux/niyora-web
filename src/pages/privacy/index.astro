@@ -4,32 +4,31 @@ import Base from '../../layouts/Base.astro';
 
 <Base
   title="Privacy at Niyora"
-  description="Nothing about you leaves your device. We don't run servers. We don't have accounts."
+  description="Niyora runs without an account and holds as little about you as it can. When you reflect, your words are stripped of identifying details before they are sent to an AI to write your reflection back."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/privacy/"
 >
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
-    <p class="last-updated">Last updated: May 21, 2026</p>
+    <p class="last-updated">Last updated: August 11, 2026</p>
     <h1>Privacy at Niyora</h1>
 
     <div class="promise">
-      <p class="promise-text">Nothing about you leaves your device. We don't run servers. We don't have accounts.</p>
+      <p class="promise-text">Niyora runs without an account and holds as little about you as it can. Almost everything stays on your device. The one exception is the reflection itself, and we are plain about how that works.</p>
     </div>
 
     <h2>What stays on your device</h2>
-    <p>Everything personal. Session history, technique preferences, reminder schedule, HRV data when paired with your Mac, tier progression. All of it lives in your app container and never leaves your device. There is no cloud to lose it to.</p>
+    <p>Your period dates, session history, preferences, reminder schedule, and the notes you write live in the app on your phone. We run no account system, so there is no server profile of you to sign into, lose, or hand over. Your cycle data is used on your device to shape the app, and is never sent off it or shared.</p>
 
-    <h2>What never crosses the wire</h2>
-    <p>Your stress scores, breath patterns, HRV readings, and PSS-4 check-ins are never sent off your device, ever. No advertising identifiers. No cookies. No fingerprinting. No camera or microphone access for tracking. No accounts to sign in to.</p>
+    <h2>How the reflection works</h2>
+    <p>Moon's reflections are written by an AI model, which runs on a provider's servers rather than on your phone. So when you reflect on a moment, the words you write are sent to that provider to generate the response.</p>
+    <p>Before anything is sent, your text is scrubbed on your device: names, places, and other identifying details are removed and replaced with neutral placeholders. The provider processes the scrubbed text to return a reflection. We do not attach an account or identity to it, because there is no account, and we keep no copy of it on a server of our own.</p>
 
-    <h2>The three outbound requests Niyora does make</h2>
-    <p>Honesty matters here. The app makes outbound network requests in three cases, all to first-party endpoints, all carrying nothing about you beyond what every HTTPS request inherently exposes (your IP address and the version of Niyora asking).</p>
-    <ol>
-      <li><strong>Update checks.</strong> A small JSON fetch to <code>downloads.niyora.com/latest.json</code> on launch, every ~24 hours while the app is running, and when you click "Check for updates" in the tray menu. No telemetry is attached.</li>
-      <li><strong>Update downloads.</strong> When a check finds a newer version, the signed binary is fetched from <code>downloads.niyora.com</code>.</li>
-      <li><strong>Anonymous analytics, only if you opted in.</strong> A small set of events (app launches, technique completions, reminder firings) is sent to PostHog EU. Each event carries a random anonymous identifier generated only on opt-in, never tied to anything that identifies you. You can turn it off any time in My Soul.</li>
-    </ol>
+    <h2>What we never do</h2>
+    <p>No advertising identifiers. No cookies. No fingerprinting. No selling or sharing of your data. Your cycle data, in particular, is never sent off your device.</p>
+
+    <h2>Optional, anonymous analytics</h2>
+    <p>Only if you opt in, a small set of events (things like app launches and reminders firing) is sent to PostHog EU. Each event carries a random anonymous identifier generated only on opt-in, never tied to anything that identifies you, and never your reflections. You can turn it off any time in the app.</p>
 
     <h2>Questions?</h2>
     <p>Contact us at <a href="mailto:privacy@niyora.com">privacy@niyora.com</a>.</p>

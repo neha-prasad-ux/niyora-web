@@ -37,6 +37,6 @@ This sensitivity is built in, and a lot of it runs in families. It is about 56 p
 
 And it has an end date. It shows up with the shift, and it eases with the next one, every cycle.
 
-Niyora helps you meet these feelings instead of fighting them. It helps you name what you feel, understand why in a short read, and settle it in about a minute. No account. Nothing leaves your phone.
+Niyora helps you meet these feelings instead of fighting them. It helps you name what you feel, understand why in a short read, and settle it in about a minute. No account, and your personal details are stripped before anything is sent.
 
 **[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
