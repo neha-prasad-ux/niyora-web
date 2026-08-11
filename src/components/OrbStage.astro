@@ -2,24 +2,25 @@
 ---
 
 <div class="orb-stage" aria-hidden="true">
-  <div class="orb-rings r2"></div>
-  <div class="orb-rings"></div>
-  <div class="orb"></div>
+  <div class="moon-field">
+    <div class="halo"></div>
+    <div class="moon"></div>
+    <span class="mote m1"></span>
+    <span class="mote m2"></span>
+    <span class="mote m3"></span>
+    <span class="mote m4"></span>
+    <span class="mote m5"></span>
+  </div>
 </div>
+<div class="glass-layer" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 
 <script>
-  // Tier colours live in section data-attributes here.
-  // If neha-prasad-ux/niyora src/tiers.ts adds HSL values, update both atomically.
+  // The moon is a fixed calm-blue body with a rose halo (matches the app's home
+  // moon). Sections still set --orb-hue for small copy accents, but the moon
+  // itself no longer shifts hue. We only read scroll for a gentle parallax.
   const root = document.documentElement;
   const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-hue]'));
-
-  const setOrb = (hue: string, sat: string, alpha: string, scale: string) => {
-    root.style.setProperty('--orb-hue', hue);
-    root.style.setProperty('--orb-sat', sat);
-    root.style.setProperty('--orb-alpha', alpha);
-    root.style.setProperty('--orb-scale', scale);
-  };
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -30,12 +31,10 @@
       }
       if (best) {
         const t = best.target as HTMLElement;
-        setOrb(
-          t.dataset.hue ?? '30',
-          t.dataset.sat ?? '70%',
-          t.dataset.orbAlpha ?? '1',
-          t.dataset.orbScale ?? '1'
-        );
+        root.style.setProperty('--orb-hue', t.dataset.hue ?? '30');
+        root.style.setProperty('--orb-sat', t.dataset.sat ?? '70%');
+        root.style.setProperty('--orb-alpha', t.dataset.orbAlpha ?? '0.5');
+        root.style.setProperty('--orb-scale', t.dataset.orbScale ?? '1');
       }
     },
     { threshold: [0.3, 0.6, 0.9] }
@@ -51,8 +50,7 @@
         if (ticking) return;
         ticking = true;
         requestAnimationFrame(() => {
-          const y = window.scrollY * 0.08;
-          root.style.setProperty('--orb-y', `${y}px`);
+          root.style.setProperty('--orb-y', `${window.scrollY * 0.06}px`);
           ticking = false;
         });
       },
@@ -71,37 +69,70 @@
     align-items: center;
     justify-content: center;
   }
-  .orb {
-    width: 520px;
-    height: 520px;
+  .moon-field {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: var(--orb-alpha, 0.5);
+    transform: translate3d(0, var(--orb-y, 0), 0) scale(var(--orb-scale, 1));
+    transition: opacity 1.4s ease, transform 1.4s ease;
+  }
+
+  /* Calm blue-white sphere: highlight top-left, depth bottom-right, body. */
+  .moon {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.16) 12%, transparent 34%),
+      radial-gradient(circle at 68% 74%, hsla(220, 45%, 20%, 0.34) 0%, transparent 52%),
+      radial-gradient(circle at 35% 30%, #ffffff 0%, hsl(220, 25%, 92%) 42%, hsl(220, 38%, 78%) 92%, hsl(220, 42%, 74%) 100%);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.45);
+    animation: moonBreathe 4.2s ease-in-out infinite;
+  }
+
+  /* Rose to purple bloom, independent of the body colour. */
+  .halo {
+    position: absolute;
+    width: 540px;
+    height: 540px;
     border-radius: 50%;
     background: radial-gradient(
-      circle at 35% 30%,
-      hsla(var(--orb-hue), var(--orb-sat), 80%, 0.95) 0%,
-      hsla(var(--orb-hue), var(--orb-sat), var(--orb-light), 0.7) 45%,
-      hsla(var(--orb-hue), 60%, 25%, 0.4) 100%
+      circle,
+      rgba(217, 146, 176, 0) 44%,
+      rgba(217, 146, 176, 0.9) 53%,
+      rgba(156, 92, 134, 0.55) 66%,
+      rgba(87, 48, 114, 0.32) 80%,
+      rgba(58, 31, 92, 0) 100%
     );
-    box-shadow:
-      0 0 80px 20px hsla(var(--orb-hue), var(--orb-sat), 50%, 0.35),
-      0 0 200px 40px hsla(var(--orb-hue), var(--orb-sat), 50%, 0.18);
-    opacity: var(--orb-alpha, 1);
-    transition: background 1.4s ease, box-shadow 1.4s ease, opacity 1.4s ease, transform 1.4s ease;
-    transform: translate3d(0, var(--orb-y, 0), 0) scale(var(--orb-scale, 1));
+    filter: blur(8px);
+    animation: haloBreathe 4.2s ease-in-out infinite;
   }
-  .orb-rings {
+
+  .mote {
     position: absolute;
-    width: 720px;
-    height: 720px;
     border-radius: 50%;
-    border: 1px solid hsla(var(--orb-hue), 60%, 70%, 0.15);
-    opacity: var(--orb-alpha, 1);
-    transform: scale(var(--orb-scale, 1));
-    transition: border-color 1.4s ease, opacity 1.4s ease, transform 1.4s ease;
+    background: radial-gradient(circle, rgba(214, 226, 255, 0.7) 0%, rgba(214, 226, 255, 0) 70%);
   }
-  .orb-rings.r2 {
-    width: 920px;
-    height: 920px;
-    border-color: hsla(var(--orb-hue), 60%, 70%, 0.08);
+  .m1 { width: 10px; height: 10px; left: 16%; top: 30%; animation: drift 15s ease-in-out infinite; }
+  .m2 { width: 7px;  height: 7px;  left: 82%; top: 40%; animation: drift 19s ease-in-out infinite 2s; }
+  .m3 { width: 12px; height: 12px; left: 74%; top: 76%; animation: drift 22s ease-in-out infinite 1s; }
+  .m4 { width: 6px;  height: 6px;  left: 24%; top: 72%; animation: drift 17s ease-in-out infinite 4s; }
+  .m5 { width: 8px;  height: 8px;  left: 50%; top: 12%; animation: drift 24s ease-in-out infinite 3s; }
+
+  /* Frosted glass over the moon, then content on top. Matches the app home,
+     where the moon is softly blurred behind one dark glass surface. */
+  .glass-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: rgba(10, 8, 16, 0.28);
+    backdrop-filter: blur(22px) saturate(1.1);
+    -webkit-backdrop-filter: blur(22px) saturate(1.1);
   }
   .vignette {
     position: fixed;
@@ -110,12 +141,26 @@
     z-index: 1;
     background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(7, 6, 15, 0.7) 75%, rgba(7, 6, 15, 0.95) 100%);
   }
+
+  @keyframes moonBreathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.045); }
+  }
+  @keyframes haloBreathe {
+    0%, 100% { transform: scale(1); opacity: 0.72; }
+    50% { transform: scale(1.06); opacity: 1; }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); opacity: 0.15; }
+    50% { transform: translate(18px, -26px); opacity: 0.55; }
+  }
+
   @media (max-width: 720px) {
-    .orb { width: 360px; height: 360px; }
-    .orb-rings { width: 480px; height: 480px; }
-    .orb-rings.r2 { width: 600px; height: 600px; }
+    .moon-field { width: 260px; height: 260px; }
+    .moon { width: 220px; height: 220px; }
+    .halo { width: 400px; height: 400px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .orb { transition: none; }
+    .moon, .halo, .mote { animation: none; }
   }
 </style>
