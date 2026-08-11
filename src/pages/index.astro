@@ -845,14 +845,13 @@ import OrbStage from '../components/OrbStage.astro';
     border-radius: 50%;
     margin-bottom: 22px;
     position: relative;
-    background: radial-gradient(circle at 35% 30%,
-      hsla(var(--orb-hue), 70%, 75%, 0.95) 0%,
-      hsla(var(--orb-hue), 60%, 50%, 0.8) 45%,
-      hsla(var(--orb-hue), 50%, 25%, 0.5) 100%);
+    background:
+      radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.55) 0%, transparent 36%),
+      radial-gradient(circle at 35% 30%, #ffffff 0%, hsl(220, 25%, 92%) 42%, hsl(220, 38%, 78%) 92%, hsl(220, 42%, 74%) 100%);
     box-shadow:
-      0 0 18px hsla(var(--orb-hue), 60%, 60%, 0.45),
-      0 0 36px hsla(var(--orb-hue), 60%, 50%, 0.25);
-    transition: background 1.4s ease, box-shadow 1.4s ease;
+      0 0 18px rgba(217, 146, 176, 0.45),
+      0 0 34px rgba(156, 92, 134, 0.25);
+    transition: box-shadow 1.4s ease;
   }
 
   /* Card 1: irregular pulse, like a heartbeat under load */
