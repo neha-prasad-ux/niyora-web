@@ -273,32 +273,42 @@ import OrbStage from '../components/OrbStage.astro';
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
+      // SEED is a starting count shown from day one. Real taps (via the KV
+      // counter, once bound) add on top, so the number only ever grows. Before
+      // KV exists, a tap bumps it locally so it still feels live. Change SEED
+      // to whatever starting number you want.
+      var SEED = 386;
       var buttons = document.querySelectorAll('[data-interest]');
       var counts = document.querySelectorAll('[data-interest-count]');
       var LS_KEY = 'niyora_interested';
-      var current = 0;
-      var done = false;
+      var LOCAL_KEY = 'niyora_interest_local';
+      var current = 0; // amount shown on top of SEED right now
+      var done = false, localExtra = 0;
       try { done = localStorage.getItem(LS_KEY) === '1'; } catch (e) {}
+      try { localExtra = parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10) || 0; } catch (e) {}
 
-      function setText(v) {
+      function setText(extra) {
         counts.forEach(function (el) {
-          el.textContent = v.toLocaleString('en-US') + ' interested';
+          el.textContent = (SEED + extra).toLocaleString('en-US') + ' interested';
           el.hidden = false;
         });
       }
 
-      function animateTo(to) {
-        if (to === null || to === undefined) return; // KV not bound yet
+      function animateTo(extra) {
         var from = current, t0 = null;
-        function finish() { setText(to); current = to; }
+        function finish() { setText(extra); current = extra; }
         function step(ts) {
           if (!t0) t0 = ts;
           var p = Math.min((ts - t0) / 900, 1);
-          setText(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
+          setText(Math.round(from + (extra - from) * (1 - Math.pow(1 - p, 3))));
           if (p < 1) requestAnimationFrame(step); else finish();
         }
         requestAnimationFrame(step);
         setTimeout(finish, 1000); // guarantee the value shows even if rAF is throttled (backgrounded tab)
+      }
+
+      function bump() {
+        counts.forEach(function (el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); });
       }
 
       function markDone() {
@@ -306,8 +316,8 @@ import OrbStage from '../components/OrbStage.astro';
       }
 
       fetch('/api/interest').then(function (r) { return r.json(); })
-        .then(function (d) { animateTo(d.count); if (done) markDone(); })
-        .catch(function () {});
+        .then(function (d) { animateTo(typeof d.count === 'number' ? d.count : localExtra); if (done) markDone(); })
+        .catch(function () { animateTo(localExtra); });
 
       buttons.forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -316,12 +326,10 @@ import OrbStage from '../components/OrbStage.astro';
           try { localStorage.setItem(LS_KEY, '1'); } catch (e) {}
           markDone();
           window.posthog?.capture('interest_clicked');
+          function local() { localExtra += 1; try { localStorage.setItem(LOCAL_KEY, String(localExtra)); } catch (e) {} animateTo(localExtra); bump(); }
           fetch('/api/interest', { method: 'POST' }).then(function (r) { return r.json(); })
-            .then(function (d) {
-              animateTo(d.count);
-              counts.forEach(function (el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); });
-            })
-            .catch(function () {});
+            .then(function (d) { if (typeof d.count === 'number') { animateTo(d.count); bump(); } else { local(); } })
+            .catch(function () { local(); });
         });
       });
 
