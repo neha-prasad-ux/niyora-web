@@ -1,6 +1,10 @@
 ---
 ---
 
+<canvas class="sky" aria-hidden="true"></canvas>
+<div class="nebula neb-tl" aria-hidden="true"></div>
+<div class="nebula neb-br" aria-hidden="true"></div>
+
 <div class="orb-stage" aria-hidden="true">
   <div class="moon-field">
     <div class="halo"></div>
@@ -12,16 +16,12 @@
     <span class="mote m5"></span>
   </div>
 </div>
-<div class="glass-layer" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
 
 <script>
-  // The moon is a fixed calm-blue body with a rose halo (matches the app's home
-  // moon). Sections still set --orb-hue for small copy accents, but the moon
-  // itself no longer shifts hue. We only read scroll for a gentle parallax.
   const root = document.documentElement;
-  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-hue]'));
 
+  // Sections still set --orb-hue for small copy accents; the moon stays fixed.
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[data-hue]'));
   const observer = new IntersectionObserver(
     (entries) => {
       let best: IntersectionObserverEntry | null = null;
@@ -33,7 +33,7 @@
         const t = best.target as HTMLElement;
         root.style.setProperty('--orb-hue', t.dataset.hue ?? '30');
         root.style.setProperty('--orb-sat', t.dataset.sat ?? '70%');
-        root.style.setProperty('--orb-alpha', t.dataset.orbAlpha ?? '0.5');
+        root.style.setProperty('--orb-alpha', t.dataset.orbAlpha ?? '0.55');
         root.style.setProperty('--orb-scale', t.dataset.orbScale ?? '1');
       }
     },
@@ -41,8 +41,9 @@
   );
   sections.forEach((s) => observer.observe(s));
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduced) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduce) {
     let ticking = false;
     window.addEventListener(
       'scroll',
@@ -50,16 +51,134 @@
         if (ticking) return;
         ticking = true;
         requestAnimationFrame(() => {
-          root.style.setProperty('--orb-y', `${window.scrollY * 0.06}px`);
+          root.style.setProperty('--orb-y', `${window.scrollY * 0.05}px`);
           ticking = false;
         });
       },
       { passive: true }
     );
   }
+
+  // Starfield + occasional shooting star, on one canvas.
+  const canvas = document.querySelector<HTMLCanvasElement>('.sky');
+  const ctx = canvas?.getContext('2d');
+  if (canvas && ctx) {
+    let W = 0, H = 0, DPR = 1;
+    let stars: { x: number; y: number; r: number; a: number; tw: number; ts: number }[] = [];
+
+    const resize = () => {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = canvas.width = Math.floor(window.innerWidth * DPR);
+      H = canvas.height = Math.floor(window.innerHeight * DPR);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      const count = Math.min(260, Math.round((window.innerWidth * window.innerHeight) / 9000));
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: (Math.random() * 1.1 + 0.3) * DPR,
+        a: Math.random() * 0.5 + 0.28,
+        tw: Math.random() * Math.PI * 2,
+        ts: 0.5 + Math.random() * 1.1,
+      }));
+    };
+
+    // Shooting star: matches the app cadence (first ~2s, then ~4s, then 7-16s),
+    // alternating direction, ~0.85s arc 28-58 degrees below horizontal.
+    let shoot: { x: number; y: number; vx: number; vy: number; t: number; len: number } | null = null;
+    const fire = (dir: number) => {
+      const startX = dir < 0 ? W * (0.55 + Math.random() * 0.4) : W * (0.05 + Math.random() * 0.4);
+      const startY = H * (0.06 + Math.random() * 0.24);
+      const down = ((28 + Math.random() * 30) * Math.PI) / 180;
+      const dist = Math.hypot(W, H) * (0.3 + Math.random() * 0.22);
+      shoot = { x: startX, y: startY, vx: Math.cos(down) * dist * dir, vy: Math.sin(down) * dist, t: 0, len: 130 * DPR };
+    };
+    let n = 0;
+    const schedule = () => {
+      const delay = n === 0 ? 2000 : n === 1 ? 4000 : 7000 + Math.random() * 9000;
+      window.setTimeout(() => {
+        if (!reduce) { fire(n % 2 === 0 ? -1 : 1); n += 1; }
+        schedule();
+      }, delay);
+    };
+
+    let last = performance.now();
+    const frame = (now: number) => {
+      const dt = now - last; last = now;
+      ctx.clearRect(0, 0, W, H);
+      for (const s of stars) {
+        let alpha = s.a;
+        if (!reduce) { s.tw += (s.ts * dt) / 1000; alpha = s.a * (0.6 + 0.4 * Math.sin(s.tw)); }
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = '#dfe7ff';
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (shoot) {
+        shoot.t += dt;
+        const dur = 850;
+        const p = Math.min(shoot.t / dur, 1);
+        const ease = p * p;
+        const hx = shoot.x + shoot.vx * ease, hy = shoot.y + shoot.vy * ease;
+        const mag = Math.hypot(shoot.vx, shoot.vy) || 1;
+        const tailX = hx - (shoot.vx / mag) * shoot.len, tailY = hy - (shoot.vy / mag) * shoot.len;
+        const grad = ctx.createLinearGradient(tailX, tailY, hx, hy);
+        grad.addColorStop(0, 'rgba(255,255,255,0)');
+        grad.addColorStop(1, 'rgba(255,255,255,0.95)');
+        const op = p < 0.14 ? p / 0.14 : Math.max(0, 1 - (p - 0.5) / 0.5);
+        ctx.globalAlpha = Math.max(0, op) * 0.95;
+        ctx.strokeStyle = grad as unknown as string;
+        ctx.lineWidth = 2 * DPR;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(hx, hy);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        if (p >= 1) shoot = null;
+      }
+      requestAnimationFrame(frame);
+    };
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    requestAnimationFrame(frame);
+    schedule();
+  }
 </script>
 
 <style>
+  .sky {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+  }
+  .nebula {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+  .neb-tl {
+    top: -18%;
+    left: -14%;
+    width: 58vw;
+    height: 58vw;
+    background: radial-gradient(circle, rgba(110, 143, 214, 0.18) 0%, rgba(110, 143, 214, 0) 66%);
+  }
+  .neb-br {
+    bottom: -18%;
+    right: -14%;
+    width: 58vw;
+    height: 58vw;
+    background: radial-gradient(circle, rgba(176, 116, 192, 0.18) 0%, rgba(176, 116, 192, 0) 66%);
+  }
+
   .orb-stage {
     position: fixed;
     inset: 0;
@@ -68,6 +187,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: skyIn 1.3s ease both;
   }
   .moon-field {
     position: relative;
@@ -76,25 +196,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: var(--orb-alpha, 0.5);
+    opacity: var(--orb-alpha, 0.55);
     transform: translate3d(0, var(--orb-y, 0), 0) scale(var(--orb-scale, 1));
     transition: opacity 1.4s ease, transform 1.4s ease;
   }
 
-  /* Calm blue-white sphere: highlight top-left, depth bottom-right, body. */
+  /* Crisp calm mint-white sphere: highlight top-left, depth bottom-right, body. */
   .moon {
     width: 300px;
     height: 300px;
     border-radius: 50%;
     background:
-      radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.16) 12%, transparent 34%),
-      radial-gradient(circle at 68% 74%, hsla(220, 45%, 20%, 0.34) 0%, transparent 52%),
-      radial-gradient(circle at 35% 30%, #ffffff 0%, hsl(220, 25%, 92%) 42%, hsl(220, 38%, 78%) 92%, hsl(220, 42%, 74%) 100%);
+      radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 12%, transparent 34%),
+      radial-gradient(circle at 68% 74%, hsla(217, 40%, 20%, 0.34) 0%, transparent 52%),
+      radial-gradient(circle at 35% 30%, #ffffff 0%, hsl(220, 14%, 92%) 42%, hsl(217, 33%, 82%) 92%, hsl(217, 36%, 76%) 100%);
     box-shadow: 0 24px 55px rgba(0, 0, 0, 0.45);
     animation: moonBreathe 4.2s ease-in-out infinite;
   }
-
-  /* Rose to purple bloom, independent of the body colour. */
   .halo {
     position: absolute;
     width: 540px;
@@ -123,25 +241,7 @@
   .m4 { width: 6px;  height: 6px;  left: 24%; top: 72%; animation: drift 17s ease-in-out infinite 4s; }
   .m5 { width: 8px;  height: 8px;  left: 50%; top: 12%; animation: drift 24s ease-in-out infinite 3s; }
 
-  /* Frosted glass over the moon, then content on top. Matches the app home,
-     where the moon is softly blurred behind one dark glass surface. */
-  .glass-layer {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background: rgba(10, 8, 16, 0.28);
-    backdrop-filter: blur(22px) saturate(1.1);
-    -webkit-backdrop-filter: blur(22px) saturate(1.1);
-  }
-  .vignette {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(7, 6, 15, 0.7) 75%, rgba(7, 6, 15, 0.95) 100%);
-  }
-
+  @keyframes skyIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes moonBreathe {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.045); }
@@ -161,6 +261,7 @@
     .halo { width: 400px; height: 400px; }
   }
   @media (prefers-reduced-motion: reduce) {
+    .orb-stage { animation: none; }
     .moon, .halo, .mote { animation: none; }
   }
 </style>

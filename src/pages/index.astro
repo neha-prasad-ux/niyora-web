@@ -12,7 +12,7 @@ import OrbStage from '../components/OrbStage.astro';
   <OrbStage />
 
   <main class="content">
-    <section class="hero" data-hue="335" data-sat="58%" data-orb-alpha="0.2" data-orb-scale="0.55">
+    <section class="hero" data-hue="335" data-sat="58%" data-orb-alpha="0.9" data-orb-scale="0.9">
       <div class="hero-grid">
         <div class="hero-text">
           <h1>Life doesn't wait for PMS. But we do.</h1>
@@ -358,26 +358,39 @@ import OrbStage from '../components/OrbStage.astro';
   .content { position: relative; z-index: 2; }
 
   section {
-    min-height: 100vh;
+    min-height: 88vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 24px;
-    max-width: 1100px;
-    margin: 0 auto;
+    padding: 80px 40px;
+    max-width: 1080px;
+    margin: 26px auto;
+    border-radius: 32px;
+    background: rgba(12, 10, 20, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  }
+  @media (max-width: 720px) {
+    section { margin: 14px; border-radius: 24px; }
   }
 
   /* Compress hero so the feature cards peek into the first viewport,
      signalling there's more page below. */
   .hero {
-    min-height: auto;
-    padding: 80px 24px 36px;
-    max-width: none;
-    width: 100%;
+    min-height: 78vh;
+    padding: 60px 40px 52px;
+    animation: heroIn 1s ease 1s both;
   }
-  @media (min-width: 900px) {
-    .hero { padding: 80px 0 36px; }
+  /* The moon fades in first on the sky, then the hero glass comes over it. */
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero { animation: none; }
   }
 
   .eyebrow {
@@ -492,13 +505,32 @@ import OrbStage from '../components/OrbStage.astro';
     align-items: center;
     gap: 14px;
   }
-  .interest-btn { cursor: pointer; font-family: 'Poppins', sans-serif; }
+  .interest-btn {
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid transparent;
+    background-image:
+      linear-gradient(rgba(18, 13, 26, 0.92), rgba(18, 13, 26, 0.92)),
+      linear-gradient(95deg, #e6a3c4, #9c5c86, #7846b0);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 34px rgba(217, 146, 176, 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .interest-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 46px rgba(217, 146, 176, 0.45);
+  }
   .interest-btn.is-done {
-    background: transparent;
-    color: hsla(var(--orb-hue), 60%, 82%, 0.95);
-    border-color: hsla(var(--orb-hue), 60%, 70%, 0.5);
+    color: rgba(255, 255, 255, 0.72);
+    background-image:
+      linear-gradient(rgba(18, 13, 26, 0.6), rgba(18, 13, 26, 0.6)),
+      linear-gradient(95deg, rgba(230, 163, 196, 0.5), rgba(120, 70, 176, 0.5));
     box-shadow: none;
     cursor: default;
+    transform: none;
   }
   .interest-count {
     font-size: 14px;
