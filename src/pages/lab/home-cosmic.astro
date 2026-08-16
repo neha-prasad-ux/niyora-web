@@ -1,0 +1,461 @@
+---
+import Base from '../../layouts/Base.astro';
+import { downloads } from '../../config/downloads.ts';
+---
+
+<Base
+  title="Lab · Cosmic · Niyora"
+  description="Experimental three.js cosmic homepage preview. Not production."
+  canonicalUrl="https://niyora.com/lab/home-cosmic"
+>
+  <!-- The 3D moon + star field live on this fixed canvas, behind everything. -->
+  <canvas id="cosmic" aria-hidden="true"></canvas>
+
+  <div class="lab-label" aria-hidden="true">Lab: Cosmic (three.js)</div>
+
+  <main class="cx">
+    <section class="hero" data-hue="260" data-sat="60%">
+      <p class="brand">Niyora</p>
+      <h1>Life doesn't wait for PMS.<br />But we do.</h1>
+      <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
+      <div class="cta-row">
+        <a class="app-cta" href={downloads.appStore}>
+          <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.36 12.9c.02 2.3 2.02 3.06 2.04 3.07-.02.05-.32 1.1-1.06 2.18-.64.94-1.3 1.87-2.35 1.89-1.02.02-1.36-.6-2.53-.6-1.17 0-1.54.58-2.51.62-1.01.04-1.78-1.01-2.42-1.94-1.32-1.9-2.33-5.38-.97-7.73.67-1.16 1.87-1.9 3.17-1.92.99-.02 1.93.67 2.53.67.61 0 1.75-.83 2.95-.71.5.02 1.91.2 2.81 1.52-.07.05-1.68.98-1.66 2.92M14.53 6.4c.54-.65.9-1.56.8-2.46-.78.03-1.72.52-2.28 1.17-.5.57-.94 1.5-.82 2.38.87.07 1.76-.44 2.3-1.09"/></svg>
+          <span class="app-copy"><span class="t">Download on the</span><span class="b">App Store</span></span>
+        </a>
+        <a class="ghost" href="/quiz/">Take the 2-minute check</a>
+      </div>
+      <p class="trust">Free · No account · No wearables · No cycle data shared</p>
+      <p class="trust strong">Your personal details never reach the AI.</p>
+      <p class="scroll-cue" aria-hidden="true">scroll</p>
+    </section>
+
+    <section class="panel-wrap" data-hue="335" data-sat="55%">
+      <div class="panel">
+        <p class="eyebrow">Built on one fact</p>
+        <h2>Women with emotional regulation skills handle PMS better.</h2>
+        <p>That's the whole idea. Staying steady is a skill, not something you're born with, and skills can be learned. Niyora teaches it a little at a time, so the week gets easier to carry.</p>
+      </div>
+    </section>
+
+    <section class="panel-wrap" data-hue="300" data-sat="55%">
+      <div class="panel">
+        <p class="eyebrow">What no one told you</p>
+        <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
+        <p>The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
+        <div class="stack">
+          <div class="chip"><h3>Same hormones, different response.</h3><p>Women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p><span class="cite">NIMH · Schmidt &amp; Rubinow, 2020</span></div>
+          <div class="chip"><h3>It's wired in, and it runs in families.</h3><p>Premenstrual sensitivity is about 56 percent heritable. A bit like having sensitive skin.</p><span class="cite">Dubey et al, 2017</span></div>
+          <div class="chip"><h3>It has an end date.</h3><p>Switch these hormones off and the symptoms clear. Switch them back on and they return. Every cycle.</p><span class="cite">NIMH GnRH add-back studies</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-wrap wide-wrap" data-hue="278" data-sat="55%">
+      <div class="panel wide">
+        <p class="eyebrow center">Moon AI · during PMS</p>
+        <h2 class="center">Reflect. Regulate. Respond.</h2>
+        <div class="triptych">
+          <div class="tri">
+            <p class="tag">Reflect</p>
+            <h3>See it more than one way.</h3>
+            <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
+          </div>
+          <div class="tri">
+            <p class="tag">Regulate</p>
+            <h3>Get through the twenty minutes.</h3>
+            <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
+          </div>
+          <div class="tri">
+            <p class="tag">Respond</p>
+            <h3>Send the one you won't regret.</h3>
+            <p>Worked up, it's easy to say something you'll regret. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-wrap" data-hue="258" data-sat="58%">
+      <div class="panel">
+        <p class="eyebrow">Training · before PMS</p>
+        <h2>Build the skill before you need it.</h2>
+        <p>It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
+        <div class="stack">
+          <div class="chip"><h3>Handle the sharp email.</h3><p>Meet a hard meeting or a pointed message without it costing you the whole day.</p></div>
+          <div class="chip"><h3>Keep a small thing small.</h3><p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p></div>
+          <div class="chip"><h3>Name it without a fight.</h3><p>Tell the difference between PMS and a real issue, and bring it up so it lands well.</p></div>
+          <div class="chip"><h3>Learn from how others handled it.</h3><p>Work through real PMS moments and the way each was handled, so the lesson sticks.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-wrap" data-hue="320" data-sat="58%">
+      <div class="panel">
+        <p class="eyebrow">Couples</p>
+        <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
+        <p>The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
+        <div class="stack">
+          <div class="chip"><h3>Know which one you're in.</h3><p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid.</p></div>
+          <div class="chip"><h3>A message, already written.</h3><p>Ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p></div>
+          <div class="chip"><h3>Come back from it.</h3><p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p></div>
+        </div>
+        <p class="more"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
+      </div>
+    </section>
+
+    <section class="panel-wrap" data-hue="210" data-sat="60%">
+      <div class="panel">
+        <p class="eyebrow">Private by design</p>
+        <h2>Built to know almost nothing about you.</h2>
+        <p>Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI.</p>
+        <div class="stack">
+          <div class="chip"><h3>No sign in</h3><p>No account, no login. Nothing you write is ever tied to your name.</p></div>
+          <div class="chip"><h3>Your details never reach the AI</h3><p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p></div>
+          <div class="chip"><h3>Nothing sold, nothing kept</h3><p>No ads, no profile, no data sold. Your period dates stay on your device.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA warms to gold, echoing the app's Spark tier and the current
+         homepage's hue-30 close. -->
+    <section class="final" data-hue="30" data-sat="70%">
+      <h2>Want Niyora when you need it?</h2>
+      <p class="subhead">It is on the App Store now, and free. No email, no account, nothing to sign.</p>
+      <div class="cta-row center-row">
+        <a class="app-cta" href={downloads.appStore}>
+          <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.36 12.9c.02 2.3 2.02 3.06 2.04 3.07-.02.05-.32 1.1-1.06 2.18-.64.94-1.3 1.87-2.35 1.89-1.02.02-1.36-.6-2.53-.6-1.17 0-1.54.58-2.51.62-1.01.04-1.78-1.01-2.42-1.94-1.32-1.9-2.33-5.38-.97-7.73.67-1.16 1.87-1.9 3.17-1.92.99-.02 1.93.67 2.53.67.61 0 1.75-.83 2.95-.71.5.02 1.91.2 2.81 1.52-.07.05-1.68.98-1.66 2.92M14.53 6.4c.54-.65.9-1.56.8-2.46-.78.03-1.72.52-2.28 1.17-.5.57-.94 1.5-.82 2.38.87.07 1.76-.44 2.3-1.09"/></svg>
+          <span class="app-copy"><span class="t">Download on the</span><span class="b">App Store</span></span>
+        </a>
+        <a class="ghost" href="/quiz/">Take the 2-minute check</a>
+      </div>
+    </section>
+
+    <p class="back"><a href="/lab/">← back to the lab</a></p>
+  </main>
+
+  <!-- three.js loaded as an inline ES module so nothing enters the bundle or
+       package.json. is:inline keeps Astro from trying to resolve the CDN URL. -->
+  <script type="module" is:inline>
+    import * as THREE from 'https://esm.sh/three@0.160.0';
+
+    const canvas = document.getElementById('cosmic');
+    if (canvas) {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.set(0, 0, 5.8);
+
+      // Grab the GL context ourselves (webgl2, falling back to webgl) and hand it
+      // to three. Passing an explicit context avoids "existing context of a
+      // different type" if anything else ever touches the canvas first.
+      const gl = canvas.getContext('webgl2', { alpha: true, antialias: true })
+        || canvas.getContext('webgl', { alpha: true, antialias: true });
+      const renderer = new THREE.WebGLRenderer({ canvas, context: gl, antialias: true, alpha: true });
+      renderer.setClearColor(0x000000, 0); // let the page's indigo gradient show through
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+      // ── Moon: a fresnel-lit sphere. uBase is the cool moon body; uTint is the
+      //    section hue that bleeds into the rim, echoing the CSS orb's data-hue. ──
+      const moonMat = new THREE.ShaderMaterial({
+        uniforms: {
+          uBase: { value: new THREE.Color().setHSL(0.62, 0.16, 0.86) },
+          uTint: { value: new THREE.Color().setHSL(260 / 360, 0.6, 0.6) },
+          uLightDir: { value: new THREE.Vector3(0.5, 0.35, 0.9).normalize() },
+        },
+        vertexShader: `
+          varying vec3 vNormal; varying vec3 vView;
+          void main() {
+            vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            vNormal = normalize(normalMatrix * normal);
+            vView = normalize(-mv.xyz);
+            gl_Position = projectionMatrix * mv;
+          }`,
+        fragmentShader: `
+          uniform vec3 uBase; uniform vec3 uTint; uniform vec3 uLightDir;
+          varying vec3 vNormal; varying vec3 vView;
+          void main() {
+            vec3 N = normalize(vNormal);
+            float diff = clamp(dot(N, normalize(uLightDir)), 0.0, 1.0);
+            vec3 body = mix(uBase * 0.30, mix(uBase, uTint, 0.30), 0.28 + diff * 0.72);
+            float fres = pow(1.0 - clamp(dot(N, vView), 0.0, 1.0), 2.4);
+            vec3 col = body + uTint * fres * 1.5;
+            gl_FragColor = vec4(col, 1.0);
+          }`,
+      });
+      const moonGeo = new THREE.SphereGeometry(1, 64, 64);
+      const moon = new THREE.Mesh(moonGeo, moonMat);
+      scene.add(moon);
+
+      // Atmosphere glow shell: additive fresnel on the back faces of a larger sphere.
+      const glowMat = new THREE.ShaderMaterial({
+        uniforms: { uTint: moonMat.uniforms.uTint },
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide,
+        depthWrite: false,
+        vertexShader: `
+          varying vec3 vNormal; varying vec3 vView;
+          void main() {
+            vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            vNormal = normalize(normalMatrix * normal);
+            vView = normalize(-mv.xyz);
+            gl_Position = projectionMatrix * mv;
+          }`,
+        fragmentShader: `
+          uniform vec3 uTint; varying vec3 vNormal; varying vec3 vView;
+          void main() {
+            float i = pow(0.64 - dot(normalize(vNormal), normalize(vView)), 3.2);
+            gl_FragColor = vec4(uTint, 1.0) * clamp(i, 0.0, 1.0) * 0.9;
+          }`,
+      });
+      const glowGeo = new THREE.SphereGeometry(1.28, 48, 48);
+      const glow = new THREE.Mesh(glowGeo, glowMat);
+      scene.add(glow);
+
+      // ── Star field: deep-indigo to soft-white points on a wide shell. ──
+      const STARS = 1400;
+      const pos = new Float32Array(STARS * 3);
+      const col = new Float32Array(STARS * 3);
+      const cA = new THREE.Color().setHSL(0.66, 0.55, 0.62); // indigo
+      const cB = new THREE.Color(0xdfe7ff);                  // soft white
+      for (let i = 0; i < STARS; i++) {
+        const r = 8 + Math.random() * 18;
+        const th = Math.random() * Math.PI * 2;
+        const ph = Math.acos(2 * Math.random() - 1);
+        pos[i * 3] = r * Math.sin(ph) * Math.cos(th);
+        pos[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th);
+        pos[i * 3 + 2] = r * Math.cos(ph);
+        const c = Math.random() < 0.35 ? cA : cB;
+        col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+      }
+      const starGeo = new THREE.BufferGeometry();
+      starGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      starGeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+      const starMat = new THREE.PointsMaterial({
+        size: 0.05, sizeAttenuation: true, vertexColors: true,
+        transparent: true, opacity: 0.9, depthWrite: false,
+      });
+      const stars = new THREE.Points(starGeo, starMat);
+      scene.add(stars);
+
+      // ── Resize. Also keeps a correct static frame on screen: renders once at
+      //    the current size so the scene shows even when the animation loop is
+      //    paused (reduced motion, or a tab that loaded backgrounded). ──
+      const resize = () => {
+        const w = window.innerWidth, h = window.innerHeight;
+        if (w === 0 || h === 0) return; // unsized (e.g. background tab); wait for a real size
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        camera.position.set(0, 0, 5.8); // static frame is always centered
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+      };
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+      // The fixed canvas is 0x0 until the tab has real dimensions. This fires the
+      // moment it gains them, so the scene appears as soon as it can.
+      new ResizeObserver(resize).observe(canvas);
+
+      // ── Scroll-driven tint: read each section's data-hue/data-sat, lerp toward it. ──
+      const target = new THREE.Color().copy(moonMat.uniforms.uTint.value);
+      const sections = Array.from(document.querySelectorAll('section[data-hue]'));
+      const tintObserver = new IntersectionObserver((entries) => {
+        let best = null;
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+        }
+        if (best) {
+          const h = parseFloat(best.target.dataset.hue || '260');
+          const s = parseFloat((best.target.dataset.sat || '60%')) / 100;
+          target.setHSL(h / 360, isNaN(s) ? 0.6 : s, 0.6);
+          // Also shift the CSS accent hue so eyebrows, tags and CTA glow track the
+          // moon, the same way the production orb reacts to each section's data-hue.
+          document.documentElement.style.setProperty('--orb-hue', String(h));
+          if (best.target.dataset.sat) document.documentElement.style.setProperty('--orb-sat', best.target.dataset.sat);
+        }
+      }, { threshold: [0.3, 0.6, 0.9] });
+      sections.forEach((s) => tintObserver.observe(s));
+
+      // ── Mouse parallax (camera drifts, always looks at the moon). ──
+      let mx = 0, my = 0;
+      if (!reduce) {
+        window.addEventListener('pointermove', (e) => {
+          mx = (e.clientX / window.innerWidth - 0.5) * 2;
+          my = (e.clientY / window.innerHeight - 0.5) * 2;
+        }, { passive: true });
+      }
+
+      // ── Render loop with pause hygiene. ──
+      let running = false, rafId = 0;
+      const tint = moonMat.uniforms.uTint.value;
+      const tick = () => {
+        if (!running) return;
+        tint.lerp(target, 0.03);
+        moon.rotation.y += 0.0012;
+        stars.rotation.y += 0.0002;
+        camera.position.x += (mx * 0.28 - camera.position.x) * 0.05;
+        camera.position.y += (-my * 0.2 - camera.position.y) * 0.05;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+        rafId = requestAnimationFrame(tick);
+      };
+      const start = () => { if (!running && !document.hidden) { running = true; rafId = requestAnimationFrame(tick); } };
+      const stop = () => { running = false; cancelAnimationFrame(rafId); };
+
+      // The canvas is position:fixed and fills the viewport, so it is never
+      // scrolled out of view. The only real waste is a backgrounded tab, so we
+      // pause on that and resume when it returns.
+      document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+      // ── Teardown: dispose GPU resources on navigate-away. ──
+      const dispose = () => {
+        stop();
+        moonGeo.dispose(); moonMat.dispose();
+        glowGeo.dispose(); glowMat.dispose();
+        starGeo.dispose(); starMat.dispose();
+        renderer.dispose();
+      };
+      window.addEventListener('pagehide', dispose, { once: true });
+
+      // resize() has already drawn the first static frame (and ResizeObserver
+      // will redraw it once the tab has real dimensions). Under reduced motion we
+      // stop there; otherwise the loop takes over for rotation and parallax.
+      if (!reduce) start();
+    }
+  </script>
+</Base>
+
+<style>
+  /* Canvas holds the 3D moon + stars. Fixed, behind the glass, never catches
+     pointer events. Sits above the body gradient (z 0) but below content (z 2). */
+  #cosmic {
+    position: fixed;
+    inset: 0;
+    /* A canvas is a replaced element: its intrinsic size is the drawbuffer, which
+       is viewport x devicePixelRatio. Without an explicit CSS size it would render
+       at 2x on retina and overflow. Pin it to the viewport so it always fills it. */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: block;
+    pointer-events: none;
+  }
+
+  .cx { position: relative; z-index: 2; }
+  .cx section {
+    padding: clamp(90px, 20vh, 220px) clamp(20px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 76%, 0.75); margin-bottom: 16px;
+    transition: color 1.4s ease;
+  }
+  .eyebrow.center { text-align: center; }
+  h1 { font-size: clamp(40px, 6vw, 68px); font-weight: 300; line-height: 1.12; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.97); margin-bottom: 24px; text-align: center; }
+  h2 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 300; line-height: 1.15; letter-spacing: -0.015em; color: rgba(255, 255, 255, 0.95); margin-bottom: 18px; }
+  h2.center { text-align: center; max-width: 20ch; margin-left: auto; margin-right: auto; }
+  h3 { font-size: 16px; font-weight: 500; color: rgba(255, 255, 255, 0.92); margin-bottom: 6px; }
+  p { font-size: 16px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.68); }
+
+  /* Hero over the moon, centered. */
+  .hero { min-height: 100vh; justify-content: center; text-align: center; }
+  .brand { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); margin-bottom: 28px; }
+  .subhead { font-size: clamp(17px, 2vw, 21px); color: rgba(255, 255, 255, 0.72); max-width: 46ch; margin: 0 auto 32px; text-align: center; }
+  .trust { font-size: 14px; color: rgba(255, 255, 255, 0.52); margin-top: 12px; }
+  .trust.strong { color: hsla(var(--orb-hue), 60%, 82%, 0.95); font-weight: 500; transition: color 1.4s ease; }
+  .scroll-cue { margin-top: 48px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); animation: bob 2.6s ease-in-out infinite; }
+  @keyframes bob { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(6px); opacity: 0.8; } }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: center; }
+  .center-row { margin-top: 8px; }
+
+  /* App Store badge, Apple dark variant, with the orb hue in its glow. */
+  .app-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 11px 20px; border-radius: 14px;
+    background: #000; border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #fff; text-decoration: none;
+    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.28), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.15);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .app-cta:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.55); box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.35), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.5); }
+  .app-cta .apple { width: 24px; height: 24px; flex: none; }
+  .app-copy { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+  .app-copy .t { font-size: 11px; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.85); }
+  .app-copy .b { font-size: 20px; font-weight: 500; letter-spacing: 0.2px; }
+
+  .ghost {
+    display: inline-block; padding: 14px 26px; border-radius: 32px;
+    font-size: 15px; font-weight: 500; color: rgba(255, 255, 255, 0.85);
+    text-decoration: none; border: 1.5px solid rgba(255, 255, 255, 0.22);
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  .ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: #fff; }
+
+  /* Glass panels over the 3D scene. Same material tokens as the other lab variants. */
+  .panel-wrap { min-height: 90vh; justify-content: center; }
+  .panel {
+    width: min(560px, 100%);
+    padding: 36px 34px;
+    border-radius: 26px;
+    background: rgba(34, 27, 54, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(22px) saturate(1.3);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  }
+  .panel.wide { width: min(900px, 100%); }
+  .panel > p { margin-bottom: 8px; }
+
+  .stack { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
+  .chip {
+    padding: 18px 20px; border-radius: 16px;
+    background: rgba(20, 18, 32, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .chip p { font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.66); }
+  .cite { display: block; margin-top: 8px; font-size: 12px; color: hsla(var(--orb-hue), 50%, 75%, 0.8); transition: color 1.4s ease; }
+  .more { margin-top: 24px; }
+  .more a { color: hsla(var(--orb-hue), 55%, 80%, 0.9); text-decoration: none; transition: color 1.4s ease; }
+  .more a:hover { color: #fff; }
+
+  /* Reflect / Regulate / Respond triptych. */
+  .triptych { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: left; }
+  .tri {
+    padding: 24px 22px; border-radius: 18px;
+    background: rgba(20, 18, 32, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .tri p { font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.66); }
+  .tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: hsla(var(--orb-hue), 60%, 78%, 0.85); margin-bottom: 8px; transition: color 1.4s ease; }
+
+  .final { min-height: 82vh; justify-content: center; text-align: center; }
+  .final h2 { margin-bottom: 16px; }
+  .final .subhead { margin-bottom: 28px; }
+
+  .back { text-align: center; padding: 60px 0 100px; }
+  .back a { color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+  .back a:hover { color: rgba(255, 255, 255, 0.9); }
+
+  .lab-label {
+    position: fixed; left: 16px; bottom: 16px; z-index: 50;
+    padding: 8px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(34, 27, 54, 0.6); border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  }
+
+  @media (max-width: 760px) {
+    .triptych { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue { animation: none; }
+  }
+</style>

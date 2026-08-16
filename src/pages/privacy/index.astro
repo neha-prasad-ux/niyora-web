@@ -4,34 +4,90 @@ import Base from '../../layouts/Base.astro';
 
 <Base
   title="Privacy at Niyora"
-  description="Niyora runs without an account and holds as little about you as it can. When you reflect, your words are stripped of identifying details before they are sent to an AI to write your reflection back."
+  description="Niyora has no accounts. The things you write stay encrypted on your device. The one thing that leaves your phone is the text you write, sent to Google's AI to write a reflection back and to check for crisis. No analytics, no tracking, nothing sold."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/privacy/"
 >
   <div class="container">
     <a class="back" href="/">← Back to Niyora</a>
-    <p class="last-updated">Last updated: August 11, 2026</p>
-    <h1>Privacy at Niyora</h1>
+    <p class="last-updated">Last updated: 12 August 2026</p>
+    <h1>Niyora Privacy Policy</h1>
 
     <div class="promise">
-      <p class="promise-text">Niyora runs without an account and holds as little about you as it can. Almost everything stays on your device. The one exception is the reflection itself, and we are plain about how that works.</p>
+      <p class="promise-text">Niyora is a reflection app for hard emotional moments. This policy explains, in plain terms, what data the app handles, what stays on your phone, what leaves it, and why. It describes the app as it is actually built, not as a wish list.</p>
     </div>
 
-    <h2>What stays on your device</h2>
-    <p>Your period dates, session history, preferences, reminder schedule, and the notes you write live in the app on your phone. We run no account system, so there is no server profile of you to sign into, lose, or hand over. Your cycle data is used on your device to shape the app, and is never sent off it or shared.</p>
+    <p>If anything here is unclear, contact us at <a href="mailto:neha@niyora.com">neha@niyora.com</a>.</p>
 
-    <h2>How the reflection works</h2>
-    <p>Moon's reflections are written by an AI model, which runs on a provider's servers rather than on your phone. So when you reflect on a moment, the words you write are sent to that provider to generate the response.</p>
-    <p>Before anything is sent, your text is scrubbed on your device: names, places, and other identifying details are removed and replaced with neutral placeholders. The provider processes the scrubbed text to return a reflection. We do not attach an account or identity to it, because there is no account, and we keep no copy of it on a server of our own.</p>
+    <h2>The short version</h2>
+    <ul>
+      <li>Niyora has no accounts. There is no sign-up, no login, and we never ask for your name or email.</li>
+      <li>The things you write, the feelings you name, and your history of moments are stored only on your device, encrypted. They are never uploaded to any server we run. We cannot see them.</li>
+      <li>To write a reflection back to you, and to check whether a moment needs crisis resources, the app sends the text you wrote to Google to be processed by an AI model. That is the only thing that leaves your phone.</li>
+      <li>We do not sell your data. We do not use it for advertising. Your text is not used to train Google's AI models and is not read by a human as a matter of routine.</li>
+      <li>Niyora is not a medical, therapy, or crisis service.</li>
+    </ul>
 
-    <h2>What we never do</h2>
-    <p>No advertising identifiers. No cookies. No fingerprinting. No selling or sharing of your data. Your cycle data, in particular, is never sent off your device.</p>
+    <h2>What data exists, and where it lives</h2>
+    <p>Everything you create in Niyora stays on your device:</p>
+    <ul>
+      <li>The text you write in a moment.</li>
+      <li>The feeling you name (for example "hurt" or "anxious") and its grouping.</li>
+      <li>Any response or message you draft.</li>
+      <li>Your history of past moments, which the app uses to show you your own patterns over time.</li>
+    </ul>
+    <p>This history is kept in the app's private, iOS-sandboxed storage, and the sensitive parts (the text you wrote and any response you drafted) are additionally encrypted with AES-256. The encryption key is generated on your device and held in the iOS Keychain, set so it does not sync to iCloud or to device backups. That key never leaves your phone, and neither does the encrypted content. There is no copy on a server we control, because there is no such server and no account to tie it to.</p>
+    <p>The stored history is capped at the most recent 300 moments; older ones fall off automatically.</p>
 
-    <h2>Optional, anonymous analytics</h2>
-    <p>Only if you opt in, a small set of events (things like app launches and reminders firing) is sent to PostHog EU. Each event carries a random anonymous identifier generated only on opt-in, never tied to anything that identifies you, and never your reflections. You can turn it off any time in the app.</p>
+    <h2>What leaves your device, to whom, and why</h2>
+    <p>One thing, and only one thing, leaves your device: the text you write, sent for AI processing.</p>
+    <p>To turn what you wrote into a reflection, the app sends that text to Google. It travels through Firebase AI Logic to Google Cloud's Vertex AI service and is processed by the model <code>gemini-2.5-flash</code>. The generated reply comes back to your phone. This is what makes the reflections possible: an AI cannot respond to your words without receiving your words.</p>
+    <p>The same path is used for crisis detection. When you write a moment, the text is also sent to the AI to judge whether the moment calls for real-world crisis resources rather than the app's normal flow. This is a safety check; it can only add crisis resources, never remove them.</p>
+    <p>Because this is a direct call from your phone to Google, Google also receives your device's network (IP) address as part of the request, as with any internet connection.</p>
+    <p>We use Google Cloud's Vertex AI under its enterprise terms. Under those terms, the text you send is not used to train or improve Google's AI models, and it is not reviewed by a human by default. Google processes it to generate the response and according to its own Google Cloud data handling commitments. We do not receive a copy, and we do not store it on our side.</p>
+    <p>To make sure only the genuine Niyora app can use this AI connection, the app uses Firebase App Check with Apple's App Attest. This attests that the request comes from the real, unmodified app on a real device. It is an anti-abuse measure; it does not identify you.</p>
 
-    <h2>Questions?</h2>
-    <p>Contact us at <a href="mailto:neha@niyora.com">neha@niyora.com</a>.</p>
+    <h2>The partial redaction, honestly</h2>
+    <p>Before your text is sent to Google, the app runs an automatic scrub that replaces certain personal details with neutral stand-ins, and swaps your real words back into the reply when it returns. The scrub removes:</p>
+    <ul>
+      <li>Email addresses.</li>
+      <li>Phone numbers.</li>
+      <li>Names when a relationship or title makes it clear a person is meant (for example "my sister Sarah" or "Dr Patel"), and your own name when you introduce it ("my name is ...", "I'm ...").</li>
+    </ul>
+    <p>Be aware of what this does not do. The scrub is deliberately careful, not exhaustive. A bare name with no cue around it (for example "Sarah slapped me") is not caught and will be sent. Short numbers and other identifying details may pass through. Most importantly, the emotional content of what you write, the situation, the feelings, the story, is sent as written, because that is exactly what the AI needs in order to respond. If you would not want a specific detail to leave your device, do not write it.</p>
+
+    <h2>What we do not do</h2>
+    <ul>
+      <li>We do not sell or rent your data to anyone.</li>
+      <li>We do not use your data for advertising, and there is no advertising in the app.</li>
+      <li>There are no third-party analytics or tracking SDKs in the app. We do not track your behaviour across apps or websites.</li>
+      <li>We do not build a profile of you, and there is no account to attach one to.</li>
+      <li>Your text is not used to train our or Google's AI models.</li>
+    </ul>
+
+    <h2>Retention and deletion</h2>
+    <p>Because your moments live on your device, you control them. You can delete your history from within the app, and deleting the app removes the stored data and the encryption key from your device. We hold nothing to delete on our end, because we never received it.</p>
+    <p>The text sent for AI processing is handled by Google to generate the response under the Vertex AI enterprise terms described above; we do not retain it.</p>
+
+    <h2>Children</h2>
+    <p>Niyora is intended for adults. It is not designed for or directed at children, and it is not a substitute for the care a young person in distress needs. You must be at least 16 years old to use Niyora. We do not knowingly collect data from children, and because the app has no accounts, we do not collect identifying information from anyone.</p>
+
+    <h2>Niyora is not a medical or therapy service</h2>
+    <p>Niyora is a self-reflection tool. It is not a medical device, not therapy, not counselling, and not a crisis service. It does not diagnose, treat, or provide professional mental-health advice, and the AI reflections are not the words of a clinician. If you are struggling, please reach out to a qualified professional. If you are in crisis or think you may be in danger, contact your local emergency services or a crisis line right away. The app may surface crisis resources, but it cannot replace real help and should never be relied on as your only source of support in an emergency.</p>
+
+    <h2>Your controls</h2>
+    <ul>
+      <li>Use of the AI reflections requires an internet connection; without one, the app falls back to its own written responses and nothing leaves your device.</li>
+      <li>You can delete your moment history in the app at any time.</li>
+      <li>You can remove all data by deleting the app.</li>
+      <li>You decide what you write. The most reliable privacy control is choosing what to put into a moment.</li>
+    </ul>
+
+    <h2>Changes to this policy</h2>
+    <p>If we change how the app handles data, we will update this policy and change the date at the top. Because there are no accounts, we cannot notify you directly; please check back here.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about privacy: <a href="mailto:neha@niyora.com">neha@niyora.com</a>.</p>
   </div>
 </Base>
 
@@ -64,7 +120,7 @@ import Base from '../../layouts/Base.astro';
     margin-bottom: 32px;
   }
   .promise {
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     padding: 28px;
     background: rgba(20, 18, 32, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -88,12 +144,12 @@ import Base from '../../layouts/Base.astro';
     font-weight: 300;
     margin-bottom: 12px;
   }
-  ol {
+  ul, ol {
     padding-left: 20px;
     margin-bottom: 12px;
   }
-  ol li {
-    margin-bottom: 14px;
+  ul li, ol li {
+    margin-bottom: 10px;
   }
   code {
     background: rgba(255, 255, 255, 0.08);

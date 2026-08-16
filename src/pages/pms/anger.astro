@@ -1,0 +1,221 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+import { downloads } from '../../config/downloads';
+---
+
+<Base
+  title="PMS anger and rage: why it happens and how to handle it · Niyora"
+  description="Premenstrual anger and rage are common and real. Here is why the smallest things set you off before your period, the science behind it, and what actually helps in the moment."
+  canonicalUrl="https://niyora.com/pms/anger/"
+>
+  <OrbStage />
+
+  <main class="content">
+    <section class="hero" data-hue="30" data-sat="70%">
+      <div class="eyebrow">PMS anger and rage</div>
+      <h1>PMS anger and rage: why it happens, and how to handle it</h1>
+      <p class="lede">In the days before your period, small things can land hard. A comment, a delay, a mess you would shrug off any other day feels genuinely unbearable. The anger is real, and it is turned all the way up for a few days. You are still you underneath it.</p>
+    </section>
+
+    <section class="explain-section" data-hue="35" data-sat="65%">
+      <h2>Why the smallest things set you off</h2>
+      <div class="science">
+        <p>The same calm that usually absorbs little frustrations runs thin this week. Progesterone breaks down into a soothing compound, allopregnanolone, that steadies you through the GABA system. As progesterone falls before your period, that buffer eases off, so things you would normally brush off land sharp instead.</p>
+        <p>Your hormone levels are normal. When researchers measure them, women who feel this and women who feel fine have the same levels. The difference is how strongly your nervous system responds to the shift, and that sensitivity is real and largely inherited. This is a dial turned up, not a flaw in your character.</p>
+        <p>And the dial turns back down. When the hormonal shift passes, usually once your period starts, the anger softens on its own. It shows up with the shift, and it eases with the next one, every cycle.</p>
+      </div>
+    </section>
+
+    <section class="rrr-section" data-hue="335" data-sat="58%">
+      <h2>What helps in the moment</h2>
+      <p class="lede">Niyora is built for the moment the anger flares. Three small steps, about a minute, so you act with a clearer head.</p>
+      <div class="rrr-grid">
+        <div class="rrr-card">
+          <div class="rrr-label">Reflect</div>
+          <p>Name what happened. Seeing that the anger is running on a thin buffer, not a sign the other person deserves the full force of it, gives you a beat before you react.</p>
+        </div>
+        <div class="rrr-card">
+          <div class="rrr-label">Regulate</div>
+          <p>Settle your body in about a minute. A slower breath with a longer exhale brings your system down from the flare, so the surge passes before you speak or send.</p>
+        </div>
+        <div class="rrr-card">
+          <div class="rrr-label">Respond</div>
+          <p>With the heat down, say the thing that is actually true, not the sharpest version. You respond without the regret that usually follows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section" data-hue="248" data-sat="55%">
+      <h2>Keep reading</h2>
+      <div class="cta-row">
+        <a href="/blog/how-to-process-anger/" class="cta ghost">How to process anger</a>
+        <a href="/blog/how-to-not-take-it-out-on-your-partner/" class="cta ghost">How to not take it out on the people you love</a>
+      </div>
+    </section>
+
+    <section class="cta-section" data-hue="280" data-sat="60%">
+      <h2>Not sure the angry week is PMS?</h2>
+      <p class="lede">Take the two-minute check and see how your premenstrual week actually hits.</p>
+      <div class="cta-row">
+        <a href="/quiz" class="cta">Take the quiz</a>
+        <a href={downloads.appStore} class="cta ghost">Get Niyora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/quiz">Take the quiz</a>
+    <a href="/blog/">Writing</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
+</Base>
+
+<style>
+  .content { position: relative; z-index: 2; }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 40px;
+    max-width: 1080px;
+    margin: 26px auto;
+    border-radius: 32px;
+    background: rgba(12, 10, 20, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
+  }
+
+  .hero { padding: 96px 40px 80px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
+    margin-bottom: 16px;
+    transition: color 1.4s ease;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+    max-width: 780px;
+    color: rgba(255, 255, 255, 0.96);
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 20px;
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.94);
+  }
+  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
+  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
+
+  .science {
+    max-width: 720px;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+    text-align: left;
+  }
+  .science p { font-size: 18px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.82); max-width: none; margin: 0 0 18px; }
+  .science p:last-child { margin-bottom: 0; }
+
+  .rrr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .rrr-card {
+    padding: 24px 22px;
+    border-radius: 16px;
+    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.35);
+    background: var(--glass-bg-soft);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+  .rrr-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 60%, 80%, 0.95);
+    margin-bottom: 12px;
+    transition: color 1.4s ease;
+  }
+  .rrr-card p { font-size: 15px; line-height: 1.6; margin: 0; max-width: none; color: rgba(255, 255, 255, 0.82); }
+  @media (max-width: 720px) {
+    .rrr-grid { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+  .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(18, 16, 32, 0.95);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
+  }
+  .cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 1);
+    color: hsla(var(--orb-hue), 70%, 32%, 1);
+    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
+  }
+  .cta.ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
+
+  footer {
+    text-align: center;
+    padding: 60px 24px 80px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    position: relative;
+    z-index: 2;
+  }
+  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
+  footer a:hover { color: rgba(255, 255, 255, 0.8); }
+  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    p.lede { font-size: 17px; }
+    .science p { font-size: 16px; }
+  }
+</style>

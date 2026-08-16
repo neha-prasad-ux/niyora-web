@@ -1,0 +1,119 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+
+const variants = [
+  {
+    href: '/lab/home-editorial',
+    name: 'Editorial',
+    bet: 'Asymmetry as the mold-breaker. Off-center type, oversized headlines, ragged columns, minimal glass.',
+    hue: '335', sat: '58%',
+  },
+  {
+    href: '/lab/home-spatial',
+    name: 'Spatial',
+    bet: 'The orb as the persistent central actor. Content orbits it in side panels, layered glass depth.',
+    hue: '278', sat: '55%',
+  },
+  {
+    href: '/lab/home-tactile',
+    name: 'Tactile',
+    bet: 'Stronger glass materiality. Big liftable cards, a sweeping sheen, pronounced but calm motion.',
+    hue: '30', sat: '70%',
+  },
+  {
+    href: '/lab/home-cosmic',
+    name: 'Cosmic (three.js)',
+    bet: 'The orb becomes a real 3D moon in a star field, tinting as you scroll. The most ambitious swing.',
+    hue: '258', sat: '62%',
+  },
+  {
+    href: '/lab/home-flow',
+    name: 'Flow',
+    bet: 'Structure broken throughout: every section offset around a living orb that glides and shifts as you scroll.',
+    hue: '300', sat: '58%',
+  },
+];
+---
+
+<Base
+  title="Lab · Niyora homepage experiments"
+  description="Five experimental homepage layout directions. Preview only, not production."
+  canonicalUrl="https://niyora.com/lab"
+>
+  <OrbStage />
+
+  <div class="lab-label" aria-hidden="true">Lab: Index</div>
+
+  <main class="lab">
+    <section data-hue="330" data-sat="55%" data-orb-alpha="0.85" data-orb-scale="0.9">
+      <p class="eyebrow">Preview only, not production</p>
+      <h1>Five ways the homepage could feel.</h1>
+      <p class="lead">Same copy, same orb, same Poppins. Five different bets on layout. Open each, scroll it, then pick the direction worth taking further.</p>
+
+      <div class="cards">
+        {variants.map((v, i) => (
+          <a class="card" href={v.href} style={`--h:${v.hue};--s:${v.sat}`}>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="dot" aria-hidden="true"></span>
+            <h2>{v.name}</h2>
+            <p>{v.bet}</p>
+            <span class="go">Open preview →</span>
+          </a>
+        ))}
+      </div>
+
+      <p class="foot"><a href="/">← back to the live homepage</a></p>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .lab { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+  section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 90px 0; }
+
+  .eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: hsla(var(--orb-hue), 50%, 76%, 0.75); margin-bottom: 18px; transition: color 1.4s ease; }
+  h1 { font-size: clamp(38px, 6vw, 64px); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.97); margin-bottom: 20px; max-width: 16ch; }
+  .lead { font-size: clamp(17px, 2vw, 21px); font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.72); max-width: 54ch; margin-bottom: 52px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card {
+    position: relative;
+    display: flex; flex-direction: column;
+    padding: 32px 28px;
+    border-radius: 24px;
+    text-decoration: none;
+    background: rgba(34, 27, 54, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(22px) saturate(1.3);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: hsla(var(--h), 60%, 68%, 0.5);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5), 0 0 0 1px hsla(var(--h), 60%, 70%, 0.22);
+  }
+  .n { font-size: 13px; letter-spacing: 2px; color: rgba(255, 255, 255, 0.32); font-variant-numeric: tabular-nums; }
+  .dot { width: 40px; height: 40px; border-radius: 50%; margin: 16px 0 20px; background: radial-gradient(circle at 35% 30%, hsla(var(--h), 75%, 88%, 0.98) 0%, hsla(var(--h), 65%, 60%, 0.9) 45%, hsla(var(--h), 55%, 32%, 0.7) 100%); box-shadow: 0 0 24px hsla(var(--h), 65%, 60%, 0.5); }
+  .card h2 { font-size: 24px; font-weight: 500; color: rgba(255, 255, 255, 0.95); margin-bottom: 10px; }
+  .card p { font-size: 15px; font-weight: 300; line-height: 1.55; color: rgba(255, 255, 255, 0.66); margin-bottom: 24px; }
+  .go { margin-top: auto; font-size: 14px; color: hsla(var(--h), 60%, 80%, 0.95); }
+
+  .foot { margin-top: 44px; }
+  .foot a { color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+  .foot a:hover { color: rgba(255, 255, 255, 0.9); }
+
+  .lab-label {
+    position: fixed; left: 16px; bottom: 16px; z-index: 50;
+    padding: 8px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(34, 27, 54, 0.6); border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover { transform: none; }
+  }
+</style>

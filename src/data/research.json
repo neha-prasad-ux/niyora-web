@@ -1,0 +1,396 @@
+[
+  {
+    "n": 1,
+    "topic": "PMDD",
+    "tags": [
+      "genetics",
+      "hormone-sensitivity",
+      "root-cause"
+    ],
+    "finding": "Same hormone levels in women who feel awful vs fine; the difference is brain sensitivity to normal shifts (~56% heritable)",
+    "grade": "strong",
+    "plain": "Your hormones are completely normal. The difference is how strongly your brain feels the shift.",
+    "source": "Schmidt/Dubey (appendix L0)",
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10176022/",
+    "status": "live"
+  },
+  {
+    "n": 2,
+    "topic": "PMS",
+    "tags": [
+      "micronutrient",
+      "calcium"
+    ],
+    "finding": "Calcium ~1000-1200mg/day: 73% fewer symptoms vs 15% placebo (crossover RCT)",
+    "grade": "strong",
+    "plain": "Calcium every day, all cycle, is one of the few things with real trial evidence behind it.",
+    "source": "Thys-Jacobs RCT (appendix L2)",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/2656936/",
+    "status": "ready"
+  },
+  {
+    "n": 3,
+    "topic": "PMS",
+    "tags": [
+      "inflammation",
+      "CRP"
+    ],
+    "finding": "hs-CRP >3 linked to 4 of 5 symptom clusters (SWAN, n≈2,900)",
+    "grade": "moderate",
+    "plain": "Low-grade inflammation tracks with worse weeks.",
+    "source": "SWAN cohort (appendix L2)",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/27135720/",
+    "status": "idea"
+  },
+  {
+    "n": 4,
+    "topic": "PMS",
+    "tags": [
+      "micronutrient",
+      "magnesium",
+      "GABA"
+    ],
+    "finding": "Cellular (erythrocyte) magnesium lower in PMS even when serum looks normal",
+    "grade": "moderate",
+    "plain": "Magnesium can run low inside your cells even when a blood test looks fine.",
+    "source": "appendix L2 (Mg)",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/3800293/",
+    "status": "idea"
+  },
+  {
+    "n": 5,
+    "topic": "PMDD + ADHD",
+    "tags": [
+      "ADHD",
+      "dopamine",
+      "comorbidity"
+    ],
+    "finding": "Up to ~46% of women with ADHD report PMDD; dopamine dip is the bridge; adolescent PMS-ADHD OR 2.43",
+    "grade": "moderate",
+    "plain": "If you have ADHD, the week before your period can hit focus and motivation harder. That's the dopamine dip, not you slacking.",
+    "source": "Dorani 2021 / BJPsych 2025 (appendix L3)",
+    "link": "https://www.cambridge.org/core/journals/the-british-journal-of-psychiatry/article/increased-risk-of-provisional-premenstrual-dysphoric-disorder-pmdd-among-females-with-attentiondeficit-hyperactivity-disorder-adhd-crosssectional-survey-study/CD1DC6B31D4B009AB04F580C1189BC86",
+    "status": "idea"
+  },
+  {
+    "n": 6,
+    "topic": "PMDD safety",
+    "tags": [
+      "PME",
+      "bipolar",
+      "safety",
+      "differential"
+    ],
+    "finding": "PME (depression/anxiety/bipolar worsening premenstrually) vs true PMDD (clears in follicular phase)",
+    "grade": "moderate",
+    "plain": "If the heavy feeling never fully lifts after your period, that's worth a proper look.",
+    "source": "PMDD x bipolar review (appendix L3)",
+    "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8423998/",
+    "status": "idea"
+  },
+  {
+    "n": 7,
+    "topic": "Acute stress",
+    "tags": [
+      "grounding",
+      "vagal",
+      "active-tool"
+    ],
+    "finding": "Cold on the face triggers the diving reflex: slows heart, breaks panic (used in DBT)",
+    "grade": "strong",
+    "plain": "Cold water on your face resets your whole system in seconds.",
+    "source": "DBT / diving reflex lit",
+    "link": "",
+    "status": "needs-check"
+  },
+  {
+    "n": 8,
+    "topic": "PMDD",
+    "tags": [
+      "stress",
+      "trauma",
+      "HPA",
+      "cortisol"
+    ],
+    "finding": "Higher childhood adversity -> stronger premenstrual mood worsening + altered late-luteal cortisol",
+    "grade": "moderate",
+    "plain": "If your body learned early that the world isn't safe, these weeks can land harder.",
+    "source": "appendix L2 (stress)",
+    "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10653441/",
+    "status": "idea"
+  },
+  {
+    "n": 9,
+    "topic": "PMS",
+    "tags": [
+      "blood-sugar",
+      "insulin",
+      "metabolic"
+    ],
+    "finding": "Stable blood sugar tracks with steadier mood; PMS linked to glucose/insulin/HOMA-IR differences (mixed)",
+    "grade": "weak-moderate",
+    "plain": "Eating something steady every few hours keeps your mood from spiking and crashing.",
+    "source": "appendix L2 (glucose/insulin)",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/23875163/",
+    "status": "idea"
+  },
+  {
+    "n": 10,
+    "topic": "PCOD",
+    "tags": [
+      "PCOD",
+      "insulin",
+      "comorbidity"
+    ],
+    "finding": "PCOS doesn't cause classic PMS (needs ovulation) but overlaps: insulin resistance + androgens drive mood/cravings",
+    "grade": "moderate",
+    "plain": "PCOS and PMS aren't the same thing, but they can feed each other.",
+    "source": "appendix L3 (PCOS)",
+    "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8516319/",
+    "status": "idea"
+  },
+  {
+    "n": 11,
+    "topic": "Reproductive",
+    "tags": [
+      "reproductive",
+      "nervous-system",
+      "ovary"
+    ],
+    "finding": "The ovary is directly wired to the nervous system; nerve signals help regulate ovarian function and fertility decline",
+    "grade": "moderate",
+    "plain": "Your ovaries and your nervous system are directly wired together.",
+    "source": "UCSF/Science 2025",
+    "link": "https://www.ucsf.edu/news/2025/10/430841/why-does-female-fertility-decline-so-fast-key-ovary",
+    "status": "idea"
+  },
+  {
+    "n": 12,
+    "topic": "Reproductive",
+    "tags": [
+      "reproductive",
+      "stress",
+      "HPA"
+    ],
+    "finding": "Chronic psychological stress impairs ovarian function via HPA/cortisol pathways (review)",
+    "grade": "moderate",
+    "plain": "Ongoing stress doesn't just sit in your head, it can reach your ovaries.",
+    "source": "Int J Mol Med 2024",
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11670866/",
+    "status": "idea"
+  },
+  {
+    "n": 13,
+    "topic": "PMS",
+    "tags": [
+      "relaxation",
+      "PMR",
+      "active-tool",
+      "intervention"
+    ],
+    "finding": "Progressive muscle relaxation reduces PMS symptoms (RCT, 2024)",
+    "grade": "strong",
+    "plain": "Tensing and releasing your muscles one group at a time measurably eases PMS.",
+    "source": "PMR RCT 2024",
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11993963/",
+    "status": "ready"
+  },
+  {
+    "n": 14,
+    "topic": "PMS / cycle",
+    "tags": [
+      "HPA",
+      "cortisol",
+      "cycle-aware"
+    ],
+    "finding": "Cortisol / HPA-axis reactivity shifts across menstrual cycle phases (meta-analysis)",
+    "grade": "strong",
+    "plain": "Your stress-hormone response genuinely changes across your cycle.",
+    "source": "HPA meta-analysis",
+    "link": "https://www.sciencedirect.com/science/article/abs/pii/S0091302222000218",
+    "status": "idea"
+  },
+  {
+    "n": 15,
+    "topic": "PMDD",
+    "tags": [
+      "GABA",
+      "allopregnanolone",
+      "neurosteroid",
+      "mechanism"
+    ],
+    "finding": "Add-back paradigm ties symptoms to GABA / allopregnanolone (progesterone metabolite) withdrawal",
+    "grade": "strong",
+    "plain": "The calm chemical your body makes from progesterone drops before your period, and sensitive brains feel that withdrawal.",
+    "source": "\"Genes to GABA\" review (appendix L0)",
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10176022/",
+    "status": "idea"
+  },
+  {
+    "n": 16,
+    "topic": "PMDD",
+    "tags": [
+      "genetics",
+      "heritability"
+    ],
+    "finding": "GWAS: premenstrual symptom heritability ~35-57%",
+    "grade": "moderate",
+    "plain": "A big part of how strongly you feel this is inherited.",
+    "source": "GWAS 2025 preprint (appendix L0)",
+    "link": "https://www.medrxiv.org/content/10.64898/2025.12.01.25341208.full.pdf",
+    "status": "idea"
+  },
+  {
+    "n": 17,
+    "topic": "PMDD",
+    "tags": [
+      "genetics",
+      "mechanism"
+    ],
+    "finding": "Cellular Ca2+/ER-stress + brain-blood-flow studies support the ESC/E(Z) sensitivity finding",
+    "grade": "moderate",
+    "plain": "Researchers can see the difference in your actual cells and blood flow.",
+    "source": "ESC/E(Z) follow-ups (appendix L0)",
+    "link": "https://www.nature.com/articles/s41380-021-01144-8",
+    "status": "idea"
+  },
+  {
+    "n": 18,
+    "topic": "PMS / PMDD",
+    "tags": [
+      "serotonin",
+      "GABA",
+      "estrogen",
+      "HPA",
+      "mechanism"
+    ],
+    "finding": "Review: luteal estrogen drop lowers serotonin; reduced allopregnanolone sensitivity -> GABA/glutamate imbalance + HPA activation",
+    "grade": "strong",
+    "plain": "When estrogen dips after you ovulate, serotonin dips with it, and your calm system gets thrown off.",
+    "source": "Zinc/Cu/Mg review (appendix L1)",
+    "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12647176/",
+    "status": "idea"
+  },
+  {
+    "n": 19,
+    "topic": "PMS / PMDD",
+    "tags": [
+      "HPA",
+      "inflammation",
+      "stress",
+      "mechanism"
+    ],
+    "finding": "Review: neuroinflammation + stressors in PMS/PMDD",
+    "grade": "strong",
+    "plain": "Stress and inflammation both feed the premenstrual dip.",
+    "source": "Neuroinflammation review (appendix L1)",
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11985436/",
+    "status": "idea"
+  },
+  {
+    "n": 20,
+    "topic": "PMS",
+    "tags": [
+      "inflammation",
+      "cytokines"
+    ],
+    "finding": "Cytokine levels track menstrual symptom severity",
+    "grade": "moderate",
+    "plain": "Higher inflammation markers line up with worse symptoms.",
+    "source": "appendix L2 (cytokines)",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/25035435/",
+    "status": "idea"
+  },
+  {
+    "n": 21,
+    "topic": "PMS",
+    "tags": [
+      "micronutrient",
+      "vitamin-D",
+      "inflammation"
+    ],
+    "finding": "Vitamin D RCT: supplementation improved symptoms + inflammation markers (in deficiency)",
+    "grade": "moderate",
+    "plain": "If your vitamin D is low, topping it up may ease things, partly through inflammation.",
+    "source": "Vit D RCT (appendix L2)",
+    "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6797739/",
+    "status": "idea"
+  },
+  {
+    "n": 22,
+    "topic": "PMDD",
+    "tags": [
+      "sleep",
+      "circadian",
+      "melatonin"
+    ],
+    "finding": "Melatonin rhythm shifts in PMDD; small interventional melatonin studies show benefit",
+    "grade": "weak-moderate",
+    "plain": "Your sleep-timing hormone can run off-schedule before your period.",
+    "source": "Melatonin studies (appendix L2)",
+    "link": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0051929",
+    "status": "idea"
+  },
+  {
+    "n": 23,
+    "topic": "PMS",
+    "tags": [
+      "thyroid",
+      "differential",
+      "screen"
+    ],
+    "finding": "Thyroid dysfunction can mimic PMS (1986 finding; 1990 study failed to replicate)",
+    "grade": "weak",
+    "plain": "Thyroid issues can look like PMS, so they're worth ruling out.",
+    "source": "NEJM 1986 / JCEM 1990 (appendix L3)",
+    "link": "https://www.nejm.org/doi/abs/10.1056/NEJM198612043152313",
+    "status": "idea"
+  },
+  {
+    "n": 24,
+    "topic": "PMS",
+    "tags": [
+      "clinical-reference",
+      "diagnosis",
+      "overview"
+    ],
+    "finding": "Clinical overview of PMS: definition, prevalence, diagnostic criteria, management (StatPearls)",
+    "grade": "moderate",
+    "plain": "Premenstrual symptoms are a recognized medical condition, not something you're imagining.",
+    "source": "StatPearls / NCBI Bookshelf (verify link)",
+    "link": "",
+    "status": "idea"
+  },
+  {
+    "n": 25,
+    "topic": "Mental health",
+    "tags": [
+      "help-seeking",
+      "stigma",
+      "behavior",
+      "UX"
+    ],
+    "finding": "Study of whether/why women seek help for menstrual-cycle mental health symptoms",
+    "grade": "moderate",
+    "plain": "Most women wait a long time before asking for help with this, and that's not a personal failing.",
+    "source": "npj Women's Health 2023",
+    "link": "",
+    "status": "idea"
+  },
+  {
+    "n": 26,
+    "topic": "PMDD",
+    "tags": [
+      "treatment",
+      "management",
+      "clinical-reference",
+      "safety"
+    ],
+    "finding": "Clinical guide to recognizing and treating PMDD (SSRIs, hormonal options, lifestyle)",
+    "grade": "moderate",
+    "plain": "There are real, proven treatments for PMDD; knowing them helps you ask for the right help.",
+    "source": "Pharmaceutical Journal",
+    "link": "",
+    "status": "idea"
+  }
+]

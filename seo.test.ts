@@ -69,3 +69,36 @@ describe('Base.astro OG/Twitter meta tags', () => {
     expect(base).toContain('Astro.url');
   });
 });
+
+describe('JSON-LD structured data', () => {
+  const base = read('src/layouts/Base.astro');
+  const index = read('src/pages/index.astro');
+  const blog = read('src/pages/blog/[...slug].astro');
+
+  it('Base.astro accepts a jsonLd prop', () => {
+    expect(base).toMatch(/jsonLd\??:/);
+  });
+
+  it('Base.astro emits an ld+json script tag', () => {
+    expect(base).toContain('application/ld+json');
+    expect(base).toContain('set:html={JSON.stringify(');
+  });
+
+  it('homepage passes jsonLd to Base', () => {
+    expect(index).toContain('jsonLd={jsonLd}');
+  });
+
+  it('homepage declares Organization and MobileApplication types', () => {
+    expect(index).toContain("'@type': 'Organization'");
+    expect(index).toContain("'@type': 'MobileApplication'");
+  });
+
+  it('blog template declares BlogPosting and BreadcrumbList types', () => {
+    expect(blog).toContain("'@type': 'BlogPosting'");
+    expect(blog).toContain("'@type': 'BreadcrumbList'");
+  });
+
+  it('blog template passes jsonLd to Base', () => {
+    expect(blog).toContain('jsonLd={jsonLd}');
+  });
+});

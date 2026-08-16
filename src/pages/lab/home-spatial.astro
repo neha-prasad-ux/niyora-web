@@ -1,0 +1,297 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+---
+
+<Base
+  title="Lab · Spatial · Niyora"
+  description="Experimental spatial layout preview. Not production."
+  canonicalUrl="https://niyora.com/lab/home-spatial"
+>
+  <OrbStage />
+
+  <div class="lab-label" aria-hidden="true">Lab: Spatial</div>
+
+  <main class="sp">
+    <!-- Hero sits over the orb, centered. The moon is the actor from here down. -->
+    <section class="sp-hero" data-hue="335" data-sat="58%" data-orb-alpha="0.95" data-orb-scale="1">
+      <p class="brand">Niyora</p>
+      <h1>Life doesn't wait for PMS.<br />But we do.</h1>
+      <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
+      <button type="button" class="btn">I'm interested</button>
+      <p class="trust">Free · No account · No wearables · No cycle data shared</p>
+      <p class="trust strong">Your personal details never reach the AI.</p>
+      <p class="scroll-cue" aria-hidden="true">scroll</p>
+    </section>
+
+    <!-- From here every section is a panel offset to one side of the orb.
+         The orb shows through the empty half. -->
+    <section class="orbit right" data-hue="330" data-sat="55%" data-orb-alpha="0.8">
+      <div class="panel">
+        <p class="eyebrow">Built on one fact</p>
+        <h2>Women with emotional regulation skills handle PMS better.</h2>
+        <p>That's the whole idea. Staying steady is a skill, not something you're born with, and skills can be learned. Niyora teaches it a little at a time, so the week gets easier to carry.</p>
+      </div>
+    </section>
+
+    <section class="orbit left" data-hue="300" data-sat="55%" data-orb-alpha="0.7">
+      <div class="panel">
+        <p class="eyebrow">What no one told you</p>
+        <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
+        <p>The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
+        <div class="stack">
+          <div class="chip"><h3>Same hormones, different response.</h3><p>Women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p><span class="cite">NIMH · Schmidt &amp; Rubinow, 2020</span></div>
+          <div class="chip"><h3>It's wired in, and it runs in families.</h3><p>Premenstrual sensitivity is about 56 percent heritable. A bit like having sensitive skin.</p><span class="cite">Dubey et al, 2017</span></div>
+          <div class="chip"><h3>It has an end date.</h3><p>Switch these hormones off and the symptoms clear. Switch them back on and they return. Every cycle.</p><span class="cite">NIMH GnRH add-back studies</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution: three panels that literally ring the orb, staggered depths. -->
+    <section class="ring-section" data-hue="278" data-sat="55%" data-orb-alpha="0.85">
+      <p class="eyebrow center">Moon AI · during PMS</p>
+      <h2 class="center">Reflect. Regulate. Respond.</h2>
+      <div class="ring">
+        <div class="orbiter d0">
+          <p class="tag">Reflect</p>
+          <h3>See it more than one way.</h3>
+          <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
+        </div>
+        <div class="orbiter d1">
+          <p class="tag">Regulate</p>
+          <h3>Get through the twenty minutes.</h3>
+          <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
+        </div>
+        <div class="orbiter d2">
+          <p class="tag">Respond</p>
+          <h3>Send the one you won't regret.</h3>
+          <p>Worked up, it's easy to say something you'll regret. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="orbit right" data-hue="258" data-sat="58%" data-orb-alpha="0.7">
+      <div class="panel">
+        <p class="eyebrow">Training · before PMS</p>
+        <h2>Build the skill before you need it.</h2>
+        <p>It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
+        <div class="stack">
+          <div class="chip"><h3>Handle the sharp email.</h3><p>Meet a hard meeting or a pointed message without it costing you the whole day.</p></div>
+          <div class="chip"><h3>Keep a small thing small.</h3><p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p></div>
+          <div class="chip"><h3>Name it without a fight.</h3><p>Tell the difference between PMS and a real issue, and bring it up so it lands well.</p></div>
+          <div class="chip"><h3>Learn from how others handled it.</h3><p>Work through real PMS moments and the way each was handled, so the lesson sticks.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="orbit left" data-hue="320" data-sat="58%" data-orb-alpha="0.7">
+      <div class="panel">
+        <p class="eyebrow">Couples</p>
+        <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
+        <p>The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
+        <div class="stack">
+          <div class="chip"><h3>Know which one you're in.</h3><p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid.</p></div>
+          <div class="chip"><h3>A message, already written.</h3><p>Ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p></div>
+          <div class="chip"><h3>Come back from it.</h3><p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="orbit right" data-hue="230" data-sat="60%" data-orb-alpha="0.75">
+      <div class="panel wide">
+        <p class="eyebrow">Why not just use ChatGPT</p>
+        <h2>A frontier model keeps you talking. Moon helps you need it less.</h2>
+        <p>General AI is built to hold your attention. That is the opposite of what a hard PMS moment needs. Here is the difference, line by line.</p>
+        <div class="compare">
+          <div class="c them"><p class="c-h">Any frontier model</p><p>Built to keep the conversation going. It optimizes for time spent.</p><p>Agrees with you. That is what keeps you talking.</p><p>Lets you vent for as long as you like. Research says venting often makes it worse.</p><p>Learns a lot about you, and is built to sound like a friend. That builds dependence.</p></div>
+          <div class="c us"><p class="c-h">Moon in Niyora</p><p>Built to finish the loop, then stop. It optimizes for you needing it less.</p><p>Shows you the other side on purpose. On your side, even when that means slowing you down.</p><p>Helps you regulate first, so you respond with something you won't regret.</p><p>No sign in, so you are never identifiable. It never calls itself human.</p></div>
+        </div>
+        <p class="close">No ads, no profile, nothing sold. There is no version of Niyora that makes money from your worst moment.</p>
+      </div>
+    </section>
+
+    <section class="orbit left" data-hue="248" data-sat="62%" data-orb-alpha="0.7">
+      <div class="panel">
+        <p class="eyebrow">Research backed</p>
+        <h2>Over 30 science-backed activities. Every one has a paper behind it.</h2>
+        <p>No mystic wellness talk. Just practices drawn from peer-reviewed research, cited so you can read the source yourself. Niyora also recognises how strong your PMS is with a short test, and points to the lifestyle changes that actually move the needle.</p>
+        <ul class="papers">
+          <li>Differential hormone sensitivity. Schmidt et al, NEJM.</li>
+          <li>The heritable trait. Dubey et al, 2017.</li>
+          <li>GABA and the calm brake. Allopregnanolone.</li>
+          <li>Progressive muscle relaxation for PMS. RCT.</li>
+          <li>Calcium for PMS. Thys-Jacobs crossover RCT.</li>
+          <li>Box Breathing. Lowers cortisol, improves HRV.</li>
+          <li>4-7-8 Breath. Weil, A.</li>
+          <li>5-4-3-2-1 Grounding. Linehan, 1993 (DBT).</li>
+        </ul>
+        <p class="fine">and more, every card in Niyora traces back to a source.</p>
+      </div>
+    </section>
+
+    <section class="orbit right" data-hue="210" data-sat="60%" data-orb-alpha="0.7">
+      <div class="panel">
+        <p class="eyebrow">Private by design</p>
+        <h2>Built to know almost nothing about you.</h2>
+        <p>Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI.</p>
+        <div class="stack">
+          <div class="chip"><h3>No sign in</h3><p>No account, no login. Nothing you write is ever tied to your name.</p></div>
+          <div class="chip"><h3>Your details never reach the AI</h3><p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p></div>
+          <div class="chip"><h3>Nothing sold, nothing kept</h3><p>No ads, no profile, no data sold. Your period dates stay on your device.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder returns to center, close over the orb. -->
+    <section class="sp-founder" data-hue="335" data-sat="60%" data-orb-alpha="0.9">
+      <img src="/neha.jpg" alt="Neha Prasad" loading="lazy" />
+      <p class="eyebrow">Why I built Niyora</p>
+      <p class="quote">I went looking for a way through PMS that didn't ask me to change my body.</p>
+      <p>I'm a doctor, so I started where I trust: the research. Most of what's offered for PMS either medicates it or just tracks it. Very little helps you in the actual hard hour.</p>
+      <p>Then I found the quieter, stronger thread. The most reliable, least invasive way through a hard PMS week is emotion regulation. No hormones to take, no device to wear, no data to hand over.</p>
+      <p>Everything in the app is one small rep of emotion regulation, done in about a minute. I built it for myself first. Now it's yours.</p>
+      <p class="sig">Neha Prasad. Doctor, builder, founder of Niyora.</p>
+    </section>
+
+    <section class="sp-final" data-hue="30" data-sat="70%" data-orb-alpha="0.95" data-orb-scale="0.95">
+      <h2>Want Niyora when you need it?</h2>
+      <p class="subhead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
+      <button type="button" class="btn">I'm interested</button>
+    </section>
+
+    <p class="back"><a href="/lab/">← back to the lab</a></p>
+  </main>
+</Base>
+
+<style>
+  /* Spatial: the orb is fixed dead-center (OrbStage). Panels orbit it, offset
+     left or right, leaving the opposite half open so the moon glows through.
+     Depth comes from staggered blur and translateZ-style scale, CSS only. */
+  .sp { position: relative; z-index: 2; }
+  .sp section { padding: clamp(90px, 20vh, 220px) clamp(20px, 5vw, 64px); }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 76%, 0.75); margin-bottom: 16px;
+    transition: color 1.4s ease;
+  }
+  .eyebrow.center { text-align: center; }
+  h1 { font-size: clamp(40px, 6vw, 68px); font-weight: 300; line-height: 1.12; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.97); margin-bottom: 24px; }
+  h2 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 300; line-height: 1.15; letter-spacing: -0.015em; color: rgba(255, 255, 255, 0.95); margin-bottom: 18px; }
+  h2.center { text-align: center; max-width: 20ch; margin-left: auto; margin-right: auto; }
+  h3 { font-size: 16px; font-weight: 500; color: rgba(255, 255, 255, 0.92); margin-bottom: 6px; }
+  p { font-size: 16px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.68); }
+
+  /* Hero over the orb. */
+  .sp-hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .brand { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); margin-bottom: 28px; }
+  .subhead { font-size: clamp(17px, 2vw, 21px); color: rgba(255, 255, 255, 0.72); max-width: 46ch; margin: 0 auto 36px; }
+  .trust { font-size: 14px; color: rgba(255, 255, 255, 0.52); margin-top: 12px; }
+  .trust.strong { color: hsla(var(--orb-hue), 60%, 82%, 0.95); font-weight: 500; transition: color 1.4s ease; }
+  .scroll-cue { margin-top: 56px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); animation: bob 2.6s ease-in-out infinite; }
+  @keyframes bob { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(6px); opacity: 0.8; } }
+
+  /* Orbit panels: pinned to one side, orb visible on the other. */
+  .orbit { display: flex; }
+  .orbit.right { justify-content: flex-end; }
+  .orbit.left { justify-content: flex-start; }
+  .panel {
+    width: min(46%, 560px);
+    padding: 36px 34px;
+    border-radius: 26px;
+    background: rgba(34, 27, 54, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(22px) saturate(1.3);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  }
+  .panel.wide { width: min(64%, 760px); }
+  .panel > p { margin-bottom: 8px; }
+
+  .stack { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
+  .chip {
+    padding: 18px 20px; border-radius: 16px;
+    background: rgba(20, 18, 32, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .chip p { font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.66); }
+  .cite { display: block; margin-top: 8px; font-size: 12px; color: hsla(var(--orb-hue), 50%, 75%, 0.8); transition: color 1.4s ease; }
+
+  /* Ring section: three panels flanking the orb, center stays open. */
+  .ring-section { text-align: center; }
+  .ring { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 900px; margin-left: auto; margin-right: auto; }
+  .orbiter {
+    text-align: left; padding: 26px 24px; border-radius: 20px;
+    background: rgba(34, 27, 54, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(22px) saturate(1.3);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  }
+  .orbiter p { font-size: 14px; }
+  .orbiter.d0 { transform: translateY(-28px); }
+  .orbiter.d2 { transform: translateY(28px); grid-column: 2; }
+  .orbiter.d1 { transform: translateY(10px); }
+  .tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: hsla(var(--orb-hue), 60%, 78%, 0.85); margin-bottom: 8px; transition: color 1.4s ease; }
+
+  .compare { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; text-align: left; }
+  .c { display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 16px; }
+  .c p { font-size: 14px; line-height: 1.5; }
+  .c.them { background: rgba(20, 18, 26, 0.4); }
+  .c.them p { color: rgba(255, 255, 255, 0.5); }
+  .c.us { background: rgba(34, 27, 54, 0.5); border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3); }
+  .c.us p { color: rgba(255, 255, 255, 0.84); }
+  .c-h { font-size: 11px !important; letter-spacing: 3px; text-transform: uppercase; }
+  .c.them .c-h { color: rgba(255, 255, 255, 0.4) !important; }
+  .c.us .c-h { color: hsla(var(--orb-hue), 60%, 80%, 0.95) !important; transition: color 1.4s ease; }
+  .close { margin-top: 22px; color: rgba(255, 255, 255, 0.72) !important; }
+
+  .papers { list-style: none; margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+  .papers li { font-size: 13px; line-height: 1.45; color: rgba(255, 255, 255, 0.6); padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+  .fine { font-size: 13px; color: rgba(255, 255, 255, 0.42); margin-top: 18px; }
+
+  .sp-founder { max-width: 620px; margin: 0 auto; text-align: center; }
+  .sp-founder img { width: 116px; height: 116px; border-radius: 50%; object-fit: cover; margin: 0 auto 24px; display: block; border: 2px solid hsla(var(--orb-hue), 50%, 70%, 0.35); box-shadow: 0 0 30px hsla(var(--orb-hue), 60%, 55%, 0.3); transition: border-color 1.4s ease, box-shadow 1.4s ease; }
+  .sp-founder .quote { font-size: clamp(22px, 3vw, 30px); font-weight: 400; line-height: 1.35; color: rgba(255, 255, 255, 0.94); margin-bottom: 22px; }
+  .sp-founder p { margin: 0 auto 14px; max-width: 52ch; }
+  .sig { font-size: 13px; letter-spacing: 0.5px; color: rgba(255, 255, 255, 0.45) !important; margin-top: 16px; }
+
+  .sp-final { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .sp-final h2 { margin-bottom: 18px; }
+
+  .btn {
+    display: inline-block; margin-top: 8px; padding: 16px 40px; border-radius: 32px;
+    font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 500;
+    color: rgba(255, 255, 255, 0.95); cursor: pointer;
+    border: 1.5px solid transparent;
+    background-image:
+      linear-gradient(rgba(18, 13, 26, 0.92), rgba(18, 13, 26, 0.92)),
+      linear-gradient(95deg, #e6a3c4, #9c5c86, #7846b0);
+    background-origin: border-box; background-clip: padding-box, border-box;
+    box-shadow: 0 0 34px rgba(217, 146, 176, 0.26);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 0 46px rgba(217, 146, 176, 0.45); }
+
+  .back { text-align: center; padding: 60px 0 100px; }
+  .back a { color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+  .back a:hover { color: rgba(255, 255, 255, 0.9); }
+
+  @media (max-width: 860px) {
+    .panel, .panel.wide { width: 100%; }
+    .orbit.right, .orbit.left { justify-content: center; }
+    .ring, .compare, .papers { grid-template-columns: 1fr; }
+    .orbiter.d0, .orbiter.d1, .orbiter.d2 { transform: none; grid-column: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue { animation: none; }
+  }
+
+  .lab-label {
+    position: fixed; left: 16px; bottom: 16px; z-index: 50;
+    padding: 8px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(34, 27, 54, 0.6); border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  }
+</style>
