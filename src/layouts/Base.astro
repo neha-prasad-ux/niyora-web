@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -17,9 +18,11 @@ const {
   ogImage = '/hero-shot.png',
   ogType = "website",
   canonicalUrl = Astro.url.href,
+  jsonLd,
 } = Astro.props;
 
 const ogImageAbsolute = new URL(ogImage, Astro.site).href;
+const jsonLdBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
 <!DOCTYPE html>
@@ -42,6 +45,9 @@ const ogImageAbsolute = new URL(ogImage, Astro.site).href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageAbsolute} />
+    {jsonLdBlocks.map((block) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(block)} />
+    ))}
     <PostHog />
     <PostHogEvents />
     <slot name="head" />

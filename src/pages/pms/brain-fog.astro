@@ -1,0 +1,221 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+import { downloads } from '../../config/downloads';
+---
+
+<Base
+  title="PMS brain fog: why focus scatters before your period · Niyora"
+  description="Feeling foggy and scattered before your period is common. Here is the science behind PMS brain fog, what actually shifts, and what helps you steady your focus."
+  canonicalUrl="https://niyora.com/pms/brain-fog/"
+>
+  <OrbStage />
+
+  <main class="content">
+    <section class="hero" data-hue="210" data-sat="60%">
+      <div class="eyebrow">PMS brain fog</div>
+      <h1>PMS brain fog: why focus scatters before your period</h1>
+      <p class="lede">In the days before your period, your head can feel like it is working through cotton. You reread the same line, lose the thread, feel a step behind. Here is the reassuring part. Your mind is still sharp. What shifts is where your attention gets pulled.</p>
+    </section>
+
+    <section class="explain-section" data-hue="212" data-sat="55%">
+      <h2>Why focus scatters before your period</h2>
+      <div class="science">
+        <p>Good news first, because it is well tested. Your memory and focus stay just as sharp before your period. A large 2025 review found no reliable drop in cognitive performance across the cycle. Your brain keeps running at full strength.</p>
+        <p>What actually shifts is where your attention goes. In this window it keeps drifting toward the heavy stuff, the self-critical thought, the worst-case, the thing you got wrong. So the fog is real, and it is really about your focus being pulled somewhere darker for a few days, not about losing your edge.</p>
+        <p>Your hormone levels are normal. The difference is how strongly your nervous system responds to the shift, and some systems feel it more. And it lifts. As the shift passes, usually once your period starts, your attention comes back to where you point it. Your mind was fully here the whole time.</p>
+      </div>
+    </section>
+
+    <section class="rrr-section" data-hue="280" data-sat="58%">
+      <h2>What helps when your focus scatters</h2>
+      <p class="lede">Niyora is built for the moment your head clouds over. Three small steps, about a minute, to bring your attention back.</p>
+      <div class="rrr-grid">
+        <div class="rrr-card">
+          <div class="rrr-label">Reflect</div>
+          <p>Name the moment. Seeing that your attention is being pulled toward the heavy stuff, not that you have lost your competence, loosens the grip of the fog.</p>
+        </div>
+        <div class="rrr-card">
+          <div class="rrr-label">Regulate</div>
+          <p>Settle your body in about a minute. A slower breath brings your system down, which is what lets scattered attention gather back to one place.</p>
+        </div>
+        <div class="rrr-card">
+          <div class="rrr-label">Respond</div>
+          <p>With a steadier body, pick one small thing and start there. Your focus is intact. It just needs pointing, and one step clears the next.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section" data-hue="248" data-sat="55%">
+      <h2>Keep reading</h2>
+      <div class="cta-row">
+        <a href="/blog/pms-and-work-focus/" class="cta ghost">How PMS affects your focus and work</a>
+        <a href="/blog/pms-at-work-managing-a-hard-week/" class="cta ghost">Getting through a demanding work week</a>
+      </div>
+    </section>
+
+    <section class="cta-section" data-hue="30" data-sat="70%">
+      <h2>Not sure the foggy week is PMS?</h2>
+      <p class="lede">Take the two-minute check and see how your premenstrual week actually hits.</p>
+      <div class="cta-row">
+        <a href="/quiz" class="cta">Take the quiz</a>
+        <a href={downloads.appStore} class="cta ghost">Get Niyora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/quiz">Take the quiz</a>
+    <a href="/blog/">Writing</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
+</Base>
+
+<style>
+  .content { position: relative; z-index: 2; }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 40px;
+    max-width: 1080px;
+    margin: 26px auto;
+    border-radius: 32px;
+    background: rgba(12, 10, 20, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
+  }
+
+  .hero { padding: 96px 40px 80px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
+    margin-bottom: 16px;
+    transition: color 1.4s ease;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+    max-width: 780px;
+    color: rgba(255, 255, 255, 0.96);
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 20px;
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.94);
+  }
+  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
+  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
+
+  .science {
+    max-width: 720px;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+    text-align: left;
+  }
+  .science p { font-size: 18px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.82); max-width: none; margin: 0 0 18px; }
+  .science p:last-child { margin-bottom: 0; }
+
+  .rrr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .rrr-card {
+    padding: 24px 22px;
+    border-radius: 16px;
+    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.35);
+    background: var(--glass-bg-soft);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+  .rrr-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 60%, 80%, 0.95);
+    margin-bottom: 12px;
+    transition: color 1.4s ease;
+  }
+  .rrr-card p { font-size: 15px; line-height: 1.6; margin: 0; max-width: none; color: rgba(255, 255, 255, 0.82); }
+  @media (max-width: 720px) {
+    .rrr-grid { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+  .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(18, 16, 32, 0.95);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
+  }
+  .cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 1);
+    color: hsla(var(--orb-hue), 70%, 32%, 1);
+    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
+  }
+  .cta.ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
+
+  footer {
+    text-align: center;
+    padding: 60px 24px 80px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    position: relative;
+    z-index: 2;
+  }
+  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
+  footer a:hover { color: rgba(255, 255, 255, 0.8); }
+  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    p.lede { font-size: 17px; }
+    .science p { font-size: 16px; }
+  }
+</style>

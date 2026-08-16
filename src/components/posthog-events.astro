@@ -99,6 +99,18 @@
         });
       });
 
+      // Named CTA funnel events: App Store and quiz links, from any page
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          capture('app_store_clicked', { from: location.pathname });
+        });
+      });
+      document.querySelectorAll('a[href^="/quiz"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          capture('quiz_cta_clicked', { from: location.pathname });
+        });
+      });
+
       // Email copy detection (selection that contains @niyora.com or @prasad)
       document.addEventListener('copy', function () {
         var sel = (window.getSelection() || '').toString();

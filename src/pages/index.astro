@@ -1,6 +1,38 @@
 ---
 import Base from '../layouts/Base.astro';
 import OrbStage from '../components/OrbStage.astro';
+
+const organization = {
+  '@type': 'Organization',
+  '@id': 'https://niyora.com/#organization',
+  name: 'Niyora',
+  url: 'https://niyora.com',
+  logo: 'https://niyora.com/icon.png',
+  sameAs: ['https://github.com/neha-prasad-ux/niyora'],
+};
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    ...organization,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: 'Niyora',
+    url: 'https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688',
+    applicationCategory: 'HealthApplication',
+    operatingSystem: 'iOS',
+    description: 'Niyora predicts your PMS week and helps you reflect, regulate, and respond when your brain is reacting to a hormone drop.',
+    image: 'https://assets.niyora.com/niyora-launch-poster.jpg',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    publisher: { '@id': 'https://niyora.com/#organization' },
+  },
+];
 ---
 
 <Base
@@ -8,6 +40,7 @@ import OrbStage from '../components/OrbStage.astro';
   description="Niyora predicts your PMS week and helps you reflect, regulate, and respond when your brain is reacting to a hormone drop. Built on one fact: women with emotional regulation skills handle PMS better. Your personal details never reach the AI."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com"
+  jsonLd={jsonLd}
 >
   <OrbStage />
 
@@ -27,6 +60,22 @@ import OrbStage from '../components/OrbStage.astro';
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="facts" data-hue="345" data-sat="56%">
+      <div class="eyebrow">PMS is real and established</div>
+      <h2>You don't have to prove any of this. It's already settled.</h2>
+      <p class="lead">Research and surveys show PMS is near-universal, and the emotional side is the part most people carry alone.</p>
+      <!-- TODO: add stat source line before publish (Neha to confirm) -->
+      <div class="signals facts-grid">
+        <div class="signal-card"><div class="num">3 in 4</div><p>women experience PMS</p></div>
+        <div class="signal-card"><div class="num">95%</div><p>feel irritable</p></div>
+        <div class="signal-card"><div class="num">93%</div><p>get mood swings</p></div>
+        <div class="signal-card"><div class="num">82%</div><p>feel low</p></div>
+        <div class="signal-card"><div class="num">65%</div><p>feel anxious</p></div>
+        <div class="signal-card"><div class="num">78%</div><p>feel they are not taken seriously when they ask for help</p></div>
+      </div>
+      <p class="afterword lead">So Niyora doesn't try to convince you PMS is real. It predicts your window, gives you the skills and techniques to manage it, and takes you seriously, especially the 78% who feel dismissed.</p>
     </section>
 
     <section class="one-fact" data-hue="330" data-sat="55%">
@@ -136,6 +185,7 @@ import OrbStage from '../components/OrbStage.astro';
           <p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p>
         </div>
       </div>
+      <p class="more-line"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
       <p class="more-line"><a href="/blog/keeping-your-relationship-healthy-during-pms/">Read: keeping your relationship healthy during PMS →</a></p>
     </section>
 
@@ -252,7 +302,7 @@ import OrbStage from '../components/OrbStage.astro';
       <div class="eyebrow">Why I built Niyora</div>
       <img src="/neha.jpg" alt="Neha Prasad" class="founder-photo" loading="lazy" />
       <p class="quote">I went looking for a way through PMS that didn't ask me to change my body.</p>
-      <p class="quote-body">I'm a doctor, so I started where I trust: the research. And the pattern was hard to miss. Most of what's offered for PMS either medicates it or just tracks it. Very little helps you in the actual hard hour.</p>
+      <p class="quote-body">I'm a doctor, so I started where I trust: the research. And the pattern was hard to miss. Most of what's offered for PMS either medicates it or tracks it and stops there. Niyora predicts your week too. The difference is what happens next: it helps you in the actual hard hour, where almost nothing else does.</p>
       <p class="quote-body">Then I found the quieter, stronger thread. The most reliable, least invasive way through a hard PMS week is emotion regulation. Learning to name what you feel, settle your body, and see the thought from a step back. No hormones to take, no device to wear, no data to hand over.</p>
       <p class="quote-body">That finding is the whole foundation of Niyora. Everything in the app is one small rep of emotion regulation, done in about a minute. I built it for myself first. Now it's yours.</p>
       <div class="signature">Neha Prasad. Doctor, builder, founder of Niyora.</div>
@@ -343,8 +393,12 @@ import OrbStage from '../components/OrbStage.astro';
   </script>
 
   <footer>
+    <a href="/quiz/">PMS quiz</a>
+    <a href="/guide/">Guide</a>
     <a href="/demo/">Demo</a>
     <a href="/blog/">Writing</a>
+    <a href="/faq/">FAQ</a>
+    <a href="/compare/alternatives-to-mood-trackers/">Compare</a>
     <a href="/changelog/">What's new</a>
     <a href="/privacy/">Privacy</a>
     <a href="/terms/">Terms</a>
@@ -781,9 +835,12 @@ import OrbStage from '../components/OrbStage.astro';
   #solution { text-align: center; }
   #solution h2 { margin-left: auto; margin-right: auto; margin-bottom: 56px; }
 
-  .one-fact, .training, .compare { text-align: center; }
-  .one-fact h2, .training h2, .compare h2 { margin-left: auto; margin-right: auto; }
-  .one-fact .lead, .training .lead, .compare .lead { margin-left: auto; margin-right: auto; }
+  .one-fact, .training, .compare, .facts { text-align: center; }
+  .one-fact h2, .training h2, .compare h2, .facts h2 { margin-left: auto; margin-right: auto; }
+  .one-fact .lead, .training .lead, .compare .lead, .facts .lead { margin-left: auto; margin-right: auto; }
+  .facts .facts-grid { margin-top: 32px; }
+  .facts .signal-card { text-align: center; }
+  .facts .signal-card .num { font-size: 30px; }
   .training h2, .compare h2 { margin-bottom: 16px; }
   .training .lead, .compare .lead { margin-bottom: 44px; }
 

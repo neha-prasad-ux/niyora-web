@@ -1,0 +1,564 @@
+---
+import Base from '../../layouts/Base.astro';
+import { downloads } from '../../config/downloads.ts';
+
+// Apple logo, reused for the App Store badge.
+const applePath =
+  'M16.36 12.9c.02 2.3 2.02 3.06 2.04 3.07-.02.05-.32 1.1-1.06 2.18-.64.94-1.3 1.87-2.35 1.89-1.02.02-1.36-.6-2.53-.6-1.17 0-1.54.58-2.51.62-1.01.04-1.78-1.01-2.42-1.94-1.32-1.9-2.33-5.38-.97-7.73.67-1.16 1.87-1.9 3.17-1.92.99-.02 1.93.67 2.53.67.61 0 1.75-.83 2.95-.71.5.02 1.91.2 2.81 1.52-.07.05-1.68.98-1.66 2.92M14.53 6.4c.54-.65.9-1.56.8-2.46-.78.03-1.72.52-2.28 1.17-.5.57-.94 1.5-.82 2.38.87.07 1.76-.44 2.3-1.09';
+---
+
+<Base
+  title="Lab · Flow · Niyora"
+  description="Experimental asymmetric homepage preview with a living orb background. Not production."
+  canonicalUrl="https://niyora.com/lab/home-flow"
+>
+  <!-- The living orb: one fixed layer behind the whole scroll. The core carries
+       the gradient + breathing; the shell handles glide, scroll parallax and
+       mouse drift, so the two never fight over `transform`. -->
+  <div class="flow-orb" aria-hidden="true"><div class="flow-orb-core"></div></div>
+
+  <div class="lab-label" aria-hidden="true">Lab: Flow</div>
+
+  <main class="flow">
+    <!-- HERO — content pinned left, orb glows in the open right. -->
+    <section class="flow-hero" data-hue="335" data-sat="58%" data-orb-x="76%" data-orb-scale="1.05">
+      <div class="hero-inner scrim">
+        <p class="kicker">Niyora</p>
+        <h1>Life doesn't wait for PMS.<br /><span class="muted">But we do.</span></h1>
+        <p class="lede">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
+        <div class="hero-actions">
+          <div class="interest">
+            <button type="button" class="btn" data-interest>I'm interested</button>
+            <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+          </div>
+          <a class="ghost" href="/quiz/">Take the 2-minute check</a>
+        </div>
+        <div class="trust">
+          <p class="fine">Free · No account · No wearables · No cycle data shared</p>
+          <p class="fine strong">Your personal details never reach the AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACTS — heading right, the six stats ragged on the left. Orb through the gap. -->
+    <section class="flow-split rev" data-hue="345" data-sat="56%" data-orb-x="46%">
+      <div class="flow-head scrim">
+        <p class="eyebrow">PMS is real and established</p>
+        <h2>You don't have to prove any of this. It's already settled.</h2>
+        <p class="lede">Research and surveys show PMS is near-universal, and the emotional side is the part most people carry alone.</p>
+        <p class="lede afterword">So Niyora doesn't try to convince you PMS is real. It predicts your window, gives you the skills and techniques to manage it, and takes you seriously, especially the 78% who feel dismissed.</p>
+      </div>
+      <div class="flow-body">
+        <div class="stat-grid">
+          <div class="stat"><div class="num">3 in 4</div><p>women experience PMS</p></div>
+          <div class="stat"><div class="num">95%</div><p>feel irritable</p></div>
+          <div class="stat"><div class="num">93%</div><p>get mood swings</p></div>
+          <div class="stat"><div class="num">82%</div><p>feel low</p></div>
+          <div class="stat"><div class="num">65%</div><p>feel anxious</p></div>
+          <div class="stat wide"><div class="num">78%</div><p>feel they are not taken seriously when they ask for help</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM — heading left, research notes ragged on the right. -->
+    <section class="flow-split" data-hue="300" data-sat="55%" data-orb-x="58%">
+      <div class="flow-head scrim">
+        <p class="eyebrow">What no one told you</p>
+        <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
+        <p class="lede">The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
+      </div>
+      <ol class="notes flow-body">
+        <li>
+          <h3>Same hormones, different response.</h3>
+          <p>When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p>
+          <span class="cite">NIMH · Schmidt &amp; Rubinow; Hantsoo &amp; Payne, 2020</span>
+        </li>
+        <li>
+          <h3>It's wired in, and it runs in families.</h3>
+          <p>Premenstrual sensitivity is about 56 percent heritable. The same shift other people barely notice, your system actually feels. A bit like having sensitive skin.</p>
+          <span class="cite">Dubey et al, Molecular Psychiatry, 2017</span>
+        </li>
+        <li>
+          <h3>It has an end date.</h3>
+          <p>When researchers switched these hormones off, the symptoms cleared. When they switched them back on, they returned. It rolls in, and it rolls out, every cycle.</p>
+          <span class="cite">NIMH GnRH add-back studies</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- REFLECT / REGULATE / RESPOND — a descending stair, each card offset further. -->
+    <section class="flow-stair-sec" data-hue="278" data-sat="55%" data-orb-x="78%" data-orb-scale="1.08">
+      <div class="stair-head scrim">
+        <p class="eyebrow">Moon AI · during PMS</p>
+        <h2>Reflect. Regulate. Respond.</h2>
+      </div>
+      <div class="stair">
+        <div class="step-card">
+          <p class="card-tag">Reflect</p>
+          <h3>See it more than one way.</h3>
+          <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
+        </div>
+        <div class="step-card">
+          <p class="card-tag">Regulate</p>
+          <h3>Get through the twenty minutes.</h3>
+          <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
+        </div>
+        <div class="step-card">
+          <p class="card-tag">Respond</p>
+          <h3>Send the one you won't regret.</h3>
+          <p>Worked up, it's easy to say something you'll wish you hadn't. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING — heading right, four cards ragged left. -->
+    <section class="flow-split rev" data-hue="258" data-sat="58%" data-orb-x="40%">
+      <div class="flow-head scrim">
+        <p class="eyebrow">Training · before PMS</p>
+        <h2>Build the skill before you need it.</h2>
+        <p class="lede">It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
+      </div>
+      <div class="flow-body card-mosaic">
+        <div class="mini-card"><p class="card-tag">At work</p><h3>Handle the sharp email.</h3><p>Learn to meet a hard meeting or a pointed message without it costing you the whole day.</p></div>
+        <div class="mini-card"><p class="card-tag">Between people</p><h3>Keep a small thing small.</h3><p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p></div>
+        <div class="mini-card"><p class="card-tag">With your partner</p><h3>Name it without a fight.</h3><p>Practise telling the difference between PMS and a real issue, and bringing it up so it lands well.</p></div>
+        <div class="mini-card"><p class="card-tag">Real stories</p><h3>Learn from how others handled it.</h3><p>Work through real PMS moments and the way each was handled, so the lesson sticks better than any rule.</p></div>
+      </div>
+    </section>
+
+    <!-- RELATIONSHIPS — heading left, three cards right. -->
+    <section class="flow-split" data-hue="320" data-sat="58%" data-orb-x="62%">
+      <div class="flow-head scrim">
+        <p class="eyebrow">Couples</p>
+        <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
+        <p class="lede">The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
+        <p class="more"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
+      </div>
+      <div class="flow-body card-mosaic">
+        <div class="mini-card"><p class="card-tag">PMS or real?</p><h3>Know which one you're in.</h3><p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid. Knowing which changes what you do next.</p></div>
+        <div class="mini-card"><p class="card-tag">Say it well</p><h3>A message, already written.</h3><p>Tips and ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p></div>
+        <div class="mini-card"><p class="card-tag">After a fight</p><h3>Come back from it.</h3><p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p></div>
+      </div>
+    </section>
+
+    <!-- PRIVACY — heading right, points ragged left. -->
+    <section class="flow-split rev" data-hue="210" data-sat="60%" data-orb-x="44%">
+      <div class="flow-head scrim">
+        <p class="eyebrow">Private by design</p>
+        <h2>Built to know almost nothing about you.</h2>
+        <p class="lede">Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI. Moon uses AI to write its reflections, so we're plain about exactly what it can and can't see.</p>
+      </div>
+      <ol class="notes flow-body">
+        <li><h3><span class="check">✓</span> No sign in</h3><p>No account, no login. Nothing you write is ever tied to your name.</p></li>
+        <li><h3><span class="check">✓</span> Your details never reach the AI</h3><p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p></li>
+        <li><h3><span class="check">✓</span> Nothing sold, nothing kept</h3><p>No ads, no profile, no data sold. Your period dates stay on your device, and are never shared.</p></li>
+      </ol>
+    </section>
+
+    <!-- FINAL CTA — offset-left statement, warms to gold. -->
+    <section class="flow-final" data-hue="30" data-sat="70%" data-orb-x="72%" data-orb-scale="1.1">
+      <div class="final-inner scrim">
+        <h2>Want Niyora when you need it?</h2>
+        <p class="lede">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
+        <div class="final-actions">
+          <div class="interest">
+            <button type="button" class="btn" data-interest>I'm interested</button>
+            <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+          </div>
+          <a class="app-cta" href={downloads.appStore}>
+            <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d={applePath}></path></svg>
+            <span class="app-copy"><span class="t">Download on the</span><span class="b">App Store</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <p class="back"><a href="/lab/">← back to the lab</a></p>
+  </main>
+
+  <script is:inline>
+    (function () {
+      var root = document.documentElement;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ── The orb follows the section in view: hue, saturation, horizontal
+      //    target and scale all come from the section's data-* attributes.
+      //    CSS transitions do the easing, so no per-frame work here. ──
+      var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-hue]'));
+      var io = new IntersectionObserver(function (entries) {
+        var best = null;
+        for (var i = 0; i < entries.length; i++) {
+          var e = entries[i];
+          if (!e.isIntersecting) continue;
+          if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+        }
+        if (!best) return;
+        var d = best.target.dataset;
+        root.style.setProperty('--flow-hue', d.hue || '300');
+        root.style.setProperty('--flow-sat', d.sat || '55%');
+        root.style.setProperty('--flow-x', d.orbX || '60%');
+        root.style.setProperty('--flow-scale', d.orbScale || '1');
+      }, { threshold: [0.25, 0.5, 0.75] });
+      sections.forEach(function (s) { io.observe(s); });
+
+      // ── Motion: scroll parallax + mouse drift. One rAF loop, only when the
+      //    tab is visible and reduced-motion is off. ──
+      if (!reduce) {
+        var mx = 0, my = 0, ticking = false;
+        window.addEventListener('scroll', function () {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            root.style.setProperty('--flow-py', (window.scrollY * -0.04) + 'px');
+            ticking = false;
+          });
+        }, { passive: true });
+        window.addEventListener('pointermove', function (e) {
+          mx = (e.clientX / window.innerWidth - 0.5) * 30;
+          my = (e.clientY / window.innerHeight - 0.5) * 22;
+          root.style.setProperty('--flow-mx', mx + 'px');
+          root.style.setProperty('--flow-my', my + 'px');
+        }, { passive: true });
+      }
+
+      // ── "I'm interested": local-only for this preview. ──
+      // ponytail: no KV/fetch here, just a seed + local bump; wire /api/interest if this ships.
+      var SEED = 386;
+      var buttons = document.querySelectorAll('[data-interest]');
+      var counts = document.querySelectorAll('[data-interest-count]');
+      function show(extra) {
+        counts.forEach(function (el) {
+          el.textContent = (SEED + extra).toLocaleString('en-US') + ' interested';
+          el.hidden = false;
+        });
+      }
+      show(0);
+      var done = false;
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (done) return;
+          done = true;
+          show(1);
+          buttons.forEach(function (b) { b.textContent = "You're in"; b.classList.add('is-done'); b.disabled = true; });
+        });
+      });
+    })();
+  </script>
+</Base>
+
+<style>
+  /* ── Living orb background ─────────────────────────────────────────────
+     Fixed, behind content, never catches pointer events. The shell owns
+     position (glide via `left`) plus scroll/mouse offset; the core owns the
+     gradient and the slow breath. Splitting them keeps the transform of one
+     from clobbering the other. */
+  .flow-orb {
+    position: fixed;
+    top: 50%;
+    left: var(--flow-x, 62%);
+    width: min(92vw, 760px);
+    aspect-ratio: 1;
+    z-index: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%)
+      translate(var(--flow-mx, 0px), calc(var(--flow-py, 0px) + var(--flow-my, 0px)));
+    transition: left 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: left, transform;
+  }
+  .flow-orb-core {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(var(--flow-scale, 1));
+    /* Mint sphere body + rose/violet glow, tinted by the section hue. */
+    background:
+      radial-gradient(circle at 42% 38%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.16) 7%, transparent 17%),
+      radial-gradient(circle, #ffffff 0%, hsl(166, 24%, 93%) 15%, hsl(172, 26%, 84%) 38%, hsl(174, 28%, 79%) 42%, transparent 44%),
+      radial-gradient(circle,
+        hsla(var(--flow-hue, 300), var(--flow-sat, 55%), 66%, 0) 40%,
+        hsla(var(--flow-hue, 300), var(--flow-sat, 55%), 66%, 0.82) 48%,
+        hsla(var(--flow-hue, 300), var(--flow-sat, 55%), 44%, 0.4) 65%,
+        hsla(var(--flow-hue, 300), var(--flow-sat, 55%), 30%, 0.16) 82%,
+        transparent 100%);
+    animation: orbBreathe 7s ease-in-out infinite;
+    transition: background 1.6s ease, transform 1.3s ease;
+  }
+  @keyframes orbBreathe {
+    0%, 100% { transform: scale(calc(var(--flow-scale, 1) * 0.985)); }
+    50% { transform: scale(calc(var(--flow-scale, 1) * 1.03)); }
+  }
+
+  /* ── Layout shell: wide gutters, single column, content offset per section. ── */
+  .flow {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 6vw, 96px);
+  }
+  .flow section {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(80px, 13vh, 150px) 0;
+  }
+
+  /* Contrast: a soft dark haze behind any text-bearing block, so copy stays
+     legible wherever it lands over the lit orb. Fades to nothing, so it reads
+     as atmosphere, not a card. */
+  .scrim { position: relative; }
+  .scrim::before {
+    content: "";
+    position: absolute;
+    inset: -8% -10%;
+    z-index: -1;
+    background: radial-gradient(115% 115% at 32% 42%, rgba(5, 4, 12, 0.72) 0%, rgba(5, 4, 12, 0.5) 42%, rgba(5, 4, 12, 0) 78%);
+    filter: blur(6px);
+    pointer-events: none;
+  }
+
+  .kicker, .eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: hsla(var(--flow-hue, 300), 50%, 78%, 0.8);
+    margin-bottom: 18px;
+    transition: color 1.6s ease;
+  }
+  h1 {
+    font-size: clamp(44px, 8.5vw, 104px);
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    color: rgba(255, 255, 255, 0.97);
+    margin-bottom: 28px;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.55);
+  }
+  h1 .muted { color: hsla(var(--flow-hue, 300), 46%, 76%, 0.9); transition: color 1.6s ease; }
+  h2 {
+    font-size: clamp(30px, 4.5vw, 54px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.96);
+    max-width: 18ch;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 34px rgba(0, 0, 0, 0.5);
+  }
+  h3 { font-size: 18px; font-weight: 500; color: rgba(255, 255, 255, 0.93); margin-bottom: 8px; }
+  .lede {
+    font-size: clamp(17px, 2vw, 22px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 46ch;
+    margin-bottom: 16px;
+  }
+  .lede.afterword { font-size: clamp(15px, 1.6vw, 18px); color: rgba(255, 255, 255, 0.66); margin-top: 24px; }
+
+  /* ── Hero: pinned to the left, orb owns the open right. ── */
+  .flow-hero .hero-inner { max-width: 660px; }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 36px; }
+  .trust { margin-top: 40px; }
+  .fine { font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-top: 8px; }
+  .fine.strong { color: hsla(var(--flow-hue, 300), 60%, 84%, 0.96); font-weight: 500; transition: color 1.6s ease; }
+
+  /* ── Asymmetric split: heading column + ragged body column, uneven weights.
+        `.rev` swaps the sides so the rhythm flips section to section. ── */
+  .flow-split { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 5vw, 76px); align-items: center; }
+  @media (min-width: 880px) {
+    .flow-split { grid-template-columns: 1.05fr 0.95fr; }
+    .flow-split.rev .flow-head { order: 2; }
+    .flow-split.rev .flow-body { order: 1; }
+  }
+  .flow-head { align-self: center; }
+  .more { margin-top: 22px; }
+  .more a, .cite a { color: hsla(var(--flow-hue, 300), 55%, 82%, 0.92); text-decoration: none; transition: color 1.6s ease; }
+  .more a:hover { color: #fff; }
+  .afterword { max-width: 44ch; }
+
+  /* Stats: ragged, one spans two columns. */
+  .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .stat {
+    padding: 22px 20px;
+    border-radius: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+  .stat.wide { grid-column: 1 / -1; }
+  .stat .num {
+    font-size: 30px;
+    font-weight: 500;
+    color: hsla(var(--flow-hue, 300), 60%, 80%, 0.96);
+    margin-bottom: 6px;
+    transition: color 1.6s ease;
+  }
+  .stat p { font-size: 14px; color: rgba(255, 255, 255, 0.62); line-height: 1.45; }
+
+  /* Ragged notes list, no boxes. */
+  .notes { list-style: none; }
+  .notes li { padding: 24px 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+  .notes li:first-child { border-top: none; padding-top: 0; }
+  .notes p { font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px; }
+  .cite { font-size: 12px; letter-spacing: 0.4px; color: hsla(var(--flow-hue, 300), 50%, 76%, 0.82); transition: color 1.6s ease; }
+  .notes .check {
+    display: inline-block;
+    width: 22px; height: 22px; line-height: 21px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    margin-right: 8px;
+    color: hsla(var(--flow-hue, 300), 70%, 86%, 1);
+    background: hsla(var(--flow-hue, 300), 50%, 50%, 0.2);
+    border: 1px solid hsla(var(--flow-hue, 300), 50%, 62%, 0.5);
+    transition: all 1.6s ease;
+  }
+
+  /* ── R/R/R stair: each card steps further in, breaking any grid. ── */
+  .flow-stair-sec .stair-head { max-width: 640px; margin-bottom: 40px; }
+  .stair { display: flex; flex-direction: column; gap: 20px; }
+  .step-card {
+    max-width: 560px;
+    padding: 28px 26px;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+  .step-card:nth-child(2) { margin-left: clamp(0px, 12vw, 160px); }
+  .step-card:nth-child(3) { margin-left: clamp(0px, 24vw, 320px); }
+  .step-card p { font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); }
+  .card-tag {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: hsla(var(--flow-hue, 300), 60%, 80%, 0.88);
+    margin-bottom: 10px;
+    transition: color 1.6s ease;
+  }
+
+  /* ── Card mosaic: offset two-up that avoids a tidy grid. ── */
+  .card-mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card-mosaic .mini-card:nth-child(odd) { margin-top: clamp(0px, 3vw, 34px); }
+  .mini-card {
+    padding: 22px 20px;
+    border-radius: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+  .mini-card p { font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.66); }
+  .mini-card h3 { font-size: 16px; }
+
+  /* ── Final CTA: offset-left statement. ── */
+  .flow-final .final-inner { max-width: 640px; }
+  .final-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 32px; }
+
+  /* ── Buttons ── */
+  .interest { display: flex; flex-direction: column; gap: 12px; }
+  .btn {
+    display: inline-block;
+    padding: 16px 38px;
+    border-radius: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    background-image:
+      linear-gradient(rgba(18, 13, 26, 0.92), rgba(18, 13, 26, 0.92)),
+      linear-gradient(95deg, #e6a3c4, #9c5c86, #7846b0);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 34px rgba(217, 146, 176, 0.26);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 0 46px rgba(217, 146, 176, 0.45); }
+  .btn.is-done { opacity: 0.7; cursor: default; transform: none; box-shadow: none; }
+  .interest-count { font-size: 14px; color: rgba(255, 255, 255, 0.55); letter-spacing: 0.3px; font-variant-numeric: tabular-nums; }
+
+  .ghost {
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: 32px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  .ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: #fff; }
+
+  .app-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 20px;
+    border-radius: 14px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 8px 32px hsla(var(--flow-hue, 30), 60%, 55%, 0.28);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .app-cta:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.55); box-shadow: 0 14px 48px hsla(var(--flow-hue, 30), 80%, 60%, 0.5); }
+  .app-cta .apple { width: 24px; height: 24px; flex: none; }
+  .app-copy { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+  .app-copy .t { font-size: 11px; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.85); }
+  .app-copy .b { font-size: 20px; font-weight: 500; letter-spacing: 0.2px; }
+
+  .back { padding: 40px 0 100px; }
+  .back a { color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+  .back a:hover { color: rgba(255, 255, 255, 0.9); }
+
+  .lab-label {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 50;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(34, 27, 54, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  @media (max-width: 879px) {
+    .card-mosaic .mini-card:nth-child(odd) { margin-top: 0; }
+    .step-card:nth-child(2), .step-card:nth-child(3) { margin-left: 0; }
+    .flow section { min-height: auto; padding: clamp(64px, 10vh, 110px) 0; }
+    /* Single column stacks over the orb, so calm the orb and darken the haze
+       behind copy to keep every line readable. */
+    .flow-orb { width: min(74vw, 440px); opacity: 0.82; }
+    .flow-orb-core { filter: brightness(0.78); }
+    .scrim::before {
+      inset: -12% -14%;
+      background: radial-gradient(125% 125% at 50% 44%, rgba(5, 4, 12, 0.84) 0%, rgba(5, 4, 12, 0.62) 48%, rgba(5, 4, 12, 0) 82%);
+    }
+  }
+  @media (max-width: 520px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    .card-mosaic { grid-template-columns: 1fr; }
+  }
+
+  /* Reduced motion: no breathing, no glide, no parallax. The orb still tints
+     per section (colour, not movement) and shows a calm static frame. */
+  @media (prefers-reduced-motion: reduce) {
+    .flow-orb { transition: none; }
+    .flow-orb-core { animation: none; transition: background 1.6s ease; }
+  }
+</style>
+</Base>
