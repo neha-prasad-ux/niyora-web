@@ -25,12 +25,12 @@ const related = all
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
-const canonical = post.data.canonical ?? `https://www.niyora.com/blog/${post.id}/`;
+const canonical = post.data.canonical ?? `https://niyora.com/blog/${post.id}/`;
 const publisher = {
   '@type': 'Organization',
   name: 'Niyora',
-  url: 'https://www.niyora.com',
-  logo: 'https://www.niyora.com/icon.png',
+  url: 'https://niyora.com',
+  logo: 'https://niyora.com/icon.png',
 };
 
 const jsonLd = [
@@ -49,8 +49,8 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.niyora.com' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.niyora.com/blog/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://niyora.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://niyora.com/blog/' },
       { '@type': 'ListItem', position: 3, name: post.data.title, item: canonical },
     ],
   },

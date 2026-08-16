@@ -14,12 +14,12 @@ const jsonLd = {
   name: 'The research behind Niyora',
   description:
     'Every research finding Niyora is built on, graded strong, moderate or weak, with the paper behind it.',
-  url: 'https://www.niyora.com/research/',
+  url: 'https://niyora.com/research/',
   citation: allRows.filter((r) => r.link).map((r) => r.link),
   hasPart: groups.map(({ cluster }) => ({
     '@type': 'WebPageElement',
     name: cluster.title,
-    url: `https://www.niyora.com/research/#${cluster.slug}`,
+    url: `https://niyora.com/research/#${cluster.slug}`,
   })),
 };
 ---
@@ -27,7 +27,7 @@ const jsonLd = {
 <Base
   title="The research behind Niyora, graded · Niyora"
   description={`Every finding Niyora is built on, in one table: what the study found, how good the evidence really is, and a link to the paper. ${allRows.length} findings, ${strong} of them strong.`}
-  canonicalUrl="https://www.niyora.com/research/"
+  canonicalUrl="https://niyora.com/research/"
   jsonLd={jsonLd}
 >
   <OrbStage />

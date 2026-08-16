@@ -63,7 +63,7 @@ describe('demo/index.astro — CTA and metadata', () => {
   });
 
   it('sets a canonical URL for the demo page', () => {
-    expect(src).toContain('canonicalUrl="https://www.niyora.com/demo"');
+    expect(src).toContain('canonicalUrl="https://niyora.com/demo"');
   });
 
   it('provides an ogImage', () => {

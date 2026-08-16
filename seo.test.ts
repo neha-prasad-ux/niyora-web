@@ -18,7 +18,7 @@ describe('robots.txt', () => {
   });
 
   it('points to the sitemap index', () => {
-    expect(robots).toContain('Sitemap: https://www.niyora.com/sitemap-index.xml');
+    expect(robots).toContain('Sitemap: https://niyora.com/sitemap-index.xml');
   });
 });
 

@@ -16,7 +16,7 @@ describe('demo page SEO', () => {
   });
 
   it('sets a canonical URL pointing to /demo', () => {
-    expect(demo).toContain('canonicalUrl="https://www.niyora.com/demo"');
+    expect(demo).toContain('canonicalUrl="https://niyora.com/demo"');
   });
 
   it('sets an OG image', () => {

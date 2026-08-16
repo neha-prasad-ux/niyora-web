@@ -73,7 +73,7 @@ describe('quiz page SEO', () => {
   });
 
   it('sets a canonical URL pointing to /quiz', () => {
-    expect(page).toContain('canonicalUrl="https://www.niyora.com/quiz"');
+    expect(page).toContain('canonicalUrl="https://niyora.com/quiz"');
   });
 
   it('has exactly one h1', () => {
