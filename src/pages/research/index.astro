@@ -26,7 +26,7 @@ const jsonLd = {
 
 <Base
   title="The research behind Niyora, graded · Niyora"
-  description={`Every finding Niyora is built on, in one table: what the study found, how strong the evidence actually is, and a link to the paper. ${allRows.length} findings, ${strong} of them strong.`}
+  description={`Every finding Niyora is built on, in one table: what the study found, how good the evidence really is, and a link to the paper. ${allRows.length} findings, ${strong} of them strong.`}
   canonicalUrl="https://niyora.com/research/"
   jsonLd={jsonLd}
 >
@@ -35,39 +35,38 @@ const jsonLd = {
   <main class="content">
     <section class="hero" data-hue="248" data-sat="55%">
       <div class="eyebrow">Research</div>
-      <h1>The research behind Niyora, with the grades left in</h1>
+      <h1>Every study behind Niyora, graded honestly</h1>
       <p class="lede">
-        Everything in this app traces back to a paper. Here they all are, {allRows.length} findings,
-        each with what the study actually found and how strong that evidence really is. Some of it
-        is strong. Some of it is thin, and we say so rather than quietly leaving it out.
+        Everything in this app comes from a paper. All {allRows.length} of them are here, with what
+        the study found and how good the evidence really is. Some of it is strong. Some of it is
+        thin, and I would rather tell you than quietly leave it out.
       </p>
     </section>
 
     <section class="grades-section" data-hue="200" data-sat="50%">
-      <h2>How we grade</h2>
+      <h2>How I grade these</h2>
       <div class="grade-grid">
         <div class="grade-card">
           <span class="badge strong">Strong</span>
-          <p>A randomised trial, or a review of them. This is as close to proof as this field gets.</p>
+          <p>A randomized trial, or a review of them. About as close to proof as this field gets.</p>
         </div>
         <div class="grade-card">
           <span class="badge moderate">Moderate</span>
           <p>
-            A large observational study, a cell-line finding, or a consistent review. A real signal,
-            not a proven cause.
+            A big observational study, a cell study, or a review that lines up. A real signal, not a
+            proven cause.
           </p>
         </div>
         <div class="grade-card">
           <span class="badge weak">Weak</span>
           <p>
-            Small, mixed, contested, or reasoned across from a neighbouring field. Kept here because
-            leaving it out would be the dishonest choice.
+            Small, mixed, argued over, or borrowed from a related field. It is here because leaving
+            it out would be the dishonest move.
           </p>
         </div>
       </div>
       <p class="note">
-        We never write "studies show" without a link. Where a finding is correlational, it is called
-        correlational.
+        I do not write "studies show" without a link. If a finding is a correlation, I say so.
       </p>
       <div class="cta-row">
         <a href="/research/gaps/" class="cta ghost">See what nobody has studied yet</a>
@@ -75,7 +74,7 @@ const jsonLd = {
     </section>
 
     <section class="jump-section" data-hue="280" data-sat="52%">
-      <h2>What you might be looking for</h2>
+      <h2>What are you here for</h2>
       <div class="jump-grid">
         {groups.map(({ cluster, rows }) => (
           <a href={`#${cluster.slug}`} class="jump-card">
@@ -124,10 +123,10 @@ const jsonLd = {
     ))}
 
     <section class="cta-section" data-hue="30" data-sat="70%">
-      <h2>This is what the app is built on</h2>
+      <h2>This is what the app runs on</h2>
       <p class="lede">
-        Niyora turns this into three steps you can use in the moment. Reflect on what happened,
-        regulate in about a minute, respond with a clearer head.
+        Niyora turns all of this into three steps you can use in the moment. Reflect on what
+        happened, regulate in about a minute, respond with a clearer head.
       </p>
       <div class="cta-row">
         <a href="/quiz/" class="cta">Take the quiz</a>

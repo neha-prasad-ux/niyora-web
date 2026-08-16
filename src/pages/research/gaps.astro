@@ -26,7 +26,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
   name: 'Research volume and trial evidence across menstrual health topics',
-  description: `Europe PMC literature counts for ${stats.laneCount} menstrual and premenstrual health topics, with the number of randomised trials, meta-analyses and systematic reviews in each.`,
+  description: `Europe PMC literature counts for ${stats.laneCount} menstrual and premenstrual health topics, with the number of randomized trials, meta-analyses and systematic reviews in each.`,
   url: 'https://niyora.com/research/gaps/',
   creator: { '@type': 'Organization', name: 'Niyora' },
   isBasedOn: 'https://europepmc.org/',
@@ -37,7 +37,7 @@ const jsonLd = {
 
 <Base
   title="What nobody has studied about your cycle · Niyora"
-  description={`We counted the published research across ${stats.laneCount} menstrual health topics. ${env.total} papers exist on endocrine disruptors and cycle mood. ${genetic.total} on genetics, and not one randomised trial.`}
+  description={`I counted the published research across ${stats.laneCount} menstrual health topics. ${env.total} papers exist on hormone disruptors and cycle mood. ${genetic.total} on genetics, and not one randomized trial.`}
   canonicalUrl="https://niyora.com/research/gaps/"
   jsonLd={jsonLd}
 >
@@ -48,9 +48,9 @@ const jsonLd = {
       <div class="eyebrow"><a href="/research/">Research</a></div>
       <h1>What nobody has studied about your cycle</h1>
       <p class="lede">
-        We asked Europe PMC how much research exists on {stats.laneCount} questions about the
-        menstrual cycle, and how much of it is a randomised trial or a systematic review. The
-        answers are not evenly distributed, and the empty places are the point.
+        I asked Europe PMC how much research exists on {stats.laneCount} questions about the
+        menstrual cycle, and how much of it was a real trial. The answers are not spread evenly,
+        and the empty spots are the point.
       </p>
     </section>
 
@@ -59,22 +59,22 @@ const jsonLd = {
         <div class="stat">
           <div class="stat-num">{env.total}</div>
           <p>
-            papers on endocrine disruptors, pollution and plastics affecting cycle mood. That is
-            the entire published literature.
+            papers on plastics, pollution and hormone disruptors affecting cycle mood. That is the
+            whole literature.
           </p>
         </div>
         <div class="stat">
           <div class="stat-num">0</div>
           <p>
-            randomised trials on the genetics of premenstrual symptoms, across {genetic.total}{' '}
+            randomized trials on the genetics of premenstrual symptoms, out of {genetic.total}{' '}
             papers. Genetics is the root of the whole thing.
           </p>
         </div>
         <div class="stat">
           <div class="stat-num">{Math.round(animals.total / suicide.total)}×</div>
           <p>
-            more research on the premenstrual cycle in animals ({animals.total}) than on
-            premenstrual self-harm and suicidality ({suicide.total}).
+            more research on the cycle in animals ({animals.total.toLocaleString()}) than on
+            premenstrual self-harm and suicide ({suicide.total}).
           </p>
         </div>
       </div>
@@ -85,15 +85,15 @@ const jsonLd = {
     </section>
 
     <section class="chart-section" data-hue="300" data-sat="52%">
-      <h2>Every topic, and how much of it was actually tested</h2>
+      <h2>Every topic, and how much of it got tested</h2>
       <p class="lede">
-        Each row is one search. The left dot is how many papers exist. The right dot is how many
-        were trials or systematic reviews. The distance between them is the gap.
+        Each row is one search. The purple dot on the right is how many papers exist. The green dot
+        on the left is how many were real trials. The space between them is the gap.
       </p>
 
       <div class="legend">
         <span class="legend-item"><span class="key key-total"></span> All papers</span>
-        <span class="legend-item"><span class="key key-strong"></span> Trials and systematic reviews</span>
+        <span class="legend-item"><span class="key key-strong"></span> Trials and reviews</span>
         <span class="legend-item"><span class="key key-zero"></span> None at all</span>
       </div>
 
@@ -104,7 +104,7 @@ const jsonLd = {
           width={WIDTH}
           height={HEIGHT}
           role="img"
-          aria-label={`Dumbbell chart of ${stats.laneCount} menstrual health research topics, showing total papers against trials and systematic reviews. Full figures are in the table below.`}
+          aria-label={`Chart of ${stats.laneCount} menstrual health research topics, showing total papers against trials and reviews. Every figure is in the table below.`}
         >
           {TICKS.map((t) => (
             <g class="tick">
@@ -120,7 +120,7 @@ const jsonLd = {
             const xStrong = lane.strong > 0 ? x(lane.strong) : LABEL_W;
             return (
               <g class="row">
-                <title>{`${lane.lane}: ${lane.total.toLocaleString()} papers, ${lane.strong} trials or systematic reviews`}</title>
+                <title>{`${lane.lane}: ${lane.total.toLocaleString()} papers, ${lane.strong} trials or reviews`}</title>
                 <rect class="row-hit" x="0" y={y - ROW / 2} width={WIDTH} height={ROW} />
                 <text class="row-label" x={LABEL_W - 12} y={y + 4} text-anchor="end">{lane.lane}</text>
                 <line class="connector" x1={xStrong} y1={y} x2={xTotal} y2={y} />
@@ -138,7 +138,7 @@ const jsonLd = {
       </div>
 
       <p class="note">
-        Scroll the chart sideways on a small screen. Every figure is in the table below.
+        On a phone, scroll the chart sideways. Every number is in the table below.
       </p>
     </section>
 
@@ -171,35 +171,35 @@ const jsonLd = {
     </section>
 
     <section class="method-section" data-hue="220" data-sat="45%">
-      <h2>How we counted, and what this is not</h2>
+      <h2>How I counted, and what this is not</h2>
       <div class="science">
         <p>
-          Each topic is one search run against Europe PMC on 16 August 2026, matched on title and
-          abstract. The number is that search's total hit count. "Trials and systematic reviews"
-          is the same search filtered to randomised controlled trials, meta-analyses and
-          systematic reviews.
+          Each topic is one search I ran against Europe PMC on August 16, 2026, matching on title
+          and abstract. The number is that search's total hit count. "Trials and reviews" is the
+          same search, filtered to randomized controlled trials, meta-analyses and systematic
+          reviews.
         </p>
         <p>
-          This is not a systematic review, and a search is only ever a proxy. A broad phrasing
-          returns more, a narrow one returns less, so treat these as the shape of a field rather
-          than a census of it. We ran the same method on every topic so the comparison between
-          rows is fair, even where any single number is rough.
+          This is not a systematic review, and a search is only ever a rough proxy. Word it broadly
+          and you get more back. Word it narrowly and you get less. So read these as the shape of a
+          field, not an exact count. I ran the same method on every topic, so comparing one row to
+          another is fair even where a single number is rough.
         </p>
         <p>
-          We left out {58 - stats.laneCount} further searches covering women at work, because
-          those are not cycle-specific and their counts are not comparable to these.
+          I left out {58 - stats.laneCount} other searches about women at work, because those are
+          not cycle-specific and the numbers are not comparable to these.
         </p>
       </div>
       <div class="cta-row">
-        <a href="/research/" class="cta ghost">See the research we do have</a>
+        <a href="/research/" class="cta ghost">See the research that does exist</a>
       </div>
     </section>
 
     <section class="cta-section" data-hue="30" data-sat="70%">
-      <h2>This is why we grade everything</h2>
+      <h2>This is why I grade everything</h2>
       <p class="lede">
         When a field is this thin, confident advice is the warning sign. Niyora shows you the
-        evidence behind every claim it makes, including the weak evidence.
+        evidence behind every claim it makes, including the weak stuff.
       </p>
       <div class="cta-row">
         <a href="/quiz/" class="cta">Take the quiz</a>

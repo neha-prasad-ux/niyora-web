@@ -31,18 +31,18 @@ export const CLUSTERS: Cluster[] = [
   {
     slug: 'differentials',
     title: 'Is it PMS, or something else',
-    question: 'How do I know whether this is PMS, PMDD, or another condition?',
+    question: 'How do I know if this is PMS, PMDD, or something else?',
     intro:
-      'What the evidence says about the conditions that look like PMS, overlap with it, or make it worse, and what separates them.',
+      'Some conditions look like PMS. Some overlap with it. Some just make it worse. Here is what tells them apart.',
     triggers: ['differential', 'comorbidity'],
     related: [{ label: 'PMS vs PMDD', href: '/blog/pms-vs-pmdd-whats-the-difference/' }],
   },
   {
     slug: 'tools-with-evidence',
-    title: 'Non-drug tools with trial evidence',
-    question: 'What can I actually do in the moment, that has been tested?',
+    title: 'Things that were actually tested',
+    question: 'What can I do in the moment that has real evidence?',
     intro:
-      'The small, physical things that have been measured in trials rather than passed around as advice.',
+      'Small physical things that got measured in a trial, instead of just passed around as advice.',
     triggers: ['active-tool', 'intervention'],
     related: [
       { label: 'How to calm down fast', href: '/blog/how-to-calm-down-fast/' },
@@ -51,19 +51,19 @@ export const CLUSTERS: Cluster[] = [
   },
   {
     slug: 'micronutrients',
-    title: 'Micronutrients',
-    question: 'Do calcium, magnesium, or vitamin D actually help PMS?',
+    title: 'Calcium, magnesium, vitamin D',
+    question: 'Do supplements actually help PMS?',
     intro:
-      'Three micronutrients have real trial evidence behind them. The quality is not the same for all three, so the grade matters here more than anywhere.',
+      'Three of them have real trial evidence behind them. The quality is not the same for all three, so the grade matters more here than anywhere.',
     triggers: ['micronutrient'],
     related: [],
   },
   {
     slug: 'ovaries-and-nerves',
-    title: 'Ovaries and the nervous system',
-    question: 'Is there a physical connection between stress and my ovaries?',
+    title: 'Your ovaries and your nerves',
+    question: 'Is there a real link between stress and my ovaries?',
     intro:
-      'Your ovaries are directly wired into your nervous system. This is newer research and worth watching.',
+      'Your ovaries are wired straight into your nervous system. This research is new, and worth watching.',
     triggers: ['reproductive'],
     related: [
       { label: 'Your ovaries and your nervous system', href: '/blog/ovaries-nervous-system/' },
@@ -71,9 +71,9 @@ export const CLUSTERS: Cluster[] = [
   },
   {
     slug: 'sleep-and-body-clock',
-    title: 'Sleep and the body clock',
+    title: 'Sleep and your body clock',
     question: 'Why does my sleep fall apart before my period?',
-    intro: 'What is known about melatonin timing and sleep across the cycle.',
+    intro: 'What is known about melatonin timing and sleep across your cycle.',
     triggers: ['sleep', 'circadian'],
     related: [
       { label: 'PMS insomnia', href: '/pms/insomnia/' },
@@ -86,36 +86,36 @@ export const CLUSTERS: Cluster[] = [
   {
     slug: 'inflammation-and-blood-sugar',
     title: 'Inflammation and blood sugar',
-    question: 'Does what my body is carrying physically change how the week lands?',
+    question: 'Does what my body is dealing with change how the week goes?',
     intro:
-      'Two background loads that track with symptom severity. Most of this evidence is correlational, so read the grades carefully.',
+      'Two background loads that track with how rough symptoms get. Most of this is correlation, so read the grades closely.',
     triggers: ['inflammation', 'blood-sugar', 'metabolic'],
     related: [{ label: 'PMS overwhelm', href: '/pms/overwhelm/' }],
   },
   {
     slug: 'mechanism',
     title: 'What is actually happening',
-    question: 'What is physically going on in my brain?',
+    question: 'What is going on in my brain?',
     intro:
-      'Genetics, GABA, serotonin, and the add-back studies. This is the strongest-evidenced part of the picture, and the reason none of this is you imagining things.',
+      'Genes, GABA, serotonin, and the add-back studies. This is the best-evidenced part of the whole picture, and the reason none of this is in your head.',
     triggers: ['mechanism', 'genetics', 'hormone-sensitivity', 'root-cause'],
     related: [{ label: 'PMS anxiety', href: '/pms/anxiety/' }],
   },
   {
     slug: 'stress-and-cortisol',
-    title: 'Stress, history, and cortisol',
-    question: 'Why do these weeks land harder when life has been hard?',
+    title: 'Stress, your history, and cortisol',
+    question: 'Why does this hit harder when life has been hard?',
     intro:
-      'How the stress axis shifts across the cycle, and what early adversity appears to do to premenstrual symptoms.',
+      'How your stress system shifts across the cycle, and what early hard experiences seem to do to premenstrual symptoms.',
     triggers: ['stress', 'trauma', 'cortisol', 'HPA'],
     related: [{ label: 'PMS anxiety', href: '/pms/anxiety/' }],
   },
   {
     slug: 'getting-help',
     title: 'Getting help',
-    question: 'What treatments exist, and why do so few of us ask?',
+    question: 'What can be treated, and why do so many of us wait?',
     intro:
-      'The clinical references behind what is treatable, and the research on why women wait so long to raise it.',
+      'The clinical references on what is treatable, plus the research on why women wait years before bringing it up.',
     triggers: ['clinical-reference', 'help-seeking', 'treatment'],
     related: [{ label: 'Take the two-minute check', href: '/quiz/' }],
   },
