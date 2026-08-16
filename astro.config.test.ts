@@ -3,7 +3,7 @@ import config from './astro.config.mjs';
 
 describe('astro.config', () => {
   it('targets the production site URL', () => {
-    expect(config.site).toBe('https://niyora.com');
+    expect(config.site).toBe('https://www.niyora.com');
   });
 
   it('site URL is a valid parseable HTTPS URL', () => {

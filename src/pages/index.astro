@@ -4,10 +4,10 @@ import OrbStage from '../components/OrbStage.astro';
 
 const organization = {
   '@type': 'Organization',
-  '@id': 'https://niyora.com/#organization',
+  '@id': 'https://www.niyora.com/#organization',
   name: 'Niyora',
-  url: 'https://niyora.com',
-  logo: 'https://niyora.com/icon.png',
+  url: 'https://www.niyora.com',
+  logo: 'https://www.niyora.com/icon.png',
   sameAs: ['https://github.com/neha-prasad-ux/niyora'],
 };
 
@@ -30,7 +30,7 @@ const jsonLd = [
       price: '0',
       priceCurrency: 'USD',
     },
-    publisher: { '@id': 'https://niyora.com/#organization' },
+    publisher: { '@id': 'https://www.niyora.com/#organization' },
   },
 ];
 ---
@@ -39,7 +39,7 @@ const jsonLd = [
   title="Niyora · a PMS app that predicts, then helps you reflect, regulate, and respond"
   description="Niyora predicts your PMS week and helps you reflect, regulate, and respond when your brain is reacting to a hormone drop. Built on one fact: women with emotional regulation skills handle PMS better. Your personal details never reach the AI."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
-  canonicalUrl="https://niyora.com"
+  canonicalUrl="https://www.niyora.com"
   jsonLd={jsonLd}
 >
   <OrbStage />
