@@ -1,0 +1,611 @@
+[
+  {
+    "lane": "Environmental",
+    "axis": "modulator",
+    "tags": [
+      "environmental",
+      "gap-map",
+      "needs-triage"
+    ],
+    "total": 3,
+    "strong": 0
+  },
+  {
+    "lane": "Geographical",
+    "axis": "modulator",
+    "tags": [
+      "geographical",
+      "gap-map"
+    ],
+    "total": 40,
+    "strong": 2
+  },
+  {
+    "lane": "Menstrual synchrony (myth)",
+    "axis": "context",
+    "tags": [
+      "context",
+      "myth-bust"
+    ],
+    "total": 43,
+    "strong": 2
+  },
+  {
+    "lane": "Lunar / moon myth",
+    "axis": "context",
+    "tags": [
+      "context",
+      "myth-bust"
+    ],
+    "total": 88,
+    "strong": 0
+  },
+  {
+    "lane": "Self-harm / suicidality",
+    "axis": "impact",
+    "tags": [
+      "safety"
+    ],
+    "total": 103,
+    "strong": 7
+  },
+  {
+    "lane": "Assertiveness training",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "assertiveness"
+    ],
+    "total": 123,
+    "strong": 29
+  },
+  {
+    "lane": "Relationship status",
+    "axis": "modulator",
+    "tags": [
+      "relationship-status",
+      "gap-map"
+    ],
+    "total": 126,
+    "strong": 5
+  },
+  {
+    "lane": "Genetic",
+    "axis": "modulator",
+    "tags": [
+      "genetics",
+      "gap-map"
+    ],
+    "total": 168,
+    "strong": 0
+  },
+  {
+    "lane": "Ethnic / cultural",
+    "axis": "modulator",
+    "tags": [
+      "ethnic",
+      "gap-map",
+      "flag-confounded"
+    ],
+    "total": 172,
+    "strong": 2
+  },
+  {
+    "lane": "Evolution of menstruation",
+    "axis": "context",
+    "tags": [
+      "context",
+      "evolution",
+      "contested"
+    ],
+    "total": 187,
+    "strong": 4
+  },
+  {
+    "lane": "Spending / decisions",
+    "axis": "context",
+    "tags": [
+      "context"
+    ],
+    "total": 211,
+    "strong": 18
+  },
+  {
+    "lane": "Confidence / self-esteem",
+    "axis": "impact",
+    "tags": [
+      "confidence",
+      "gap-map"
+    ],
+    "total": 229,
+    "strong": 47
+  },
+  {
+    "lane": "Compulsive-buying treatment",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "compulsive-buying"
+    ],
+    "total": 284,
+    "strong": 16
+  },
+  {
+    "lane": "Compulsive buying / shopping",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "compulsive-buying"
+    ],
+    "total": 287,
+    "strong": 11
+  },
+  {
+    "lane": "Impostor phenomenon",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "impostor"
+    ],
+    "total": 344,
+    "strong": 10
+  },
+  {
+    "lane": "Seasonal",
+    "axis": "modulator",
+    "tags": [
+      "seasonal",
+      "gap-map"
+    ],
+    "total": 399,
+    "strong": 17
+  },
+  {
+    "lane": "Reproductive physiology",
+    "axis": "modulator",
+    "tags": [
+      "reproductive",
+      "mechanism"
+    ],
+    "total": 425,
+    "strong": 21
+  },
+  {
+    "lane": "Negotiation training for women",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "negotiation",
+      "gap-map"
+    ],
+    "total": 465,
+    "strong": 47
+  },
+  {
+    "lane": "Workplace / productivity",
+    "axis": "impact",
+    "tags": [
+      "workplace"
+    ],
+    "total": 540,
+    "strong": 50
+  },
+  {
+    "lane": "Public-speaking training / VR",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "presentation"
+    ],
+    "total": 549,
+    "strong": 74
+  },
+  {
+    "lane": "Hormonal",
+    "axis": "modulator",
+    "tags": [
+      "hormonal",
+      "mechanism"
+    ],
+    "total": 588,
+    "strong": 72
+  },
+  {
+    "lane": "Occupational",
+    "axis": "modulator",
+    "tags": [
+      "occupational",
+      "gap-map"
+    ],
+    "total": 632,
+    "strong": 27
+  },
+  {
+    "lane": "Relationships / partners",
+    "axis": "impact",
+    "tags": [
+      "relationships"
+    ],
+    "total": 789,
+    "strong": 40
+  },
+  {
+    "lane": "Cravings science",
+    "axis": "context",
+    "tags": [
+      "context",
+      "myth-nuance"
+    ],
+    "total": 810,
+    "strong": 93
+  },
+  {
+    "lane": "Athletes / performance",
+    "axis": "context",
+    "tags": [
+      "context",
+      "trendy"
+    ],
+    "total": 827,
+    "strong": 63
+  },
+  {
+    "lane": "Stereotype threat / backlash",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "stereotype-threat"
+    ],
+    "total": 846,
+    "strong": 55
+  },
+  {
+    "lane": "Sleep / dreams across cycle",
+    "axis": "context",
+    "tags": [
+      "context",
+      "sleep"
+    ],
+    "total": 923,
+    "strong": 64
+  },
+  {
+    "lane": "Self-compassion training",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "self-compassion"
+    ],
+    "total": 948,
+    "strong": 226
+  },
+  {
+    "lane": "Perfectionism / fear of failure",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "perfectionism"
+    ],
+    "total": 1068,
+    "strong": 40
+  },
+  {
+    "lane": "Nutrition",
+    "axis": "modulator",
+    "tags": [
+      "nutrition"
+    ],
+    "total": 1298,
+    "strong": 161
+  },
+  {
+    "lane": "PMS in animals",
+    "axis": "context",
+    "tags": [
+      "context",
+      "animals"
+    ],
+    "total": 1361,
+    "strong": 19
+  },
+  {
+    "lane": "CBT for social / performance anxiety",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "cbt"
+    ],
+    "total": 1379,
+    "strong": 424
+  },
+  {
+    "lane": "Negotiation / asking gap",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "negotiation",
+      "gap-map"
+    ],
+    "total": 1407,
+    "strong": 74
+  },
+  {
+    "lane": "Presentation / speaking anxiety",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "presentation"
+    ],
+    "total": 1456,
+    "strong": 169
+  },
+  {
+    "lane": "PMDD",
+    "axis": "core",
+    "tags": [
+      "pmdd"
+    ],
+    "total": 1500,
+    "strong": 171
+  },
+  {
+    "lane": "Harassment / hostile workplace",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "harassment",
+      "safety"
+    ],
+    "total": 1502,
+    "strong": 44
+  },
+  {
+    "lane": "Appearance / attire at work",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "appearance",
+      "gap-map"
+    ],
+    "total": 1575,
+    "strong": 32
+  },
+  {
+    "lane": "Gut microbiome x cycle",
+    "axis": "context",
+    "tags": [
+      "context",
+      "emerging"
+    ],
+    "total": 1600,
+    "strong": 61
+  },
+  {
+    "lane": "Assertiveness / self-advocacy",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "assertiveness"
+    ],
+    "total": 1693,
+    "strong": 98
+  },
+  {
+    "lane": "Body-image interventions",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "body-image"
+    ],
+    "total": 1693,
+    "strong": 320
+  },
+  {
+    "lane": "Insulin resistance",
+    "axis": "modulator",
+    "tags": [
+      "insulin-resistance",
+      "metabolic",
+      "mechanism"
+    ],
+    "total": 1772,
+    "strong": 135
+  },
+  {
+    "lane": "Mentoring / sponsorship",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "mentoring",
+      "gap-map"
+    ],
+    "total": 2119,
+    "strong": 60
+  },
+  {
+    "lane": "Work-life / role conflict",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "work-life"
+    ],
+    "total": 2182,
+    "strong": 51
+  },
+  {
+    "lane": "Pain across cycle",
+    "axis": "context",
+    "tags": [
+      "context"
+    ],
+    "total": 2185,
+    "strong": 228
+  },
+  {
+    "lane": "Inflammation",
+    "axis": "modulator",
+    "tags": [
+      "inflammation",
+      "mechanism"
+    ],
+    "total": 2200,
+    "strong": 99
+  },
+  {
+    "lane": "Symptoms / cycle mood",
+    "axis": "core",
+    "tags": [
+      "symptoms"
+    ],
+    "total": 2561,
+    "strong": 307
+  },
+  {
+    "lane": "Social / evaluation anxiety",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "social-anxiety"
+    ],
+    "total": 2768,
+    "strong": 203
+  },
+  {
+    "lane": "PMS",
+    "axis": "core",
+    "tags": [
+      "pms"
+    ],
+    "total": 3655,
+    "strong": 374
+  },
+  {
+    "lane": "Positive / luteal upside",
+    "axis": "context",
+    "tags": [
+      "context",
+      "counter-narrative",
+      "needs-triage"
+    ],
+    "total": 3705,
+    "strong": 202
+  },
+  {
+    "lane": "Self-esteem / self-worth",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "self-esteem"
+    ],
+    "total": 4400,
+    "strong": 284
+  },
+  {
+    "lane": "Promotion / advancement gap",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "promotion",
+      "gap-map"
+    ],
+    "total": 4952,
+    "strong": 140
+  },
+  {
+    "lane": "History of PMS",
+    "axis": "context",
+    "tags": [
+      "context",
+      "history"
+    ],
+    "total": 5167,
+    "strong": 192
+  },
+  {
+    "lane": "Emotional-eating interventions",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "eating"
+    ],
+    "total": 5200,
+    "strong": 946
+  },
+  {
+    "lane": "Burnout / work stress",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "burnout"
+    ],
+    "total": 5862,
+    "strong": 236
+  },
+  {
+    "lane": "Emotional / stress eating",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "eating"
+    ],
+    "total": 6000,
+    "strong": 512
+  },
+  {
+    "lane": "Body image / appearance anxiety",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "body-image"
+    ],
+    "total": 9095,
+    "strong": 718
+  },
+  {
+    "lane": "Confidence / self-efficacy",
+    "axis": "work-struggle",
+    "tags": [
+      "women-at-work",
+      "struggle",
+      "confidence"
+    ],
+    "total": 9696,
+    "strong": 821
+  },
+  {
+    "lane": "Confidence / self-efficacy building",
+    "axis": "work-help",
+    "tags": [
+      "women-at-work",
+      "help",
+      "confidence"
+    ],
+    "total": 29297,
+    "strong": 7087
+  }
+]

@@ -1,0 +1,360 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+import { downloads } from '../../config/downloads';
+import { allRows, grouped, pagedClusters, sourceLabel } from './_clusters';
+
+const groups = grouped();
+const paged = new Set(pagedClusters().map((g) => g.cluster.slug));
+const strong = allRows.filter((r) => r.grade === 'strong').length;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'The research behind Niyora',
+  description:
+    'Every research finding Niyora is built on, graded strong, moderate or weak, with the paper behind it.',
+  url: 'https://niyora.com/research/',
+  citation: allRows.filter((r) => r.link).map((r) => r.link),
+  hasPart: groups.map(({ cluster }) => ({
+    '@type': 'WebPageElement',
+    name: cluster.title,
+    url: `https://niyora.com/research/#${cluster.slug}`,
+  })),
+};
+---
+
+<Base
+  title="The research behind Niyora, graded · Niyora"
+  description={`Every finding Niyora is built on, in one table: what the study found, how strong the evidence actually is, and a link to the paper. ${allRows.length} findings, ${strong} of them strong.`}
+  canonicalUrl="https://niyora.com/research/"
+  jsonLd={jsonLd}
+>
+  <OrbStage />
+
+  <main class="content">
+    <section class="hero" data-hue="248" data-sat="55%">
+      <div class="eyebrow">Research</div>
+      <h1>The research behind Niyora, with the grades left in</h1>
+      <p class="lede">
+        Everything in this app traces back to a paper. Here they all are, {allRows.length} findings,
+        each with what the study actually found and how strong that evidence really is. Some of it
+        is strong. Some of it is thin, and we say so rather than quietly leaving it out.
+      </p>
+    </section>
+
+    <section class="grades-section" data-hue="200" data-sat="50%">
+      <h2>How we grade</h2>
+      <div class="grade-grid">
+        <div class="grade-card">
+          <span class="badge strong">Strong</span>
+          <p>A randomised trial, or a review of them. This is as close to proof as this field gets.</p>
+        </div>
+        <div class="grade-card">
+          <span class="badge moderate">Moderate</span>
+          <p>
+            A large observational study, a cell-line finding, or a consistent review. A real signal,
+            not a proven cause.
+          </p>
+        </div>
+        <div class="grade-card">
+          <span class="badge weak">Weak</span>
+          <p>
+            Small, mixed, contested, or reasoned across from a neighbouring field. Kept here because
+            leaving it out would be the dishonest choice.
+          </p>
+        </div>
+      </div>
+      <p class="note">
+        We never write "studies show" without a link. Where a finding is correlational, it is called
+        correlational.
+      </p>
+      <div class="cta-row">
+        <a href="/research/gaps/" class="cta ghost">See what nobody has studied yet</a>
+      </div>
+    </section>
+
+    <section class="jump-section" data-hue="280" data-sat="52%">
+      <h2>What you might be looking for</h2>
+      <div class="jump-grid">
+        {groups.map(({ cluster, rows }) => (
+          <a href={`#${cluster.slug}`} class="jump-card">
+            <span class="jump-title">{cluster.title}</span>
+            <span class="jump-count">{rows.length} {rows.length === 1 ? 'finding' : 'findings'}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {groups.map(({ cluster, rows }) => (
+      <section class="cluster-section" id={cluster.slug} data-hue="300" data-sat="52%">
+        <h2>{cluster.title}</h2>
+        <p class="question">{cluster.question}</p>
+        <p class="lede">{cluster.intro}</p>
+
+        <ol class="evidence">
+          {rows.map((row) => (
+            <li class="finding">
+              <div class="finding-head">
+                <span class={`badge ${row.grade.replace('-', ' ').split(' ')[0]}`}>{row.grade}</span>
+                <span class="topic">{row.topic}</span>
+              </div>
+              <p class="plain">{row.plain}</p>
+              <p class="detail">{row.finding}</p>
+              <p class="source">
+                {row.link ? (
+                  <a href={row.link} rel="noopener nofollow" target="_blank">{sourceLabel(row)}</a>
+                ) : (
+                  <span>{sourceLabel(row)}</span>
+                )}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <div class="cta-row">
+          {paged.has(cluster.slug) && (
+            <a href={`/research/${cluster.slug}/`} class="cta ghost">{cluster.title} in full</a>
+          )}
+          {cluster.related.map((link) => (
+            <a href={link.href} class="cta ghost">{link.label}</a>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="cta-section" data-hue="30" data-sat="70%">
+      <h2>This is what the app is built on</h2>
+      <p class="lede">
+        Niyora turns this into three steps you can use in the moment. Reflect on what happened,
+        regulate in about a minute, respond with a clearer head.
+      </p>
+      <div class="cta-row">
+        <a href="/quiz/" class="cta">Take the quiz</a>
+        <a href={downloads.appStore} class="cta ghost">Get Niyora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/quiz/">Take the quiz</a>
+    <a href="/blog/">Writing</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
+</Base>
+
+<style>
+  .content { position: relative; z-index: 2; }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 40px;
+    max-width: 1080px;
+    margin: 26px auto;
+    border-radius: 32px;
+    background: rgba(12, 10, 20, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
+  }
+
+  .hero { padding: 96px 40px 80px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
+    margin-bottom: 16px;
+    transition: color 1.4s ease;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+    max-width: 780px;
+    color: rgba(255, 255, 255, 0.96);
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.94);
+  }
+  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
+  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
+  p.question {
+    font-size: 15px;
+    color: hsla(var(--orb-hue), 55%, 82%, 0.8);
+    margin-bottom: 14px;
+    transition: color 1.4s ease;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .badge.strong { color: hsl(152, 52%, 66%); background: hsla(152, 52%, 40%, 0.14); }
+  .badge.moderate { color: hsl(44, 70%, 68%); background: hsla(44, 70%, 45%, 0.13); }
+  .badge.weak { color: hsl(20, 55%, 70%); background: hsla(20, 55%, 45%, 0.13); }
+
+  .grade-grid, .jump-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .grade-card {
+    padding: 22px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: var(--glass-bg-soft);
+    box-shadow: var(--glass-shadow);
+  }
+  .grade-card p { font-size: 14px; line-height: 1.6; margin: 12px 0 0; max-width: none; }
+  .note { font-size: 14px; margin-top: 22px; color: rgba(255, 255, 255, 0.5); }
+
+  .jump-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: var(--glass-bg-soft);
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .jump-card:hover {
+    border-color: hsla(var(--orb-hue), 60%, 70%, 0.5);
+    transform: translateY(-2px);
+  }
+  .jump-title { font-size: 16px; color: rgba(255, 255, 255, 0.9); font-weight: 400; }
+  .jump-count { font-size: 12px; color: rgba(255, 255, 255, 0.45); letter-spacing: 1px; }
+
+  .cluster-section { scroll-margin-top: 80px; }
+
+  .evidence {
+    list-style: none;
+    width: 100%;
+    max-width: 860px;
+    text-align: left;
+    margin: 26px 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .finding {
+    padding: 24px 24px 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+  }
+  .finding-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .topic {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .finding p { max-width: none; }
+  .plain {
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 10px;
+  }
+  .detail { font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.6); }
+  .source { font-size: 13px; margin-top: 14px; color: rgba(255, 255, 255, 0.38); }
+  .source a { color: rgba(255, 255, 255, 0.6); text-decoration: underline; text-underline-offset: 3px; }
+  .source a:hover { color: rgba(255, 255, 255, 0.95); }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+  .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(18, 16, 32, 0.95);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
+  }
+  .cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 1);
+    color: hsla(var(--orb-hue), 70%, 32%, 1);
+    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
+  }
+  .cta.ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 13px 26px;
+    font-size: 15px;
+  }
+  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
+
+  footer {
+    text-align: center;
+    padding: 60px 24px 80px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    position: relative;
+    z-index: 2;
+  }
+  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
+  footer a:hover { color: rgba(255, 255, 255, 0.8); }
+  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+
+  @media (max-width: 900px) {
+    .grade-grid, .jump-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    p.lede { font-size: 17px; }
+    .plain { font-size: 17px; }
+    .grade-grid, .jump-grid { grid-template-columns: 1fr; }
+    .finding { padding: 20px 18px 18px; }
+  }
+</style>

@@ -1,0 +1,432 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+import { downloads } from '../../config/downloads';
+import { lanes, logPosition, stats, TICKS, laneByName } from './_gaps';
+
+// Chart geometry, in SVG user units. The container scrolls horizontally on
+// narrow screens rather than shrinking the labels into illegibility.
+const ROW = 27;
+const LABEL_W = 232;
+const PAD_R = 58;
+const WIDTH = 820;
+const TOP = 52;
+const PLOT_W = WIDTH - LABEL_W - PAD_R;
+const HEIGHT = TOP + lanes.length * ROW + 16;
+const x = (v: number) => LABEL_W + logPosition(v) * PLOT_W;
+
+const moon = laneByName('Lunar / moon myth');
+const geo = laneByName('Geographical');
+const animals = laneByName('PMS in animals');
+const suicide = laneByName('Self-harm / suicidality');
+const genetic = laneByName('Genetic');
+const env = laneByName('Environmental');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Research volume and trial evidence across menstrual health topics',
+  description: `Europe PMC literature counts for ${stats.laneCount} menstrual and premenstrual health topics, with the number of randomised trials, meta-analyses and systematic reviews in each.`,
+  url: 'https://niyora.com/research/gaps/',
+  creator: { '@type': 'Organization', name: 'Niyora' },
+  isBasedOn: 'https://europepmc.org/',
+  temporalCoverage: '2026-08-16',
+  variableMeasured: ['Papers published', 'Trials and systematic reviews'],
+};
+---
+
+<Base
+  title="What nobody has studied about your cycle · Niyora"
+  description={`We counted the published research across ${stats.laneCount} menstrual health topics. ${env.total} papers exist on endocrine disruptors and cycle mood. ${genetic.total} on genetics, and not one randomised trial.`}
+  canonicalUrl="https://niyora.com/research/gaps/"
+  jsonLd={jsonLd}
+>
+  <OrbStage />
+
+  <main class="content">
+    <section class="hero" data-hue="248" data-sat="55%">
+      <div class="eyebrow"><a href="/research/">Research</a></div>
+      <h1>What nobody has studied about your cycle</h1>
+      <p class="lede">
+        We asked Europe PMC how much research exists on {stats.laneCount} questions about the
+        menstrual cycle, and how much of it is a randomised trial or a systematic review. The
+        answers are not evenly distributed, and the empty places are the point.
+      </p>
+    </section>
+
+    <section class="stat-section" data-hue="280" data-sat="55%">
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-num">{env.total}</div>
+          <p>
+            papers on endocrine disruptors, pollution and plastics affecting cycle mood. That is
+            the entire published literature.
+          </p>
+        </div>
+        <div class="stat">
+          <div class="stat-num">0</div>
+          <p>
+            randomised trials on the genetics of premenstrual symptoms, across {genetic.total}{' '}
+            papers. Genetics is the root of the whole thing.
+          </p>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{Math.round(animals.total / suicide.total)}×</div>
+          <p>
+            more research on the premenstrual cycle in animals ({animals.total}) than on
+            premenstrual self-harm and suicidality ({suicide.total}).
+          </p>
+        </div>
+      </div>
+      <p class="note">
+        There are also {moon.total} papers on the moon and the menstrual cycle, and {geo.total} on
+        whether where you live changes your symptoms.
+      </p>
+    </section>
+
+    <section class="chart-section" data-hue="300" data-sat="52%">
+      <h2>Every topic, and how much of it was actually tested</h2>
+      <p class="lede">
+        Each row is one search. The left dot is how many papers exist. The right dot is how many
+        were trials or systematic reviews. The distance between them is the gap.
+      </p>
+
+      <div class="legend">
+        <span class="legend-item"><span class="key key-total"></span> All papers</span>
+        <span class="legend-item"><span class="key key-strong"></span> Trials and systematic reviews</span>
+        <span class="legend-item"><span class="key key-zero"></span> None at all</span>
+      </div>
+
+      <div class="chart-scroll">
+        <svg
+          class="chart"
+          viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+          width={WIDTH}
+          height={HEIGHT}
+          role="img"
+          aria-label={`Dumbbell chart of ${stats.laneCount} menstrual health research topics, showing total papers against trials and systematic reviews. Full figures are in the table below.`}
+        >
+          {TICKS.map((t) => (
+            <g class="tick">
+              <line x1={x(t)} y1={TOP - 24} x2={x(t)} y2={HEIGHT - 8} />
+              <text x={x(t)} y={TOP - 30} text-anchor="middle">{t.toLocaleString()}</text>
+            </g>
+          ))}
+          <text class="axis-title" x="0" y={16}>papers published (log scale)</text>
+
+          {lanes.map((lane, i) => {
+            const y = TOP + i * ROW + ROW / 2;
+            const xTotal = x(lane.total);
+            const xStrong = lane.strong > 0 ? x(lane.strong) : LABEL_W;
+            return (
+              <g class="row">
+                <title>{`${lane.lane}: ${lane.total.toLocaleString()} papers, ${lane.strong} trials or systematic reviews`}</title>
+                <rect class="row-hit" x="0" y={y - ROW / 2} width={WIDTH} height={ROW} />
+                <text class="row-label" x={LABEL_W - 12} y={y + 4} text-anchor="end">{lane.lane}</text>
+                <line class="connector" x1={xStrong} y1={y} x2={xTotal} y2={y} />
+                {lane.strong > 0 ? (
+                  <circle class="dot dot-strong" cx={xStrong} cy={y} r="5" />
+                ) : (
+                  <circle class="dot dot-zero" cx={LABEL_W} cy={y} r="5" />
+                )}
+                <circle class="dot dot-total" cx={xTotal} cy={y} r="5" />
+                <text class="row-value" x={xTotal + 12} y={y + 4}>{lane.total.toLocaleString()}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+
+      <p class="note">
+        Scroll the chart sideways on a small screen. Every figure is in the table below.
+      </p>
+    </section>
+
+    <section class="table-section" data-hue="200" data-sat="50%">
+      <h2>The numbers</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Topic</th>
+              <th scope="col" class="num">Papers</th>
+              <th scope="col" class="num">Trials and reviews</th>
+              <th scope="col" class="num">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            {lanes.map((lane) => (
+              <tr>
+                <th scope="row">{lane.lane}</th>
+                <td class="num">{lane.total.toLocaleString()}</td>
+                <td class={lane.strong === 0 ? 'num zero' : 'num'}>{lane.strong}</td>
+                <td class="num">
+                  {lane.strong === 0 ? 'none' : `${((lane.strong / lane.total) * 100).toFixed(1)}%`}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="method-section" data-hue="220" data-sat="45%">
+      <h2>How we counted, and what this is not</h2>
+      <div class="science">
+        <p>
+          Each topic is one search run against Europe PMC on 16 August 2026, matched on title and
+          abstract. The number is that search's total hit count. "Trials and systematic reviews"
+          is the same search filtered to randomised controlled trials, meta-analyses and
+          systematic reviews.
+        </p>
+        <p>
+          This is not a systematic review, and a search is only ever a proxy. A broad phrasing
+          returns more, a narrow one returns less, so treat these as the shape of a field rather
+          than a census of it. We ran the same method on every topic so the comparison between
+          rows is fair, even where any single number is rough.
+        </p>
+        <p>
+          We left out {58 - stats.laneCount} further searches covering women at work, because
+          those are not cycle-specific and their counts are not comparable to these.
+        </p>
+      </div>
+      <div class="cta-row">
+        <a href="/research/" class="cta ghost">See the research we do have</a>
+      </div>
+    </section>
+
+    <section class="cta-section" data-hue="30" data-sat="70%">
+      <h2>This is why we grade everything</h2>
+      <p class="lede">
+        When a field is this thin, confident advice is the warning sign. Niyora shows you the
+        evidence behind every claim it makes, including the weak evidence.
+      </p>
+      <div class="cta-row">
+        <a href="/quiz/" class="cta">Take the quiz</a>
+        <a href={downloads.appStore} class="cta ghost">Get Niyora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/research/">All research</a>
+    <a href="/blog/">Writing</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
+</Base>
+
+<style>
+  .content { position: relative; z-index: 2; }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 40px;
+    max-width: 1080px;
+    margin: 26px auto;
+    border-radius: 32px;
+    background: rgba(12, 10, 20, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    text-align: center;
+  }
+  @media (max-width: 720px) {
+    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
+  }
+
+  .hero { padding: 96px 40px 80px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
+    margin-bottom: 16px;
+    transition: color 1.4s ease;
+  }
+  .eyebrow a { text-decoration: none; }
+  .eyebrow a:hover { color: rgba(255, 255, 255, 0.95); }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+    max-width: 800px;
+    color: rgba(255, 255, 255, 0.96);
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 14px;
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.94);
+  }
+  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
+  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
+  .note { font-size: 14px; margin-top: 22px; color: rgba(255, 255, 255, 0.45); }
+
+  /* Data ink. Validated on the cosmic surface: adjacent CVD dE 18.2, normal 18.6.
+     The muted step sits under 3:1, so every mark carries a visible value label
+     and the full table below repeats the figures. */
+  .chart, .legend {
+    --series-total: #9085e9;
+    --series-strong: #199e70;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 940px;
+    text-align: left;
+  }
+  .stat {
+    padding: 26px 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+  }
+  .stat-num {
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: rgba(255, 255, 255, 0.96);
+    margin-bottom: 14px;
+  }
+  .stat p { font-size: 15px; line-height: 1.55; max-width: none; }
+
+  .legend {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 26px 0 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+  .key { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .key-total { background: var(--series-total); }
+  .key-strong { background: var(--series-strong); }
+  .key-zero { border: 2px solid rgba(255, 255, 255, 0.5); }
+
+  .chart-scroll {
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+    margin-top: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chart { display: block; min-width: 820px; max-width: 100%; height: auto; }
+
+  .tick line { stroke: rgba(255, 255, 255, 0.09); stroke-width: 1; }
+  .tick text { fill: rgba(255, 255, 255, 0.42); font-size: 11px; font-family: inherit; }
+  .axis-title { fill: rgba(255, 255, 255, 0.42); font-size: 11px; letter-spacing: 1px; font-family: inherit; }
+
+  .row-hit { fill: transparent; }
+  .row:hover .row-hit { fill: rgba(255, 255, 255, 0.04); }
+  .row-label { fill: rgba(255, 255, 255, 0.72); font-size: 12.5px; font-family: inherit; }
+  .row-value { fill: rgba(255, 255, 255, 0.55); font-size: 11.5px; font-family: inherit; }
+  .connector { stroke: rgba(255, 255, 255, 0.2); stroke-width: 2; }
+  .dot { stroke: #0b0912; stroke-width: 2; }
+  .dot-total { fill: var(--series-total); }
+  .dot-strong { fill: var(--series-strong); }
+  .dot-zero { fill: none; stroke: rgba(255, 255, 255, 0.5); stroke-width: 2; }
+
+  .table-scroll { width: 100%; max-width: 860px; overflow-x: auto; margin-top: 20px; }
+  table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+  th, td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  thead th {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
+    font-weight: 400;
+  }
+  tbody th { font-weight: 300; color: rgba(255, 255, 255, 0.86); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .zero { color: hsl(20, 60%, 72%); }
+
+  .science {
+    max-width: 720px;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+    text-align: left;
+  }
+  .science p { font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: none; margin: 0 0 16px; }
+  .science p:last-child { margin-bottom: 0; }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 22px; }
+  .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(18, 16, 32, 0.95);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
+  }
+  .cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 1);
+    color: hsla(var(--orb-hue), 70%, 32%, 1);
+    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
+  }
+  .cta.ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 13px 26px;
+    font-size: 15px;
+  }
+  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
+
+  footer {
+    text-align: center;
+    padding: 60px 24px 80px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    position: relative;
+    z-index: 2;
+  }
+  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
+  footer a:hover { color: rgba(255, 255, 255, 0.8); }
+  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+
+  @media (max-width: 900px) {
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    p.lede { font-size: 17px; }
+    .stat-num { font-size: 42px; }
+  }
+</style>
