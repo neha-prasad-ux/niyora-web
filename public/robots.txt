@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /lab/
-Sitemap: https://niyora.com/sitemap-index.xml
+Sitemap: https://www.niyora.com/sitemap-index.xml

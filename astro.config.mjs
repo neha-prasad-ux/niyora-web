@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://niyora.com',
+  site: 'https://www.niyora.com',
   integrations: [
     // /lab holds unpicked homepage variants and /demo is a sandbox. Near-duplicate
     // homepages in the index would compete with the real one.
