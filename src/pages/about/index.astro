@@ -18,26 +18,35 @@ import Page from '../../layouts/Page.astro';
       </p>
 
       <h2>Who is behind it</h2>
-      <img src="/neha.jpg" alt="Neha Prasad" class="photo" loading="lazy" />
+      <img src="/neha.jpg" alt="Neha Prasad" class="photo" />
       <p>
         I'm Neha Prasad. I'm a doctor and a product designer, and I've spent ten
-        years working in health. I went looking for a way through PMS that didn't
-        ask me to change my body, started where I trust, the research, and built
-        what I wanted to use myself.
+        years working in health.
       </p>
 
       <h2>Why it exists</h2>
-      <p>
-        Most of what's offered for PMS either medicates it or tracks it and stops
-        there. Niyora predicts your week too. The difference is what happens next:
-        it helps you in the actual hard hour, where almost nothing else does.
+      <p class="pull">
+        I went looking for a way through PMS that didn't ask me to change my body.
       </p>
       <p>
-        The quieter, stronger thread in the research is emotion regulation.
-        Naming what you feel, settling your body, and seeing the thought from a
-        step back. No hormones to take, no device to wear, no data to hand over.
-        Everything in the app is one small rep of that, done in about a minute.
+        I'm a doctor, so I started where I trust: the research. And the pattern
+        was hard to miss. Most of what's offered for PMS either medicates it or
+        tracks it and stops there. Niyora predicts your week too. The difference
+        is what happens next: it helps you in the actual hard hour, where almost
+        nothing else does.
       </p>
+      <p>
+        Then I found the quieter, stronger thread. The most reliable, least
+        invasive way through a hard PMS week is emotion regulation. Learning to
+        name what you feel, settle your body, and see the thought from a step
+        back. No hormones to take, no device to wear, no data to hand over.
+      </p>
+      <p>
+        That finding is the whole foundation of Niyora. Everything in the app is
+        one small rep of emotion regulation, done in about a minute. I built it
+        for myself first. Now it's yours.
+      </p>
+      <p class="signature">Neha Prasad. Doctor, builder, founder of Niyora.</p>
       <p>
         <a class="inline" href="/research/">The research Niyora is built on</a> is
         published, with the sources graded.
@@ -85,6 +94,20 @@ import Page from '../../layouts/Page.astro';
     font-weight: 300;
     line-height: 1.7;
     margin-bottom: 16px;
+  }
+  .about .pull {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: -0.2px;
+    margin-bottom: 22px;
+  }
+  .about .signature {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 22px 0 28px;
   }
   .about ul { padding-left: 20px; }
   .about li { margin-bottom: 10px; }

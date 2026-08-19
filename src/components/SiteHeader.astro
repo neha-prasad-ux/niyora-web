@@ -7,6 +7,7 @@
     <a href="/quiz/">Quiz</a>
     <a href="/research/">Research</a>
     <a href="/blog/">Writing</a>
+    <a href="/about/">About</a>
     <a href="/#interest" class="site-nav-cta">I'm interested</a>
   </nav>
 </header>
@@ -58,9 +59,12 @@
     background: rgba(255, 255, 255, 0.09);
   }
   @media (max-width: 520px) {
-    /* Four items no longer fit beside the brand, so the nav takes its own row. */
-    .site-header { flex-wrap: wrap; justify-content: center; gap: 10px 0; }
-    .site-nav { gap: 16px; }
+    /* Five items no longer fit beside the brand, so the nav takes its own row,
+       and everything on it tightens to clear 375px without wrapping. */
+    .site-header { flex-wrap: wrap; justify-content: center; gap: 10px 0; padding-inline: 12px; }
+    .site-nav { gap: 12px; }
+    .site-nav a { font-size: 13px; white-space: nowrap; }
+    .site-nav-cta { padding: 7px 12px; }
     .site-brand { font-size: 14px; letter-spacing: 2px; }
   }
 </style>
