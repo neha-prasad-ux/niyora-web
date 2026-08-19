@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readdirSync, existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { ALL_NAV_HREFS, GROUPS } from './_nav';
+import { ALL_NAV_HREFS, GROUPS, META } from './_nav';
 
 const dist = resolve(dirname(fileURLToPath(import.meta.url)), '../../dist');
 
@@ -76,6 +76,26 @@ describe('site navigation', () => {
     for (const g of GROUPS) {
       expect(html, `footer missing ${g.label}`).toContain(`class="foot-title" href="${g.href}"`);
     }
+  });
+
+  it('offers the same links in the mobile drawer as in the footer', () => {
+    const pages = builtPages(dist).filter((p) => !p.startsWith('/lab/'));
+    if (pages.length === 0) return;
+    const file = resolve(dist, `${pages.find((p) => p !== '/')!.slice(1)}index.html`);
+    const html = readFileSync(file, 'utf-8');
+    const drawer = html.slice(html.indexOf('id="nav-drawer"'), html.indexOf('</header>'));
+    const footer = html.slice(html.indexOf('<footer class="site-footer"'));
+    const hrefs = (s: string) => new Set([...s.matchAll(/href="([^"]+)"/g)].map((m) => m[1]));
+    const inFooter = hrefs(footer);
+    const inDrawer = hrefs(drawer);
+    // The header brand covers home on mobile, so / is not required in the drawer.
+    const missing = [...inFooter].filter((h) => h !== '/' && !inDrawer.has(h));
+    expect(missing, `drawer is missing: ${missing.join(', ')}`).toEqual([]);
+  });
+
+  it('does not list the same link in a footer column and the base row', () => {
+    const inGroups = new Set(GROUPS.flatMap((g) => g.links.map((l) => l.href)));
+    for (const m of META) expect(inGroups, m.label).not.toContain(m.href);
   });
 
   it('stays small enough to fit a header row', () => {

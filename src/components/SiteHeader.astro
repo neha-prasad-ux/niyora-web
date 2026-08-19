@@ -1,5 +1,5 @@
 ---
-import { GROUPS } from './_nav';
+import { GROUPS, META } from './_nav';
 ---
 
 <header class="site-header">
@@ -30,7 +30,8 @@ import { GROUPS } from './_nav';
         {g.links.filter((l) => l.href !== g.href).map((l) => <a href={l.href}>{l.label}</a>)}
       </div>
     ))}
-    <div class="drawer-group">
+    <div class="drawer-group drawer-meta">
+      {META.map((m) => <a href={m.href}>{m.label}</a>)}
       <a href="/#interest" class="drawer-cta">I'm interested</a>
     </div>
   </div>

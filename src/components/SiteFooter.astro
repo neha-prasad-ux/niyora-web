@@ -1,14 +1,8 @@
 ---
-import { GROUPS } from './_nav';
+import { GROUPS, META } from './_nav';
 
 const year = new Date().getFullYear();
 
-/** Legal and contact sit apart from the content columns. */
-const meta = [
-  { href: '/privacy/', label: 'Privacy' },
-  { href: '/terms/', label: 'Terms' },
-  { href: '/changelog/', label: "What's new" },
-];
 ---
 
 <footer class="site-footer">
@@ -36,8 +30,7 @@ const meta = [
 
   <div class="foot-base">
     <div class="foot-meta">
-      {meta.map((m) => <a href={m.href}>{m.label}</a>)}
-      <a href="mailto:neha@niyora.com">Contact</a>
+      {META.map((m) => <a href={m.href}>{m.label}</a>)}
     </div>
     <p class="foot-copy">© {year} Niyora. Built quietly in Norway.</p>
   </div>
