@@ -81,6 +81,13 @@ export const GROUPS: NavGroup[] = [
 
 export const SINGLES: NavLink[] = [];
 
+/**
+ * Not a content section. Rendered on the footer base row and at the foot of the
+ * mobile drawer. Privacy, Terms and What's new live in the About and Learn
+ * groups, so they are deliberately not repeated here.
+ */
+export const META: NavLink[] = [{ href: 'mailto:neha@niyora.com', label: 'Contact' }];
+
 export const ALL_NAV_HREFS: string[] = [
   ...GROUPS.flatMap((g) => [g.href, ...g.links.map((l) => l.href)]),
   ...SINGLES.map((l) => l.href),
