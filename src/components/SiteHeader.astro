@@ -127,6 +127,9 @@ import { GROUPS } from './_nav';
   }
   .nav-trigger[aria-expanded='true'] .chev { transform: rotate(-135deg) translateY(-1px); }
 
+  /* The hidden attribute is UA display:none, which the display:flex below
+     would beat, leaving every menu permanently open. Same guard the drawer has. */
+  .nav-menu[hidden] { display: none; }
   .nav-menu {
     position: absolute; top: calc(100% + 12px); left: -16px; min-width: 244px;
     display: flex; flex-direction: column; padding: 8px;
