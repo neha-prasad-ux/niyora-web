@@ -65,53 +65,46 @@ const jsonLd = [
   canonicalUrl={canonical}
   jsonLd={jsonLd}
 >
-  <article class="wrap">
-    <a class="back" href="/blog/">← All writing</a>
-    <div class="meta">
-      <span class="cat">{post.data.category}</span>
-      <span class="date">{fmt(post.data.date)}</span>
-    </div>
-    <h1>{post.data.title}</h1>
-    <p class="lede">{post.data.description}</p>
+  <section class="s left">
+    <article class="wrap">
+      <div class="eyebrow"><a href="/blog/">Writing</a></div>
+      <div class="meta">
+        <span class="cat">{post.data.category}</span>
+        <span class="date">{fmt(post.data.date)}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      <p class="lead">{post.data.description}</p>
 
-    <div class="prose">
-      <Content />
-    </div>
+      <div class="prose">
+        <Content />
+      </div>
 
-    {related.length > 0 && (
-      <aside class="related">
-        <h2>Keep reading</h2>
-        <ul>
-          {related.map((p) => (
-            <li><a href={`/blog/${p.id}/`}>{p.data.title}</a></li>
-          ))}
-        </ul>
-      </aside>
-    )}
+      {related.length > 0 && (
+        <aside class="related">
+          <h2>Keep reading</h2>
+          <ul>
+            {related.map((p) => (
+              <li><a href={`/blog/${p.id}/`}>{p.data.title}</a></li>
+            ))}
+          </ul>
+        </aside>
+      )}
 
-    <p class="foot">
-      Not sure how much PMS is affecting you? <a href="/quiz/">Take the 2-minute check</a>, or <a href="/guide/">read the short guide</a>. Niyora is a quiet minute of breathing whenever the day tightens. <a href="/">See the app</a>.
-    </p>
-  </article>
+      <p class="foot">
+        Not sure how much PMS is affecting you? <a href="/quiz/">Take the 2-minute check</a>, or <a href="/guide/">read the short guide</a>. Niyora is a quiet minute of breathing whenever the day tightens. <a href="/">See the app</a>.
+      </p>
+    </article>
+  </section>
 </Page>
 
 <style>
-  .wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 60px 24px 40px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.7);
-    text-align: left;
-  }
-  a.back {
-    color: rgba(255, 255, 255, 0.35);
-    text-decoration: none;
-    font-size: 13px;
-    display: inline-block;
-    margin-bottom: 32px;
-  }
-  a.back:hover { color: rgba(255, 255, 255, 0.6); }
+  /* Page-specific only: the article measure and the markdown prose. The column
+     follows the same shape as /about/ (.s.left plus a centered measure), so the
+     type scale, hairlines and accent all come from Page. */
+  .wrap { max-width: 680px; margin: 0 auto; line-height: 1.7; color: rgba(255, 255, 255, 0.7); }
+
+  .eyebrow a { text-decoration: none; }
+  .eyebrow a:hover { color: rgba(255, 255, 255, 0.95); }
 
   .meta {
     display: flex;
@@ -123,7 +116,7 @@ const jsonLd = [
     font-size: 11px;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    color: hsla(335, 60%, 78%, 0.9);
+    color: rgba(var(--accent-rgb), 0.9);
   }
   .date {
     font-size: 12px;
@@ -131,23 +124,7 @@ const jsonLd = [
     letter-spacing: 0.4px;
   }
 
-  h1 {
-    font-size: 34px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.94);
-    max-width: none;
-    margin: 0 0 16px;
-    letter-spacing: -0.4px;
-    line-height: 1.2;
-  }
-  .lede {
-    font-size: 17px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.66);
-    margin-bottom: 40px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
+  .wrap .lead { padding-bottom: 32px; border-bottom: 1px solid var(--hairline); }
 
   .prose { font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.78); }
   .prose :global(p) { margin: 0 0 22px; }
@@ -155,6 +132,7 @@ const jsonLd = [
     font-size: 21px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.92);
+    max-width: none;
     margin: 44px 0 16px;
     letter-spacing: -0.2px;
   }
@@ -168,29 +146,30 @@ const jsonLd = [
   .prose :global(a) {
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    border-bottom: 1px solid hsla(335, 55%, 72%, 0.5);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.5);
   }
-  .prose :global(a:hover) { border-bottom-color: hsla(335, 60%, 78%, 0.95); }
+  .prose :global(a:hover) { border-bottom-color: rgba(var(--accent-rgb), 0.95); }
   .prose :global(ul) { margin: 0 0 22px; padding-left: 20px; }
   .prose :global(li) { margin: 0 0 10px; }
   .prose :global(blockquote) {
     margin: 0 0 22px;
     padding-left: 18px;
-    border-left: 2px solid hsla(335, 50%, 70%, 0.4);
+    border-left: 2px solid rgba(var(--accent-rgb), 0.4);
     color: rgba(255, 255, 255, 0.66);
   }
 
   .related {
     margin-top: 56px;
     padding-top: 28px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--hairline);
   }
   .related h2 {
     font-size: 13px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 16px;
+    max-width: none;
+    margin: 0 0 16px;
     font-weight: 500;
   }
   .related ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
@@ -199,14 +178,14 @@ const jsonLd = [
     color: rgba(255, 255, 255, 0.82);
     text-decoration: none;
     font-size: 16px;
-    border-bottom: 1px solid hsla(335, 55%, 72%, 0.35);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.35);
   }
-  .related a:hover { color: #fff; border-bottom-color: hsla(335, 60%, 78%, 0.9); }
+  .related a:hover { color: #fff; border-bottom-color: rgba(var(--accent-rgb), 0.9); }
 
   .foot {
     margin-top: 56px;
     padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--hairline);
     font-size: 14px;
     color: rgba(255, 255, 255, 0.45);
     text-align: center;
@@ -217,4 +196,9 @@ const jsonLd = [
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
   .foot a:hover { color: #fff; border-bottom-color: rgba(255, 255, 255, 0.6); }
+
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+  }
 </style>
