@@ -30,13 +30,12 @@
     /* Intro reveal: on load the moon shows, then settles to a faint resting glow
        as the glass sheet comes in over it. Ends subtle so it is never a focal
        point on content pages. `forwards` holds the final subtle opacity. */
-    animation: moonIntro 2.8s cubic-bezier(0.33, 0, 0.2, 1) forwards;
+    animation: moonIntro 4s ease-in-out both;
   }
   @keyframes moonIntro {
     0%   { opacity: 0; }
-    16%  { opacity: 1; }
-    42%  { opacity: 1; }
-    100% { opacity: 0.24; }
+    35%  { opacity: 0.58; }
+    100% { opacity: 0.22; }
   }
   /* Orange to pink to purple halo, larger than the moon, warm core to cool rim.
      Palette lives as --moon-glow in Page.astro (one place to retint the halo).
