@@ -4,7 +4,7 @@ import Page from '../../layouts/Page.astro';
 
 <Page
   title="About Niyora"
-  description="Who is behind Niyora, why it exists, and what it will and won't do with your data."
+  description="Neha Prasad on why she built Niyora: what the research on premenstrual mood actually says, what she cut, and what the app will never do with your data."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/about/"
 >
@@ -20,36 +20,93 @@ import Page from '../../layouts/Page.astro';
       <h2>Who is behind it</h2>
       <img src="/neha.jpg" alt="Neha Prasad" class="photo" />
       <p>
-        I'm Neha Prasad. I'm a doctor and a product designer, and I've spent ten
-        years working in health.
+        I'm Neha Prasad. I'm a doctor who wanted to work on women's health. I
+        learned design, spent years in health tech as a designer, and now I get
+        to build the thing I actually wanted to build.
       </p>
 
       <h2>Why it exists</h2>
       <p class="pull">
-        I went looking for a way through PMS that didn't ask me to change my body.
+        I used to cry a lot before my period.
       </p>
       <p>
-        I'm a doctor, so I started where I trust: the research. And the pattern
-        was hard to miss. Most of what's offered for PMS either medicates it or
-        tracks it and stops there. Niyora predicts your week too. The difference
-        is what happens next: it helps you in the actual hard hour, where almost
-        nothing else does.
+        It got predictable. If I felt low, or didn't want to leave the house, or
+        got into a fight with my husband, or felt small at work, I could pretty
+        much guess my period was coming. I was reading my own body right. I just
+        had nothing to do about it.
       </p>
       <p>
-        Then I found the quieter, stronger thread. The most reliable, least
-        invasive way through a hard PMS week is emotion regulation. Learning to
-        name what you feel, settle your body, and see the thought from a step
-        back. No hormones to take, no device to wear, no data to hand over.
+        I saw doctors in three countries. All of them said it's normal and
+        there's not much you can do. People told me to try period apps, so I
+        did. Every one of them asked me to log how I felt. Anxious. Irritable.
+        Moody. I already knew that. I was the one going through it. What I
+        wanted was the next sentence, and nobody had one.
+      </p>
+      <p>So I went and figured it out myself.</p>
+
+      <h2>What I found</h2>
+      <p>
+        It isn't the hormone drop before your period. Women who feel awful have
+        the same hormone levels as women who feel fine. What's different is how
+        strongly your brain reacts to that drop. That's personal, so there's no
+        one fix. Part of it is lifestyle. The rest is learning to handle
+        emotions one at a time.
       </p>
       <p>
-        That finding is the whole foundation of Niyora. Everything in the app is
-        one small rep of emotion regulation, done in about a minute. I built it
-        for myself first. Now it's yours.
+        Then I looked at what actually happens in the moment. When you feel low,
+        your brain is busy protecting you. It won't rephrase things for you. It
+        won't hand you a kinder read. So you react instead of respond. Then you
+        deal with what you said, and you regret it.
+      </p>
+      <p>
+        That was me, every month, and no app was touching it. So Niyora predicts
+        your week like the others, and then does the part nobody else does: it
+        helps you reflect, regulate, and respond in the actual hard hour. Every
+        piece of it is one small rep of emotion regulation, done in about a
+        minute.
       </p>
       <p class="signature">Neha Prasad. Doctor, builder, founder of Niyora.</p>
+
+      <h2>How I checked it</h2>
       <p>
-        <a class="inline" href="/research/">The research Niyora is built on</a> is
-        published, with the sources graded.
+        I pulled around three thousand papers from Europe PMC and used AI to
+        read through them and rewrite what they said in plain English. The 26
+        studies Niyora is built on are
+        <a class="inline" href="/research/">published and graded</a> strong,
+        moderate, or weak, including the weak ones.
+      </p>
+      <p>
+        Then I checked the whole field across
+        <a class="inline" href="/research/gaps/">31 questions</a> and published
+        that too. There are 168 papers on the genetics of premenstrual symptoms
+        and zero real trials. There is thirteen times more research on cycles in
+        animals than on premenstrual self-harm. Nobody had put those numbers in
+        one place before.
+      </p>
+      <p>
+        Before a fact goes in the app, I have AI agents argue against it. If it
+        can't hold up, it doesn't ship. Four claims lost their argument and got
+        cut. One of them would have made great copy. Cutting it was right and I
+        didn't enjoy it.
+      </p>
+
+      <h2>What I gave up</h2>
+      <p>
+        I wanted the AI to run entirely on your phone, so nothing ever left the
+        device. I got it working. It reflected well enough and it gave bad
+        suggestions, and the suggestions are the half that has to work. A
+        reflection you can't act on is just a nice sentence. So I dropped it and
+        kept the privacy promise another way.
+      </p>
+      <p>
+        I also wanted real evidence instead of self-report, by reading heart
+        rate variability to find an actual pattern across the cycle. It doesn't
+        work. Phones only pick up clean readings when you're still, which is
+        almost never during the moments that matter.
+      </p>
+      <p>
+        Both would have been beautiful. Neither would have been good for you.
+        Letting them go was most of the work.
       </p>
 
       <h2>What it will not do</h2>
@@ -66,12 +123,23 @@ import Page from '../../layouts/Page.astro';
         </li>
       </ul>
       <p>
-        The long version lives in <a class="inline" href="/privacy/">the privacy page</a>.
+        Because nobody here can read your writing, nobody here can catch a
+        mistake either. So the crisis check is built to be jumpy on purpose. A
+        plain keyword check runs first, and the AI can never turn it off, only
+        on. If it's unsure, it escalates. The long version lives in
+        <a class="inline" href="/privacy/">the privacy page</a>.
       </p>
 
       <h2>Where it is now</h2>
       <p>
-        Niyora is in testing, not on the App Store yet.
+        Niyora is in testing, not on the App Store yet, and there's no revenue.
+        That's the order I picked on purpose: the safety and privacy work a
+        mental health app has to finish comes before it takes anyone's money. I
+        know what it costs to run and I know who it's for. I don't yet know the
+        right way to charge for it, and I'd rather say that than invent a
+        number.
+      </p>
+      <p>
         <a class="inline" href="/changelog/">What's new</a> tracks what ships.
         <a class="inline" href="/talk/">Say hello</a> if you want to shape it, or
         tell us you're interested and we'll keep building.
