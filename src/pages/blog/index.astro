@@ -15,10 +15,10 @@ const fmt = (d: Date) =>
   description="Notes on stress, women's health, and building Niyora in the open. Evidence-led, quietly written."
   canonicalUrl="https://niyora.com/blog/"
 >
-  <section class="s">
+  <section class="s left">
     <div class="wrap">
       <h1>Writing</h1>
-      <p class="lede">Notes on stress, women's health, and building in the open. Evidence-led, no hype.</p>
+      <p class="lead">Notes on stress, women's health, and building in the open. Evidence-led, no hype.</p>
 
       <ul class="posts">
         {posts.map((post) => (
@@ -41,27 +41,10 @@ const fmt = (d: Date) =>
 </Page>
 
 <style>
-  .wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: left;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  h1 {
-    font-size: 32px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.92);
-    max-width: none;
-    margin: 0 0 8px;
-    letter-spacing: -0.3px;
-  }
-  .lede {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 48px;
-  }
+  /* Page-specific only: the post list. The reading column follows the same
+     shape as /about/ (.s.left plus a centered measure), so the type scale,
+     hairlines and accent all come from Page. */
+  .wrap { max-width: 680px; margin: 0 auto; color: rgba(255, 255, 255, 0.7); }
 
   .posts { list-style: none; padding: 0; margin: 0; }
   .post {
@@ -80,7 +63,7 @@ const fmt = (d: Date) =>
     font-size: 11px;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    color: hsla(335, 60%, 78%, 0.9);
+    color: rgba(var(--accent-rgb), 0.9);
   }
   .date {
     font-size: 12px;
@@ -103,12 +86,10 @@ const fmt = (d: Date) =>
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
   }
-  .empty {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.4);
-  }
+  .empty { font-size: 14px; color: rgba(255, 255, 255, 0.4); }
 
-  @media (max-width: 760px) {
-    h1 { font-size: 28px; }
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
   }
 </style>
