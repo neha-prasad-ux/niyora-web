@@ -1,6 +1,5 @@
 ---
-import Base from '../../layouts/Base.astro';
-import OrbStage from '../../components/OrbStage.astro';
+import Page from '../../layouts/Page.astro';
 import { countries, grouped, stats } from './_trials';
 
 const today = new Date();
@@ -25,170 +24,116 @@ function ages(min: string | null, max: string | null): string {
 }
 ---
 
-<Base
+<Page
   title="Menstrual health trials you could join · Niyora"
   description={`${s.current} clinical trials on periods, PMS and PMDD that are genuinely open, checked against the registry on ${updated}. Not affiliated with any of them.`}
   canonicalUrl="https://niyora.com/research/trials/"
   jsonLd={jsonLd}
 >
-  <OrbStage />
+  <section class="s hero">
+    <div class="eyebrow"><a href="/research/">Research</a></div>
+    <h1>Trials you could actually join</h1>
+    <p class="lead">
+      Research on periods only happens if people take part. These are studies on menstrual and
+      premenstrual health that are open right now, pulled from the public ClinicalTrials.gov
+      registry and filtered down to the ones a real person could still sign up for.
+    </p>
+    <p class="meta">Checked against the registry on {updated}.</p>
+  </section>
 
-  <main class="content">
-    <section class="hero" data-hue="248" data-sat="55%">
-      <div class="eyebrow"><a href="/research/">Research</a></div>
-      <h1>Trials you could actually join</h1>
-      <p class="lede">
-        Research on periods only happens if people take part. These are studies on menstrual and
-        premenstrual health that are open right now, pulled from the public ClinicalTrials.gov
-        registry and filtered down to the ones a real person could still sign up for.
+  <section class="s">
+    <h2>Why this list is shorter than the registry says</h2>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-num">{s.total}</div>
+        <p>studies the registry returns for these conditions, marked open.</p>
+      </div>
+      <div class="stat">
+        <div class="stat-num">{s.stale}</div>
+        <p>of those were due to finish on a date that has already passed.</p>
+      </div>
+      <div class="stat">
+        <div class="stat-num">{s.current}</div>
+        <p>are left once I drop those, plus the {s.noLocation} that name no location at all.</p>
+      </div>
+    </div>
+    <p class="note">
+      "Recruiting" on ClinicalTrials.gov means nobody has updated the record, not that the study
+      is still taking people. So I only show studies whose end date has not passed, that someone
+      touched in the last year, and that say where they are. Every card shows its own last-updated
+      date so you can judge for yourself.
+    </p>
+  </section>
+
+  {groups.map(({ family, trials }) => (
+    <section class="s cluster" id={family.key}>
+      <h2>{family.title}</h2>
+      <p class="lead">{family.blurb}</p>
+      <p class="count">{trials.length} open {trials.length === 1 ? 'study' : 'studies'}</p>
+
+      <ol class="trials">
+        {trials.map((t) => (
+          <li class="trial">
+            <div class="trial-head">
+              <span class={`badge ${t.overallStatus === 'RECRUITING' ? 'open' : 'soon'}`}>
+                {t.overallStatus === 'RECRUITING' ? 'Recruiting' : 'Not yet recruiting'}
+              </span>
+              <span class="where">{countries(t).join(', ')}</span>
+            </div>
+            <h3>{t.briefTitle}</h3>
+            <p class="terms">
+              {ages(t.minimumAge, t.maximumAge)}
+              {t.sex === 'FEMALE' ? ', women only' : ''}
+              {t.enrollment ? `, looking for about ${t.enrollment} people` : ''}
+            </p>
+            {t.sponsor && <p class="sponsor">Run by {t.sponsor}</p>}
+            <p class="trial-foot">
+              <a href={t.url} rel="noopener nofollow" target="_blank">
+                Read the registry entry
+              </a>
+              <span class="stamp">Record last updated {t.lastUpdateDate}</span>
+            </p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+
+  <section class="s">
+    <h2>What this is, and what it is not</h2>
+    <div class="science">
+      <p>
+        I am not affiliated with any of these studies, I get nothing if you join one, and none of
+        this is medical advice. It is a directory. Whether a trial is right for you is a
+        conversation with your own doctor, and every study has its own screening process.
       </p>
-      <p class="meta">Checked against the registry on {updated}.</p>
-    </section>
-
-    <section class="stat-section" data-hue="280" data-sat="55%">
-      <h2>Why this list is shorter than the registry says</h2>
-      <div class="stat-grid">
-        <div class="stat">
-          <div class="stat-num">{s.total}</div>
-          <p>studies the registry returns for these conditions, marked open.</p>
-        </div>
-        <div class="stat">
-          <div class="stat-num">{s.stale}</div>
-          <p>of those were due to finish on a date that has already passed.</p>
-        </div>
-        <div class="stat">
-          <div class="stat-num">{s.current}</div>
-          <p>are left once I drop those, plus the {s.noLocation} that name no location at all.</p>
-        </div>
-      </div>
-      <p class="note">
-        "Recruiting" on ClinicalTrials.gov means nobody has updated the record, not that the study
-        is still taking people. So I only show studies whose end date has not passed, that someone
-        touched in the last year, and that say where they are. Every card shows its own last-updated
-        date so you can judge for yourself.
+      <p>
+        The data comes from the ClinicalTrials.gov API, searched on premenstrual syndrome, PMDD,
+        menstrual cycle mood, dysmenorrhea and menstrual health, then deduplicated by registration
+        number. Registry records are maintained by the study teams, not by me, so details can be
+        out of date even when the last-updated stamp is recent. Always check the registry entry
+        before contacting anyone.
       </p>
-    </section>
-
-    {groups.map(({ family, trials }) => (
-      <section class="family-section" id={family.key} data-hue="300" data-sat="52%">
-        <h2>{family.title}</h2>
-        <p class="lede">{family.blurb}</p>
-        <p class="count">{trials.length} open {trials.length === 1 ? 'study' : 'studies'}</p>
-
-        <ol class="trials">
-          {trials.map((t) => (
-            <li class="trial">
-              <div class="trial-head">
-                <span class={`badge ${t.overallStatus === 'RECRUITING' ? 'open' : 'soon'}`}>
-                  {t.overallStatus === 'RECRUITING' ? 'Recruiting' : 'Not yet recruiting'}
-                </span>
-                <span class="where">{countries(t).join(', ')}</span>
-              </div>
-              <h3>{t.briefTitle}</h3>
-              <p class="terms">
-                {ages(t.minimumAge, t.maximumAge)}
-                {t.sex === 'FEMALE' ? ', women only' : ''}
-                {t.enrollment ? `, looking for about ${t.enrollment} people` : ''}
-              </p>
-              {t.sponsor && <p class="sponsor">Run by {t.sponsor}</p>}
-              <p class="trial-foot">
-                <a href={t.url} rel="noopener nofollow" target="_blank">
-                  Read the registry entry
-                </a>
-                <span class="stamp">Record last updated {t.lastUpdateDate}</span>
-              </p>
-            </li>
-          ))}
-        </ol>
-      </section>
-    ))}
-
-    <section class="method-section" data-hue="220" data-sat="45%">
-      <h2>What this is, and what it is not</h2>
-      <div class="science">
-        <p>
-          I am not affiliated with any of these studies, I get nothing if you join one, and none of
-          this is medical advice. It is a directory. Whether a trial is right for you is a
-          conversation with your own doctor, and every study has its own screening process.
-        </p>
-        <p>
-          The data comes from the ClinicalTrials.gov API, searched on premenstrual syndrome, PMDD,
-          menstrual cycle mood, dysmenorrhea and menstrual health, then deduplicated by registration
-          number. Registry records are maintained by the study teams, not by me, so details can be
-          out of date even when the last-updated stamp is recent. Always check the registry entry
-          before contacting anyone.
-        </p>
-        <p>
-          Most of what is here is period pain rather than premenstrual mood. That is not a filtering
-          choice, it is what the field is currently studying.
-        </p>
-      </div>
-      <div class="cta-row">
-        <a href="/research/gaps/" class="cta ghost">See what nobody is studying</a>
-        <a href="/research/" class="cta ghost">The research behind Niyora</a>
-      </div>
-    </section>
-  </main>
-</Base>
+      <p>
+        Most of what is here is period pain rather than premenstrual mood. That is not a filtering
+        choice, it is what the field is currently studying.
+      </p>
+    </div>
+    <div class="cta-row">
+      <a href="/research/gaps/" class="btn ghost">See what nobody is studying</a>
+      <a href="/research/" class="btn ghost">The research behind Niyora</a>
+    </div>
+  </section>
+</Page>
 
 <style>
-  .content { position: relative; z-index: 2; }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 72px 40px;
-    max-width: 1080px;
-    margin: 26px auto;
-    border-radius: 32px;
-    background: rgba(12, 10, 20, 0.24);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(16px) saturate(1.15);
-    -webkit-backdrop-filter: blur(16px) saturate(1.15);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-    text-align: center;
-  }
-  @media (max-width: 720px) {
-    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
-  }
-
-  .hero { padding: 96px 40px 80px; }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
-    margin-bottom: 16px;
-    transition: color 1.4s ease;
-  }
+  /* Page-specific only: the stat row, the trial list and the method block.
+     Shared chrome (sheet, sections, dividers, type scale, buttons, footer)
+     comes from Page. */
   .eyebrow a { text-decoration: none; }
   .eyebrow a:hover { color: rgba(255, 255, 255, 0.95); }
-
-  h1 {
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 1.16;
-    letter-spacing: -0.5px;
-    margin-bottom: 22px;
-    max-width: 780px;
-    color: rgba(255, 255, 255, 0.96);
-  }
-  h2 {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 14px;
-    max-width: 760px;
-    color: rgba(255, 255, 255, 0.94);
-  }
-  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
-  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
-  p.meta { font-size: 14px; margin-top: 18px; color: rgba(255, 255, 255, 0.45); }
-  .note { font-size: 15px; margin-top: 24px; color: rgba(255, 255, 255, 0.55); max-width: 720px; }
+  .meta { font-size: 14px; margin-top: 18px; color: rgba(255, 255, 255, 0.45); }
+  .note { font-size: 14px; margin-top: 22px; color: rgba(255, 255, 255, 0.5); }
   .count {
     font-size: 12px;
     letter-spacing: 2px;
@@ -203,15 +148,14 @@ function ages(min: string | null, max: string | null): string {
     gap: 14px;
     width: 100%;
     max-width: 940px;
+    margin: 0 auto;
     text-align: left;
-    margin-top: 22px;
   }
   .stat {
-    padding: 26px 24px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
+    padding: 24px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
   }
   .stat-num {
     font-size: 52px;
@@ -221,34 +165,27 @@ function ages(min: string | null, max: string | null): string {
     color: rgba(255, 255, 255, 0.96);
     margin-bottom: 14px;
   }
-  .stat p { font-size: 15px; line-height: 1.55; max-width: none; }
+  .stat p { font-size: 15px; line-height: 1.55; }
 
-  .family-section { scroll-margin-top: 80px; }
+  .s.cluster { scroll-margin-top: 80px; }
 
   .trials {
     list-style: none;
     width: 100%;
     max-width: 880px;
+    margin: 26px auto 0;
     text-align: left;
-    margin: 26px 0 0;
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
   .trial {
-    padding: 24px 24px 20px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
+    padding: 22px 22px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
   }
-  .trial-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
+  .trial-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
   .badge {
     display: inline-block;
     padding: 4px 12px;
@@ -262,20 +199,8 @@ function ages(min: string | null, max: string | null): string {
   }
   .badge.open { color: hsl(152, 52%, 66%); background: hsla(152, 52%, 40%, 0.14); }
   .badge.soon { color: hsl(44, 70%, 68%); background: hsla(44, 70%, 45%, 0.13); }
-  .where {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
-  }
-  .trial h3 {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 10px;
-  }
-  .trial p { max-width: none; }
+  .where { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); }
+  .trial h3 { font-size: 18px; font-weight: 400; line-height: 1.4; margin-bottom: 10px; }
   .terms { font-size: 15px; color: rgba(255, 255, 255, 0.7); }
   .sponsor { font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 4px; }
   .trial-foot {
@@ -293,36 +218,23 @@ function ages(min: string | null, max: string | null): string {
 
   .science {
     max-width: 720px;
+    margin: 0 auto;
     padding: 32px 30px;
     border-radius: 20px;
-    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
     text-align: left;
   }
-  .science p { font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: none; margin: 0 0 16px; }
+  .science p { font-size: 16px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin: 0 0 16px; }
   .science p:last-child { margin-bottom: 0; }
 
-  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 22px; }
-  .cta {
-    display: inline-block;
-    padding: 13px 26px;
-    border-radius: 32px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  }
-  .cta:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
 
   @media (max-width: 900px) { .stat-grid { grid-template-columns: 1fr; } }
   @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
     h1 { font-size: 34px; }
     h2 { font-size: 26px; }
-    p.lede { font-size: 17px; }
     .stat-num { font-size: 42px; }
   }
 </style>

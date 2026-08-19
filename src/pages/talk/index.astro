@@ -1,119 +1,58 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Page from '../../layouts/Page.astro';
 ---
 
-<Base
+<Page
   title="Hello · Niyora"
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/talk/"
 >
-  <div class="container">
-    <a class="back" href="/">← Back to Niyora</a>
-
+  <section class="s hero">
+    <div class="eyebrow">Talk to me</div>
     <h1>Hello!</h1>
+    <p class="lead">I’m Neha, the founder of Niyora.</p>
+  </section>
 
-    <p class="lede">
-      I’m Neha, the founder of Niyora.
-    </p>
-
-    <p>
-      If you’ve tried Niyora and something felt helpful, unclear, or worth
-      improving, I’d love to hear from you. Your feedback helps shape Niyora
-      into something calmer, simpler, and more useful.
-    </p>
-
-    <p>
-      For ideas, thoughts, or anything else, my inbox is open. You can also
-      say hi on LinkedIn, I’d be happy to chat.
-    </p>
-
-    <p class="email">
-      <a href="mailto:neha@niyora.com?subject=Niyora">neha@niyora.com</a>
-    </p>
-
-    <div class="links">
-      <a class="link" href="https://www.linkedin.com/in/dr-neha-prasad/" target="_blank" rel="noopener noreferrer">Find me on LinkedIn</a>
+  <section class="s">
+    <div class="prose">
+      <p>
+        If you’ve tried Niyora and something felt helpful, unclear, or worth
+        improving, I’d love to hear from you. Your feedback helps shape Niyora
+        into something calmer, simpler, and more useful.
+      </p>
+      <p>
+        For ideas, thoughts, or anything else, my inbox is open. You can also
+        say hi on LinkedIn, I’d be happy to chat.
+      </p>
     </div>
-  </div>
-
-
-</Base>
+    <p class="email"><a href="mailto:neha@niyora.com?subject=Niyora">neha@niyora.com</a></p>
+    <div class="cta-row">
+      <a class="btn ghost" href="https://www.linkedin.com/in/dr-neha-prasad/" target="_blank" rel="noopener noreferrer">Find me on LinkedIn</a>
+    </div>
+  </section>
+</Page>
 
 <style>
-  body { background: #0a0814; }
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.78);
-  }
-  a.back {
-    color: rgba(255, 255, 255, 0.35);
-    text-decoration: none;
-    font-size: 13px;
-    display: inline-block;
-    margin-bottom: 32px;
-  }
-  a.back:hover { color: rgba(255, 255, 255, 0.6); }
+  /* Page-specific only: the reading column and the mailto line. Shared chrome
+     (sheet, sections, dividers, type scale, buttons, footer) comes from Page. */
+  .prose { max-width: 620px; margin: 0 auto; }
+  .prose p { font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin-bottom: 18px; }
+  .prose p:last-child { margin-bottom: 0; }
 
-  h1 {
-    font-size: 32px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 24px;
-    letter-spacing: 0.3px;
-  }
-
-  p {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-  p.lede {
-    font-size: 17px;
-    color: rgba(255, 255, 255, 0.88);
-  }
-  p.muted { color: rgba(255, 255, 255, 0.5); }
-
-  p.email {
-    margin-top: 24px;
-    font-size: 17px;
-    font-weight: 400;
-    user-select: all;
-  }
-  p.email a {
+  .email { margin-top: 28px; font-size: 19px; font-weight: 400; user-select: all; }
+  .email a {
     color: rgba(255, 255, 255, 0.95);
     text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    padding-bottom: 1px;
-    transition: border-color 0.18s ease, color 0.18s ease;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+    padding-bottom: 2px;
   }
-  p.email a:hover {
-    border-color: rgba(180, 160, 240, 0.7);
-    color: hsla(265, 60%, 85%, 1);
-  }
+  .email a:hover { border-color: rgba(var(--accent-rgb), 0.9); }
 
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  .link {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    color: rgba(255, 255, 255, 0.92);
-    font-size: 13px;
-    text-decoration: none;
-    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-  }
-  .link:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.36);
-    transform: translateY(-1px);
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+    .prose p { font-size: 16px; }
   }
 </style>

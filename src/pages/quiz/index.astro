@@ -32,7 +32,7 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
           Answer 8 quick questions. You will get an honest read, mild, noticeable, or high impact,
           and what actually helps. Free, no account, nothing to install.
         </p>
-        <button type="button" class="cta" data-start>Start the quiz</button>
+        <button type="button" class="btn" data-start>Start the quiz</button>
         <p class="fineprint">This is a quick self-check, not a medical diagnosis. It cannot diagnose PMS or PMDD.</p>
       </div>
 
@@ -93,7 +93,7 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
           <p>One short email: how to steady the week before your period, drawn from the research, no fluff. Plus first word when Niyora opens up.</p>
           <form class="lead-form" data-lead novalidate>
             <input type="email" name="email" placeholder="you@email.com" autocomplete="email" required aria-label="Your email" data-email />
-            <button type="submit" class="cta">Send me the guide</button>
+            <button type="submit" class="btn">Send me the guide</button>
             <p class="form-msg" data-msg role="status" aria-live="polite" hidden></p>
           </form>
           <p class="offer-now"><a href="/guide/">Prefer to read it now? Open the guide →</a></p>
@@ -102,7 +102,7 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
         <!-- Soft app link, never a gate on the result above -->
         <div class="app-link">
           <p>Niyora is a private iPhone app for exactly these days. No account, and your personal details never reach the AI.</p>
-          <a href={downloads.appStore} class="cta ghost" data-app>Get Niyora for iPhone</a>
+          <a href={downloads.appStore} class="btn ghost" data-app>Get Niyora for iPhone</a>
         </div>
 
         <button type="button" class="link-btn center" data-restart>Retake the quiz</button>
@@ -307,35 +307,41 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
     max-width: 540px;
   }
 
-  .cta {
+  /* Same button as the rest of the site (Page's .btn). Restated here because
+     the quiz renders on Base, not Page, so it does not inherit that global. */
+  .btn {
     display: inline-block;
+    cursor: pointer;
     padding: 15px 34px;
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(18, 16, 32, 0.95);
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
     letter-spacing: 0.3px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.32), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.18);
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid transparent;
+    background-image:
+      linear-gradient(var(--btn-fill), var(--btn-fill)),
+      linear-gradient(95deg, #e6a3c4, #9c5c86, #7846b0);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 30px rgba(244, 178, 203, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    color: hsla(var(--orb-hue), 70%, 32%, 1);
-    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.4), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.6);
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 44px rgba(244, 178, 203, 0.42);
   }
-  .cta.ghost {
+  .btn.ghost {
+    background-image: none;
     background: transparent;
-    border-color: rgba(255, 255, 255, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: none;
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, 0.85);
   }
-  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: #fff; }
-  .cta:disabled { opacity: 0.55; cursor: default; transform: none; box-shadow: none; }
+  .btn.ghost:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.45); }
+  .btn:disabled { opacity: 0.55; cursor: default; transform: none; box-shadow: none; }
 
   .link-btn {
     background: none;
@@ -491,6 +497,8 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
 <style is:global>
   :root {
     --sky-bg: #0a0814;
+    --accent-rgb: 244, 178, 203;
+    --btn-fill: rgba(18, 13, 26, 0.92);
     --moon-glow: radial-gradient(circle,
       rgba(255, 168, 108, 0.55) 0%,
       rgba(246, 148, 190, 0.40) 32%,

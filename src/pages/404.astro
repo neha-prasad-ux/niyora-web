@@ -1,59 +1,12 @@
 ---
-import Base from '../layouts/Base.astro';
+import Page from '../layouts/Page.astro';
 ---
 
-<Base title="Page not found · Niyora" description="This page does not exist.">
-  <div class="wrap">
-    <div class="brand">Niyora</div>
+<Page title="Page not found · Niyora" description="This page does not exist.">
+  <section class="s hero">
+    <div class="eyebrow">404</div>
     <h1>Page not found.</h1>
-    <p>That link doesn't go anywhere. Head back to the main site.</p>
-    <a href="/">Go to niyora.com</a>
-  </div>
-</Base>
-
-<style>
-  .wrap {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 24px;
-    text-align: center;
-  }
-  .brand {
-    font-size: 13px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 32px;
-  }
-  h1 {
-    font-size: 36px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 16px;
-  }
-  p {
-    font-size: 17px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 36px;
-  }
-  a {
-    display: inline-block;
-    padding: 14px 32px;
-    border-radius: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  }
-  a:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.5);
-    color: rgba(255, 255, 255, 1);
-  }
-</style>
+    <p class="lead">That link doesn't go anywhere. Head back to the main site.</p>
+    <a href="/" class="btn">Go to niyora.com</a>
+  </section>
+</Page>
