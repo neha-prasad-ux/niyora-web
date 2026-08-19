@@ -1,0 +1,147 @@
+---
+import Base from '../../layouts/Base.astro';
+import OrbStage from '../../components/OrbStage.astro';
+
+const symptoms = [
+  { href: '/pms/anxiety/', name: 'Anxiety', line: 'Worry that arrives out of proportion to anything happening. A text, a silence, a small task starts to feel like a threat.' },
+  { href: '/pms/anger/', name: 'Anger', line: 'Rage that arrives fast and lands on the people closest to you, then leaves you holding the guilt.' },
+  { href: '/pms/crying/', name: 'Crying', line: 'Tears with no clear cause, or far more tears than the cause deserves.' },
+  { href: '/pms/brain-fog/', name: 'Brain fog', line: 'Words go missing, focus slips, and work that is normally easy takes twice as long.' },
+  { href: '/pms/insomnia/', name: 'Insomnia', line: 'Your body is tired and your mind will not stop going over things.' },
+  { href: '/pms/overwhelm/', name: 'Overwhelm', line: 'Everything arrives at once and none of it feels manageable.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'PMS symptoms',
+  description: 'What happens in the days before your period, symptom by symptom, and what helps in the moment.',
+  url: 'https://niyora.com/pms/',
+};
+---
+
+<Base
+  title="PMS symptoms, one at a time · Niyora"
+  description="Anxiety, anger, crying, brain fog, insomnia, overwhelm. What is happening in the days before your period, why it lands the way it does, and what helps in the moment."
+  canonicalUrl="https://niyora.com/pms/"
+  jsonLd={jsonLd}
+>
+  <OrbStage />
+
+  <main class="content">
+    <section class="hero" data-hue="335" data-sat="58%">
+      <div class="eyebrow">Symptoms</div>
+      <h1>Start with what you are feeling</h1>
+      <p class="lede">
+        The days before your period do not hit everyone the same way. Pick the one that matches
+        yours. Each page explains what is happening in your body, why it feels bigger than the
+        situation, and what actually helps when it lands.
+      </p>
+    </section>
+
+    <section class="grid-section" data-hue="320" data-sat="55%">
+      <div class="sym-grid">
+        {symptoms.map((s) => (
+          <a class="sym" href={s.href}>
+            <h2>{s.name}</h2>
+            <p>{s.line}</p>
+            <span class="go">Read this one</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="cta-section" data-hue="30" data-sat="70%">
+      <h2>Not sure which one it is</h2>
+      <p class="lede">
+        The two-minute check asks how your premenstrual week actually lands, and points you at the
+        right place to start.
+      </p>
+      <div class="cta-row">
+        <a href="/quiz/" class="cta">Take the quiz</a>
+        <a href="/research/" class="cta ghost">See the research behind it</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/research/">Research</a>
+    <a href="/blog/">Writing</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
+</Base>
+
+<style>
+  .content { position: relative; z-index: 2; }
+  section {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 72px 40px; max-width: 1080px; margin: 26px auto; border-radius: 32px;
+    background: rgba(12, 10, 20, 0.24); border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(1.15); -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34); text-align: center;
+  }
+  @media (max-width: 720px) { section { margin: 14px; border-radius: 24px; padding: 56px 20px; } }
+  .hero { padding: 96px 40px 80px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: hsla(var(--orb-hue), 50%, 75%, 0.7); margin-bottom: 16px; transition: color 1.4s ease;
+  }
+  h1 {
+    font-size: 48px; font-weight: 400; line-height: 1.16; letter-spacing: -0.5px;
+    margin-bottom: 22px; max-width: 780px; color: rgba(255, 255, 255, 0.96);
+  }
+  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
+  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
+
+  .sym-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    width: 100%; max-width: 980px; text-align: left;
+  }
+  .sym {
+    display: flex; flex-direction: column; padding: 28px 26px 24px; border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.13); background: var(--glass-bg);
+    box-shadow: var(--glass-shadow); text-decoration: none;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .sym:hover { transform: translateY(-3px); border-color: hsla(var(--orb-hue), 60%, 70%, 0.5); }
+  .sym h2 {
+    font-size: 22px; font-weight: 400; color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 10px; letter-spacing: -0.2px;
+  }
+  .sym p { font-size: 15px; line-height: 1.55; max-width: none; flex: 1; }
+  .go {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: hsla(var(--orb-hue), 60%, 80%, 0.85); margin-top: 16px; transition: color 1.4s ease;
+  }
+  h2 { font-size: 32px; font-weight: 400; color: rgba(255, 255, 255, 0.94); margin-bottom: 14px; }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+  .cta {
+    display: inline-block; padding: 16px 36px; border-radius: 32px; background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.4); color: rgba(18, 16, 32, 0.95); font-size: 16px;
+    font-weight: 500; text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35);
+  }
+  .cta:hover { transform: translateY(-2px) scale(1.02); color: hsla(var(--orb-hue), 70%, 32%, 1); }
+  .cta.ghost {
+    background: transparent; border-color: rgba(255, 255, 255, 0.22); box-shadow: none;
+    color: rgba(255, 255, 255, 0.85); padding: 13px 26px; font-size: 15px;
+  }
+  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 1); }
+
+  footer {
+    text-align: center; padding: 60px 24px 80px; color: rgba(255, 255, 255, 0.3);
+    font-size: 13px; position: relative; z-index: 2;
+  }
+  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
+  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+
+  @media (max-width: 900px) { .sym-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) {
+    .sym-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 34px; } h2 { font-size: 26px; } p.lede { font-size: 17px; }
+  }
+</style>
