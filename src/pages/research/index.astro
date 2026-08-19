@@ -21,13 +21,39 @@ const jsonLd = {
   url: `https://niyora.com/research/#${cluster.slug}`,
   })),
 };
+
+// The same findings the page shows, declared as a dataset with a real download
+// so Google Dataset Search can index them. License is CC BY 4.0: the papers are
+// everyone's, the grading and the plain-language line are ours to give away.
+const dataset = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'The graded evidence behind Niyora',
+  description: `${allRows.length} findings on PMS, PMDD and the menstrual cycle, each graded strong, moderate or weak, with the paper behind it and a plain-language reading of what it means.`,
+  url: 'https://niyora.com/research/',
+  creator: { '@type': 'Organization', name: 'Niyora', url: 'https://niyora.com/' },
+  publisher: { '@type': 'Organization', name: 'Niyora', url: 'https://niyora.com/' },
+  keywords: ['PMS', 'PMDD', 'premenstrual', 'menstrual cycle', 'emotional regulation', 'evidence grading'],
+  variableMeasured: ['Topic', 'Finding', 'Evidence grade', 'Source', 'Plain-language summary'],
+  citation: allRows.filter((r) => r.link).map((r) => r.link),
+  isAccessibleForFree: true,
+  license: 'https://creativecommons.org/licenses/by/4.0/',
+  distribution: [
+    {
+      '@type': 'DataDownload',
+      name: 'Niyora graded research findings (JSON)',
+      encodingFormat: 'application/json',
+      contentUrl: 'https://niyora.com/data/research.json',
+    },
+  ],
+};
 ---
 
 <Page
   title="The research behind Niyora, graded · Niyora"
   description={`Every finding Niyora is built on, in one table: what the study found, how good the evidence really is, and a link to the paper. ${allRows.length} findings, ${strong} of them strong.`}
   canonicalUrl="https://niyora.com/research/"
-  jsonLd={jsonLd}
+  jsonLd={[jsonLd, dataset]}
 >
   <section class="s hero">
     <div class="eyebrow">Research</div>

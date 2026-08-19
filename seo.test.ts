@@ -17,6 +17,11 @@ describe('robots.txt', () => {
     expect(robots).toContain('Allow: /');
   });
 
+  it('keeps the sandbox and the unpicked homepage variants out', () => {
+    expect(robots).toContain('Disallow: /lab/');
+    expect(robots).toContain('Disallow: /demo/');
+  });
+
   it('points to the sitemap index', () => {
     expect(robots).toContain('Sitemap: https://niyora.com/sitemap-index.xml');
   });
