@@ -33,12 +33,18 @@ const variants = [
     bet: 'Structure broken throughout: every section offset around a living orb that glides and shifts as you scroll.',
     hue: '300', sat: '58%',
   },
+  {
+    href: '/lab/home-neat',
+    name: 'Neat',
+    bet: 'One glass sheet, sections split by hairline dividers, a pale moon on a pink glow at the top. Tidy and calm.',
+    hue: '335', sat: '52%',
+  },
 ];
 ---
 
 <Base
   title="Lab · Niyora homepage experiments"
-  description="Five experimental homepage layout directions. Preview only, not production."
+  description="Six experimental homepage layout directions. Preview only, not production."
   canonicalUrl="https://niyora.com/lab"
 >
   <OrbStage />
@@ -48,8 +54,8 @@ const variants = [
   <main class="lab">
     <section data-hue="330" data-sat="55%" data-orb-alpha="0.85" data-orb-scale="0.9">
       <p class="eyebrow">Preview only, not production</p>
-      <h1>Five ways the homepage could feel.</h1>
-      <p class="lead">Same copy, same orb, same Poppins. Five different bets on layout. Open each, scroll it, then pick the direction worth taking further.</p>
+      <h1>Six ways the homepage could feel.</h1>
+      <p class="lead">Same copy, same orb, same Poppins. Six different bets on layout. Open each, scroll it, then pick the direction worth taking further.</p>
 
       <div class="cards">
         {variants.map((v, i) => (
