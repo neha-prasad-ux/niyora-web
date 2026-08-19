@@ -1,0 +1,332 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SECTIONS } from './_nav';
+
+const variants = [
+  {
+    n: 1,
+    name: 'Mega panel',
+    bet: 'One trigger opens a two-pane panel. Sections on the left, pages on the right, the way you described it.',
+    good: 'Shows the whole site in one gesture. Room for a note under each link, so people pick with context.',
+    cost: 'A click before anything appears. Needs care on keyboard and on small screens.',
+  },
+  {
+    n: 2,
+    name: 'Grouped dropdowns',
+    bet: 'Four top-level words, each opening a short list under itself. The conventional pattern.',
+    good: 'Zero learning. Hovering reveals, so it is one gesture, not two. Nothing is hidden behind a generic word.',
+    cost: 'Four hit targets across the top gets tight on a phone. Long lists feel cramped.',
+  },
+  {
+    n: 3,
+    name: 'Full drawer',
+    bet: 'A single menu button opens the entire tree in a panel from the right. Same on desktop and phone.',
+    good: 'One pattern everywhere, so nothing to maintain twice. Scales to any number of pages.',
+    cost: 'Everything costs a click, including the things people want most.',
+  },
+  {
+    n: 4,
+    name: 'Lean header, strong hubs',
+    bet: 'The header stays four words. Hub pages carry the structure, and a grouped footer carries the map.',
+    good: 'No JavaScript, no panels, nothing to get wrong on mobile. Fastest to build and to load.',
+    cost: 'Reaching a symptom page takes two clicks. The breadth of the site is not visible up top.',
+  },
+];
+---
+
+<Base title="Header directions · Niyora lab" description="Four header structures to choose between.">
+  <main class="lab">
+    <header class="lab-head">
+      <p class="kicker">Lab</p>
+      <h1>Four ways to structure the header</h1>
+      <p class="lede">
+        All four carry the same 26 links across the same four sections, so you are comparing
+        structure and not content. Everything is live, so open them, click through them, and shrink
+        the window to see the phone behaviour.
+      </p>
+    </header>
+
+    {variants.map((v) => (
+      <section class="variant">
+        <div class="variant-meta">
+          <p class="num">Option {v.n}</p>
+          <h2>{v.name}</h2>
+          <p class="bet">{v.bet}</p>
+          <p class="pro"><span>Works because</span> {v.good}</p>
+          <p class="con"><span>Costs you</span> {v.cost}</p>
+        </div>
+
+        <div class="stage" data-variant={v.n}>
+          {v.n === 1 && (
+            <div class="hdr h1">
+              <a class="brand" href="#">NIYORA</a>
+              <nav class="h1-nav">
+                <button class="h1-trigger" aria-expanded="false" aria-controls="mega-1">Explore</button>
+                <a href="/quiz/">Quiz</a>
+                <a class="cta" href="#">I'm interested</a>
+              </nav>
+              <div class="mega" id="mega-1" hidden>
+                <div class="mega-left" role="tablist">
+                  {SECTIONS.map((s, i) => (
+                    <button class={`mega-tab${i === 0 ? ' on' : ''}`} role="tab" data-tab={s.key} aria-selected={i === 0 ? 'true' : 'false'}>
+                      <span class="mega-tab-label">{s.label}</span>
+                      <span class="mega-tab-count">{s.links.length}</span>
+                    </button>
+                  ))}
+                </div>
+                <div class="mega-right">
+                  {SECTIONS.map((s, i) => (
+                    <div class={`mega-pane${i === 0 ? ' on' : ''}`} data-pane={s.key} role="tabpanel">
+                      <p class="mega-blurb">{s.blurb}</p>
+                      <div class="mega-links">
+                        {s.links.map((l) => (
+                          <a href={l.href}>
+                            <span class="ml-label">{l.label}</span>
+                            {l.note && <span class="ml-note">{l.note}</span>}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {v.n === 2 && (
+            <div class="hdr h2h">
+              <a class="brand" href="#">NIYORA</a>
+              <nav class="h2-nav">
+                {SECTIONS.map((s) => (
+                  <div class="drop">
+                    <button class="drop-trigger" aria-expanded="false">{s.label}</button>
+                    <div class="drop-menu" hidden>
+                      {s.links.map((l) => <a href={l.href}>{l.label}</a>)}
+                    </div>
+                  </div>
+                ))}
+                <a class="cta" href="#">I'm interested</a>
+              </nav>
+            </div>
+          )}
+
+          {v.n === 3 && (
+            <div class="hdr h3">
+              <a class="brand" href="#">NIYORA</a>
+              <nav class="h3-nav">
+                <a href="/quiz/">Quiz</a>
+                <a class="cta" href="#">I'm interested</a>
+                <button class="burger" aria-expanded="false" aria-controls="drawer-3">
+                  <span></span><span></span><span></span>
+                </button>
+              </nav>
+              <div class="drawer" id="drawer-3" hidden>
+                <div class="drawer-inner">
+                  {SECTIONS.map((s) => (
+                    <div class="drawer-group">
+                      <p class="drawer-title">{s.label}</p>
+                      {s.links.map((l) => <a href={l.href}>{l.label}</a>)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {v.n === 4 && (
+            <div class="hdr h4">
+              <a class="brand" href="#">NIYORA</a>
+              <nav class="h4-nav">
+                <a href="/pms/">Symptoms</a>
+                <a href="/research/">Research</a>
+                <a href="/compare/">Compare</a>
+                <a href="/blog/">Writing</a>
+                <a class="cta" href="#">I'm interested</a>
+              </nav>
+            </div>
+          )}
+        </div>
+      </section>
+    ))}
+
+    <footer class="lab-foot">
+      <p>Tell me the number. I will build it properly, with keyboard support and the mobile behaviour.</p>
+    </footer>
+  </main>
+</Base>
+
+<script>
+  // Option 1: mega panel
+  const trigger = document.querySelector<HTMLButtonElement>('.h1-trigger');
+  const mega = document.querySelector<HTMLElement>('#mega-1');
+  if (trigger && mega) {
+    const setOpen = (open: boolean) => {
+      mega.hidden = !open;
+      trigger.setAttribute('aria-expanded', String(open));
+      trigger.classList.toggle('on', open);
+    };
+    trigger.addEventListener('click', () => setOpen(mega.hidden));
+    mega.querySelectorAll<HTMLButtonElement>('.mega-tab').forEach((tab) => {
+      const show = () => {
+        mega.querySelectorAll('.mega-tab').forEach((t) => {
+          t.classList.toggle('on', t === tab);
+          t.setAttribute('aria-selected', String(t === tab));
+        });
+        mega.querySelectorAll<HTMLElement>('.mega-pane').forEach((p) => {
+          p.classList.toggle('on', p.dataset.pane === tab.dataset.tab);
+        });
+      };
+      tab.addEventListener('mouseenter', show);
+      tab.addEventListener('focus', show);
+      tab.addEventListener('click', show);
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', (e) => {
+      const t = e.target as Node;
+      if (!mega.hidden && !mega.contains(t) && t !== trigger) setOpen(false);
+    });
+  }
+
+  // Option 2: dropdowns
+  document.querySelectorAll<HTMLElement>('.drop').forEach((drop) => {
+    const btn = drop.querySelector<HTMLButtonElement>('.drop-trigger')!;
+    const menu = drop.querySelector<HTMLElement>('.drop-menu')!;
+    const close = () => { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+    const open = () => {
+      document.querySelectorAll<HTMLElement>('.drop-menu').forEach((m) => (m.hidden = true));
+      menu.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+    };
+    btn.addEventListener('click', () => (menu.hidden ? open() : close()));
+    drop.addEventListener('mouseenter', open);
+    drop.addEventListener('mouseleave', close);
+    drop.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Escape') close(); });
+  });
+
+  // Option 3: drawer
+  const burger = document.querySelector<HTMLButtonElement>('.burger');
+  const drawer = document.querySelector<HTMLElement>('#drawer-3');
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      const open = drawer.hidden;
+      drawer.hidden = !open;
+      burger.setAttribute('aria-expanded', String(open));
+      burger.classList.toggle('on', open);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { drawer.hidden = true; burger.setAttribute('aria-expanded', 'false'); burger.classList.remove('on'); }
+    });
+  }
+</script>
+
+<style>
+  .lab { max-width: 1120px; margin: 0 auto; padding: 60px 24px 100px; position: relative; z-index: 2; }
+  .lab-head { text-align: center; margin-bottom: 56px; }
+  .kicker { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: hsla(280, 50%, 78%, 0.75); margin-bottom: 14px; }
+  h1 { font-size: 42px; font-weight: 400; letter-spacing: -0.5px; color: rgba(255,255,255,0.96); margin-bottom: 18px; }
+  .lede { font-size: 18px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.66); max-width: 640px; margin: 0 auto; }
+
+  .variant { margin-bottom: 56px; }
+  .variant-meta { max-width: 720px; margin-bottom: 18px; }
+  .num { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+  h2 { font-size: 26px; font-weight: 400; color: rgba(255,255,255,0.94); margin-bottom: 10px; }
+  .bet { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 12px; }
+  .pro, .con { font-size: 14px; font-weight: 300; line-height: 1.55; margin-bottom: 5px; }
+  .pro { color: hsl(152,45%,74%); } .con { color: hsl(20,55%,76%); }
+  .pro span, .con span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-right: 8px; }
+
+  .stage {
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 20px;
+    background: rgba(8,7,14,0.5);
+    min-height: 230px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 22px;
+    background: rgba(10,8,18,0.75);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+  }
+  .brand { font-size: 14px; font-weight: 500; letter-spacing: 3px; color: rgba(255,255,255,0.9); text-decoration: none; }
+  .hdr nav { display: flex; align-items: center; gap: 20px; }
+  .hdr nav a, .hdr button {
+    font-family: inherit; font-size: 14px; color: rgba(255,255,255,0.62);
+    text-decoration: none; background: none; border: none; cursor: pointer; letter-spacing: 0.2px;
+  }
+  .hdr nav a:hover, .hdr button:hover { color: rgba(255,255,255,0.96); }
+  .cta {
+    padding: 8px 17px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.92) !important; background: rgba(255,255,255,0.04);
+  }
+
+  .h1-trigger.on { color: rgba(255,255,255,1); }
+  .h1-trigger::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
+  .mega {
+    position: absolute; left: 0; right: 0; top: 100%;
+    display: grid; grid-template-columns: 230px 1fr;
+    background: rgba(14,11,22,0.97); backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 5;
+  }
+  .mega-left { display: flex; flex-direction: column; padding: 14px 0; border-right: 1px solid rgba(255,255,255,0.08); }
+  .mega-tab {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px; text-align: left; width: 100%;
+    border-left: 2px solid transparent; font-size: 15px !important;
+  }
+  .mega-tab.on { background: rgba(255,255,255,0.05); border-left-color: hsl(280,60%,72%); color: rgba(255,255,255,0.98) !important; }
+  .mega-tab-count { font-size: 11px; color: rgba(255,255,255,0.3); }
+  .mega-right { padding: 20px 24px 24px; }
+  .mega-pane { display: none; } .mega-pane.on { display: block; }
+  .mega-blurb { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+  .mega-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 18px; }
+  .mega-links a { display: block; padding: 8px 10px; border-radius: 9px; }
+  .mega-links a:hover { background: rgba(255,255,255,0.06); }
+  .ml-label { display: block; font-size: 14px; color: rgba(255,255,255,0.88); }
+  .ml-note { display: block; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+  .h2-nav { gap: 18px !important; }
+  .drop { position: relative; }
+  .drop-trigger::after { content: ' ▾'; font-size: 9px; opacity: 0.55; }
+  .drop-menu {
+    position: absolute; top: calc(100% + 10px); left: -14px; min-width: 230px;
+    background: rgba(16,13,25,0.98); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 8px; z-index: 6;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.5);
+  }
+  .drop-menu a { display: block; padding: 9px 12px; border-radius: 8px; font-size: 14px; }
+  .drop-menu a:hover { background: rgba(255,255,255,0.07); }
+
+  .burger { display: flex; flex-direction: column; gap: 4px; padding: 4px; }
+  .burger span { display: block; width: 20px; height: 1.5px; background: rgba(255,255,255,0.75); transition: transform 0.25s ease, opacity 0.25s ease; }
+  .burger.on span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  .burger.on span:nth-child(2) { opacity: 0; }
+  .burger.on span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  .drawer {
+    position: absolute; top: 100%; right: 0; width: min(360px, 100%);
+    background: rgba(14,11,22,0.98); backdrop-filter: blur(22px);
+    border-left: 1px solid rgba(255,255,255,0.1); z-index: 5; max-height: 300px; overflow-y: auto;
+  }
+  .drawer-inner { padding: 20px 22px 26px; }
+  .drawer-group { margin-bottom: 18px; }
+  .drawer-title { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 7px; }
+  .drawer-group a { display: block; padding: 6px 0; font-size: 14.5px; }
+
+  .lab-foot { text-align: center; margin-top: 20px; }
+  .lab-foot p { font-size: 15px; color: rgba(255,255,255,0.5); }
+
+  @media (max-width: 760px) {
+    .mega { grid-template-columns: 1fr; }
+    .mega-left { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mega-tab { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; }
+    .mega-tab.on { border-left-color: transparent; border-bottom-color: hsl(280,60%,72%); }
+    .mega-links { grid-template-columns: 1fr; }
+    .h2-nav, .h4-nav { flex-wrap: wrap; gap: 12px !important; }
+    h1 { font-size: 30px; }
+  }
+</style>
