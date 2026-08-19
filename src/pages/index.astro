@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import OrbStage from '../components/OrbStage.astro';
+import { downloads } from '../config/downloads';
 
 const organization = {
   '@type': 'Organization',
@@ -33,6 +33,27 @@ const jsonLd = [
     publisher: { '@id': 'https://niyora.com/#organization' },
   },
 ];
+
+// Starfield, baked once at build time (mirrors the app's aurora Stars):
+// 10x6 = 60 stars on a jittered grid over the upper 66% of the viewport.
+// Positions as viewport percentages so they sit correctly on the fixed sky
+// layer. Round-robin index % 3 into three twinkle groups so each group is
+// spread across the whole sky, not a contiguous block.
+const COLS = 10;
+const ROWS = 6;
+const starGroups: { left: number; top: number; size: number; alpha: number }[][] = [[], [], []];
+let n = 0;
+for (let r = 0; r < ROWS; r += 1) {
+  for (let c = 0; c < COLS; c += 1) {
+    starGroups[n % 3].push({
+      left: ((c + 0.15 + Math.random() * 0.7) / COLS) * 100,
+      top: (r + 0.15 + Math.random() * 0.7) * (0.66 / ROWS) * 100,
+      size: 1 + Math.random() * 1.6,
+      alpha: 0.25 + Math.random() * 0.5,
+    });
+    n += 1;
+  }
+}
 ---
 
 <Base
@@ -42,284 +63,288 @@ const jsonLd = [
   canonicalUrl="https://niyora.com"
   jsonLd={jsonLd}
 >
-  <OrbStage />
+  <!-- Sky: deep background BEHIND the glass sheet (z-index 0, under .moon-field
+       z-index 1 and .neat z-index 2). Holds the starfield and shooting star, so
+       they read crisp in the dark margins and diffuse softly through the frost. -->
+  <div class="sky" aria-hidden="true">
+    {starGroups.map((stars, g) => (
+      <div class={`stars g${g}`}>
+        {stars.map((s) => (
+          <i style={`left:${s.left}%;top:${s.top}%;width:${s.size}px;height:${s.size}px;background:rgba(255,255,255,${s.alpha})`}></i>
+        ))}
+      </div>
+    ))}
+    <div class="shooting-star"></div>
+  </div>
 
-  <main class="content">
-    <section class="hero" data-hue="335" data-sat="58%" data-orb-alpha="0.9" data-orb-scale="0.9">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <h1>Life doesn't wait for PMS. But we do.</h1>
-          <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
-          <div class="interest" id="interest">
-            <button type="button" class="cta interest-btn" data-interest>I'm interested</button>
-            <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+  <!-- Moon layer: lives BEHIND the glass sheet (z-index 1, under .neat's z-index 2)
+       and is position:fixed, so it stays a calm constant presence as you scroll
+       instead of a hero element that scrolls away. The frosted .sheet blurs and
+       dims it, so it reads as a soft light glowing THROUGH the frost. -->
+  <div class="moon-field" aria-hidden="true">
+    <div class="moon-glow"></div>
+    <div class="moon"></div>
+  </div>
+
+  <main class="neat">
+    <div class="sheet">
+
+      <!-- Hero: copy sits over the moon that glows through the frost from behind. -->
+      <section class="s hero">
+        <div class="split">
+          <div class="split-text">
+            <h1>Life doesn't wait for PMS. But we do.</h1>
+            <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
+            <div class="interest" id="interest">
+              <button type="button" class="btn" data-interest>I'm interested</button>
+              <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+            </div>
+            <div class="trust">
+              <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
+              <div class="trust-strong">Your personal details never reach the AI.</div>
+            </div>
           </div>
-          <div class="trust">
-            <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
-            <div class="trust-strong" id="trust-tagline">Your personal details never reach the AI.</div>
+          <div class="phone" role="img" aria-label="Niyora Moon home screen">
+            <div class="phone-screen" style="background-image:url('/app/moon-home.png')"></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="facts" data-hue="345" data-sat="56%">
-      <div class="eyebrow">PMS is real and established</div>
-      <h2>You don't have to prove any of this. It's already settled.</h2>
-      <p class="lead">Research and surveys show PMS is near-universal, and the emotional side is the part most people carry alone.</p>
-      <!-- TODO: add stat source line before publish (Neha to confirm) -->
-      <div class="signals facts-grid">
-        <div class="signal-card"><div class="num">3 in 4</div><p>women experience PMS</p></div>
-        <div class="signal-card"><div class="num">95%</div><p>feel irritable</p></div>
-        <div class="signal-card"><div class="num">93%</div><p>get mood swings</p></div>
-        <div class="signal-card"><div class="num">82%</div><p>feel low</p></div>
-        <div class="signal-card"><div class="num">65%</div><p>feel anxious</p></div>
-        <div class="signal-card"><div class="num">78%</div><p>feel they are not taken seriously when they ask for help</p></div>
-      </div>
-      <p class="afterword lead">So Niyora doesn't try to convince you PMS is real. It predicts your window, gives you the skills and techniques to manage it, and takes you seriously, especially the 78% who feel dismissed.</p>
-    </section>
+      <!-- Stats facts -->
+      <section class="s facts">
+        <div class="eyebrow">PMS is real and established</div>
+        <h2>You don't have to prove any of this. It's already settled.</h2>
+        <p class="lead">Research and surveys show PMS is near-universal, and the emotional side is the part most people carry alone.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">3 in 4</div><p>women experience PMS</p></div>
+          <div class="stat"><div class="num">95%</div><p>feel irritable</p></div>
+          <div class="stat"><div class="num">93%</div><p>get mood swings</p></div>
+          <div class="stat"><div class="num">82%</div><p>feel low</p></div>
+          <div class="stat"><div class="num">65%</div><p>feel anxious</p></div>
+          <div class="stat"><div class="num">78%</div><p>feel they are not taken seriously when they ask for help</p></div>
+        </div>
+        <p class="afterword">So Niyora doesn't try to convince you PMS is real. It predicts your window, gives you the skills and techniques to manage it, and takes you seriously, especially the 78% who feel dismissed.</p>
+      </section>
 
-    <section class="one-fact" data-hue="330" data-sat="55%">
-      <div class="eyebrow">Built on one fact</div>
-      <h2>Women with emotional regulation skills handle PMS better.</h2>
-      <p class="lead">That's the whole idea. Staying steady is a skill, not something you're born with, and skills can be learned. Niyora teaches it a little at a time, so the week gets easier to carry.</p>
-    </section>
-
-    <section id="problem" data-hue="300" data-sat="55%">
-      <div class="eyebrow">What no one told you</div>
-      <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
-      <p class="lead">The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
-      <div class="research-grid">
-        <div class="research-card">
-          <h3>Same hormones, different response.</h3>
-          <p>When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p>
-          <div class="cite">NIMH · Schmidt &amp; Rubinow; Hantsoo &amp; Payne, 2020</div>
-        </div>
-        <div class="research-card">
-          <h3>It's wired in, and it runs in families.</h3>
-          <p>Premenstrual sensitivity is about 56 percent heritable. The same shift other people barely notice, your system actually feels. A bit like having sensitive skin.</p>
-          <div class="cite">Dubey et al, Molecular Psychiatry, 2017</div>
-        </div>
-        <div class="research-card">
-          <h3>It has an end date.</h3>
-          <p>When researchers switched these hormones off, the symptoms cleared. When they switched them back on, they returned. It rolls in, and it rolls out, every cycle.</p>
-          <div class="cite">NIMH GnRH add-back studies</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="solution" data-hue="278" data-sat="55%">
-      <div class="eyebrow">Moon AI · during PMS</div>
-      <h2>Reflect. Regulate. Respond.</h2>
-      <div class="solution-grid">
-        <div class="solution-card">
-          <div class="orb-mini orb-pulse"></div>
-          <div class="card-eyebrow">Reflect</div>
-          <h3>See it more than one way.</h3>
-          <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
-        </div>
-        <div class="solution-card">
-          <div class="orb-mini orb-breathe"></div>
-          <div class="card-eyebrow">Regulate</div>
-          <h3>Get through the twenty minutes.</h3>
-          <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
-        </div>
-        <div class="solution-card">
-          <div class="orb-mini orb-rings">
-            <span class="ring r1"></span>
-            <span class="ring r2"></span>
-            <span class="ring r3"></span>
+      <!-- Predict: calendar screen beside a short line. Tracking is a feature. -->
+      <section class="s">
+        <div class="split reverse">
+          <div class="split-text">
+            <div class="eyebrow">Predict</div>
+            <h2>It sees your PMS window coming.</h2>
+            <p class="lead">Tell Niyora when your period starts. It learns your rhythm and predicts the days ahead, so you can prepare before the week arrives instead of being caught off guard.</p>
           </div>
-          <div class="card-eyebrow">Respond</div>
-          <h3>Send the one you won't regret.</h3>
-          <p>Worked up, it's easy to say something you'll wish you hadn't. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
+          <div class="phone" role="img" aria-label="Niyora period calendar screen">
+            <div class="phone-screen" style="background-image:url('/app/calendar.png')"></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="training" data-hue="258" data-sat="58%">
-      <div class="eyebrow">Training · before PMS</div>
-      <h2>Build the skill before you need it.</h2>
-      <p class="lead">It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
-      <div class="solution-grid">
-        <div class="solution-card">
-          <div class="card-eyebrow">At work</div>
-          <h3>Handle the sharp email.</h3>
-          <p>Learn to meet a hard meeting or a pointed message without it costing you the whole day.</p>
+      <!-- Problem: left-aligned on a wider measure for rhythm variety. -->
+      <section class="s left">
+        <div class="eyebrow">What no one told you</div>
+        <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
+        <p class="lead">The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
+        <div class="cards three">
+          <div class="card">
+            <h3>Same hormones, different response.</h3>
+            <p>When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p>
+            <div class="cite">NIMH · Schmidt &amp; Rubinow; Hantsoo &amp; Payne, 2020</div>
+          </div>
+          <div class="card">
+            <h3>It's wired in, and it runs in families.</h3>
+            <p>Premenstrual sensitivity is about 56 percent heritable. The same shift other people barely notice, your system actually feels. A bit like having sensitive skin.</p>
+            <div class="cite">Dubey et al, Molecular Psychiatry, 2017</div>
+          </div>
+          <div class="card">
+            <h3>It has an end date.</h3>
+            <p>When researchers switched these hormones off, the symptoms cleared. When they switched them back on, they returned. It rolls in, and it rolls out, every cycle.</p>
+            <div class="cite">NIMH GnRH add-back studies</div>
+          </div>
         </div>
-        <div class="solution-card">
-          <div class="card-eyebrow">Between people</div>
-          <h3>Keep a small thing small.</h3>
-          <p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p>
-        </div>
-        <div class="solution-card">
-          <div class="card-eyebrow">With your partner</div>
-          <h3>Name it without a fight.</h3>
-          <p>Practise telling the difference between PMS and a real issue, and bringing it up so it lands well.</p>
-        </div>
-        <div class="solution-card">
-          <div class="card-eyebrow">Real stories</div>
-          <h3>Learn from how others handled it.</h3>
-          <p>Work through real PMS moments and the way each was handled, so the lesson sticks better than any rule.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="relationships" data-hue="320" data-sat="58%">
-      <div class="eyebrow">Couples</div>
-      <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
-      <p class="lead">The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
-      <div class="solution-grid">
-        <div class="solution-card">
-          <div class="card-eyebrow">PMS or real?</div>
-          <h3>Know which one you're in.</h3>
-          <p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid. Knowing which changes what you do next.</p>
+      <!-- Reflect. Regulate. Respond. -->
+      <section class="s">
+        <div class="eyebrow">Moon AI · during PMS</div>
+        <h2>Reflect. Regulate. Respond.</h2>
+        <div class="phone-trio">
+          <figure class="phone-cap">
+            <div class="phone" role="img" aria-label="Niyora Reflect screen">
+              <div class="phone-screen" style="background-image:url('/app/reflect.png')"></div>
+            </div>
+            <figcaption>Reflect</figcaption>
+          </figure>
+          <figure class="phone-cap">
+            <div class="phone" role="img" aria-label="Niyora Regulate screen">
+              <div class="phone-screen" style="background-image:url('/app/regulate.png')"></div>
+            </div>
+            <figcaption>Regulate</figcaption>
+          </figure>
+          <figure class="phone-cap">
+            <div class="phone" role="img" aria-label="Niyora Respond screen">
+              <div class="phone-screen" style="background-image:url('/app/respond.png')"></div>
+            </div>
+            <figcaption>Respond</figcaption>
+          </figure>
         </div>
-        <div class="solution-card">
-          <div class="card-eyebrow">Say it well</div>
-          <h3>A message, already written.</h3>
-          <p>Tips and ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p>
+        <div class="cards three">
+          <div class="card">
+            <div class="card-eyebrow">Reflect</div>
+            <h3>See it more than one way.</h3>
+            <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">Regulate</div>
+            <h3>Get through the twenty minutes.</h3>
+            <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">Respond</div>
+            <h3>Send the one you won't regret.</h3>
+            <p>Worked up, it's easy to say something you'll wish you hadn't. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
+          </div>
         </div>
-        <div class="solution-card">
-          <div class="card-eyebrow">After a fight</div>
-          <h3>Come back from it.</h3>
-          <p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p>
-        </div>
-      </div>
-      <p class="more-line"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
-      <p class="more-line"><a href="/blog/keeping-your-relationship-healthy-during-pms/">Read: keeping your relationship healthy during PMS →</a></p>
-    </section>
+      </section>
 
-    <section class="compare" data-hue="230" data-sat="60%">
-      <div class="eyebrow">Why not just use ChatGPT</div>
-      <h2>A frontier model keeps you talking. Moon helps you need it less.</h2>
-      <p class="lead">General AI is built to hold your attention. That is the opposite of what a hard PMS moment needs. Here is the difference, line by line.</p>
-      <div class="compare-grid">
-        <div class="compare-head them">Any frontier model</div>
-        <div class="compare-head us">Moon in Niyora</div>
+      <!-- Training: left-aligned, two-column grid. -->
+      <section class="s left">
+        <div class="split">
+          <div class="split-text">
+            <div class="eyebrow">Training · before PMS</div>
+            <h2>Build the skill before you need it.</h2>
+            <p class="lead">It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
+          </div>
+          <div class="phone" role="img" aria-label="Niyora training path screen">
+            <div class="phone-screen" style="background-image:url('/app/train.png')"></div>
+          </div>
+        </div>
+        <div class="cards two">
+          <div class="card">
+            <div class="card-eyebrow">At work</div>
+            <h3>Handle the sharp email.</h3>
+            <p>Learn to meet a hard meeting or a pointed message without it costing you the whole day.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">Between people</div>
+            <h3>Keep a small thing small.</h3>
+            <p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">With your partner</div>
+            <h3>Name it without a fight.</h3>
+            <p>Practise telling the difference between PMS and a real issue, and bringing it up so it lands well.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">Real stories</div>
+            <h3>Learn from how others handled it.</h3>
+            <p>Work through real PMS moments and the way each was handled, so the lesson sticks better than any rule.</p>
+          </div>
+        </div>
+      </section>
 
-        <div class="compare-cell them"><p>Built to keep the conversation going. It optimizes for time spent.</p></div>
-        <div class="compare-cell us"><p>Built to finish the loop, then stop. It optimizes for you needing it less.</p></div>
+      <!-- Relationships -->
+      <section class="s">
+        <div class="split reverse">
+          <div class="split-text">
+            <div class="eyebrow">Couples</div>
+            <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
+            <p class="lead">The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
+          </div>
+          <div class="phone" role="img" aria-label="Niyora couples screen">
+            <div class="phone-screen" style="background-image:url('/app/couples.png')"></div>
+          </div>
+        </div>
+        <div class="cards three">
+          <div class="card">
+            <div class="card-eyebrow">PMS or real?</div>
+            <h3>Know which one you're in.</h3>
+            <p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid. Knowing which changes what you do next.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">Say it well</div>
+            <h3>A message, already written.</h3>
+            <p>Tips and ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p>
+          </div>
+          <div class="card">
+            <div class="card-eyebrow">After a fight</div>
+            <h3>Come back from it.</h3>
+            <p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p>
+          </div>
+        </div>
+        <p class="more-line"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
+      </section>
 
-        <div class="compare-cell them"><p>Agrees with you. That is what keeps you talking.</p></div>
-        <div class="compare-cell us"><p>Shows you the other side on purpose. On your side, even when that means slowing you down.</p></div>
+      <!-- Your progress: soul screen beside a short line about growth over time. -->
+      <section class="s">
+        <div class="split">
+          <div class="split-text">
+            <div class="eyebrow">Your progress</div>
+            <h2>Watch yourself grow steadier.</h2>
+            <p class="lead">Every reflection and reply adds up. Niyora keeps track of what you've noticed, what you've applied, and your streak, and marks how far you've come with Moonstone tiers over time.</p>
+          </div>
+          <div class="phone" role="img" aria-label="Niyora My Soul progress screen">
+            <div class="phone-screen" style="background-image:url('/app/soul.png')"></div>
+          </div>
+        </div>
+      </section>
 
-        <div class="compare-cell them"><p>Lets you vent for as long as you like. Research says venting often makes it worse.</p></div>
-        <div class="compare-cell us"><p>Helps you regulate first, so you respond with something you won't regret.</p></div>
+      <!-- Privacy -->
+      <section class="s">
+        <div class="eyebrow">Private by design</div>
+        <h2>Built to know almost nothing about you.</h2>
+        <p class="lead">Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI. Moon uses AI to write its reflections, so we're plain about exactly what it can and can't see.</p>
+        <div class="cards three">
+          <div class="card">
+            <div class="check">✓</div>
+            <h3>No sign in</h3>
+            <p>No account, no login. Nothing you write is ever tied to your name.</p>
+          </div>
+          <div class="card">
+            <div class="check">✓</div>
+            <h3>Your details never reach the AI</h3>
+            <p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p>
+          </div>
+          <div class="card">
+            <div class="check">✓</div>
+            <h3>Nothing sold, nothing kept</h3>
+            <p>No ads, no profile, no data sold. Your period dates stay on your device, and are never shared.</p>
+          </div>
+        </div>
+      </section>
 
-        <div class="compare-cell them"><p>Gives endless options and keeps going.</p></div>
-        <div class="compare-cell us"><p>Gets you to one response you can stand behind, then stops.</p></div>
+      <!-- Final CTA -->
+      <section class="s final">
+        <h2>Want Niyora when you need it?</h2>
+        <p class="lead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
+        <div class="interest">
+          <button type="button" class="btn" data-interest>I'm interested</button>
+          <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+        </div>
+        <div class="final-links">
+          <a class="btn store" href={downloads.appStore}>Get Niyora on the App Store</a>
+          <a class="btn ghost" href="/quiz/">Take the 2-minute PMS check</a>
+        </div>
+      </section>
 
-        <div class="compare-cell them"><p>Learns a lot about you, and is built to sound like a friend. That builds dependence.</p></div>
-        <div class="compare-cell us"><p>No sign in, so you are never identifiable. It never calls itself human.</p></div>
-
-        <div class="compare-cell them"><p>Doesn't know your PMS, and rarely raises how your actions land on others.</p></div>
-        <div class="compare-cell us"><p>Built for your PMS week, and keeps the people around you in view.</p></div>
-      </div>
-      <p class="compare-close">No ads, no profile, nothing sold. There is no version of Niyora that makes money from your worst moment.</p>
-    </section>
-
-    <section data-hue="248" data-sat="62%">
-      <div class="eyebrow">Research backed</div>
-      <h2>Over 30 science-backed activities. Every one has a paper behind it.</h2>
-      <p class="lead">No mystic wellness talk. Just practices drawn from peer-reviewed research, cited so you can read the source yourself. Niyora also recognises how strong your PMS is with a short test, and points to the lifestyle changes that actually move the needle.</p>
-      <div class="papers">
-        <div class="paper">
-          <div class="title">Differential hormone sensitivity</div>
-          <div class="cite">Schmidt et al, NEJM. PMDD brains react to normal hormone levels.</div>
-        </div>
-        <div class="paper">
-          <div class="title">The heritable trait</div>
-          <div class="cite">Dubey et al, 2017. Sensitivity is partly in your genes.</div>
-        </div>
-        <div class="paper">
-          <div class="title">GABA and the calm brake</div>
-          <div class="cite">Allopregnanolone shifts your built-in calm before your period.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Progressive muscle relaxation for PMS</div>
-          <div class="cite">RCT. A large effect on premenstrual symptoms.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Calcium for PMS</div>
-          <div class="cite">Thys-Jacobs crossover RCT. One of the strongest nutrient findings.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Recognised in 2013</div>
-          <div class="cite">Dell'Osso et al, 2024. On average, women waited a decade for a name.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Box Breathing</div>
-          <div class="cite">Used in Navy SEAL training. Lowers cortisol, improves HRV.</div>
-        </div>
-        <div class="paper">
-          <div class="title">4-7-8 Breath</div>
-          <div class="cite">Activates the parasympathetic nervous system. Weil, A.</div>
-        </div>
-        <div class="paper">
-          <div class="title">5-4-3-2-1 Grounding</div>
-          <div class="cite">Linehan, 1993 (DBT). Reduces panic and dissociation.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Self-Compassion</div>
-          <div class="cite">Neff, 2003. Linked to reduced anxiety and rumination.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Alternate Nostril (Naadishodhana)</div>
-          <div class="cite">Sharma et al, 2013. Lowers blood pressure, calms the system.</div>
-        </div>
-        <div class="paper">
-          <div class="title">Ocean Breath (Ujjayi)</div>
-          <div class="cite">Pal et al, 2011. Activates the vagus nerve, slows heart rate.</div>
-        </div>
-      </div>
-      <p class="more-line">and more, every card in Niyora traces back to a source.</p>
-    </section>
-
-    <section data-hue="210" data-sat="60%">
-      <div class="eyebrow">Private by design</div>
-      <h2 id="privacy-tagline">Built to know almost nothing about you.</h2>
-      <p class="lead">Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI. Moon uses AI to write its reflections, so we're plain about exactly what it can and can't see.</p>
-      <div class="privacy-points">
-        <div class="privacy-point">
-          <div class="check">✓</div>
-          <h3>No sign in</h3>
-          <p>No account, no login. Nothing you write is ever tied to your name.</p>
-        </div>
-        <div class="privacy-point">
-          <div class="check">✓</div>
-          <h3>Your details never reach the AI</h3>
-          <p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p>
-        </div>
-        <div class="privacy-point">
-          <div class="check">✓</div>
-          <h3>Nothing sold, nothing kept</h3>
-          <p>No ads, no profile, no data sold. Your period dates stay on your device, and are never shared.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="founder" data-hue="335" data-sat="60%">
-      <div class="eyebrow">Why I built Niyora</div>
-      <img src="/neha.jpg" alt="Neha Prasad" class="founder-photo" loading="lazy" />
-      <p class="quote">I went looking for a way through PMS that didn't ask me to change my body.</p>
-      <p class="quote-body">I'm a doctor, so I started where I trust: the research. And the pattern was hard to miss. Most of what's offered for PMS either medicates it or tracks it and stops there. Niyora predicts your week too. The difference is what happens next: it helps you in the actual hard hour, where almost nothing else does.</p>
-      <p class="quote-body">Then I found the quieter, stronger thread. The most reliable, least invasive way through a hard PMS week is emotion regulation. Learning to name what you feel, settle your body, and see the thought from a step back. No hormones to take, no device to wear, no data to hand over.</p>
-      <p class="quote-body">That finding is the whole foundation of Niyora. Everything in the app is one small rep of emotion regulation, done in about a minute. I built it for myself first. Now it's yours.</p>
-      <div class="signature">Neha Prasad. Doctor, builder, founder of Niyora.</div>
-      <div class="founder-cta">
-        <a href="/talk" class="cta ghost">Say hello</a>
-      </div>
-    </section>
-
-    <section class="final-cta" data-hue="30" data-sat="70%">
-      <h2>Want Niyora when you need it?</h2>
-      <p class="lead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
-      <div class="interest">
-        <button type="button" class="cta interest-btn" data-interest>I'm interested</button>
-        <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
-      </div>
-    </section>
+    </div>
   </main>
+
+  <footer>
+    <a href="/quiz/">PMS quiz</a>
+    <a href="/guide/">Guide</a>
+    <a href="/demo/">Demo</a>
+    <a href="/blog/">Writing</a>
+    <a href="/faq/">FAQ</a>
+    <a href="/about/">About</a>
+    <a href="/compare/alternatives-to-mood-trackers/">Compare</a>
+    <a href="/changelog/">What's new</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="https://github.com/neha-prasad-ux/niyora">GitHub</a>
+    <a href="mailto:neha@niyora.com">Contact</a>
+    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
+  </footer>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
@@ -382,187 +407,292 @@ const jsonLd = [
             .catch(function () { local(); });
         });
       });
-
-      var sayHello = document.querySelector('.founder-cta a[href="/talk"]');
-      if (sayHello) {
-        sayHello.addEventListener('click', function () {
-          window.posthog?.capture('say_hello_clicked');
-        });
-      }
     });
   </script>
 
-  <footer>
-    <a href="/quiz/">PMS quiz</a>
-    <a href="/guide/">Guide</a>
-    <a href="/demo/">Demo</a>
-    <a href="/blog/">Writing</a>
-    <a href="/faq/">FAQ</a>
-    <a href="/about/">About</a>
-    <a href="/compare/alternatives-to-mood-trackers/">Compare</a>
-    <a href="/changelog/">What's new</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a href="https://github.com/neha-prasad-ux/niyora">GitHub</a>
-    <a href="mailto:neha@niyora.com">Contact</a>
-    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
-  </footer>
+  <script is:inline>
+    // Shooting star (mirrors the app's ShootingStar). Fires a single streak
+    // along a straight downward diagonal over 850ms (ease-in quad), then waits
+    // and fires again from a new position, alternating direction. Disabled under
+    // prefers-reduced-motion.
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var el = document.querySelector('.shooting-star');
+      if (reduce || !el || !el.animate) return;
+
+      // dir -1 = right-to-left (starts on the right); +1 = left-to-right.
+      function fire(dir) {
+        var w = window.innerWidth, h = window.innerHeight;
+        var sx = dir < 0 ? w * (0.55 + Math.random() * 0.4) : w * (0.05 + Math.random() * 0.4);
+        var sy = h * (0.06 + Math.random() * 0.24);
+        var down = (28 + Math.random() * 30) * Math.PI / 180; // 28-58° below horizontal
+        var dist = Math.hypot(w, h) * (0.3 + Math.random() * 0.22);
+        var tx = Math.cos(down) * dist * dir;
+        var ty = Math.sin(down) * dist;
+        var rot = Math.atan2(ty, tx); // tail trails behind the travel direction
+
+        // Position + travel over 850ms, ease-in quad (accelerates like a streak).
+        el.animate([
+          { transform: 'translate(' + sx + 'px,' + sy + 'px) rotate(' + rot + 'rad)' },
+          { transform: 'translate(' + (sx + tx) + 'px,' + (sy + ty) + 'px) rotate(' + rot + 'rad)' }
+        ], { duration: 850, easing: 'cubic-bezier(0.55,0.085,0.68,0.53)' });
+
+        // Opacity: ramp 0->0.95 over 120ms (ease-out), hold ~360ms, fade over 340ms (ease-in).
+        el.animate([
+          { opacity: 0, offset: 0, easing: 'ease-out' },
+          { opacity: 0.95, offset: 0.141, easing: 'linear' },
+          { opacity: 0.95, offset: 0.565, easing: 'ease-in' },
+          { opacity: 0, offset: 1 }
+        ], { duration: 850, easing: 'linear' });
+      }
+
+      // First streak ~2s in, second ~4s after that, then every 7-16s, alternating.
+      var count = 0;
+      function tick() {
+        fire(count % 2 === 0 ? -1 : 1);
+        count += 1;
+        var next = count === 1 ? 4000 : 7000 + Math.random() * 9000;
+        setTimeout(tick, next);
+      }
+      setTimeout(tick, 2000);
+    })();
+  </script>
 </Base>
 
 <style>
-  .content { position: relative; z-index: 2; }
-
-  section {
-    min-height: 88vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 40px;
-    max-width: 1080px;
-    margin: 26px auto;
-    border-radius: 32px;
-    background: rgba(12, 10, 20, 0.24);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(16px) saturate(1.15);
-    -webkit-backdrop-filter: blur(16px) saturate(1.15);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-  }
-  @media (max-width: 720px) {
-    section { margin: 14px; border-radius: 24px; }
+  /* ── Night sky behind the single glass sheet ──
+     Deep brand background carrying the starfield and shooting star. The moon
+     and its pink glow are the focal point, the stars are ambient. */
+  .sky {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: #0a0814;
+    pointer-events: none;
+    overflow: hidden;
   }
 
-  /* Compress hero so the feature cards peek into the first viewport,
-     signalling there's more page below. */
-  .hero {
-    min-height: 78vh;
-    padding: 60px 40px 52px;
-    animation: heroIn 1s ease 1s both;
+  /* Starfield: one wrapper per twinkle group. Each star is placed once (baked
+     into the HTML) and never moves; the wrapper's opacity twinkles as a unit. */
+  .stars { position: absolute; inset: 0; pointer-events: none; }
+  .stars i { position: absolute; border-radius: 50%; }
+  /* 9s / 13s / 17s (prime-ish) so the three groups never blink in unison.
+     Opacity eases 1 -> 0.45 -> 1 (alternate), ease-in-out ≈ the app's sine. */
+  .g0 { animation: twinkle 9s ease-in-out infinite alternate; }
+  .g1 { animation: twinkle 13s ease-in-out infinite alternate; }
+  .g2 { animation: twinkle 17s ease-in-out infinite alternate; }
+  @keyframes twinkle { from { opacity: 1; } to { opacity: 0.45; } }
+
+  /* Shooting star: a single reusable streak (bright head, transparent tail).
+     Positioned/rotated per fire by the inline script via the Web Animations API. */
+  .shooting-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96px;
+    height: 2.5px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
+    box-shadow: 0 0 6px rgba(255,255,255,0.9);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
   }
-  /* The moon fades in first on the sky, then the hero glass comes over it. */
-  @keyframes heroIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: none; }
+
+  .neat {
+    position: relative;
+    z-index: 2;
+    padding: 16px 16px 20px;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .hero { animation: none; }
+
+  /* ── ONE glass surface holding everything ──
+     A single centered rounded panel with backdrop-blur, a hairline border and
+     a soft shadow. Not one card per section. */
+  .sheet {
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 28px;
+    /* Translucent enough that the fixed moon behind reads as a soft glow, dark
+       enough (plus text-shadow below) that copy over the brightest disc stays
+       legible. Heavy blur turns the disc into diffuse light, not a hotspot. */
+    background: rgba(18, 14, 30, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(28px) saturate(1.3);
+    -webkit-backdrop-filter: blur(28px) saturate(1.3);
+    overflow: hidden;
   }
+
+  /* ── Sections divided by hairline rules ──
+     Consistent centered rhythm, generous vertical padding, a thin rule between
+     each section. No per-section floating cards. */
+  .s {
+    text-align: center;
+    padding: 76px 56px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .s:first-child { border-top: none; }
+
+  /* ── Consistent type scale ── */
+  h1 {
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: rgba(255, 255, 255, 0.96);
+    max-width: 640px;
+    margin: 0 auto 20px;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    color: rgba(255, 255, 255, 0.94);
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+  h3 {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 10px;
+  }
+  p { font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.62); }
+
+  /* Text scrim: a soft dark halo per glyph keeps copy readable where the moon
+     glows brightest behind the frost, without adding opaque panels that would
+     break the single-glass look. */
+  .s h1, .s h2, .s h3, .s p, .s .eyebrow, .s .card-eyebrow {
+    text-shadow: 0 1px 18px rgba(6, 4, 14, 0.55);
+  }
+
+  /* Left-aligned sections on a wider measure, for layout rhythm.
+     Dividers and the shared type scale stay; only the arrangement changes. */
+  .s.left { text-align: left; }
+  .s.left h1,
+  .s.left h2,
+  .s.left .lead,
+  .s.left .afterword,
+  .s.left .subhead { margin-left: 0; margin-right: 0; max-width: 720px; }
 
   .eyebrow {
     font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
+    color: rgba(244, 178, 203, 0.75);
     margin-bottom: 16px;
-    transition: color 1.4s ease;
   }
-
-  h1 {
-    font-size: 56px;
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.96);
-  }
-  h2 {
-    font-size: 38px;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 16px;
-    color: rgba(255, 255, 255, 0.94);
-    max-width: 720px;
-  }
-  h3 {
-    font-size: 18px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 8px;
-  }
-  p {
-    font-size: 17px;
+  .lead {
+    font-size: 19px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
-    max-width: 640px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.74);
+    max-width: 620px;
+    margin: 0 auto 36px;
   }
-  p.lead {
-    font-size: 20px;
+  .afterword {
+    font-size: 18px;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.72);
-    margin-bottom: 36px;
+    max-width: 620px;
+    margin: 36px auto 0;
   }
-  p.afterword { margin-top: 36px; }
 
-  .hero { text-align: center; }
+  /* ── Hero + moon ── */
+  .hero { padding-top: 64px; }
+  .subhead {
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
 
-  .hero-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 760px;
+  /* ── Moon layer: fixed, behind the glass ──
+     z-index 1 puts it under the sheet (.neat is z-index 2), so the sheet's
+     backdrop-blur samples it and the moon reads as soft light through the frost.
+     position: fixed + upper-viewport anchor keeps it a constant presence while
+     the content scrolls past in front of it. Colour is STATIC (no hue shift). */
+  .moon-field {
+    position: fixed;
+    top: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 560px;
+    height: 560px;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
   }
-  .hero-text { width: 100%; }
-
-  .hero .brand {
-    font-size: 13px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
-    margin-bottom: 40px;
+  /* Orange to pink to purple halo, larger than the moon, warm core to cool rim.
+     PNG SWAP-IN: replace the `background` below with
+       background: url('/glow.png') center / contain no-repeat;
+     and delete the radial-gradient. Nothing else needs to change. */
+  .moon-glow {
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255, 168, 108, 0.55) 0%,
+      rgba(246, 148, 190, 0.40) 32%,
+      rgba(168, 104, 214, 0.22) 54%,
+      rgba(168, 104, 214, 0.08) 72%,
+      rgba(168, 104, 214, 0) 88%);
   }
-  .hero h1 { font-size: 64px; }
-  .hero .subhead {
-    font-size: 22px;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0 auto 48px;
-    max-width: 580px;
-  }
-  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .cta {
-    display: inline-block;
-    padding: 16px 36px;
-    border-radius: 32px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(18, 16, 32, 0.95);
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  /* Pale, near-white matte sphere with a faint cool shading lower-right.
+     PNG SWAP-IN: replace the `background` (and drop the inset box-shadows) with
+       background: url('/moon.png') center / contain no-repeat;
+     Keep the moonBreathe animation and the outer drop shadow if you like. */
+  .moon {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 42% 38%, #f7f5fb 0%, #eceaf3 52%, #dddbe8 100%);
     box-shadow:
-      0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35),
-      0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
+      inset -20px -24px 46px rgba(176, 172, 196, 0.38),
+      inset 8px 8px 22px rgba(255, 255, 255, 0.45),
+      0 8px 40px rgba(0, 0, 0, 0.25);
+    animation: moonBreathe 11s ease-in-out infinite;
   }
-  .cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 1);
-    color: hsla(var(--orb-hue), 70%, 32%, 1);
-    box-shadow:
-      0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45),
-      0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75),
-      0 0 100px hsla(var(--orb-hue), 80%, 65%, 0.45);
+  @keyframes moonBreathe {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50%      { transform: scale(1.02) translateY(-4px); }
   }
-  .cta.ghost {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
+  @media (max-width: 560px) {
+    /* Viewport units so the fixed, centered layer never causes horizontal scroll. */
+    .moon-field { width: 92vw; height: 92vw; top: 4vh; }
+    .moon { width: 180px; height: 180px; }
+    .moon-glow { width: 92vw; height: 92vw; }
   }
-  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
-  .meta { margin-top: 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
+  @media (prefers-reduced-motion: reduce) {
+    .moon { animation: none; }
+    /* Stars stay visible but hold steady (opacity resets to the base 1). The
+       shooting star is disabled in the inline script, so it never appears. */
+    .stars { animation: none; opacity: 1; }
+  }
 
+  /* ── Buttons ── */
   .interest {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
   }
-  .interest-btn {
+  .btn {
+    display: inline-block;
     cursor: pointer;
+    padding: 15px 34px;
+    border-radius: 30px;
     font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-decoration: none;
     color: rgba(255, 255, 255, 0.95);
     border: 1.5px solid transparent;
     background-image:
@@ -570,23 +700,35 @@ const jsonLd = [
       linear-gradient(95deg, #e6a3c4, #9c5c86, #7846b0);
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 0 34px rgba(217, 146, 176, 0.28);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 0 30px rgba(244, 178, 203, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .interest-btn:hover {
+  .btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 0 46px rgba(217, 146, 176, 0.45);
+    box-shadow: 0 0 44px rgba(244, 178, 203, 0.42);
   }
-  .interest-btn.is-done {
-    color: rgba(255, 255, 255, 0.72);
-    background-image:
-      linear-gradient(rgba(18, 13, 26, 0.6), rgba(18, 13, 26, 0.6)),
-      linear-gradient(95deg, rgba(230, 163, 196, 0.5), rgba(120, 70, 176, 0.5));
+  .btn.is-done {
+    color: rgba(255, 255, 255, 0.7);
     box-shadow: none;
     cursor: default;
     transform: none;
   }
+  .btn.store {
+    background-image: none;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  .btn.store:hover { border-color: rgba(255, 255, 255, 0.55); }
+  .btn.ghost {
+    background-image: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .btn.ghost:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.45); }
+
   .interest-count {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.55);
@@ -594,646 +736,208 @@ const jsonLd = [
     font-variant-numeric: tabular-nums;
     transition: color 0.3s ease;
   }
+  /* Real counter's bump() adds .bump on each successful tap. */
   .interest-count.bump { animation: interestBump 0.4s ease; }
   @keyframes interestBump {
     0% { transform: scale(1); }
-    40% { transform: scale(1.14); color: hsla(var(--orb-hue), 70%, 85%, 1); }
+    40% { transform: scale(1.14); color: rgba(244, 178, 203, 1); }
     100% { transform: scale(1); }
   }
   @media (prefers-reduced-motion: reduce) {
     .interest-count.bump { animation: none; }
   }
 
-  /* App Store badge-style button, Apple's dark variant. */
-  .app-store-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 22px;
-    border-radius: 14px;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    color: #fff;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    box-shadow:
-      0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.28),
-      0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.15);
-  }
-  .app-store-cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    border-color: rgba(255, 255, 255, 0.55);
-    box-shadow:
-      0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.35),
-      0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.55),
-      0 0 100px hsla(var(--orb-hue), 80%, 65%, 0.35);
-  }
-  .app-store-cta .apple-logo { width: 26px; height: 26px; flex: none; }
-  .ascta-copy { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
-  .ascta-top { font-size: 11px; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.85); }
-  .ascta-big { font-size: 21px; font-weight: 500; font-family: 'Poppins', sans-serif; letter-spacing: 0.2px; }
-
   .trust {
-    margin-top: 36px;
+    margin-top: 34px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 8px;
   }
-  .trust-row {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.55);
-    letter-spacing: 0.3px;
-  }
+  .trust-row { font-size: 14px; color: rgba(255, 255, 255, 0.55); letter-spacing: 0.3px; }
   .trust-strong {
     font-size: 15px;
     font-weight: 500;
-    color: hsla(var(--orb-hue), 60%, 82%, 0.95);
+    color: rgba(244, 178, 203, 0.92);
     letter-spacing: 0.3px;
-    transition: color 1.4s ease;
   }
 
-  /* iPhone device mockup rendering the app's pre-session screen. */
-  .phone {
-    width: 300px;
-    max-width: 78vw;
-    aspect-ratio: 300 / 620;
-    border-radius: 46px;
-    padding: 12px;
-    background: linear-gradient(160deg, #2a2740, #131120);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.55),
-      0 0 90px hsla(var(--orb-hue), 60%, 50%, 0.22);
-    transition: box-shadow 1.4s ease;
-  }
-  .phone-screen {
-    position: relative;
-    height: 100%;
-    border-radius: 36px;
-    background: radial-gradient(120% 90% at 50% 0%, hsla(var(--orb-hue), 45%, 22%, 0.9), #0d0b16 65%);
-    overflow: hidden;
+  .final-links {
     display: flex;
-    flex-direction: column;
-  }
-  /* notch */
-  .phone-screen::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 96px;
-    height: 26px;
-    border-radius: 14px;
-    background: #000;
-    z-index: 3;
-  }
-  .app-bar {
-    display: flex;
-    padding: 22px 22px 0;
-    z-index: 2;
-  }
-  .app-profile {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: hsla(var(--orb-hue), 45%, 55%, 0.35);
-    border: 1px solid hsla(var(--orb-hue), 50%, 70%, 0.5);
-  }
-  .app-card {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 4px;
-    padding: 0 24px 40px;
-    text-align: center;
-  }
-  .app-orb {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    margin-bottom: 30px;
-    background: radial-gradient(circle at 35% 30%,
-      hsla(var(--orb-hue), 75%, 88%, 0.98) 0%,
-      hsla(var(--orb-hue), 65%, 62%, 0.9) 42%,
-      hsla(var(--orb-hue), 55%, 32%, 0.7) 100%);
-    box-shadow:
-      0 0 34px hsla(var(--orb-hue), 65%, 65%, 0.55),
-      0 0 70px hsla(var(--orb-hue), 60%, 55%, 0.3);
-    animation: orbBreathe 8s ease-in-out infinite;
-    transition: background 1.4s ease, box-shadow 1.4s ease;
-  }
-  .app-technique {
-    font-size: 22px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    letter-spacing: 0.2px;
-  }
-  .app-sub {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.4px;
-    margin-bottom: 30px;
-  }
-  .app-begin {
-    padding: 13px 44px;
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.96);
-    color: rgba(18, 16, 32, 0.95);
-    font-size: 15px;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.3px;
-    box-shadow: 0 8px 28px hsla(var(--orb-hue), 60%, 55%, 0.4);
-  }
-  @media (max-width: 899px) {
-    .phone { margin-top: 40px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .app-orb { animation: none; }
+    margin-top: 32px;
   }
 
-  .features {
-    min-height: auto;
-    padding: 100px 24px 100px;
-  }
-  .feature-grid {
+  /* ── Stats ── */
+  .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    width: 100%;
-    max-width: 980px;
-  }
-  .feature-card {
-    padding: 24px 22px;
-    border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
     text-align: center;
   }
-  .feature-card h3 {
-    font-size: 16px;
+  .stat {
+    padding: 22px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .stat .num {
+    font-size: 30px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(244, 178, 203, 0.95);
     margin-bottom: 8px;
   }
-  .feature-card p {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0 auto;
-    max-width: 100%;
-  }
+  .stat p { font-size: 14px; color: rgba(255, 255, 255, 0.62); }
 
-  #problem { text-align: center; }
-  #problem h2 { margin-left: auto; margin-right: auto; }
-  #problem .lead { margin-left: auto; margin-right: auto; }
-
-  .research-grid {
+  /* ── Card grids (three / two columns) ── */
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    margin-top: 36px;
-    width: 100%;
-    max-width: 980px;
+    gap: 16px;
+    margin-top: 40px;
     text-align: left;
   }
-  .research-card {
-    padding: 24px 22px;
-    border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-  }
-  .research-card h3 {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 10px;
-  }
-  .research-card p {
-    font-size: 14px;
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.65);
-    margin-bottom: 14px;
-  }
-  .research-card .cite {
-    font-size: 12px;
-    letter-spacing: 0.4px;
-    color: hsla(var(--orb-hue), 50%, 75%, 0.8);
-    transition: color 1.4s ease;
-  }
-
-  /* ── Solution section ── */
-  #solution { text-align: center; }
-  #solution h2 { margin-left: auto; margin-right: auto; margin-bottom: 56px; }
-
-  .one-fact, .training, .compare, .facts { text-align: center; }
-  .one-fact h2, .training h2, .compare h2, .facts h2 { margin-left: auto; margin-right: auto; }
-  .one-fact .lead, .training .lead, .compare .lead, .facts .lead { margin-left: auto; margin-right: auto; }
-  .facts .facts-grid { margin-top: 32px; }
-  .facts .signal-card { text-align: center; }
-  .facts .signal-card .num { font-size: 30px; }
-  .training h2, .compare h2 { margin-bottom: 16px; }
-  .training .lead, .compare .lead { margin-bottom: 44px; }
-
-  /* Frontier-model comparison: two aligned columns, one row per contrast. */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    width: 100%;
-    max-width: 900px;
-    text-align: left;
-  }
-  .compare-head {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding-bottom: 4px;
-  }
-  .compare-head.them { color: rgba(255, 255, 255, 0.4); }
-  .compare-head.us { color: hsla(var(--orb-hue), 60%, 80%, 0.95); transition: color 1.4s ease; }
-  .compare-cell {
-    padding: 18px 20px;
-    border-radius: 14px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg-soft);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-  }
-  .compare-cell p { font-size: 14px; line-height: 1.55; margin: 0; }
-  .compare-cell.them { background: rgba(20, 18, 26, 0.35); }
-  .compare-cell.them p { color: rgba(255, 255, 255, 0.5); }
-  .compare-cell.us { border-color: hsla(var(--orb-hue), 55%, 60%, 0.35); }
-  .compare-cell.us p { color: rgba(255, 255, 255, 0.85); }
-  .compare-close {
-    margin: 40px auto 0;
-    max-width: 640px;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.72);
-  }
-  @media (max-width: 640px) {
-    .compare-grid { gap: 10px 12px; }
-    .compare-cell { padding: 14px 16px; }
-  }
-
-  .solution-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 22px;
-    width: 100%;
-    max-width: 980px;
-    text-align: left;
-  }
-  .solution-card {
-    padding: 28px 24px;
-    border: 1px solid var(--glass-border);
+  .cards.three { grid-template-columns: repeat(3, 1fr); }
+  .cards.two { grid-template-columns: repeat(2, 1fr); }
+  .card {
+    padding: 26px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.03);
   }
-  .solution-card .card-eyebrow {
+  .card p { font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.65); }
+  .card-eyebrow {
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: hsla(var(--orb-hue), 60%, 78%, 0.85);
+    color: rgba(244, 178, 203, 0.82);
     margin-bottom: 10px;
-    transition: color 1.4s ease;
   }
-  .solution-card h3 {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 12px;
-  }
-  .solution-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.65);
-  }
-
-  /* Animated mini-orb shared base */
-  .orb-mini {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    margin-bottom: 22px;
-    position: relative;
-    background:
-      radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.55) 0%, transparent 36%),
-      radial-gradient(circle at 35% 30%, #ffffff 0%, hsl(220, 25%, 92%) 42%, hsl(220, 38%, 78%) 92%, hsl(220, 42%, 74%) 100%);
-    box-shadow:
-      0 0 18px rgba(217, 146, 176, 0.45),
-      0 0 34px rgba(156, 92, 134, 0.25);
-    transition: box-shadow 1.4s ease;
-  }
-
-  /* Card 1: irregular pulse, like a heartbeat under load */
-  @keyframes orbHeartbeat {
-    0%, 30%, 60%, 100% { transform: scale(1); }
-    8%  { transform: scale(1.12); }
-    14% { transform: scale(1.04); }
-    20% { transform: scale(1.10); }
-    72% { transform: scale(1.06); }
-    80% { transform: scale(1.02); }
-  }
-  .orb-pulse { animation: orbHeartbeat 3.4s ease-in-out infinite; }
-
-  /* Card 2: slow box-breath in 4 / out 4 */
-  @keyframes orbBreathe {
-    0%, 100% { transform: scale(0.9); box-shadow: 0 0 12px hsla(var(--orb-hue), 60%, 50%, 0.3); }
-    50%      { transform: scale(1.18); box-shadow: 0 0 32px hsla(var(--orb-hue), 70%, 65%, 0.7); }
-  }
-  .orb-breathe { animation: orbBreathe 8s ease-in-out infinite; }
-
-  /* Card 3: concentric rings appearing one by one (the soul-tier echo) */
-  .orb-rings { overflow: visible; }
-  .orb-rings .ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    border: 1px solid hsla(var(--orb-hue), 60%, 70%, 0.55);
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: border-color 1.4s ease;
-  }
-  .orb-rings .r1 { width: 80px;  height: 80px;  animation: ringFade 4.5s ease-in-out 0.0s infinite; }
-  .orb-rings .r2 { width: 110px; height: 110px; animation: ringFade 4.5s ease-in-out 0.6s infinite; }
-  .orb-rings .r3 { width: 140px; height: 140px; animation: ringFade 4.5s ease-in-out 1.2s infinite; }
-  @keyframes ringFade {
-    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-    35%  { opacity: 0.7; }
-    70%  { opacity: 0.4; transform: translate(-50%, -50%) scale(1.0); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .orb-pulse, .orb-breathe { animation: none; }
-    .orb-rings .ring { display: none; }
-  }
-
-  .signals {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 880px;
-  }
-  .signal-card {
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    background: rgba(20, 18, 32, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  .signal-card .num {
-    font-size: 22px;
-    font-weight: 500;
-    color: hsla(var(--orb-hue), 60%, 78%, 0.95);
-    margin-bottom: 6px;
-    transition: color 1.4s ease;
-  }
-  .signal-card p { font-size: 14px; color: rgba(255, 255, 255, 0.55); }
-
-  .tiers {
-    display: flex;
-    gap: 12px;
-    margin-top: 36px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .tier-pill {
-    padding: 10px 18px;
-    border-radius: 24px;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    border: 1px solid;
-  }
-  .tier-pill.t1 { color: hsl(30, 70%, 75%); border-color: hsla(30, 70%, 60%, 0.4); }
-  .tier-pill.t2 { color: hsl(335, 70%, 80%); border-color: hsla(335, 70%, 65%, 0.4); }
-  .tier-pill.t3 { color: hsl(280, 65%, 80%); border-color: hsla(280, 65%, 65%, 0.4); }
-  .tier-pill.t4 { color: hsl(230, 65%, 80%); border-color: hsla(230, 65%, 65%, 0.4); }
-  .tier-pill.t5 { color: hsl(210, 65%, 82%); border-color: hsla(210, 65%, 65%, 0.4); }
-
-  .practices {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 880px;
-    text-align: left;
-  }
-  .practice-group h3 {
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: hsla(var(--orb-hue), 50%, 70%, 0.75);
-    margin-bottom: 12px;
-    transition: color 1.4s ease;
-  }
-  .practice-group ul { list-style: none; padding: 0; }
-  .practice-group li {
-    padding: 8px 0;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .papers {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    margin-top: 36px;
-    width: 100%;
-    max-width: 980px;
-    text-align: left;
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  }
-  .paper {
-    padding: 18px;
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    background: var(--glass-bg-soft);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    transition: opacity 0.3s ease;
-  }
-  .paper:nth-child(n+10) { opacity: 0.7; filter: blur(0.5px); }
-  .paper .title { font-size: 14px; color: rgba(255, 255, 255, 0.85); font-weight: 500; margin-bottom: 4px; }
-  .paper .cite { font-size: 12px; color: rgba(255, 255, 255, 0.4); }
-  .more-line {
-    margin-top: 28px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
+  .card .cite {
+    margin-top: 14px;
+    font-size: 12px;
     letter-spacing: 0.4px;
-    text-align: center;
+    color: rgba(244, 178, 203, 0.75);
   }
-
-  .privacy-points {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    margin-top: 32px;
-    width: 100%;
-    max-width: 880px;
-  }
-  .privacy-point .check {
-    display: inline-block;
+  .card .check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: hsla(var(--orb-hue), 50%, 50%, 0.2);
-    border: 1px solid hsla(var(--orb-hue), 50%, 60%, 0.5);
-    color: hsla(var(--orb-hue), 70%, 85%, 1);
-    text-align: center;
-    line-height: 22px;
+    background: rgba(244, 178, 203, 0.18);
+    border: 1px solid rgba(244, 178, 203, 0.5);
+    color: rgba(244, 178, 203, 1);
     font-size: 13px;
-    margin-bottom: 10px;
-    transition: all 1.4s ease;
+    margin-bottom: 12px;
   }
-  .privacy-point h3 { font-size: 15px; margin-bottom: 6px; }
-  .privacy-point p { font-size: 14px; }
 
-  .founder { text-align: center; max-width: 680px; }
-  .founder-photo {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 28px;
-    display: block;
-    border: 2px solid hsla(var(--orb-hue), 50%, 70%, 0.3);
+  .more-line {
+    margin-top: 30px;
+    font-size: 15px;
+  }
+  .more-line a { color: rgba(244, 178, 203, 0.9); text-decoration: none; }
+  .more-line a:hover { text-decoration: underline; }
+
+  /* ── Thin phone frame ──
+     A reusable vertical iPhone: thin dark bezel, soft cool/violet outer glow so
+     it sits in the cosmic sky. The SCREEN is a div with a background-image
+     rather than an image element, and a dark fallback colour, so a missing file
+     degrades to a plain dark screen instead of a broken-image icon. */
+  .phone {
+    flex: 0 0 auto;
+    width: 236px;
+    aspect-ratio: 9 / 19.5;
+    padding: 9px;                 /* bezel thickness -> ~218px screen */
+    border-radius: 44px;
+    background: #0b0912;
     box-shadow:
-      0 0 24px hsla(var(--orb-hue), 60%, 55%, 0.35),
-      0 0 48px hsla(var(--orb-hue), 60%, 50%, 0.2);
-    transition: border-color 1.4s ease, box-shadow 1.4s ease;
+      0 30px 70px rgba(0, 0, 0, 0.5),
+      0 0 60px rgba(150, 120, 220, 0.22),   /* faint violet glow into the sky */
+      inset 0 0 0 1px rgba(255, 255, 255, 0.07);
   }
-  .founder .quote {
-    font-size: 26px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 22px;
-    letter-spacing: -0.2px;
-  }
-  .founder .quote-body {
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.72);
-    margin: 0 auto 16px;
-    max-width: 580px;
-  }
-  .founder .signature {
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    color: rgba(255, 255, 255, 0.45);
-    margin-top: 18px;
-  }
-  .founder-cta { margin-top: 28px; }
-
-  .love { text-align: center; max-width: 720px; }
-  .love h2 { margin-bottom: 16px; }
-  .love .lead { margin-bottom: 36px; }
-
-  .meta a { color: rgba(255, 255, 255, 0.55); text-decoration: underline; margin-left: 10px; }
-  .meta a:hover { color: rgba(255, 255, 255, 0.9); }
-
-  .downloads { text-align: center; max-width: 880px; }
-  .desktop-downloads {
-    margin-top: 72px;
-    padding-top: 48px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    width: 100%;
-  }
-  .desktop-downloads .lead { font-size: 16px; margin: 12px auto 0; }
-  .download-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    margin-top: 36px;
-    width: 100%;
-    text-align: left;
-  }
-  .download-card {
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    background: rgba(20, 18, 32, 0.5);
-    color: rgba(255, 255, 255, 0.92);
-    text-decoration: none;
-    transition: border-color 0.3s ease, transform 0.3s ease;
-  }
-  .download-card:hover {
-    border-color: hsla(var(--orb-hue), 60%, 60%, 0.5);
-    transform: translateY(-2px);
-  }
-  .download-card .dl-arch { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
-  .download-card .dl-detail { font-size: 14px; color: rgba(255, 255, 255, 0.65); margin-bottom: 14px; }
-  .download-card .dl-meta { font-size: 12px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px; }
-  .meta.unsure { margin-top: 24px; }
-
-  .final-cta { text-align: center; }
-  .final-cta h2 { margin-bottom: 32px; }
-
-  footer {
-    text-align: center;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
-  }
-  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
-
-  .launch-video { text-align: center; }
-  .launch-video h2 { margin-left: auto; margin-right: auto; margin-bottom: 36px; }
-  .video-frame {
-    width: 100%;
-    max-width: 980px;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-    background: #000;
-    aspect-ratio: 16 / 9;
-  }
-  .video-frame video {
+  .phone-screen {
     width: 100%;
     height: 100%;
-    display: block;
-    object-fit: cover;
+    border-radius: 36px;
+    background-color: #0a0814;    /* dark fallback if the PNG is missing */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
   }
 
-  @media (max-width: 720px) {
-    .hero h1 { font-size: 40px; }
+  /* ── Two-column split: section text on one side, phone on the other ──
+     .reverse alternates which side the phone sits on. Stacks on mobile. */
+  .split {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .split.reverse { flex-direction: row-reverse; }
+  .split-text { flex: 1 1 auto; min-width: 0; text-align: left; }
+  .split-text h1,
+  .split-text h2,
+  .split-text .subhead,
+  .split-text .lead,
+  .split-text p { margin-left: 0; margin-right: 0; max-width: none; }
+  .split-text .lead { margin-bottom: 0; }
+  .split-text .interest { align-items: flex-start; }
+
+  /* ── Phone trio: the Reflect / Regulate / Respond core loop ── */
+  .phone-trio {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 44px;
+  }
+  .phone-cap { margin: 0; text-align: center; }
+  .phone-cap .phone { width: 216px; }
+  .phone-cap figcaption {
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(244, 178, 203, 0.82);
+  }
+
+  /* ── Footer ── */
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 48px 24px 72px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+  }
+  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 12px; }
+  footer a:hover { color: rgba(255, 255, 255, 0.8); }
+  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.22); }
+
+  /* ── Responsive ── */
+  @media (max-width: 760px) {
+    .s { padding: 56px 28px; }
     h1 { font-size: 36px; }
-    h2 { font-size: 28px; }
-    p.lead { font-size: 17px; }
-    section { padding: 60px 20px; }
-    .video-frame { border-radius: 12px; }
+    h2 { font-size: 26px; }
+    .subhead { font-size: 18px; }
+    .lead { font-size: 17px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .cards.three, .cards.two { grid-template-columns: 1fr; }
+    /* Stack the two-column splits, phone under the copy, both centered. */
+    .split, .split.reverse { flex-direction: column; gap: 36px; }
+    .split-text { text-align: center; }
+    .split-text .interest { align-items: center; }
+    .phone { width: 210px; }
+  }
+  @media (max-width: 420px) {
+    .s { padding: 48px 20px; }
+    .stats { grid-template-columns: 1fr; }
+    .phone { width: 200px; }
+    .phone-cap .phone { width: 200px; }
   }
 </style>
+</Base>
