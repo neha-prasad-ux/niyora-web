@@ -12,7 +12,6 @@
 import Base from './Base.astro';
 import Sky from '../components/Sky.astro';
 import Moon from '../components/Moon.astro';
-import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
   title: string;
@@ -44,8 +43,6 @@ const { title, description, ogImage, ogType, canonicalUrl, jsonLd } = Astro.prop
       <slot />
     </div>
   </main>
-
-  <SiteFooter />
 </Base>
 
 <style is:global>

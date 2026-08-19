@@ -129,14 +129,6 @@ function ages(min: string | null, max: string | null): string {
       </div>
     </section>
   </main>
-
-  <footer>
-    <a href="/research/">All research</a>
-    <a href="/blog/">Writing</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
-  </footer>
 </Base>
 
 <style>
@@ -325,18 +317,6 @@ function ages(min: string | null, max: string | null): string {
     transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
   .cta:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
-
-  footer {
-    text-align: center;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
-  }
-  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
 
   @media (max-width: 900px) { .stat-grid { grid-template-columns: 1fr; } }
   @media (max-width: 720px) {
