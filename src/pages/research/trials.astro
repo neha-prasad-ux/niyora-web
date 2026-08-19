@@ -16,6 +16,34 @@ const jsonLd = {
   isBasedOn: 'https://clinicaltrials.gov/',
 };
 
+// Registry data is public, so the filtered list is publishable as a dataset:
+// what Google indexes is our filter (open, recently updated, has a location),
+// not the registry dump.
+const dataset = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Open menstrual and premenstrual health clinical trials',
+  description: `${s.current} clinical trials on periods, PMS and PMDD that are open, were updated in the last year, and name a place you could go. Filtered from ClinicalTrials.gov on ${updated}.`,
+  url: 'https://niyora.com/research/trials/',
+  creator: { '@type': 'Organization', name: 'Niyora', url: 'https://niyora.com/' },
+  isBasedOn: 'https://clinicaltrials.gov/',
+  creditText: 'Source data from ClinicalTrials.gov, a service of the U.S. National Library of Medicine.',
+  keywords: ['clinical trials', 'menstrual health', 'PMS', 'PMDD', 'endometriosis', 'recruitment'],
+  variableMeasured: ['NCT ID', 'Status', 'Phase', 'Condition', 'Sponsor', 'Enrollment', 'Locations'],
+  temporalCoverage: updated,
+  dateModified: updated,
+  isAccessibleForFree: true,
+  license: 'https://clinicaltrials.gov/about-site/terms-conditions',
+  distribution: [
+    {
+      '@type': 'DataDownload',
+      name: 'Menstrual health trials (JSON)',
+      encodingFormat: 'application/json',
+      contentUrl: 'https://niyora.com/data/trials.json',
+    },
+  ],
+};
+
 function ages(min: string | null, max: string | null): string {
   if (min && max) return `${min.replace(' Years', '')} to ${max.replace(' Years', '')}`;
   if (min) return `${min.replace(' Years', '')} and over`;
@@ -28,7 +56,7 @@ function ages(min: string | null, max: string | null): string {
   title="Menstrual health trials you could join · Niyora"
   description={`${s.current} clinical trials on periods, PMS and PMDD that are genuinely open, checked against the registry on ${updated}. Not affiliated with any of them.`}
   canonicalUrl="https://niyora.com/research/trials/"
-  jsonLd={jsonLd}
+  jsonLd={[jsonLd, dataset]}
 >
   <section class="s hero">
     <div class="eyebrow"><a href="/research/">Research</a></div>

@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /lab/
+Disallow: /demo/
 Sitemap: https://niyora.com/sitemap-index.xml
+
+# Markdown copies of every page for AI crawlers: add .md to any URL.
+# Index: https://niyora.com/llms.txt

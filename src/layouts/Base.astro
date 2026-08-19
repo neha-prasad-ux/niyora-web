@@ -23,6 +23,13 @@ const {
 } = Astro.props;
 
 const ogImageAbsolute = new URL(ogImage, Astro.site).href;
+
+// Every page is also served as markdown for AI crawlers (/faq/ -> /faq.md),
+// written by scripts/md-twins.mjs after the build. Same exclusions as there.
+const path = Astro.url.pathname;
+const mdUrl = /^\/(lab|demo)\/|^\/404/.test(path)
+  ? null
+  : new URL(path === '/' ? '/index.md' : `${path.replace(/\/$/, '')}.md`, Astro.site).href;
 const jsonLdBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
@@ -42,6 +49,7 @@ const jsonLdBlocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content={ogType} />
     <link rel="canonical" href={canonicalUrl} />
+    {mdUrl && <link rel="alternate" type="text/markdown" href={mdUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
