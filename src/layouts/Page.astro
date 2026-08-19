@@ -104,6 +104,16 @@ const { title, description, ogImage, ogType, canonicalUrl, jsonLd } = Astro.prop
     backdrop-filter: var(--sheet-blur);
     -webkit-backdrop-filter: var(--sheet-blur);
     overflow: hidden;
+    /* Glass comes in over the moon: delayed so the moon reveals first, then the
+       sheet materializes and settles. `both` holds it hidden during the delay. */
+    animation: sheetIn 1.3s ease-in-out 0.35s both;
+  }
+  @keyframes sheetIn {
+    0%   { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sheet { animation: none; }
   }
 
   /* ── Sections divided by hairline rules ──
