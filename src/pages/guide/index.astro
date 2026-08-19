@@ -1,144 +1,78 @@
 ---
-import Base from '../../layouts/Base.astro';
-import OrbStage from '../../components/OrbStage.astro';
+import Page from '../../layouts/Page.astro';
 import { downloads } from '../../config/downloads.ts';
 ---
 
-<Base
+<Page
   title="How to steady the week before your period: a research-backed PMS guide · Niyora"
   description="A short, practical PMS guide for the days before your period. What is actually happening in your body, and a few research-grounded things that help you reflect, regulate, and respond. No fluff."
   canonicalUrl="https://niyora.com/guide/"
 >
-  <OrbStage />
+  <section class="s">
+    <div class="eyebrow">The PMS guide</div>
+    <h1>How to steady the week before your period</h1>
+    <p class="lead">A short guide to the premenstrual week, drawn from the research. What is actually happening in your body, and a few concrete things that help you reflect, regulate, and respond. No fluff, and it has an end date each cycle.</p>
+  </section>
 
-  <main class="content">
-    <section class="hero" data-hue="280" data-sat="55%">
-      <div class="eyebrow">The PMS guide</div>
-      <h1>How to steady the week before your period</h1>
-      <p class="lede">A short guide to the premenstrual week, drawn from the research. What is actually happening in your body, and a few concrete things that help you reflect, regulate, and respond. No fluff, and it has an end date each cycle.</p>
-    </section>
+  <section class="s">
+    <h2>What is actually happening</h2>
+    <div class="prose">
+      <p>The first useful thing to know is that your hormones this week are normal. When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is in how strongly the brain responds to the ordinary rise and fall.</p>
+      <p>So this is not you being fragile. Your nervous system is more sensitive to the shift for a few days. The built-in calm that usually absorbs small frustrations runs thinner, so a text, a silence, a normal task can read as bigger than it is. That sensitivity is real, largely inherited, and physical, a bit like having sensitive skin.</p>
+      <p>The other thing to hold onto: this has an end date. When researchers switched these hormones off, the symptoms cleared, and switched them back on, they returned. What you feel is tied to a passing hormonal moment. It rolls in with the shift and eases with the next one, every cycle. Think of it as weather.</p>
+    </div>
+  </section>
 
-    <section class="what" data-hue="278" data-sat="55%">
-      <h2>What is actually happening</h2>
-      <div class="prose">
-        <p>The first useful thing to know is that your hormones this week are normal. When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is in how strongly the brain responds to the ordinary rise and fall.</p>
-        <p>So this is not you being fragile. Your nervous system is more sensitive to the shift for a few days. The built-in calm that usually absorbs small frustrations runs thinner, so a text, a silence, a normal task can read as bigger than it is. That sensitivity is real, largely inherited, and physical, a bit like having sensitive skin.</p>
-        <p>The other thing to hold onto: this has an end date. When researchers switched these hormones off, the symptoms cleared, and switched them back on, they returned. What you feel is tied to a passing hormonal moment. It rolls in with the shift and eases with the next one, every cycle. Think of it as weather.</p>
-      </div>
-    </section>
+  <section class="s">
+    <h2>Reflect: see the feeling clearly</h2>
+    <div class="prose">
+      <p>When a feeling lands hard, the fastest move is not to fix it. It is to name it. Putting one plain word on what you feel, anxious, irritable, low, foggy, overwhelmed, takes some of its charge away. You are labelling the state instead of being pulled along by it.</p>
+      <p>Then step back from the thought. A worry this week feels like a fact. It usually is not. Try noticing the thought as a thought: "I am having the thought that I have ruined this," rather than "I have ruined this." Same words, a small gap of distance. If a worry keeps circling, park it. Write it down and agree to pick it back up after your period, when it will feel smaller. Most of them do.</p>
+    </div>
+  </section>
 
-    <section class="rrr" data-hue="210" data-sat="55%">
-      <h2>Reflect: see the feeling clearly</h2>
-      <div class="prose">
-        <p>When a feeling lands hard, the fastest move is not to fix it. It is to name it. Putting one plain word on what you feel, anxious, irritable, low, foggy, overwhelmed, takes some of its charge away. You are labelling the state instead of being pulled along by it.</p>
-        <p>Then step back from the thought. A worry this week feels like a fact. It usually is not. Try noticing the thought as a thought: "I am having the thought that I have ruined this," rather than "I have ruined this." Same words, a small gap of distance. If a worry keeps circling, park it. Write it down and agree to pick it back up after your period, when it will feel smaller. Most of them do.</p>
-      </div>
-    </section>
+  <section class="s">
+    <h2>Regulate: settle your body first</h2>
+    <div class="prose">
+      <p>Your body decides whether you are safe before your mind catches up. So calm is often a state you reach through the body, not a thought you argue your way into. A few things that work fast:</p>
+      <ul>
+        <li><strong>Slow your out-breath.</strong> Breathe in for about four, out for about six, for a minute or two. A longer exhale is the simplest way to tell your system the threat has passed.</li>
+        <li><strong>Cold water on your face.</strong> Splashing cold water, or holding something cold to your face, trips a reflex that slows your heart and pulls you out of a spike within seconds.</li>
+        <li><strong>Warmth your body reads as safe.</strong> Something warm in your hands, a warm drink, or curling up under something heavy signals calm without any effort from you.</li>
+      </ul>
+      <p>Protect your sleep this week harder than usual, because a thin buffer gets thinner when you are tired. Same plate, smaller hands. A steady, earlier wind-down does more for the next day's mood than almost anything else you can do.</p>
+    </div>
+  </section>
 
-    <section class="rrr" data-hue="180" data-sat="50%">
-      <h2>Regulate: settle your body first</h2>
-      <div class="prose">
-        <p>Your body decides whether you are safe before your mind catches up. So calm is often a state you reach through the body, not a thought you argue your way into. A few things that work fast:</p>
-        <ul>
-          <li><strong>Slow your out-breath.</strong> Breathe in for about four, out for about six, for a minute or two. A longer exhale is the simplest way to tell your system the threat has passed.</li>
-          <li><strong>Cold water on your face.</strong> Splashing cold water, or holding something cold to your face, trips a reflex that slows your heart and pulls you out of a spike within seconds.</li>
-          <li><strong>Warmth your body reads as safe.</strong> Something warm in your hands, a warm drink, or curling up under something heavy signals calm without any effort from you.</li>
-        </ul>
-        <p>Protect your sleep this week harder than usual, because a thin buffer gets thinner when you are tired. Same plate, smaller hands. A steady, earlier wind-down does more for the next day's mood than almost anything else you can do.</p>
-      </div>
-    </section>
+  <section class="s">
+    <h2>Respond: act with the sensitivity in mind</h2>
+    <div class="prose">
+      <p>You are still you underneath the dial being turned up. The goal is to respond in a way you will not regret once the week passes.</p>
+      <p>Time the hard things. If a conversation, a decision, or a confrontation can wait a few days, let it. What feels urgent and enormous this week often feels ordinary and manageable next week. This is not avoidance, it is choosing better ground to stand on.</p>
+      <p>If something has already gone sideways, a small repair goes a long way. One honest message, "I was short earlier and I am sorry, it was not about you," shows a hard moment is not the whole story. And it is fine to pull back. Dimming your load and protecting your energy for a few days is care, not failure.</p>
+    </div>
+  </section>
 
-    <section class="rrr" data-hue="150" data-sat="48%">
-      <h2>Respond: act with the sensitivity in mind</h2>
-      <div class="prose">
-        <p>You are still you underneath the dial being turned up. The goal is to respond in a way you will not regret once the week passes.</p>
-        <p>Time the hard things. If a conversation, a decision, or a confrontation can wait a few days, let it. What feels urgent and enormous this week often feels ordinary and manageable next week. This is not avoidance, it is choosing better ground to stand on.</p>
-        <p>If something has already gone sideways, a small repair goes a long way. One honest message, "I was short earlier and I am sorry, it was not about you," shows a hard moment is not the whole story. And it is fine to pull back. Dimming your load and protecting your energy for a few days is care, not failure.</p>
-      </div>
-    </section>
+  <section class="s">
+    <div class="moat">
+      <p>None of this is about doing more. It is about knowing the moment exists, settling your body, and moving through it, then letting it pass. It always does.</p>
+    </div>
+  </section>
 
-    <section class="close" data-hue="300" data-sat="55%">
-      <div class="moat">
-        <p>None of this is about doing more. It is about knowing the moment exists, settling your body, and moving through it, then letting it pass. It always does.</p>
-      </div>
-    </section>
-
-    <section class="cta-section" data-hue="30" data-sat="70%">
-      <h2>Want to know how your own week hits?</h2>
-      <p class="lede">Take the two-minute check to see how your premenstrual week actually lands, then keep this in your pocket for the days it does.</p>
-      <div class="cta-row">
-        <a href="/quiz" class="cta">Take the quiz</a>
-        <a href={downloads.appStore} class="cta ghost">Get Niyora</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <a href="/compare/niyora-vs-flo/">Niyora vs Flo</a>
-    <a href="/blog/">Writing</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
-  </footer>
-</Base>
+  <section class="s">
+    <h2>Want to know how your own week hits?</h2>
+    <p class="lead">Take the two-minute check to see how your premenstrual week actually lands, then keep this in your pocket for the days it does.</p>
+    <div class="cta-row">
+      <a href="/quiz" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
 
 <style>
-  .content { position: relative; z-index: 2; }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 72px 40px;
-    max-width: 1080px;
-    margin: 26px auto;
-    border-radius: 32px;
-    background: rgba(12, 10, 20, 0.24);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(16px) saturate(1.15);
-    -webkit-backdrop-filter: blur(16px) saturate(1.15);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-    text-align: center;
-  }
-  @media (max-width: 720px) {
-    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
-  }
-
-  .hero { padding: 96px 40px 80px; }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
-    margin-bottom: 16px;
-    transition: color 1.4s ease;
-  }
-
-  h1 {
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 1.16;
-    letter-spacing: -0.5px;
-    margin-bottom: 22px;
-    max-width: 780px;
-    color: rgba(255, 255, 255, 0.96);
-  }
-  h2 {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 20px;
-    max-width: 720px;
-    color: rgba(255, 255, 255, 0.94);
-  }
-  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
-  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
-
-  .prose { max-width: 680px; text-align: left; }
-  .prose p { margin-bottom: 18px; font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); max-width: none; }
+  /* Left-aligned reading column for the long-form guide prose. */
+  .prose { max-width: 680px; margin: 0 auto; text-align: left; }
+  .prose p { margin-bottom: 18px; font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); }
   .prose p:last-child { margin-bottom: 0; }
   .prose ul { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 14px; }
   .prose li {
@@ -151,63 +85,22 @@ import { downloads } from '../../config/downloads.ts';
     background: var(--glass-bg-soft);
     box-shadow: var(--glass-shadow);
   }
-  .prose strong { color: hsla(var(--orb-hue), 60%, 84%, 0.98); font-weight: 500; }
+  .prose strong { color: rgba(var(--accent-rgb), 0.95); font-weight: 500; }
 
   .moat {
     max-width: 720px;
+    margin: 0 auto;
     padding: 32px 30px;
     border-radius: 20px;
-    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
     background: var(--glass-bg);
     box-shadow: var(--glass-shadow);
   }
-  .moat p { font-size: 21px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.86); max-width: none; margin: 0; }
+  .moat p { font-size: 21px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.86); margin: 0; }
 
-  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
-  .cta {
-    display: inline-block;
-    padding: 16px 36px;
-    border-radius: 32px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(18, 16, 32, 0.95);
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
-    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
-  }
-  .cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 1);
-    color: hsla(var(--orb-hue), 70%, 32%, 1);
-    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
-  }
-  .cta.ghost {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
-
-  footer {
-    text-align: center;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
-  }
-  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
   @media (max-width: 720px) {
-    h1 { font-size: 34px; }
-    h2 { font-size: 26px; }
-    p.lede { font-size: 17px; }
     .prose p { font-size: 16px; }
     .moat p { font-size: 18px; }
   }

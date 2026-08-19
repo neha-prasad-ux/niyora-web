@@ -1,0 +1,73 @@
+---
+// Fixed moon layer: lives BEHIND the glass sheet (z-index 1, under .neat's
+// z-index 2) and is position:fixed, so it stays a calm constant presence as you
+// scroll instead of a hero element that scrolls away. The frosted .sheet blurs
+// and dims it, so it reads as a soft light glowing THROUGH the frost.
+---
+
+<div class="moon-field" aria-hidden="true">
+  <div class="moon-glow"></div>
+  <div class="moon"></div>
+</div>
+
+<style>
+  /* ── Moon layer: fixed, behind the glass ──
+     z-index 1 puts it under the sheet (.neat is z-index 2), so the sheet's
+     backdrop-blur samples it and the moon reads as soft light through the frost.
+     position: fixed + upper-viewport anchor keeps it a constant presence while
+     the content scrolls past in front of it. Colour is STATIC (no hue shift). */
+  .moon-field {
+    position: fixed;
+    top: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 560px;
+    height: 560px;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  /* Orange to pink to purple halo, larger than the moon, warm core to cool rim.
+     Palette lives as --moon-glow in Page.astro (one place to retint the halo).
+     PNG SWAP-IN: replace the `background` below with
+       background: url('/glow.png') center / contain no-repeat;
+     and delete the radial-gradient. Nothing else needs to change. */
+  .moon-glow {
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    background: var(--moon-glow);
+  }
+  /* Pale, near-white matte sphere with a faint cool shading lower-right.
+     Face gradient lives as --moon-face in Page.astro.
+     PNG SWAP-IN: replace the `background` (and drop the inset box-shadows) with
+       background: url('/moon.png') center / contain no-repeat;
+     Keep the moonBreathe animation and the outer drop shadow if you like. */
+  .moon {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: var(--moon-face);
+    box-shadow:
+      inset -20px -24px 46px rgba(176, 172, 196, 0.38),
+      inset 8px 8px 22px rgba(255, 255, 255, 0.45),
+      0 8px 40px rgba(0, 0, 0, 0.25);
+    animation: moonBreathe 11s ease-in-out infinite;
+  }
+  @keyframes moonBreathe {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50%      { transform: scale(1.02) translateY(-4px); }
+  }
+  @media (max-width: 560px) {
+    /* Viewport units so the fixed, centered layer never causes horizontal scroll. */
+    .moon-field { width: 92vw; height: 92vw; top: 4vh; }
+    .moon { width: 180px; height: 180px; }
+    .moon-glow { width: 92vw; height: 92vw; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .moon { animation: none; }
+  }
+</style>

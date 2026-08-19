@@ -1,148 +1,82 @@
 ---
-import Base from '../../layouts/Base.astro';
-import OrbStage from '../../components/OrbStage.astro';
-
+import Page from '../../layouts/Page.astro';
 import { downloads } from '../../config/downloads';
-const appStore = downloads.appStore;
 ---
 
-<Base
+<Page
   title="Niyora vs an AI chatbot or companion app · Niyora"
   description="A general AI companion keeps you talking. Niyora helps you need it less. Built only for the days before your period: reflect, regulate, respond in about a minute, then stop. No sign in."
   canonicalUrl="https://niyora.com/compare/niyora-vs-ai-companion/"
 >
-  <OrbStage />
+  <section class="s hero">
+    <div class="eyebrow">Niyora vs an AI companion</div>
+    <h1>A chatbot keeps you talking. Niyora helps you need it less.</h1>
+    <p class="lead">A general AI chatbot or companion app is built to hold your attention. That is the opposite of what a hard premenstrual moment needs. A big wave of feeling takes about twenty minutes to pass. It does not need more conversation, it needs to move through you. That is the one thing Niyora is built to do.</p>
+  </section>
 
-  <main class="content">
-    <section class="hero" data-hue="335" data-sat="58%">
-      <div class="eyebrow">Niyora vs an AI companion</div>
-      <h1>A chatbot keeps you talking. Niyora helps you need it less.</h1>
-      <p class="lede">A general AI chatbot or companion app is built to hold your attention. That is the opposite of what a hard premenstrual moment needs. A big wave of feeling takes about twenty minutes to pass. It does not need more conversation, it needs to move through you. That is the one thing Niyora is built to do.</p>
-    </section>
+  <section class="s">
+    <div class="moat">
+      <p>A general chatbot is built to keep you talking. Niyora is built for one window, the days before your period, and for <strong>helping you need it less</strong>. It knows what the hormone shift does to your brain, walks you through reflect, regulate, respond in about a minute, and its training builds the skill before you need it. Then it stops. Not a friend to lean on, a way to move through the moment and put it down.</p>
+    </div>
+  </section>
 
-    <section class="moat-section" data-hue="330" data-sat="55%">
-      <div class="moat">
-        <p>A general chatbot is built to keep you talking. Niyora is built for one window, the days before your period, and for <strong>helping you need it less</strong>. It knows what the hormone shift does to your brain, walks you through reflect, regulate, respond in about a minute, and its training builds the skill before you need it. Then it stops. Not a friend to lean on, a way to move through the moment and put it down.</p>
-      </div>
-    </section>
+  <section class="s">
+    <h2>The difference, line by line</h2>
+    <div class="compare-grid">
+      <div class="compare-head them">A general AI chatbot or companion</div>
+      <div class="compare-head us">Niyora</div>
 
-    <section class="table-section" data-hue="300" data-sat="55%">
-      <h2>The difference, line by line</h2>
-      <div class="compare-grid">
-        <div class="compare-head them">A general AI chatbot or companion</div>
-        <div class="compare-head us">Niyora</div>
+      <div class="compare-cell them"><p>Built to keep the conversation going. It optimizes for time spent.</p></div>
+      <div class="compare-cell us"><p>Built to finish the loop, then stop. It optimizes for you needing it less.</p></div>
 
-        <div class="compare-cell them"><p>Built to keep the conversation going. It optimizes for time spent.</p></div>
-        <div class="compare-cell us"><p>Built to finish the loop, then stop. It optimizes for you needing it less.</p></div>
+      <div class="compare-cell them"><p>General. It does not know your premenstrual week or what it does to you.</p></div>
+      <div class="compare-cell us"><p>Built for one window only, the days before your period, and how your brain feels the hormone shift.</p></div>
 
-        <div class="compare-cell them"><p>General. It does not know your premenstrual week or what it does to you.</p></div>
-        <div class="compare-cell us"><p>Built for one window only, the days before your period, and how your brain feels the hormone shift.</p></div>
+      <div class="compare-cell them"><p>Agrees with you, and lets you vent for as long as you like. Venting often makes it worse.</p></div>
+      <div class="compare-cell us"><p>Helps you regulate first, then shows you another way to see it, on purpose.</p></div>
 
-        <div class="compare-cell them"><p>Agrees with you, and lets you vent for as long as you like. Venting often makes it worse.</p></div>
-        <div class="compare-cell us"><p>Helps you regulate first, then shows you another way to see it, on purpose.</p></div>
+      <div class="compare-cell them"><p>Rarely raises how your words will land on the people around you.</p></div>
+      <div class="compare-cell us"><p>Keeps them in view. Helps you send the message you will not regret.</p></div>
 
-        <div class="compare-cell them"><p>Rarely raises how your words will land on the people around you.</p></div>
-        <div class="compare-cell us"><p>Keeps them in view. Helps you send the message you will not regret.</p></div>
+      <div class="compare-cell them"><p>Learns about you and is built to sound like a friend. That builds dependence.</p></div>
+      <div class="compare-cell us"><p>No sign in, so you are never identifiable. It never calls itself human.</p></div>
 
-        <div class="compare-cell them"><p>Learns about you and is built to sound like a friend. That builds dependence.</p></div>
-        <div class="compare-cell us"><p>No sign in, so you are never identifiable. It never calls itself human.</p></div>
+      <div class="compare-cell them"><p>Gives endless options and keeps going.</p></div>
+      <div class="compare-cell us"><p>Gets you to one response you can stand behind, then stops.</p></div>
+    </div>
+  </section>
 
-        <div class="compare-cell them"><p>Gives endless options and keeps going.</p></div>
-        <div class="compare-cell us"><p>Gets you to one response you can stand behind, then stops.</p></div>
-      </div>
-    </section>
+  <section class="s">
+    <div class="honest">
+      <h2>To be fair to the chatbots</h2>
+      <p>General AI is remarkable, and it can help with a great deal. This is not a claim that it is bad. It is a claim that a hard premenstrual moment is a specific problem with a specific shape, and a tool built to keep you talking is the wrong shape for it. Niyora does one narrow thing, and stops.</p>
+    </div>
+  </section>
 
-    <section class="honest-section" data-hue="278" data-sat="55%">
-      <div class="honest">
-        <h2>To be fair to the chatbots</h2>
-        <p>General AI is remarkable, and it can help with a great deal. This is not a claim that it is bad. It is a claim that a hard premenstrual moment is a specific problem with a specific shape, and a tool built to keep you talking is the wrong shape for it. Niyora does one narrow thing, and stops.</p>
-      </div>
-    </section>
-
-    <section class="cta-section" data-hue="30" data-sat="70%">
-      <h2>Not sure the hard week is even PMS?</h2>
-      <p class="lede">Take the two-minute check and see how your premenstrual week actually hits.</p>
-      <div class="cta-row">
-        <a href="/quiz" class="cta">Take the quiz</a>
-        <a href={appStore} class="cta ghost">Get Niyora</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <a href="/compare/alternatives-to-mood-trackers/">Alternatives to mood trackers</a>
-    <a href="/blog/">Writing</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
-  </footer>
-</Base>
+  <section class="s">
+    <h2>Not sure the hard week is even PMS?</h2>
+    <p class="lead">Take the two-minute check and see how your premenstrual week actually hits.</p>
+    <div class="cta-row">
+      <a href="/quiz" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
 
 <style>
-  .content { position: relative; z-index: 2; }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 72px 40px;
-    max-width: 1080px;
-    margin: 26px auto;
-    border-radius: 32px;
-    background: rgba(12, 10, 20, 0.24);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(16px) saturate(1.15);
-    -webkit-backdrop-filter: blur(16px) saturate(1.15);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-    text-align: center;
-  }
-  @media (max-width: 720px) {
-    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
-  }
-
-  .hero { padding: 96px 40px 80px; }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
-    margin-bottom: 16px;
-    transition: color 1.4s ease;
-  }
-
-  h1 {
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 1.16;
-    letter-spacing: -0.5px;
-    margin-bottom: 22px;
-    max-width: 780px;
-    color: rgba(255, 255, 255, 0.96);
-  }
-  h2 {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 20px;
-    max-width: 720px;
-    color: rgba(255, 255, 255, 0.94);
-  }
-  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
-  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
-
+  /* Page-specific only: the moat callout, the line-by-line grid, and the
+     to-be-fair block. Shared chrome (sheet, sections, dividers, type scale,
+     buttons, footer) comes from Page's global CSS. */
   .moat {
     max-width: 720px;
+    margin: 0 auto;
     padding: 32px 30px;
     border-radius: 20px;
-    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
   }
   .moat p { font-size: 21px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.86); max-width: none; margin: 0; }
-  .moat strong { color: hsla(var(--orb-hue), 60%, 84%, 0.98); font-weight: 500; }
+  .moat strong { color: rgba(var(--accent-rgb), 0.98); font-weight: 500; }
 
   .compare-grid {
     display: grid;
@@ -150,84 +84,37 @@ const appStore = downloads.appStore;
     gap: 14px;
     width: 100%;
     max-width: 900px;
+    margin: 24px auto 0;
     text-align: left;
-    margin-top: 12px;
   }
-  .compare-head {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding-bottom: 4px;
-  }
+  .compare-head { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding-bottom: 4px; }
   .compare-head.them { color: rgba(255, 255, 255, 0.4); }
-  .compare-head.us { color: hsla(var(--orb-hue), 60%, 80%, 0.95); transition: color 1.4s ease; }
+  .compare-head.us { color: rgba(var(--accent-rgb), 0.9); }
   .compare-cell {
     padding: 18px 20px;
     border-radius: 14px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg-soft);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
   }
   .compare-cell p { font-size: 14px; line-height: 1.55; margin: 0; max-width: none; }
-  .compare-cell.them { background: rgba(20, 18, 26, 0.35); }
-  .compare-cell.them p { color: rgba(255, 255, 255, 0.5); }
-  .compare-cell.us { border-color: hsla(var(--orb-hue), 55%, 60%, 0.35); }
-  .compare-cell.us p { color: rgba(255, 255, 255, 0.85); }
+  .compare-cell.them { background: rgba(20, 18, 26, 0.4); }
+  .compare-cell.them p { color: rgba(255, 255, 255, 0.52); }
+  .compare-cell.us { border-color: rgba(var(--accent-rgb), 0.32); }
+  .compare-cell.us p { color: rgba(255, 255, 255, 0.86); }
+
+  .honest { max-width: 680px; margin: 0 auto; }
+  .honest p { color: rgba(255, 255, 255, 0.72); font-size: 18px; line-height: 1.6; max-width: none; }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    .moat p { font-size: 18px; }
+  }
   @media (max-width: 640px) {
     .compare-grid { gap: 10px 12px; }
     .compare-cell { padding: 14px 16px; }
-  }
-
-  .honest { max-width: 680px; }
-  .honest p { margin: 0 auto; color: rgba(255, 255, 255, 0.7); font-size: 18px; line-height: 1.6; }
-
-  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
-  .cta {
-    display: inline-block;
-    padding: 16px 36px;
-    border-radius: 32px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(18, 16, 32, 0.95);
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
-    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
-  }
-  .cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 1);
-    color: hsla(var(--orb-hue), 70%, 32%, 1);
-    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
-  }
-  .cta.ghost {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
-
-  footer {
-    text-align: center;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
-  }
-  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 14px; }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.2); }
-
-  @media (max-width: 720px) {
-    h1 { font-size: 34px; }
-    h2 { font-size: 26px; }
-    p.lede { font-size: 17px; }
-    .moat p { font-size: 18px; }
   }
 </style>

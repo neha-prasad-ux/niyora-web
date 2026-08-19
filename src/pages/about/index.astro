@@ -1,113 +1,93 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Page from '../../layouts/Page.astro';
 ---
 
-<Base
+<Page
   title="About Niyora"
   description="Who is behind Niyora, why it exists, and what it will and won't do with your data."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/about/"
 >
+  <section class="s left">
+    <div class="about">
+      <h1>About Niyora</h1>
 
-  <div class="container">
-    <h1>About Niyora</h1>
+      <p class="lead">
+        Niyora is an app for the days before your period, when your feelings get
+        louder than usual. It is built by one person, in Norway, and it is early.
+      </p>
 
-    <p class="lede">
-      Niyora is an app for the days before your period, when your feelings get
-      louder than usual. It is built by one person, in Norway, and it is early.
-    </p>
+      <h2>Who is behind it</h2>
+      <img src="/neha.jpg" alt="Neha Prasad" class="photo" loading="lazy" />
+      <p>
+        I'm Neha Prasad. I'm a doctor and a product designer, and I've spent ten
+        years working in health. I went looking for a way through PMS that didn't
+        ask me to change my body, started where I trust, the research, and built
+        what I wanted to use myself.
+      </p>
 
-    <h2>Who is behind it</h2>
-    <img src="/neha.jpg" alt="Neha Prasad" class="photo" loading="lazy" />
-    <p>
-      I'm Neha Prasad. I'm a doctor and a product designer, and I've spent ten
-      years working in health. I went looking for a way through PMS that didn't
-      ask me to change my body, started where I trust, the research, and built
-      what I wanted to use myself.
-    </p>
+      <h2>Why it exists</h2>
+      <p>
+        Most of what's offered for PMS either medicates it or tracks it and stops
+        there. Niyora predicts your week too. The difference is what happens next:
+        it helps you in the actual hard hour, where almost nothing else does.
+      </p>
+      <p>
+        The quieter, stronger thread in the research is emotion regulation.
+        Naming what you feel, settling your body, and seeing the thought from a
+        step back. No hormones to take, no device to wear, no data to hand over.
+        Everything in the app is one small rep of that, done in about a minute.
+      </p>
+      <p>
+        <a class="inline" href="/research/">The research Niyora is built on</a> is
+        published, with the sources graded.
+      </p>
 
-    <h2>Why it exists</h2>
-    <p>
-      Most of what's offered for PMS either medicates it or tracks it and stops
-      there. Niyora predicts your week too. The difference is what happens next:
-      it helps you in the actual hard hour, where almost nothing else does.
-    </p>
-    <p>
-      The quieter, stronger thread in the research is emotion regulation.
-      Naming what you feel, settling your body, and seeing the thought from a
-      step back. No hormones to take, no device to wear, no data to hand over.
-      Everything in the app is one small rep of that, done in about a minute.
-    </p>
-    <p>
-      <a class="inline" href="/research/">The research Niyora is built on</a> is
-      published, with the sources graded.
-    </p>
+      <h2>What it will not do</h2>
+      <ul>
+        <li>No ads, no profile, no data sold.</li>
+        <li>No account needed. Your period dates stay on your device.</li>
+        <li>
+          Before your words go to Moon's AI, names and identifying details are
+          stripped on your phone. What is left can't point back to you.
+        </li>
+        <li>
+          It is not a diagnosis, a therapist, or crisis care. If you're in danger,
+          contact your local emergency number.
+        </li>
+      </ul>
+      <p>
+        The long version lives in <a class="inline" href="/privacy/">the privacy page</a>.
+      </p>
 
-    <h2>What it will not do</h2>
-    <ul>
-      <li>No ads, no profile, no data sold.</li>
-      <li>No account needed. Your period dates stay on your device.</li>
-      <li>
-        Before your words go to Moon's AI, names and identifying details are
-        stripped on your phone. What is left can't point back to you.
-      </li>
-      <li>
-        It is not a diagnosis, a therapist, or crisis care. If you're in danger,
-        contact your local emergency number.
-      </li>
-    </ul>
-    <p>
-      The long version lives in <a class="inline" href="/privacy/">the privacy page</a>.
-    </p>
+      <h2>Where it is now</h2>
+      <p>
+        Niyora is in testing, not on the App Store yet.
+        <a class="inline" href="/changelog/">What's new</a> tracks what ships.
+        <a class="inline" href="/talk/">Say hello</a> if you want to shape it, or
+        tell us you're interested and we'll keep building.
+      </p>
 
-    <h2>Where it is now</h2>
-    <p>
-      Niyora is in testing, not on the App Store yet.
-      <a class="inline" href="/changelog/">What's new</a> tracks what ships.
-      <a class="inline" href="/talk/">Say hello</a> if you want to shape it, or
-      tell us you're interested and we'll keep building.
-    </p>
-
-    <div class="links">
-      <a class="link" href="/talk/">Say hello</a>
-      <a class="link" href="/#interest">I'm interested</a>
+      <div class="links">
+        <a class="link" href="/talk/">Say hello</a>
+        <a class="link" href="/#interest">I'm interested</a>
+      </div>
     </div>
-  </div>
-</Base>
+  </section>
+</Page>
 
 <style>
-  body { background: #0a0814; }
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.78);
-  }
-  h1 {
-    font-size: 32px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 24px;
-    letter-spacing: 0.3px;
-  }
-  h2 {
-    font-size: 18px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.92);
-    margin: 40px 0 14px;
-  }
-  p, li {
+  /* Narrow reading column for the long-form about copy. */
+  .about { max-width: 640px; margin: 0 auto; color: rgba(255, 255, 255, 0.78); }
+  .about h2 { margin: 40px 0 14px; }
+  .about p, .about li {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.7;
     margin-bottom: 16px;
   }
-  p.lede {
-    font-size: 17px;
-    color: rgba(255, 255, 255, 0.88);
-  }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 10px; }
+  .about ul { padding-left: 20px; }
+  .about li { margin-bottom: 10px; }
   .photo {
     width: 96px;
     height: 96px;
@@ -120,7 +100,7 @@ import Base from '../../layouts/Base.astro';
     text-decoration: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   }
-  a.inline:hover { border-color: hsla(265, 60%, 85%, 0.8); }
+  a.inline:hover { border-color: rgba(var(--accent-rgb), 0.8); }
   .links {
     display: flex;
     flex-wrap: wrap;

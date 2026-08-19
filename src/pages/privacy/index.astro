@@ -1,15 +1,14 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Page from '../../layouts/Page.astro';
 ---
 
-<Base
+<Page
   title="Privacy at Niyora"
   description="Niyora has no accounts. The things you write stay encrypted on your device. The one thing that leaves your phone is the text you write, sent to Google's AI to write a reflection back and to check for crisis. No analytics, no tracking, nothing sold."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/privacy/"
 >
-  <div class="container">
-    <a class="back" href="/">← Back to Niyora</a>
+  <article class="legal">
     <p class="last-updated">Last updated: 12 August 2026</p>
     <h1>Niyora Privacy Policy</h1>
 
@@ -88,80 +87,61 @@ import Base from '../../layouts/Base.astro';
 
     <h2>Contact</h2>
     <p>Questions about privacy: <a href="mailto:neha@niyora.com">neha@niyora.com</a>.</p>
-  </div>
-</Base>
+  </article>
+</Page>
 
 <style>
-  body { background: #0a0814; }
-  .last-updated {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.35);
-    margin-bottom: 16px;
-  }
-  .container {
-    max-width: 640px;
+  /* Legal prose: shared type scale from Page, constrained to a comfortable
+     reading measure and left-aligned. Moon scrim mirrors Page's .s scrim so
+     copy stays legible over the frosted sheet. */
+  .legal {
+    max-width: 680px;
     margin: 0 auto;
-    padding: 60px 24px;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.7);
+    padding: 64px 24px 80px;
+    text-align: left;
   }
-  a.back {
-    color: rgba(255, 255, 255, 0.35);
-    text-decoration: none;
-    font-size: 13px;
-    display: inline-block;
-    margin-bottom: 32px;
+  .legal :is(h1, h2, h3, p, li, a) {
+    text-shadow: 0 1px 18px rgba(6, 4, 14, 0.55);
   }
-  a.back:hover { color: rgba(255, 255, 255, 0.6); }
-  h1 {
-    font-size: 28px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 32px;
-  }
-  .promise {
-    margin-bottom: 32px;
-    padding: 28px;
-    background: rgba(20, 18, 32, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-  }
-  .promise-text {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.92);
-    margin: 0;
-  }
-  h2 {
+  .legal h1 { max-width: none; margin: 0 0 24px; }
+  .legal h2 { max-width: none; margin: 40px 0 12px; }
+  .legal p { line-height: 1.75; margin-bottom: 14px; }
+  .legal ul { padding-left: 20px; margin-bottom: 16px; }
+  .legal li {
     font-size: 16px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 32px 0 12px;
-  }
-  p, li {
-    font-size: 14px;
     font-weight: 300;
-    margin-bottom: 12px;
-  }
-  ul, ol {
-    padding-left: 20px;
-    margin-bottom: 12px;
-  }
-  ul li, ol li {
+    color: var(--text-body);
+    line-height: 1.75;
     margin-bottom: 10px;
   }
-  code {
+  .legal a {
+    color: var(--text-lead);
+    text-decoration: underline;
+  }
+  .legal a:hover { color: var(--text-1); }
+  .legal code {
     background: rgba(255, 255, 255, 0.08);
     padding: 1px 6px;
     border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .legal .last-updated {
     font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
   }
-  a {
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: underline;
+  .legal .promise {
+    margin: 8px 0 24px;
+    padding: 24px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
   }
-  a:hover {
-    color: rgba(255, 255, 255, 1);
+  .legal .promise-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-lead);
+    margin: 0;
   }
 </style>

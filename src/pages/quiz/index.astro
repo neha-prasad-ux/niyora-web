@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
-import OrbStage from '../../components/OrbStage.astro';
+import Sky from '../../components/Sky.astro';
+import Moon from '../../components/Moon.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import { downloads } from '../../config/downloads';
 import { QUESTIONS, OPTIONS, BANDS, MAX_SCORE } from './_score';
 
@@ -15,7 +17,8 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/quiz"
 >
-  <OrbStage />
+  <Sky />
+  <Moon />
 
   <main class="quiz-wrap">
     <a class="back" href="/">← Niyora</a>
@@ -116,6 +119,10 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
     document.addEventListener('DOMContentLoaded', function () {
       var stage = document.querySelector('.stage');
       if (!stage) return;
+
+      // The shared Sky + Moon chrome has no section observer, so seed the quiz's
+      // baseline accent hue (pink). finish()/restart override this per band.
+      document.documentElement.style.setProperty('--orb-hue', '300');
 
       var views = {};
       stage.querySelectorAll('[data-view]').forEach(function (v) { views[v.dataset.view] = v; });
@@ -227,14 +234,7 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
     });
   </script>
 
-  <footer>
-    <a href="/">Niyora</a>
-    <a href="/blog/">Writing</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a href="mailto:neha@niyora.com">Contact</a>
-    <div class="copyright">© 2026 Niyora. A self-check, not medical advice.</div>
-  </footer>
+  <SiteFooter />
 </Base>
 
 <style>
@@ -486,16 +486,20 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
 
   .app-link { margin-top: 16px; text-align: center; }
   .app-link p { font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); margin-bottom: 16px; }
+</style>
 
-  footer {
-    text-align: center;
-    padding: 56px 24px 80px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
+<!-- Moon.astro reads these with no fallback; mirror Page.astro's :root so the
+     shared Sky + Moon chrome renders identically to the rest of the site.
+     ponytail: duplicated 3 tokens, dedupe if the quiz ever wraps in <Page>. -->
+<style is:global>
+  :root {
+    --sky-bg: #0a0814;
+    --moon-glow: radial-gradient(circle,
+      rgba(255, 168, 108, 0.55) 0%,
+      rgba(246, 148, 190, 0.40) 32%,
+      rgba(168, 104, 214, 0.22) 54%,
+      rgba(168, 104, 214, 0.08) 72%,
+      rgba(168, 104, 214, 0) 88%);
+    --moon-face: radial-gradient(circle at 42% 38%, #f7f5fb 0%, #eceaf3 52%, #dddbe8 100%);
   }
-  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 12px; }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright { margin-top: 14px; font-size: 12px; color: rgba(255, 255, 255, 0.22); }
 </style>
