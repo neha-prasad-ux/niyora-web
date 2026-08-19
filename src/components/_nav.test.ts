@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readdirSync, existsSync } from 'fs';
+import { readdirSync, existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { ALL_NAV_HREFS, GROUPS } from './_nav';
@@ -54,6 +54,27 @@ describe('site navigation', () => {
     for (const g of GROUPS) {
       const hrefs = g.links.map((l) => l.href);
       expect(new Set(hrefs).size, g.label).toBe(hrefs.length);
+    }
+  });
+
+  it('renders exactly one footer on every page, never zero and never two', () => {
+    const pages = builtPages(dist).filter((p) => !p.startsWith('/lab/'));
+    if (pages.length === 0) return;
+    for (const page of pages) {
+      const file = resolve(dist, page === '/' ? 'index.html' : `${page.slice(1)}index.html`);
+      const html = readFileSync(file, 'utf-8');
+      const count = html.split('class="site-footer').length - 1;
+      expect(count, page).toBe(1);
+    }
+  });
+
+  it('gives the footer the same sections as the header', () => {
+    const pages = builtPages(dist).filter((p) => !p.startsWith('/lab/'));
+    if (pages.length === 0) return;
+    const file = resolve(dist, `${pages.find((p) => p !== '/')!.slice(1)}index.html`);
+    const html = readFileSync(file, 'utf-8');
+    for (const g of GROUPS) {
+      expect(html, `footer missing ${g.label}`).toContain(`class="foot-title" href="${g.href}"`);
     }
   });
 

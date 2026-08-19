@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Sky from '../../components/Sky.astro';
 import Moon from '../../components/Moon.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
 import { downloads } from '../../config/downloads';
 import { QUESTIONS, OPTIONS, BANDS, MAX_SCORE } from './_score';
 
@@ -233,8 +232,6 @@ const bandMeta = BANDS.map((b) => ({ id: b.id, label: b.label, min: b.min, max: 
       });
     });
   </script>
-
-  <SiteFooter />
 </Base>
 
 <style>
