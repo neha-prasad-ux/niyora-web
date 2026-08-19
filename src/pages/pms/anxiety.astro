@@ -1,135 +1,78 @@
 ---
-import Base from '../../layouts/Base.astro';
-import OrbStage from '../../components/OrbStage.astro';
+import Page from '../../layouts/Page.astro';
 import { downloads } from '../../config/downloads';
 ---
 
-<Base
+<Page
   title="PMS anxiety: why it spikes and what helps · Niyora"
   description="Anxiety often spikes in the days before your period. Here is the science behind PMS anxiety, why the same small things start to read as threats, and what actually helps in the moment."
   canonicalUrl="https://niyora.com/pms/anxiety/"
 >
-  <OrbStage />
+  <section class="s hero">
+    <div class="eyebrow">PMS anxiety</div>
+    <h1>PMS anxiety: why it spikes, and what helps</h1>
+    <p class="lead">In the days before your period, worry can arrive out of proportion to anything happening. A text, a silence, a small task starts to feel like a threat. This is your nervous system reacting to a normal hormonal shift, and it settles as the shift passes.</p>
+  </section>
 
-  <main class="content">
-    <section class="hero" data-hue="335" data-sat="58%">
-      <div class="eyebrow">PMS anxiety</div>
-      <h1>PMS anxiety: why it spikes, and what helps</h1>
-      <p class="lede">In the days before your period, worry can arrive out of proportion to anything happening. A text, a silence, a small task starts to feel like a threat. This is your nervous system reacting to a normal hormonal shift, and it settles as the shift passes.</p>
-    </section>
+  <section class="s">
+    <h2>Why anxiety rises before your period</h2>
+    <div class="science">
+      <p>Your body has a built-in brake on fear. Progesterone breaks down into a calming compound, allopregnanolone, that quiets the fear circuit through the GABA system. In the days before your period, progesterone falls and that brake eases off.</p>
+      <p>Here is the part that matters. When researchers measure hormones, women who feel awful before their period have the same levels as women who feel fine. The difference is not your hormones. It is how strongly your nervous system responds to the normal shift. Some systems feel it more, and that sensitivity is real and largely inherited.</p>
+      <p>So the fear is genuine, and it is also louder than the situation. Your alarm is turned up sensitive for a few days. And it has an end date. When the hormonal shift passes, usually once your period starts, the alarm settles. It rolls in, and it rolls out, every cycle.</p>
+    </div>
+  </section>
 
-    <section class="explain-section" data-hue="330" data-sat="55%">
-      <h2>Why anxiety rises before your period</h2>
-      <div class="science">
-        <p>Your body has a built-in brake on fear. Progesterone breaks down into a calming compound, allopregnanolone, that quiets the fear circuit through the GABA system. In the days before your period, progesterone falls and that brake eases off.</p>
-        <p>Here is the part that matters. When researchers measure hormones, women who feel awful before their period have the same levels as women who feel fine. The difference is not your hormones. It is how strongly your nervous system responds to the normal shift. Some systems feel it more, and that sensitivity is real and largely inherited.</p>
-        <p>So the fear is genuine, and it is also louder than the situation. Your alarm is turned up sensitive for a few days. And it has an end date. When the hormonal shift passes, usually once your period starts, the alarm settles. It rolls in, and it rolls out, every cycle.</p>
+  <section class="s">
+    <h2>What helps in the moment</h2>
+    <p class="lead">Niyora is built for the moment anxiety actually lands. Three small steps, about a minute, then you close it.</p>
+    <div class="rrr-grid">
+      <div class="rrr-card">
+        <div class="rrr-label">Reflect</div>
+        <p>Name the moment. Seeing that the fear is your alarm running hot, not proof the situation is dangerous, takes some of the charge out of it.</p>
       </div>
-    </section>
-
-    <section class="rrr-section" data-hue="300" data-sat="55%">
-      <h2>What helps in the moment</h2>
-      <p class="lede">Niyora is built for the moment anxiety actually lands. Three small steps, about a minute, then you close it.</p>
-      <div class="rrr-grid">
-        <div class="rrr-card">
-          <div class="rrr-label">Reflect</div>
-          <p>Name the moment. Seeing that the fear is your alarm running hot, not proof the situation is dangerous, takes some of the charge out of it.</p>
-        </div>
-        <div class="rrr-card">
-          <div class="rrr-label">Regulate</div>
-          <p>Settle your body in about a minute. A slower breath with a longer exhale tells your nervous system the threat has passed. Your body reads safe before your mind does, so let the body lead.</p>
-        </div>
-        <div class="rrr-card">
-          <div class="rrr-label">Respond</div>
-          <p>With a calmer body, answer the text or face the task with a clearer head. You respond as yourself, not as the alarm.</p>
-        </div>
+      <div class="rrr-card">
+        <div class="rrr-label">Regulate</div>
+        <p>Settle your body in about a minute. A slower breath with a longer exhale tells your nervous system the threat has passed. Your body reads safe before your mind does, so let the body lead.</p>
       </div>
-    </section>
-
-    <section class="related-section" data-hue="248" data-sat="55%">
-      <h2>Keep reading</h2>
-      <div class="cta-row">
-        <a href="/blog/how-to-calm-down-fast/" class="cta ghost">How to calm down fast</a>
-        <a href="/blog/what-to-do-during-a-panic-spiral/" class="cta ghost">What to do during a panic spiral</a>
+      <div class="rrr-card">
+        <div class="rrr-label">Respond</div>
+        <p>With a calmer body, answer the text or face the task with a clearer head. You respond as yourself, not as the alarm.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cta-section" data-hue="30" data-sat="70%">
-      <h2>Not sure the anxious week is PMS?</h2>
-      <p class="lede">Take the two-minute check and see how your premenstrual week actually hits.</p>
-      <div class="cta-row">
-        <a href="/quiz" class="cta">Take the quiz</a>
-        <a href={downloads.appStore} class="cta ghost">Get Niyora</a>
-      </div>
-    </section>
-  </main>
-</Base>
+  <section class="s">
+    <h2>Keep reading</h2>
+    <div class="cta-row">
+      <a href="/blog/how-to-calm-down-fast/" class="btn ghost">How to calm down fast</a>
+      <a href="/blog/what-to-do-during-a-panic-spiral/" class="btn ghost">What to do during a panic spiral</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Not sure the anxious week is PMS?</h2>
+    <p class="lead">Take the two-minute check and see how your premenstrual week actually hits.</p>
+    <div class="cta-row">
+      <a href="/quiz" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
 
 <style>
-  .content { position: relative; z-index: 2; }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 72px 40px;
-    max-width: 1080px;
-    margin: 26px auto;
-    border-radius: 32px;
-    background: rgba(12, 10, 20, 0.24);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(16px) saturate(1.15);
-    -webkit-backdrop-filter: blur(16px) saturate(1.15);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-    text-align: center;
-  }
-  @media (max-width: 720px) {
-    section { margin: 14px; border-radius: 24px; padding: 56px 20px; }
-  }
-
-  .hero { padding: 96px 40px 80px; }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: hsla(var(--orb-hue), 50%, 75%, 0.7);
-    margin-bottom: 16px;
-    transition: color 1.4s ease;
-  }
-
-  h1 {
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 1.16;
-    letter-spacing: -0.5px;
-    margin-bottom: 22px;
-    max-width: 780px;
-    color: rgba(255, 255, 255, 0.96);
-  }
-  h2 {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 20px;
-    max-width: 720px;
-    color: rgba(255, 255, 255, 0.94);
-  }
-  p { font-size: 17px; font-weight: 300; color: rgba(255, 255, 255, 0.66); max-width: 640px; }
-  p.lede { font-size: 20px; color: rgba(255, 255, 255, 0.74); line-height: 1.55; }
-
+  /* Page-specific only: the science block and the R/R/R grid. Shared chrome
+     (sheet, sections, dividers, type scale, buttons, footer) comes from Page. */
   .science {
     max-width: 720px;
+    margin: 0 auto;
     padding: 32px 30px;
     border-radius: 20px;
-    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.3);
-    background: var(--glass-bg);
-    box-shadow: var(--glass-shadow);
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
     text-align: left;
   }
-  .science p { font-size: 18px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.82); max-width: none; margin: 0 0 18px; }
+  .science p { font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin: 0 0 18px; }
   .science p:last-child { margin-bottom: 0; }
 
   .rrr-grid {
@@ -138,64 +81,31 @@ import { downloads } from '../../config/downloads';
     gap: 14px;
     width: 100%;
     max-width: 900px;
+    margin: 24px auto 0;
     text-align: left;
-    margin-top: 20px;
   }
   .rrr-card {
     padding: 24px 22px;
-    border-radius: 16px;
-    border: 1px solid hsla(var(--orb-hue), 55%, 60%, 0.35);
-    background: var(--glass-bg-soft);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
   }
   .rrr-label {
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: hsla(var(--orb-hue), 60%, 80%, 0.95);
+    color: rgba(var(--accent-rgb), 0.9);
     margin-bottom: 12px;
-    transition: color 1.4s ease;
   }
-  .rrr-card p { font-size: 15px; line-height: 1.6; margin: 0; max-width: none; color: rgba(255, 255, 255, 0.82); }
-  @media (max-width: 720px) {
-    .rrr-grid { grid-template-columns: 1fr; gap: 12px; }
-  }
+  .rrr-card p { font-size: 15px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.82); }
 
-  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
-  .cta {
-    display: inline-block;
-    padding: 16px 36px;
-    border-radius: 32px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(18, 16, 32, 0.95);
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
-    box-shadow: 0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35), 0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
-  }
-  .cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 1);
-    color: hsla(var(--orb-hue), 70%, 32%, 1);
-    box-shadow: 0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45), 0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75);
-  }
-  .cta.ghost {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .cta.ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); color: rgba(255, 255, 255, 1); }
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
 
   @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
     h1 { font-size: 34px; }
     h2 { font-size: 26px; }
-    p.lede { font-size: 17px; }
+    .rrr-grid { grid-template-columns: 1fr; }
     .science p { font-size: 16px; }
   }
 </style>
