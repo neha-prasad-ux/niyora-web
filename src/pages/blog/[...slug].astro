@@ -1,5 +1,5 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Page from '../../layouts/Page.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -57,7 +57,7 @@ const jsonLd = [
 ];
 ---
 
-<Base
+<Page
   title={`${post.data.title} · Niyora`}
   description={post.data.description}
   ogType="article"
@@ -65,7 +65,7 @@ const jsonLd = [
   canonicalUrl={canonical}
   jsonLd={jsonLd}
 >
-  <article class="container">
+  <article class="wrap">
     <a class="back" href="/blog/">← All writing</a>
     <div class="meta">
       <span class="cat">{post.data.category}</span>
@@ -93,16 +93,16 @@ const jsonLd = [
       Not sure how much PMS is affecting you? <a href="/quiz/">Take the 2-minute check</a>, or <a href="/guide/">read the short guide</a>. Niyora is a quiet minute of breathing whenever the day tightens. <a href="/">See the app</a>.
     </p>
   </article>
-</Base>
+</Page>
 
 <style>
-  body { background: #0a0814; }
-  .container {
-    max-width: 640px;
+  .wrap {
+    max-width: 680px;
     margin: 0 auto;
-    padding: 60px 24px 100px;
+    padding: 60px 24px 40px;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.7);
+    text-align: left;
   }
   a.back {
     color: rgba(255, 255, 255, 0.35);
@@ -135,7 +135,8 @@ const jsonLd = [
     font-size: 34px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.94);
-    margin-bottom: 16px;
+    max-width: none;
+    margin: 0 0 16px;
     letter-spacing: -0.4px;
     line-height: 1.2;
   }

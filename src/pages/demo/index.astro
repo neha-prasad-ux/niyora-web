@@ -1,52 +1,50 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Page from '../../layouts/Page.astro';
 import { downloads } from '../../config/downloads';
 ---
 
-<Base
+<Page
   title="Niyora in motion"
   description="30 seconds of pranayama. No tour, no tutorial. Just one breath."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/demo"
 >
-
-  <div class="demo-wrap">
+  <section class="s">
     <a class="back" href="/">← Back to Niyora</a>
+    <div class="eyebrow">See it in motion</div>
+    <h1>Niyora in motion</h1>
+    <p class="lead">30 seconds of pranayama. No tour, no tutorial. Just one breath.</p>
+  </section>
 
-    <main class="demo-main">
-      <div class="eyebrow">See it in motion</div>
-      <h1>Niyora in motion</h1>
-      <p class="context">30 seconds of pranayama. No tour, no tutorial. Just one breath.</p>
+  <section class="s">
+    <div class="video-frame">
+      <video
+        autoplay
+        muted
+        controls
+        playsinline
+        poster="https://assets.niyora.com/niyora-launch-poster.jpg"
+        src="https://assets.niyora.com/niyora-launch.mp4"
+        aria-label="Niyora breathing session: box breathing with orb shifting colour each phase"
+      >
+        <p>Your browser does not support the video element. <a href="https://assets.niyora.com/niyora-launch.mp4">Download the demo video</a>.</p>
+      </video>
+    </div>
 
-      <div class="video-frame">
-        <video
-          autoplay
-          muted
-          controls
-          playsinline
-          poster="https://assets.niyora.com/niyora-launch-poster.jpg"
-          src="https://assets.niyora.com/niyora-launch.mp4"
-          aria-label="Niyora breathing session: box breathing with orb shifting colour each phase"
-        >
-          <p>Your browser does not support the video element. <a href="https://assets.niyora.com/niyora-launch.mp4">Download the demo video</a>.</p>
-        </video>
-      </div>
+    <ul class="watch-list">
+      <li>Box breathing technique</li>
+      <li>Tier-tinted orb shifts colour each phase</li>
+      <li>All on-device, no analytics</li>
+    </ul>
 
-      <ul class="watch-list">
-        <li>Box breathing technique</li>
-        <li>Tier-tinted orb shifts colour each phase</li>
-        <li>All on-device, no analytics</li>
-      </ul>
-
-      <div class="cta-row">
-        <a id="demo-download" href={downloads.apple} class="cta" data-arch="apple-silicon">
-          Download for Mac
-        </a>
-        <a href="mailto:hello@niyora.com?subject=iOS%20app%20launch%20notification" class="cta ghost">Notify me for iOS</a>
-      </div>
-      <p class="other-builds">Other builds at <a href="/">niyora.com</a>.</p>
-    </main>
-  </div>
+    <div class="cta-row">
+      <a id="demo-download" href={downloads.apple} class="btn" data-arch="apple-silicon">
+        Download for Mac
+      </a>
+      <a href="mailto:hello@niyora.com?subject=iOS%20app%20launch%20notification" class="btn ghost">Notify me for iOS</a>
+    </div>
+    <p class="other-builds">Other builds at <a href="/">niyora.com</a>.</p>
+  </section>
 
   <script define:vars={{ apple: downloads.apple, intel: downloads.intel, windows: downloads.windows }}>
     (function () {
@@ -84,62 +82,20 @@ import { downloads } from '../../config/downloads';
       }
     })();
   </script>
-
-  <footer>
-    <a href="/changelog/">What's new</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a href="https://github.com/neha-prasad-ux/niyora">GitHub</a>
-    <a href="mailto:neha@niyora.com">Contact</a>
-    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
-  </footer>
-</Base>
+</Page>
 
 <style>
-  .demo-wrap {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 60px 24px 0;
-    position: relative;
-    z-index: 2;
-  }
-
   .back {
     display: inline-block;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.45);
     text-decoration: none;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     letter-spacing: 0.3px;
   }
   .back:hover { color: rgba(255, 255, 255, 0.8); }
 
-  .demo-main { text-align: center; }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 16px;
-  }
-
-  h1 {
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    margin-bottom: 16px;
-    color: rgba(255, 255, 255, 0.96);
-  }
-
-  .context {
-    font-size: 18px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 40px;
-  }
-
+  /* Page-specific: the video frame. */
   .video-frame {
     width: 100%;
     max-width: 800px;
@@ -165,16 +121,15 @@ import { downloads } from '../../config/downloads';
     display: flex;
     flex-direction: column;
     gap: 12px;
+    text-align: left;
   }
   .watch-list li {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.65);
     padding: 12px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
     border-radius: 10px;
-    background: rgba(20, 18, 32, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: var(--glass-bg-soft);
   }
   .watch-list li::before {
     content: "→ ";
@@ -186,81 +141,19 @@ import { downloads } from '../../config/downloads';
     gap: 16px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 80px;
-  }
-
-  .cta {
-    display: inline-block;
-    padding: 16px 36px;
-    border-radius: 32px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(18, 16, 32, 0.95);
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    box-shadow:
-      0 8px 32px hsla(var(--orb-hue), 60%, 55%, 0.35),
-      0 0 64px hsla(var(--orb-hue), 60%, 60%, 0.2);
-  }
-  .cta:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 1);
-    color: hsla(var(--orb-hue), 70%, 32%, 1);
-    box-shadow:
-      0 0 0 2px hsla(var(--orb-hue), 80%, 70%, 0.45),
-      0 14px 48px hsla(var(--orb-hue), 80%, 60%, 0.75),
-      0 0 100px hsla(var(--orb-hue), 80%, 65%, 0.45);
-  }
-  .cta.ghost {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .cta.ghost:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.5);
-    color: rgba(255, 255, 255, 1);
   }
 
   .other-builds {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.35);
-    margin-top: -24px;
-    margin-bottom: 80px;
+    margin-top: 20px;
   }
   .other-builds a {
     color: rgba(255, 255, 255, 0.5);
     text-decoration: underline;
   }
 
-  footer {
-    text-align: center;
-    padding: 60px 24px 80px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
-  }
-  footer a {
-    color: rgba(255, 255, 255, 0.45);
-    text-decoration: none;
-    margin: 0 14px;
-  }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright {
-    margin-top: 16px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.2);
-  }
-
   @media (max-width: 720px) {
-    h1 { font-size: 32px; }
     .video-frame { border-radius: 10px; }
-    .demo-wrap { padding: 40px 20px 0; }
   }
 </style>

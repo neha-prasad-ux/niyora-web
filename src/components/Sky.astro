@@ -1,0 +1,133 @@
+---
+// Fixed background sky: deep brand background BEHIND the glass sheet (z-index 0,
+// under the moon layer z-index 1 and the .neat sheet z-index 2). Holds the
+// starfield and the shooting star, so they read crisp in the dark margins and
+// diffuse softly through the frost.
+//
+// Starfield, baked once at build time (mirrors the app's aurora Stars):
+// 10x6 = 60 stars on a jittered grid over the upper 66% of the viewport.
+// Positions as viewport percentages so they sit correctly on the fixed sky
+// layer. Round-robin index % 3 into three twinkle groups so each group is
+// spread across the whole sky, not a contiguous block.
+const COLS = 10;
+const ROWS = 6;
+const starGroups: { left: number; top: number; size: number; alpha: number }[][] = [[], [], []];
+let n = 0;
+for (let r = 0; r < ROWS; r += 1) {
+  for (let c = 0; c < COLS; c += 1) {
+    starGroups[n % 3].push({
+      left: ((c + 0.15 + Math.random() * 0.7) / COLS) * 100,
+      top: (r + 0.15 + Math.random() * 0.7) * (0.66 / ROWS) * 100,
+      size: 1 + Math.random() * 1.6,
+      alpha: 0.25 + Math.random() * 0.5,
+    });
+    n += 1;
+  }
+}
+---
+
+<div class="sky" aria-hidden="true">
+  {starGroups.map((stars, g) => (
+    <div class={`stars g${g}`}>
+      {stars.map((s) => (
+        <i style={`left:${s.left}%;top:${s.top}%;width:${s.size}px;height:${s.size}px;background:rgba(255,255,255,${s.alpha})`}></i>
+      ))}
+    </div>
+  ))}
+  <div class="shooting-star"></div>
+</div>
+
+<script is:inline>
+  // Shooting star (mirrors the app's ShootingStar). Fires a single streak
+  // along a straight downward diagonal over 850ms (ease-in quad), then waits
+  // and fires again from a new position, alternating direction. Disabled under
+  // prefers-reduced-motion.
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var el = document.querySelector('.shooting-star');
+    if (reduce || !el || !el.animate) return;
+
+    // dir -1 = right-to-left (starts on the right); +1 = left-to-right.
+    function fire(dir) {
+      var w = window.innerWidth, h = window.innerHeight;
+      var sx = dir < 0 ? w * (0.55 + Math.random() * 0.4) : w * (0.05 + Math.random() * 0.4);
+      var sy = h * (0.06 + Math.random() * 0.24);
+      var down = (28 + Math.random() * 30) * Math.PI / 180; // 28-58° below horizontal
+      var dist = Math.hypot(w, h) * (0.3 + Math.random() * 0.22);
+      var tx = Math.cos(down) * dist * dir;
+      var ty = Math.sin(down) * dist;
+      var rot = Math.atan2(ty, tx); // tail trails behind the travel direction
+
+      // Position + travel over 850ms, ease-in quad (accelerates like a streak).
+      el.animate([
+        { transform: 'translate(' + sx + 'px,' + sy + 'px) rotate(' + rot + 'rad)' },
+        { transform: 'translate(' + (sx + tx) + 'px,' + (sy + ty) + 'px) rotate(' + rot + 'rad)' }
+      ], { duration: 850, easing: 'cubic-bezier(0.55,0.085,0.68,0.53)' });
+
+      // Opacity: ramp 0->0.95 over 120ms (ease-out), hold ~360ms, fade over 340ms (ease-in).
+      el.animate([
+        { opacity: 0, offset: 0, easing: 'ease-out' },
+        { opacity: 0.95, offset: 0.141, easing: 'linear' },
+        { opacity: 0.95, offset: 0.565, easing: 'ease-in' },
+        { opacity: 0, offset: 1 }
+      ], { duration: 850, easing: 'linear' });
+    }
+
+    // First streak ~2s in, second ~4s after that, then every 7-16s, alternating.
+    var count = 0;
+    function tick() {
+      fire(count % 2 === 0 ? -1 : 1);
+      count += 1;
+      var next = count === 1 ? 4000 : 7000 + Math.random() * 9000;
+      setTimeout(tick, next);
+    }
+    setTimeout(tick, 2000);
+  })();
+</script>
+
+<style>
+  /* ── Night sky behind the single glass sheet ──
+     Deep brand background carrying the starfield and shooting star. The moon
+     and its pink glow are the focal point, the stars are ambient. */
+  .sky {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: var(--sky-bg, #0a0814);
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* Starfield: one wrapper per twinkle group. Each star is placed once (baked
+     into the HTML) and never moves; the wrapper's opacity twinkles as a unit. */
+  .stars { position: absolute; inset: 0; pointer-events: none; }
+  .stars i { position: absolute; border-radius: 50%; }
+  /* 9s / 13s / 17s (prime-ish) so the three groups never blink in unison.
+     Opacity eases 1 -> 0.45 -> 1 (alternate), ease-in-out ≈ the app's sine. */
+  .g0 { animation: twinkle 9s ease-in-out infinite alternate; }
+  .g1 { animation: twinkle 13s ease-in-out infinite alternate; }
+  .g2 { animation: twinkle 17s ease-in-out infinite alternate; }
+  @keyframes twinkle { from { opacity: 1; } to { opacity: 0.45; } }
+
+  /* Shooting star: a single reusable streak (bright head, transparent tail).
+     Positioned/rotated per fire by the inline script via the Web Animations API. */
+  .shooting-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96px;
+    height: 2.5px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
+    box-shadow: 0 0 6px rgba(255,255,255,0.9);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Stars stay visible but hold steady (opacity resets to the base 1). The
+       shooting star is disabled in the inline script, so it never appears. */
+    .stars { animation: none; opacity: 1; }
+  }
+</style>

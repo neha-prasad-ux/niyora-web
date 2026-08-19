@@ -1,5 +1,5 @@
 ---
-import Base from '../layouts/Base.astro';
+import Page from '../layouts/Page.astro';
 import { downloads } from '../config/downloads';
 
 const organization = {
@@ -33,318 +33,253 @@ const jsonLd = [
     publisher: { '@id': 'https://niyora.com/#organization' },
   },
 ];
-
-// Starfield, baked once at build time (mirrors the app's aurora Stars):
-// 10x6 = 60 stars on a jittered grid over the upper 66% of the viewport.
-// Positions as viewport percentages so they sit correctly on the fixed sky
-// layer. Round-robin index % 3 into three twinkle groups so each group is
-// spread across the whole sky, not a contiguous block.
-const COLS = 10;
-const ROWS = 6;
-const starGroups: { left: number; top: number; size: number; alpha: number }[][] = [[], [], []];
-let n = 0;
-for (let r = 0; r < ROWS; r += 1) {
-  for (let c = 0; c < COLS; c += 1) {
-    starGroups[n % 3].push({
-      left: ((c + 0.15 + Math.random() * 0.7) / COLS) * 100,
-      top: (r + 0.15 + Math.random() * 0.7) * (0.66 / ROWS) * 100,
-      size: 1 + Math.random() * 1.6,
-      alpha: 0.25 + Math.random() * 0.5,
-    });
-    n += 1;
-  }
-}
 ---
 
-<Base
+<Page
   title="Niyora · a PMS app that predicts, then helps you reflect, regulate, and respond"
   description="Niyora predicts your PMS week and helps you reflect, regulate, and respond when your brain is reacting to a hormone drop. Built on one fact: women with emotional regulation skills handle PMS better. Your personal details never reach the AI."
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com"
   jsonLd={jsonLd}
 >
-  <!-- Sky: deep background BEHIND the glass sheet (z-index 0, under .moon-field
-       z-index 1 and .neat z-index 2). Holds the starfield and shooting star, so
-       they read crisp in the dark margins and diffuse softly through the frost. -->
-  <div class="sky" aria-hidden="true">
-    {starGroups.map((stars, g) => (
-      <div class={`stars g${g}`}>
-        {stars.map((s) => (
-          <i style={`left:${s.left}%;top:${s.top}%;width:${s.size}px;height:${s.size}px;background:rgba(255,255,255,${s.alpha})`}></i>
-        ))}
-      </div>
-    ))}
-    <div class="shooting-star"></div>
-  </div>
 
-  <!-- Moon layer: lives BEHIND the glass sheet (z-index 1, under .neat's z-index 2)
-       and is position:fixed, so it stays a calm constant presence as you scroll
-       instead of a hero element that scrolls away. The frosted .sheet blurs and
-       dims it, so it reads as a soft light glowing THROUGH the frost. -->
-  <div class="moon-field" aria-hidden="true">
-    <div class="moon-glow"></div>
-    <div class="moon"></div>
-  </div>
-
-  <main class="neat">
-    <div class="sheet">
-
-      <!-- Hero: copy sits over the moon that glows through the frost from behind. -->
-      <section class="s hero">
-        <div class="split">
-          <div class="split-text">
-            <h1>Life doesn't wait for PMS. But we do.</h1>
-            <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
-            <div class="interest" id="interest">
-              <button type="button" class="btn" data-interest>I'm interested</button>
-              <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
-            </div>
-            <div class="trust">
-              <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
-              <div class="trust-strong">Your personal details never reach the AI.</div>
-            </div>
-          </div>
-          <div class="phone" role="img" aria-label="Niyora Moon home screen">
-            <div class="phone-screen" style="background-image:url('/app/moon-home.png')"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stats facts -->
-      <section class="s facts">
-        <div class="eyebrow">PMS is real and established</div>
-        <h2>You don't have to prove any of this. It's already settled.</h2>
-        <p class="lead">Research and surveys show PMS is near-universal, and the emotional side is the part most people carry alone.</p>
-        <div class="stats">
-          <div class="stat"><div class="num">3 in 4</div><p>women experience PMS</p></div>
-          <div class="stat"><div class="num">95%</div><p>feel irritable</p></div>
-          <div class="stat"><div class="num">93%</div><p>get mood swings</p></div>
-          <div class="stat"><div class="num">82%</div><p>feel low</p></div>
-          <div class="stat"><div class="num">65%</div><p>feel anxious</p></div>
-          <div class="stat"><div class="num">78%</div><p>feel they are not taken seriously when they ask for help</p></div>
-        </div>
-        <p class="afterword">So Niyora doesn't try to convince you PMS is real. It predicts your window, gives you the skills and techniques to manage it, and takes you seriously, especially the 78% who feel dismissed.</p>
-      </section>
-
-      <!-- Predict: calendar screen beside a short line. Tracking is a feature. -->
-      <section class="s">
-        <div class="split reverse">
-          <div class="split-text">
-            <div class="eyebrow">Predict</div>
-            <h2>It sees your PMS window coming.</h2>
-            <p class="lead">Tell Niyora when your period starts. It learns your rhythm and predicts the days ahead, so you can prepare before the week arrives instead of being caught off guard.</p>
-          </div>
-          <div class="phone" role="img" aria-label="Niyora period calendar screen">
-            <div class="phone-screen" style="background-image:url('/app/calendar.png')"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Problem: left-aligned on a wider measure for rhythm variety. -->
-      <section class="s left">
-        <div class="eyebrow">What no one told you</div>
-        <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
-        <p class="lead">The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
-        <div class="cards three">
-          <div class="card">
-            <h3>Same hormones, different response.</h3>
-            <p>When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p>
-            <div class="cite">NIMH · Schmidt &amp; Rubinow; Hantsoo &amp; Payne, 2020</div>
-          </div>
-          <div class="card">
-            <h3>It's wired in, and it runs in families.</h3>
-            <p>Premenstrual sensitivity is about 56 percent heritable. The same shift other people barely notice, your system actually feels. A bit like having sensitive skin.</p>
-            <div class="cite">Dubey et al, Molecular Psychiatry, 2017</div>
-          </div>
-          <div class="card">
-            <h3>It has an end date.</h3>
-            <p>When researchers switched these hormones off, the symptoms cleared. When they switched them back on, they returned. It rolls in, and it rolls out, every cycle.</p>
-            <div class="cite">NIMH GnRH add-back studies</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Reflect. Regulate. Respond. -->
-      <section class="s">
-        <div class="eyebrow">Moon AI · during PMS</div>
-        <h2>Reflect. Regulate. Respond.</h2>
-        <div class="phone-trio">
-          <figure class="phone-cap">
-            <div class="phone" role="img" aria-label="Niyora Reflect screen">
-              <div class="phone-screen" style="background-image:url('/app/reflect.png')"></div>
-            </div>
-            <figcaption>Reflect</figcaption>
-          </figure>
-          <figure class="phone-cap">
-            <div class="phone" role="img" aria-label="Niyora Regulate screen">
-              <div class="phone-screen" style="background-image:url('/app/regulate.png')"></div>
-            </div>
-            <figcaption>Regulate</figcaption>
-          </figure>
-          <figure class="phone-cap">
-            <div class="phone" role="img" aria-label="Niyora Respond screen">
-              <div class="phone-screen" style="background-image:url('/app/respond.png')"></div>
-            </div>
-            <figcaption>Respond</figcaption>
-          </figure>
-        </div>
-        <div class="cards three">
-          <div class="card">
-            <div class="card-eyebrow">Reflect</div>
-            <h3>See it more than one way.</h3>
-            <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">Regulate</div>
-            <h3>Get through the twenty minutes.</h3>
-            <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">Respond</div>
-            <h3>Send the one you won't regret.</h3>
-            <p>Worked up, it's easy to say something you'll wish you hadn't. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Training: left-aligned, two-column grid. -->
-      <section class="s left">
-        <div class="split">
-          <div class="split-text">
-            <div class="eyebrow">Training · before PMS</div>
-            <h2>Build the skill before you need it.</h2>
-            <p class="lead">It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
-          </div>
-          <div class="phone" role="img" aria-label="Niyora training path screen">
-            <div class="phone-screen" style="background-image:url('/app/train.png')"></div>
-          </div>
-        </div>
-        <div class="cards two">
-          <div class="card">
-            <div class="card-eyebrow">At work</div>
-            <h3>Handle the sharp email.</h3>
-            <p>Learn to meet a hard meeting or a pointed message without it costing you the whole day.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">Between people</div>
-            <h3>Keep a small thing small.</h3>
-            <p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">With your partner</div>
-            <h3>Name it without a fight.</h3>
-            <p>Practise telling the difference between PMS and a real issue, and bringing it up so it lands well.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">Real stories</div>
-            <h3>Learn from how others handled it.</h3>
-            <p>Work through real PMS moments and the way each was handled, so the lesson sticks better than any rule.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Relationships -->
-      <section class="s">
-        <div class="split reverse">
-          <div class="split-text">
-            <div class="eyebrow">Couples</div>
-            <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
-            <p class="lead">The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
-          </div>
-          <div class="phone" role="img" aria-label="Niyora couples screen">
-            <div class="phone-screen" style="background-image:url('/app/couples.png')"></div>
-          </div>
-        </div>
-        <div class="cards three">
-          <div class="card">
-            <div class="card-eyebrow">PMS or real?</div>
-            <h3>Know which one you're in.</h3>
-            <p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid. Knowing which changes what you do next.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">Say it well</div>
-            <h3>A message, already written.</h3>
-            <p>Tips and ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p>
-          </div>
-          <div class="card">
-            <div class="card-eyebrow">After a fight</div>
-            <h3>Come back from it.</h3>
-            <p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p>
-          </div>
-        </div>
-        <p class="more-line"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
-      </section>
-
-      <!-- Your progress: soul screen beside a short line about growth over time. -->
-      <section class="s">
-        <div class="split">
-          <div class="split-text">
-            <div class="eyebrow">Your progress</div>
-            <h2>Watch yourself grow steadier.</h2>
-            <p class="lead">Every reflection and reply adds up. Niyora keeps track of what you've noticed, what you've applied, and your streak, and marks how far you've come with Moonstone tiers over time.</p>
-          </div>
-          <div class="phone" role="img" aria-label="Niyora My Soul progress screen">
-            <div class="phone-screen" style="background-image:url('/app/soul.png')"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Privacy -->
-      <section class="s">
-        <div class="eyebrow">Private by design</div>
-        <h2>Built to know almost nothing about you.</h2>
-        <p class="lead">Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI. Moon uses AI to write its reflections, so we're plain about exactly what it can and can't see.</p>
-        <div class="cards three">
-          <div class="card">
-            <div class="check">✓</div>
-            <h3>No sign in</h3>
-            <p>No account, no login. Nothing you write is ever tied to your name.</p>
-          </div>
-          <div class="card">
-            <div class="check">✓</div>
-            <h3>Your details never reach the AI</h3>
-            <p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p>
-          </div>
-          <div class="card">
-            <div class="check">✓</div>
-            <h3>Nothing sold, nothing kept</h3>
-            <p>No ads, no profile, no data sold. Your period dates stay on your device, and are never shared.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Final CTA -->
-      <section class="s final">
-        <h2>Want Niyora when you need it?</h2>
-        <p class="lead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
-        <div class="interest">
+  <!-- Hero: copy sits over the moon that glows through the frost from behind. -->
+  <section class="s hero">
+    <div class="split">
+      <div class="split-text">
+        <h1>Life doesn't wait for PMS. But we do.</h1>
+        <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
+        <div class="interest" id="interest">
           <button type="button" class="btn" data-interest>I'm interested</button>
           <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
         </div>
-        <div class="final-links">
-          <a class="btn store" href={downloads.appStore}>Get Niyora on the App Store</a>
-          <a class="btn ghost" href="/quiz/">Take the 2-minute PMS check</a>
+        <div class="trust">
+          <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
+          <div class="trust-strong">Your personal details never reach the AI.</div>
         </div>
-      </section>
-
+      </div>
+      <div class="phone" role="img" aria-label="Niyora Moon home screen">
+        <div class="phone-screen" style="background-image:url('/app/moon-home.png')"></div>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <a href="/quiz/">PMS quiz</a>
-    <a href="/guide/">Guide</a>
-    <a href="/demo/">Demo</a>
-    <a href="/blog/">Writing</a>
-    <a href="/faq/">FAQ</a>
-    <a href="/about/">About</a>
-    <a href="/compare/alternatives-to-mood-trackers/">Compare</a>
-    <a href="/changelog/">What's new</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a href="https://github.com/neha-prasad-ux/niyora">GitHub</a>
-    <a href="mailto:neha@niyora.com">Contact</a>
-    <div class="copyright">© 2026 Niyora. Built quietly in Norway.</div>
-  </footer>
+  <!-- Stats facts -->
+  <section class="s facts">
+    <div class="eyebrow">PMS is real and established</div>
+    <h2>You don't have to prove any of this. It's already settled.</h2>
+    <p class="lead">Research and surveys show PMS is near-universal, and the emotional side is the part most people carry alone.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">3 in 4</div><p>women experience PMS</p></div>
+      <div class="stat"><div class="num">95%</div><p>feel irritable</p></div>
+      <div class="stat"><div class="num">93%</div><p>get mood swings</p></div>
+      <div class="stat"><div class="num">82%</div><p>feel low</p></div>
+      <div class="stat"><div class="num">65%</div><p>feel anxious</p></div>
+      <div class="stat"><div class="num">78%</div><p>feel they are not taken seriously when they ask for help</p></div>
+    </div>
+    <p class="afterword">So Niyora doesn't try to convince you PMS is real. It predicts your window, gives you the skills and techniques to manage it, and takes you seriously, especially the 78% who feel dismissed.</p>
+  </section>
+
+  <!-- Predict: calendar screen beside a short line. Tracking is a feature. -->
+  <section class="s">
+    <div class="split reverse">
+      <div class="split-text">
+        <div class="eyebrow">Predict</div>
+        <h2>It sees your PMS window coming.</h2>
+        <p class="lead">Tell Niyora when your period starts. It learns your rhythm and predicts the days ahead, so you can prepare before the week arrives instead of being caught off guard.</p>
+      </div>
+      <div class="phone" role="img" aria-label="Niyora period calendar screen">
+        <div class="phone-screen" style="background-image:url('/app/calendar.png')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem: left-aligned on a wider measure for rhythm variety. -->
+  <section class="s left">
+    <div class="eyebrow">What no one told you</div>
+    <h2>Your hormones are normal. Your brain just feels the shift more.</h2>
+    <p class="lead">The difference between a hard PMS week and an easy one isn't your hormone levels. It's how strongly your brain responds to the same normal rise and fall. Two in three women feel it as mood swings.</p>
+    <div class="cards three">
+      <div class="card">
+        <h3>Same hormones, different response.</h3>
+        <p>When researchers measured them, women who feel awful before their period had the same hormone levels as women who feel fine. The whole difference is sensitivity.</p>
+        <div class="cite">NIMH · Schmidt &amp; Rubinow; Hantsoo &amp; Payne, 2020</div>
+      </div>
+      <div class="card">
+        <h3>It's wired in, and it runs in families.</h3>
+        <p>Premenstrual sensitivity is about 56 percent heritable. The same shift other people barely notice, your system actually feels. A bit like having sensitive skin.</p>
+        <div class="cite">Dubey et al, Molecular Psychiatry, 2017</div>
+      </div>
+      <div class="card">
+        <h3>It has an end date.</h3>
+        <p>When researchers switched these hormones off, the symptoms cleared. When they switched them back on, they returned. It rolls in, and it rolls out, every cycle.</p>
+        <div class="cite">NIMH GnRH add-back studies</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reflect. Regulate. Respond. -->
+  <section class="s">
+    <div class="eyebrow">Moon AI · during PMS</div>
+    <h2>Reflect. Regulate. Respond.</h2>
+    <div class="phone-trio">
+      <figure class="phone-cap">
+        <div class="phone" role="img" aria-label="Niyora Reflect screen">
+          <div class="phone-screen" style="background-image:url('/app/reflect.png')"></div>
+        </div>
+        <figcaption>Reflect</figcaption>
+      </figure>
+      <figure class="phone-cap">
+        <div class="phone" role="img" aria-label="Niyora Regulate screen">
+          <div class="phone-screen" style="background-image:url('/app/regulate.png')"></div>
+        </div>
+        <figcaption>Regulate</figcaption>
+      </figure>
+      <figure class="phone-cap">
+        <div class="phone" role="img" aria-label="Niyora Respond screen">
+          <div class="phone-screen" style="background-image:url('/app/respond.png')"></div>
+        </div>
+        <figcaption>Respond</figcaption>
+      </figure>
+    </div>
+    <div class="cards three">
+      <div class="card">
+        <div class="card-eyebrow">Reflect</div>
+        <h3>See it more than one way.</h3>
+        <p>Tell Moon what happened. When you're upset, your mind locks onto one story. Moon shows you a few other ways to see it, so that one stops feeling like the truth.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Regulate</div>
+        <h3>Get through the twenty minutes.</h3>
+        <p>A big wave of feeling takes about twenty minutes to pass. Moon gives you one small thing to do with your body to get through it, so it doesn't take over.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Respond</div>
+        <h3>Send the one you won't regret.</h3>
+        <p>Worked up, it's easy to say something you'll wish you hadn't. Moon writes a few ways you could reply, so you pick the one you'll feel good about, and actually send it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training: left-aligned, two-column grid. -->
+  <section class="s left">
+    <div class="split">
+      <div class="split-text">
+        <div class="eyebrow">Training · before PMS</div>
+        <h2>Build the skill before you need it.</h2>
+        <p class="lead">It's easier to stay steady when you've practised it calm. Short, playful lessons show you how to handle different feelings, so the skill is ready when you need it.</p>
+      </div>
+      <div class="phone" role="img" aria-label="Niyora training path screen">
+        <div class="phone-screen" style="background-image:url('/app/train.png')"></div>
+      </div>
+    </div>
+    <div class="cards two">
+      <div class="card">
+        <div class="card-eyebrow">At work</div>
+        <h3>Handle the sharp email.</h3>
+        <p>Learn to meet a hard meeting or a pointed message without it costing you the whole day.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Between people</div>
+        <h3>Keep a small thing small.</h3>
+        <p>Read a moment before you react, so a passing friction doesn't grow into something it wasn't.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">With your partner</div>
+        <h3>Name it without a fight.</h3>
+        <p>Practise telling the difference between PMS and a real issue, and bringing it up so it lands well.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Real stories</div>
+        <h3>Learn from how others handled it.</h3>
+        <p>Work through real PMS moments and the way each was handled, so the lesson sticks better than any rule.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Relationships -->
+  <section class="s">
+    <div class="split reverse">
+      <div class="split-text">
+        <div class="eyebrow">Couples</div>
+        <h2>Is it PMS, or is it real? Either way, Niyora helps.</h2>
+        <p class="lead">The week before your period, your reserves run thin and small things land sharp. It isn't that you love anyone less. When you steady yourself first, there's less to spill onto the people you care about.</p>
+      </div>
+      <div class="phone" role="img" aria-label="Niyora couples screen">
+        <div class="phone-screen" style="background-image:url('/app/couples.png')"></div>
+      </div>
+    </div>
+    <div class="cards three">
+      <div class="card">
+        <div class="card-eyebrow">PMS or real?</div>
+        <h3>Know which one you're in.</h3>
+        <p>A quick read on whether the feeling is the week talking or a real thing to raise. Both are valid. Knowing which changes what you do next.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Say it well</div>
+        <h3>A message, already written.</h3>
+        <p>Tips and ready-to-send lines for the hard conversations, so a plain ask is easier to meet than a mood to read.</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">After a fight</div>
+        <h3>Come back from it.</h3>
+        <p>If it blew up, Niyora hands you a short, honest message to reopen it. One rough moment isn't the whole story.</p>
+      </div>
+    </div>
+    <p class="more-line"><a href="/quiz/">Take the 2-minute check: how much is PMS affecting you? →</a></p>
+  </section>
+
+  <!-- Your progress: soul screen beside a short line about growth over time. -->
+  <section class="s">
+    <div class="split">
+      <div class="split-text">
+        <div class="eyebrow">Your progress</div>
+        <h2>Watch yourself grow steadier.</h2>
+        <p class="lead">Every reflection and reply adds up. Niyora keeps track of what you've noticed, what you've applied, and your streak, and marks how far you've come with Moonstone tiers over time.</p>
+      </div>
+      <div class="phone" role="img" aria-label="Niyora My Soul progress screen">
+        <div class="phone-screen" style="background-image:url('/app/soul.png')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section class="s">
+    <div class="eyebrow">Private by design</div>
+    <h2>Built to know almost nothing about you.</h2>
+    <p class="lead">Your cycle and your feelings are the most personal data there is. Niyora is built so almost none of it reaches anyone, including the AI. Moon uses AI to write its reflections, so we're plain about exactly what it can and can't see.</p>
+    <div class="cards three">
+      <div class="card">
+        <div class="check">✓</div>
+        <h3>No sign in</h3>
+        <p>No account, no login. Nothing you write is ever tied to your name.</p>
+      </div>
+      <div class="card">
+        <div class="check">✓</div>
+        <h3>Your details never reach the AI</h3>
+        <p>Before your words go to Moon's AI, names and identifying details are stripped on your phone. What is left can't point back to you.</p>
+      </div>
+      <div class="card">
+        <div class="check">✓</div>
+        <h3>Nothing sold, nothing kept</h3>
+        <p>No ads, no profile, no data sold. Your period dates stay on your device, and are never shared.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="s final">
+    <h2>Want Niyora when you need it?</h2>
+    <p class="lead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
+    <div class="interest">
+      <button type="button" class="btn" data-interest>I'm interested</button>
+      <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+    </div>
+    <div class="final-links">
+      <a class="btn store" href={downloads.appStore}>Get Niyora on the App Store</a>
+      <a class="btn ghost" href="/quiz/">Take the 2-minute PMS check</a>
+    </div>
+  </section>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
@@ -409,198 +344,10 @@ for (let r = 0; r < ROWS; r += 1) {
       });
     });
   </script>
-
-  <script is:inline>
-    // Shooting star (mirrors the app's ShootingStar). Fires a single streak
-    // along a straight downward diagonal over 850ms (ease-in quad), then waits
-    // and fires again from a new position, alternating direction. Disabled under
-    // prefers-reduced-motion.
-    (function () {
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var el = document.querySelector('.shooting-star');
-      if (reduce || !el || !el.animate) return;
-
-      // dir -1 = right-to-left (starts on the right); +1 = left-to-right.
-      function fire(dir) {
-        var w = window.innerWidth, h = window.innerHeight;
-        var sx = dir < 0 ? w * (0.55 + Math.random() * 0.4) : w * (0.05 + Math.random() * 0.4);
-        var sy = h * (0.06 + Math.random() * 0.24);
-        var down = (28 + Math.random() * 30) * Math.PI / 180; // 28-58° below horizontal
-        var dist = Math.hypot(w, h) * (0.3 + Math.random() * 0.22);
-        var tx = Math.cos(down) * dist * dir;
-        var ty = Math.sin(down) * dist;
-        var rot = Math.atan2(ty, tx); // tail trails behind the travel direction
-
-        // Position + travel over 850ms, ease-in quad (accelerates like a streak).
-        el.animate([
-          { transform: 'translate(' + sx + 'px,' + sy + 'px) rotate(' + rot + 'rad)' },
-          { transform: 'translate(' + (sx + tx) + 'px,' + (sy + ty) + 'px) rotate(' + rot + 'rad)' }
-        ], { duration: 850, easing: 'cubic-bezier(0.55,0.085,0.68,0.53)' });
-
-        // Opacity: ramp 0->0.95 over 120ms (ease-out), hold ~360ms, fade over 340ms (ease-in).
-        el.animate([
-          { opacity: 0, offset: 0, easing: 'ease-out' },
-          { opacity: 0.95, offset: 0.141, easing: 'linear' },
-          { opacity: 0.95, offset: 0.565, easing: 'ease-in' },
-          { opacity: 0, offset: 1 }
-        ], { duration: 850, easing: 'linear' });
-      }
-
-      // First streak ~2s in, second ~4s after that, then every 7-16s, alternating.
-      var count = 0;
-      function tick() {
-        fire(count % 2 === 0 ? -1 : 1);
-        count += 1;
-        var next = count === 1 ? 4000 : 7000 + Math.random() * 9000;
-        setTimeout(tick, next);
-      }
-      setTimeout(tick, 2000);
-    })();
-  </script>
-</Base>
+</Page>
 
 <style>
-  /* ── Night sky behind the single glass sheet ──
-     Deep brand background carrying the starfield and shooting star. The moon
-     and its pink glow are the focal point, the stars are ambient. */
-  .sky {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background: #0a0814;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  /* Starfield: one wrapper per twinkle group. Each star is placed once (baked
-     into the HTML) and never moves; the wrapper's opacity twinkles as a unit. */
-  .stars { position: absolute; inset: 0; pointer-events: none; }
-  .stars i { position: absolute; border-radius: 50%; }
-  /* 9s / 13s / 17s (prime-ish) so the three groups never blink in unison.
-     Opacity eases 1 -> 0.45 -> 1 (alternate), ease-in-out ≈ the app's sine. */
-  .g0 { animation: twinkle 9s ease-in-out infinite alternate; }
-  .g1 { animation: twinkle 13s ease-in-out infinite alternate; }
-  .g2 { animation: twinkle 17s ease-in-out infinite alternate; }
-  @keyframes twinkle { from { opacity: 1; } to { opacity: 0.45; } }
-
-  /* Shooting star: a single reusable streak (bright head, transparent tail).
-     Positioned/rotated per fire by the inline script via the Web Animations API. */
-  .shooting-star {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 96px;
-    height: 2.5px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95));
-    box-shadow: 0 0 6px rgba(255,255,255,0.9);
-    opacity: 0;
-    pointer-events: none;
-    will-change: transform, opacity;
-  }
-
-  .neat {
-    position: relative;
-    z-index: 2;
-    padding: 16px 16px 20px;
-  }
-
-  /* ── ONE glass surface holding everything ──
-     A single centered rounded panel with backdrop-blur, a hairline border and
-     a soft shadow. Not one card per section. */
-  .sheet {
-    max-width: 1600px;
-    margin: 0 auto;
-    border-radius: 28px;
-    /* Translucent enough that the fixed moon behind reads as a soft glow, dark
-       enough (plus text-shadow below) that copy over the brightest disc stays
-       legible. Heavy blur turns the disc into diffuse light, not a hotspot. */
-    background: rgba(18, 14, 30, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(28px) saturate(1.3);
-    -webkit-backdrop-filter: blur(28px) saturate(1.3);
-    overflow: hidden;
-  }
-
-  /* ── Sections divided by hairline rules ──
-     Consistent centered rhythm, generous vertical padding, a thin rule between
-     each section. No per-section floating cards. */
-  .s {
-    text-align: center;
-    padding: 76px 56px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .s:first-child { border-top: none; }
-
-  /* ── Consistent type scale ── */
-  h1 {
-    font-size: 46px;
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    color: rgba(255, 255, 255, 0.96);
-    max-width: 640px;
-    margin: 0 auto 20px;
-  }
-  h2 {
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.3px;
-    color: rgba(255, 255, 255, 0.94);
-    max-width: 640px;
-    margin: 0 auto 16px;
-  }
-  h3 {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 10px;
-  }
-  p { font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.62); }
-
-  /* Text scrim: a soft dark halo per glyph keeps copy readable where the moon
-     glows brightest behind the frost, without adding opaque panels that would
-     break the single-glass look. */
-  .s h1, .s h2, .s h3, .s p, .s .eyebrow, .s .card-eyebrow {
-    text-shadow: 0 1px 18px rgba(6, 4, 14, 0.55);
-  }
-
-  /* Left-aligned sections on a wider measure, for layout rhythm.
-     Dividers and the shared type scale stay; only the arrangement changes. */
-  .s.left { text-align: left; }
-  .s.left h1,
-  .s.left h2,
-  .s.left .lead,
-  .s.left .afterword,
-  .s.left .subhead { margin-left: 0; margin-right: 0; max-width: 720px; }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(244, 178, 203, 0.75);
-    margin-bottom: 16px;
-  }
-  .lead {
-    font-size: 19px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.74);
-    max-width: 620px;
-    margin: 0 auto 36px;
-  }
-  .afterword {
-    font-size: 18px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.72);
-    max-width: 620px;
-    margin: 36px auto 0;
-  }
-
-  /* ── Hero + moon ── */
+  /* ── Hero ── */
   .hero { padding-top: 64px; }
   .subhead {
     font-size: 20px;
@@ -610,125 +357,13 @@ for (let r = 0; r < ROWS; r += 1) {
     margin: 0 auto 36px;
   }
 
-  /* ── Moon layer: fixed, behind the glass ──
-     z-index 1 puts it under the sheet (.neat is z-index 2), so the sheet's
-     backdrop-blur samples it and the moon reads as soft light through the frost.
-     position: fixed + upper-viewport anchor keeps it a constant presence while
-     the content scrolls past in front of it. Colour is STATIC (no hue shift). */
-  .moon-field {
-    position: fixed;
-    top: 6vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    width: 560px;
-    height: 560px;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-  /* Orange to pink to purple halo, larger than the moon, warm core to cool rim.
-     PNG SWAP-IN: replace the `background` below with
-       background: url('/glow.png') center / contain no-repeat;
-     and delete the radial-gradient. Nothing else needs to change. */
-  .moon-glow {
-    position: absolute;
-    width: 560px;
-    height: 560px;
-    border-radius: 50%;
-    background: radial-gradient(circle,
-      rgba(255, 168, 108, 0.55) 0%,
-      rgba(246, 148, 190, 0.40) 32%,
-      rgba(168, 104, 214, 0.22) 54%,
-      rgba(168, 104, 214, 0.08) 72%,
-      rgba(168, 104, 214, 0) 88%);
-  }
-  /* Pale, near-white matte sphere with a faint cool shading lower-right.
-     PNG SWAP-IN: replace the `background` (and drop the inset box-shadows) with
-       background: url('/moon.png') center / contain no-repeat;
-     Keep the moonBreathe animation and the outer drop shadow if you like. */
-  .moon {
-    position: relative;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 42% 38%, #f7f5fb 0%, #eceaf3 52%, #dddbe8 100%);
-    box-shadow:
-      inset -20px -24px 46px rgba(176, 172, 196, 0.38),
-      inset 8px 8px 22px rgba(255, 255, 255, 0.45),
-      0 8px 40px rgba(0, 0, 0, 0.25);
-    animation: moonBreathe 11s ease-in-out infinite;
-  }
-  @keyframes moonBreathe {
-    0%, 100% { transform: scale(1) translateY(0); }
-    50%      { transform: scale(1.02) translateY(-4px); }
-  }
-  @media (max-width: 560px) {
-    /* Viewport units so the fixed, centered layer never causes horizontal scroll. */
-    .moon-field { width: 92vw; height: 92vw; top: 4vh; }
-    .moon { width: 180px; height: 180px; }
-    .moon-glow { width: 92vw; height: 92vw; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .moon { animation: none; }
-    /* Stars stay visible but hold steady (opacity resets to the base 1). The
-       shooting star is disabled in the inline script, so it never appears. */
-    .stars { animation: none; opacity: 1; }
-  }
-
-  /* ── Buttons ── */
+  /* ── Interest button + live count ── */
   .interest {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
   }
-  .btn {
-    display: inline-block;
-    cursor: pointer;
-    padding: 15px 34px;
-    border-radius: 30px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.95);
-    border: 1.5px solid transparent;
-    background-image:
-      linear-gradient(rgba(18, 13, 26, 0.92), rgba(18, 13, 26, 0.92)),
-      linear-gradient(95deg, #e6a3c4, #9c5c86, #7846b0);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    box-shadow: 0 0 30px rgba(244, 178, 203, 0.25);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 44px rgba(244, 178, 203, 0.42);
-  }
-  .btn.is-done {
-    color: rgba(255, 255, 255, 0.7);
-    box-shadow: none;
-    cursor: default;
-    transform: none;
-  }
-  .btn.store {
-    background-image: none;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  }
-  .btn.store:hover { border-color: rgba(255, 255, 255, 0.55); }
-  .btn.ghost {
-    background-image: none;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: none;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .btn.ghost:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.45); }
-
   .interest-count {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.55);
@@ -905,19 +540,6 @@ for (let r = 0; r < ROWS; r += 1) {
     color: rgba(244, 178, 203, 0.82);
   }
 
-  /* ── Footer ── */
-  footer {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 48px 24px 72px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 13px;
-  }
-  footer a { color: rgba(255, 255, 255, 0.45); text-decoration: none; margin: 0 12px; }
-  footer a:hover { color: rgba(255, 255, 255, 0.8); }
-  footer .copyright { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.22); }
-
   /* ── Responsive ── */
   @media (max-width: 760px) {
     .s { padding: 56px 28px; }
@@ -940,4 +562,3 @@ for (let r = 0; r < ROWS; r += 1) {
     .phone-cap .phone { width: 200px; }
   }
 </style>
-</Base>

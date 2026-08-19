@@ -1,101 +1,97 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Page from '../../layouts/Page.astro';
 ---
 
-<Base
+<Page
   title="What's new · Niyora"
   ogImage="https://assets.niyora.com/niyora-launch-poster.jpg"
   canonicalUrl="https://niyora.com/changelog/"
 >
-  <div class="container">
-    <a class="back" href="/">← Back to Niyora</a>
-    <h1>What's new</h1>
-    <p class="lede">Every Niyora release, in plain language. Newest first.</p>
+  <section class="s left">
+    <div class="log">
+      <a class="back" href="/">← Back to Niyora</a>
+      <h1>What's new</h1>
+      <p class="lead">Every Niyora release, in plain language. Newest first.</p>
 
-    <article class="release">
-      <header>
-        <h2>v0.4.0</h2>
-        <span class="date">May 24, 2026</span>
-      </header>
-      <ul>
-        <li>iPhone Companion (Beta). New card at the bottom of My Soul. Pair your iPhone to measure your calm with the camera, before and after a breath. Early access.</li>
-        <li>Opt-in anonymous analytics. Off by default. Toggle in onboarding.</li>
-        <li>App version visible at the bottom of My Soul.</li>
-      </ul>
-    </article>
+      <article class="release">
+        <header>
+          <h2>v0.4.0</h2>
+          <span class="date">May 24, 2026</span>
+        </header>
+        <ul>
+          <li>iPhone Companion (Beta). New card at the bottom of My Soul. Pair your iPhone to measure your calm with the camera, before and after a breath. Early access.</li>
+          <li>Opt-in anonymous analytics. Off by default. Toggle in onboarding.</li>
+          <li>App version visible at the bottom of My Soul.</li>
+        </ul>
+      </article>
 
-    <article class="release">
-      <header>
-        <h2>v0.3.0</h2>
-        <span class="date">May 11, 2026</span>
-      </header>
-      <ul>
-        <li>Windows support. Tray icon, panel, native toasts, installer.</li>
-        <li>Tray icon spins gently during onboarding.</li>
-        <li>Soft glow and cross-fade on the breathing phase label.</li>
-      </ul>
-    </article>
+      <article class="release">
+        <header>
+          <h2>v0.3.0</h2>
+          <span class="date">May 11, 2026</span>
+        </header>
+        <ul>
+          <li>Windows support. Tray icon, panel, native toasts, installer.</li>
+          <li>Tray icon spins gently during onboarding.</li>
+          <li>Soft glow and cross-fade on the breathing phase label.</li>
+        </ul>
+      </article>
 
-    <article class="release">
-      <header>
-        <h2>v0.2.0</h2>
-        <span class="date">May 8, 2026</span>
-      </header>
-      <ul>
-        <li>Styled installer on macOS.</li>
-        <li>First-launch panel polish.</li>
-      </ul>
-    </article>
+      <article class="release">
+        <header>
+          <h2>v0.2.0</h2>
+          <span class="date">May 8, 2026</span>
+        </header>
+        <ul>
+          <li>Styled installer on macOS.</li>
+          <li>First-launch panel polish.</li>
+        </ul>
+      </article>
 
-    <article class="release">
-      <header>
-        <h2>v0.1.2</h2>
-        <span class="date">May 1, 2026</span>
-      </header>
-      <ul>
-        <li>In-app auto-updates. Niyora keeps itself current.</li>
-      </ul>
-    </article>
+      <article class="release">
+        <header>
+          <h2>v0.1.2</h2>
+          <span class="date">May 1, 2026</span>
+        </header>
+        <ul>
+          <li>In-app auto-updates. Niyora keeps itself current.</li>
+        </ul>
+      </article>
 
-    <article class="release">
-      <header>
-        <h2>v0.1.1</h2>
-        <span class="date">May 1, 2026</span>
-      </header>
-      <ul>
-        <li>Polish pass. Small fixes and visual refinements.</li>
-      </ul>
-    </article>
+      <article class="release">
+        <header>
+          <h2>v0.1.1</h2>
+          <span class="date">May 1, 2026</span>
+        </header>
+        <ul>
+          <li>Polish pass. Small fixes and visual refinements.</li>
+        </ul>
+      </article>
 
-    <article class="release">
-      <header>
-        <h2>v0.1.0</h2>
-        <span class="date">Apr 29, 2026</span>
-      </header>
-      <p class="release-lede">First public release.</p>
-      <ul>
-        <li>Fourteen practices. Pranayama, mindfulness, grounding, self-compassion.</li>
-        <li>My Soul. Your growing visual companion.</li>
-        <li>Situational signals. Niyora reads your work rhythm and nudges when stress is building.</li>
-        <li>Smart reminders.</li>
-        <li>Practice picker and onboarding.</li>
-        <li>Mac builds for Apple Silicon and Intel. Signed by Apple Developer ID and notarized.</li>
-      </ul>
-    </article>
+      <article class="release">
+        <header>
+          <h2>v0.1.0</h2>
+          <span class="date">Apr 29, 2026</span>
+        </header>
+        <p class="release-lede">First public release.</p>
+        <ul>
+          <li>Fourteen practices. Pranayama, mindfulness, grounding, self-compassion.</li>
+          <li>My Soul. Your growing visual companion.</li>
+          <li>Situational signals. Niyora reads your work rhythm and nudges when stress is building.</li>
+          <li>Smart reminders.</li>
+          <li>Practice picker and onboarding.</li>
+          <li>Mac builds for Apple Silicon and Intel. Signed by Apple Developer ID and notarized.</li>
+        </ul>
+      </article>
 
-    <p class="foot">Want to know when the next one ships? <a href="/talk">Say hello</a>.</p>
-  </div>
-</Base>
+      <p class="foot">Want to know when the next one ships? <a href="/talk">Say hello</a>.</p>
+    </div>
+  </section>
+</Page>
 
 <style>
-  body { background: #0a0814; }
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 60px 24px 80px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.7);
-  }
+  /* Page-specific: the release log column. */
+  .log { max-width: 640px; margin: 0 auto; line-height: 1.7; color: rgba(255, 255, 255, 0.7); }
   a.back {
     color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
@@ -105,18 +101,8 @@ import Base from '../../layouts/Base.astro';
   }
   a.back:hover { color: rgba(255, 255, 255, 0.6); }
 
-  h1 {
-    font-size: 32px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 8px;
-    letter-spacing: -0.3px;
-  }
-  .lede {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 48px;
-  }
+  .log h1 { margin-bottom: 8px; }
+  .log .lead { margin-bottom: 48px; }
 
   .release {
     padding: 24px 0;
@@ -166,7 +152,7 @@ import Base from '../../layouts/Base.astro';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: hsla(230, 50%, 70%, 0.5);
+    background: rgba(var(--accent-rgb), 0.5);
   }
 
   .foot {
