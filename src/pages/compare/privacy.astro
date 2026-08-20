@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { checked, contradictions, healthLinked, ranked, SELLS_LABEL, stats } from './_privacy';
 
 const jsonLd = {
@@ -9,13 +10,15 @@ const jsonLd = {
   description: `Every claim taken from the ${stats.total} apps' own App Store privacy labels and their own privacy policies, with a link and a quote for each.`,
   url: 'https://niyora.com/compare/privacy/',
 };
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }, { name: 'Privacy', href: '/compare/privacy/' }]);
 ---
 
 <Page
   title="What cycle apps say they do with your data · Niyora"
   description={`${stats.tracked} of ${stats.total} cycle apps declare they track you across other companies' apps. Taken from their own App Store labels and privacy policies, checked ${checked}.`}
   canonicalUrl="https://niyora.com/compare/privacy/"
-  jsonLd={jsonLd}
+  jsonLd={[jsonLd, crumbs]}
 >
   <section class="s hero">
     <div class="eyebrow">Compare</div>

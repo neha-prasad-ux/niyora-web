@@ -1,6 +1,7 @@
 ---
 import Page from '../../layouts/Page.astro';
 import { downloads } from '../../config/downloads';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { pagedClusters, sourceLabel, type Cluster, type ResearchRow } from './_clusters';
 
 export function getStaticPaths() {
@@ -18,6 +19,33 @@ interface Props {
 const { cluster, rows } = Astro.props;
 const url = `https://niyora.com/research/${cluster.slug}/`;
 const strongest = rows[0].grade;
+
+const crumbs = breadcrumbs([
+  { name: 'Research', href: '/research/' },
+  { name: cluster.title, href: `/research/${cluster.slug}/` },
+]);
+
+/**
+ * Google cuts a description off around 160 characters. Lead with the question,
+ * then take as much of the intro as lands on a sentence break, or failing that
+ * on the first clause break. Never mid-word, never mid-thought.
+ */
+function metaDescription({ question, intro }: Cluster): string {
+  const full = `${question} ${intro}`;
+  if (full.length <= 155) return full;
+  let out = question;
+  for (const sentence of intro.match(/[^.]+\./g) ?? [intro]) {
+    const s = sentence.trim();
+    if (`${out} ${s}`.length <= 155) {
+      out = `${out} ${s}`;
+      continue;
+    }
+    const clause = `${s.split(',')[0].replace(/\.$/, '')}.`;
+    if (clause !== s && `${out} ${clause}`.length <= 155) out = `${out} ${clause}`;
+    break;
+  }
+  return out;
+}
 
 const jsonLd = [
   {
@@ -39,12 +67,13 @@ const jsonLd = [
     },
   ],
   },
+  crumbs,
 ];
 ---
 
 <Page
   title={`${cluster.title}: what the research says · Niyora`}
-  description={`${cluster.question} ${cluster.intro}`}
+  description={metaDescription(cluster)}
   canonicalUrl={url}
   jsonLd={jsonLd}
 >

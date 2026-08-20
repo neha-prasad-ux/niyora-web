@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 
 const symptoms = [
   { href: '/pms/anxiety/', name: 'Anxiety', line: 'Worry that arrives out of proportion to anything happening. A text, a silence, a small task starts to feel like a threat.' },
@@ -17,13 +18,15 @@ const jsonLd = {
   description: 'What happens in the days before your period, symptom by symptom, and what helps in the moment.',
   url: 'https://niyora.com/pms/',
 };
+
+const crumbs = breadcrumbs([{ name: 'Symptoms', href: '/pms/' }]);
 ---
 
 <Page
   title="PMS symptoms, one at a time · Niyora"
-  description="Anxiety, anger, crying, brain fog, insomnia, overwhelm. What is happening in the days before your period, why it lands the way it does, and what helps in the moment."
+  description="PMS symptoms one at a time: anxiety, anger, crying, brain fog, insomnia, overwhelm. What is happening in your body, and what helps in the moment."
   canonicalUrl="https://niyora.com/pms/"
-  jsonLd={jsonLd}
+  jsonLd={[jsonLd, crumbs]}
 >
   <section class="s hero">
     <div class="eyebrow">Symptoms</div>

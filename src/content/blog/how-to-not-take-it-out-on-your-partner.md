@@ -1,6 +1,6 @@
 ---
 title: "How to not take it out on the people you love"
-description: "How to stop snapping at your partner and the people you love before your period. A three-step method to catch the impulse, settle your body, and respond instead of react."
+description: "How to stop snapping at the people you love before your period. A three-step method to catch the impulse, settle your body, and respond instead."
 date: 2026-08-15
 category: Blog
 tags: ["relationships", "irritability", "how-to", "regulation"]

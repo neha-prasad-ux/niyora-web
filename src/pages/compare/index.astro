@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { stats } from './_privacy';
 
 const rivals = [
@@ -21,13 +22,15 @@ const jsonLd = {
   description: 'How Niyora differs from cycle trackers and mood apps, and what each one does with your data.',
   url: 'https://niyora.com/compare/',
 };
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }]);
 ---
 
 <Page
   title="Compare Niyora with other cycle and mood apps · Niyora"
   description={`Head to head with Flo, Clue, Stardust, Bearable and more. Plus what ${stats.total} cycle apps told Apple they do with your data, in their own words.`}
   canonicalUrl="https://niyora.com/compare/"
-  jsonLd={jsonLd}
+  jsonLd={[jsonLd, crumbs]}
 >
   <section class="s hero">
     <div class="eyebrow">Compare</div>

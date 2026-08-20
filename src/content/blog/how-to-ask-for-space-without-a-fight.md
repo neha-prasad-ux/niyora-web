@@ -1,6 +1,6 @@
 ---
 title: "How to ask for space without starting a fight"
-description: "How to ask for space or time alone without it turning into a fight. A three-step method to know what you need, settle your body, and say it so it lands as care, not rejection."
+description: "How to ask for space without it turning into a fight. A three-step method to know what you need, settle your body, and say it so it lands as care."
 date: 2026-08-15
 category: Blog
 tags: ["relationships", "communication", "how-to", "regulation"]
