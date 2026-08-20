@@ -50,7 +50,9 @@ const jsonLd = [
         <h1>Life doesn't wait for PMS. But we do.</h1>
         <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
         <div class="hero-cta">
-          <a class="btn store" href={downloads.appStore}>Download on the App Store</a>
+          <a class="store-badge" href={downloads.appStore} aria-label="Download Niyora on the App Store">
+            <img src="/app-store-badge.svg" alt="Download on the App Store" width="144" height="48" />
+          </a>
         </div>
         <div class="trust">
           <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
@@ -270,7 +272,7 @@ const jsonLd = [
     <h2>Want Niyora when you need it?</h2>
     <p class="lead">It is on the App Store now. Free, no account, and nothing to sign up for.</p>
     <div class="final-links">
-      <a class="btn store" href={downloads.appStore}>Get Niyora on the App Store</a>
+      <a class="btn" href={downloads.appStore}>Get Niyora</a>
       <a class="btn ghost" href="/quiz/">Take the 2-minute PMS check</a>
     </div>
   </section>
@@ -288,6 +290,11 @@ const jsonLd = [
     margin: 0 auto 36px;
   }
 
+  /* Apple's badge artwork, used as shipped. The only rules that touch it are
+     size (40px minimum height) and clear space (a quarter of the height). It
+     must not be recoloured, angled, animated or rebuilt. */
+  .store-badge { display: inline-block; padding: 12px; margin: -12px; }
+  .store-badge img { display: block; height: 48px; width: auto; }
   .hero-cta { display: flex; justify-content: center; }
 
   .trust {
