@@ -1,0 +1,185 @@
+---
+import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
+import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([
+  { name: 'Techniques', href: '/techniques/' },
+  { name: 'Muscle relaxation', href: '/techniques/muscle-relaxation/' },
+]);
+
+const medical = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Progressive muscle relaxation for PMS',
+  description:
+    'How to run progressive muscle relaxation for premenstrual symptoms, muscle group by muscle group, and what the 2024 randomized trial does and does not show.',
+  url: 'https://niyora.com/techniques/muscle-relaxation/',
+  citation: ['https://pmc.ncbi.nlm.nih.gov/articles/PMC11993963/'],
+};
+---
+
+<Page
+  title="Progressive muscle relaxation for PMS · Niyora"
+  description="Progressive muscle relaxation eased PMS symptoms in a 2024 randomized trial. Here is the full sequence, muscle group by muscle group, with timings."
+  canonicalUrl="https://niyora.com/techniques/muscle-relaxation/"
+  jsonLd={[medical, crumbs]}
+>
+  <section class="s hero">
+    <div class="eyebrow">Progressive muscle relaxation</div>
+    <h1>Progressive muscle relaxation for PMS</h1>
+    <p class="lead">Tense one muscle group, hold it, let it go, move to the next. It sounds too plain to matter. Of the things you do in the moment, it is the only one with a premenstrual randomized trial behind it.</p>
+  </section>
+
+  <section class="s">
+    <h2>What the evidence actually says</h2>
+    <div class="science">
+      <p>A <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11993963/" rel="noopener">2024 randomized controlled trial</a> found that progressive muscle relaxation reduced PMS symptoms. On this site that is graded <strong>strong</strong>, the highest grade given, because it was tested against a control group. Strong is not the same as proven. One trial is one trial, and no grade on this site means settled.</p>
+      <p>What it does mean is that this was measured. Most advice about the days before your period has never been put in front of a control group at all.</p>
+      <p>What the trial does not tell you is which part of it does the work, how long the benefit lasts once you stop, or whether it moves one symptom more than another. Nobody has compared muscle group orders or hold times against each other. The sequence below is the standard clinical protocol, the shape this research uses. Treat the seconds and the effort levels as a sensible starting point, not as a tested recipe.</p>
+      <p>You can read it next to the other tested tools in <a href="/research/tools-with-evidence/">things that were actually tested</a>.</p>
+    </div>
+  </section>
+
+  <section class="s left">
+    <h2>The sequence</h2>
+    <p class="lead">Sit or lie down. Tense each group to about seventy percent, firm but never to pain. Hold for 5 seconds, release for 10, and spend that release noticing the difference between tight and loose. That contrast is the technique.</p>
+    <ol class="steps">
+      <li><strong>Hands and forearms.</strong> Make a fist with both hands. Hold 5 seconds. Open them and let your fingers fall loose for 10.</li>
+      <li><strong>Upper arms.</strong> Bend your elbows and press them into your sides. Hold 5. Let your arms drop for 10.</li>
+      <li><strong>Face.</strong> Scrunch your forehead, eyes and jaw together at once. Hold 5. Let your whole face go slack for 10, teeth unclenched.</li>
+      <li><strong>Neck and shoulders.</strong> Lift your shoulders toward your ears. Hold 5. Drop them for 10.</li>
+      <li><strong>Chest and upper back.</strong> Breathe in and squeeze your shoulder blades together. Hold 5. Breathe out and release for 10.</li>
+      <li><strong>Stomach.</strong> Tighten your abdominals as if bracing. Hold 5. Let your belly go soft for 10.</li>
+      <li><strong>Hips and thighs.</strong> Squeeze your glutes and press your thighs together. Hold 5. Release for 10.</li>
+      <li><strong>Calves and feet.</strong> Pull your toes up toward your shins, gently. Hold 5. Release for 10. Go light here, this is the group that cramps.</li>
+    </ol>
+    <p class="afterword">A full pass through all eight takes about ten minutes with the pauses. The one-minute version is three groups: hands, shoulders, face. Those are common places to hold tension without noticing, and they are the ones you can run at a desk without anyone seeing. The short version was not what the trial tested.</p>
+  </section>
+
+  <section class="s">
+    <h2>It works as practice, not only in the moment</h2>
+    <div class="science">
+      <p>This is a trained skill. The first few runs mostly teach you what your own tension feels like, which is information you did not have before. Most people find the release comes faster with repetition, though that is how the method is taught rather than something the trial measured.</p>
+      <p>So run it on ordinary days, not only on the day you feel wound tight. Then in your premenstrual window your body already knows the drop and can find it quickly. How much practice is enough is not something the trial answers, and I am not going to invent a number.</p>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Where this fits in Niyora</h2>
+    <p class="lead">Niyora runs three small steps in about a minute. Muscle relaxation is the middle one.</p>
+    <div class="rrr-grid">
+      <div class="rrr-card">
+        <div class="rrr-label">Reflect</div>
+        <p>Name the moment first. Knowing this is your system reacting to a normal hormonal shift changes what you do with the feeling.</p>
+      </div>
+      <div class="rrr-card is-here">
+        <div class="rrr-label">Regulate</div>
+        <p>This is the step muscle relaxation belongs to. Tense, release, move on. Your body settles before your thinking does, so let the body lead.</p>
+      </div>
+      <div class="rrr-card">
+        <div class="rrr-label">Respond</div>
+        <p>With a looser body, answer the message or start the task as yourself, rather than from the tension.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>The limits of this one</h2>
+    <p class="lead">Tensing a muscle that already hurts makes it worse, so skip any group that is cramping or injured. And this settles a body, it does not settle a situation. If your premenstrual week takes apart your work or your relationships every cycle, that is worth a clinician, not a technique.</p>
+  </section>
+
+  <section class="s">
+    <h2>Keep reading</h2>
+    <div class="cta-row">
+      <a href="/pms/insomnia/" class="btn ghost">PMS insomnia</a>
+      <a href="/pms/overwhelm/" class="btn ghost">Premenstrual overwhelm</a>
+      <a href="/techniques/breathing/" class="btn ghost">Breathing</a>
+      <a href="/techniques/cold-water/" class="btn ghost">Cold water</a>
+      <a href="/guide/" class="btn ghost">The full guide</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Want this built into the moment?</h2>
+    <p class="lead">Take the two-minute check to see how your premenstrual window actually hits, then let Niyora run the minute with you.</p>
+    <div class="cta-row">
+      <a href="/quiz/" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
+
+<style>
+  /* Page-specific only: the evidence block, the numbered sequence and the
+     R/R/R grid. Shared chrome comes from Page. */
+  .science {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+  }
+  .science p { font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin: 0 0 18px; }
+  .science p:last-child { margin-bottom: 0; }
+  .science a {
+    color: rgba(var(--accent-rgb), 0.95);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+  }
+  .science a:hover { border-bottom-color: rgba(var(--accent-rgb), 0.9); }
+
+  .steps {
+    max-width: 720px;
+    margin: 0;
+    padding-left: 22px;
+    text-align: left;
+  }
+  .steps li {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 14px;
+  }
+  .steps li strong { font-weight: 500; color: rgba(255, 255, 255, 0.94); }
+  .steps li::marker { color: rgba(var(--accent-rgb), 0.8); }
+
+  .rrr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
+    text-align: left;
+  }
+  .rrr-card {
+    padding: 24px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .rrr-card.is-here { border-color: rgba(var(--accent-rgb), 0.35); }
+  .rrr-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(var(--accent-rgb), 0.9);
+    margin-bottom: 12px;
+  }
+  .rrr-card p { font-size: 15px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.82); }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    .rrr-grid { grid-template-columns: 1fr; }
+    .science p { font-size: 16px; }
+    .steps li { font-size: 16px; }
+  }
+</style>
