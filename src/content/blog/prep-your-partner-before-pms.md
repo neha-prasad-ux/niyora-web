@@ -41,4 +41,4 @@ Your partner may feel helpless or worn down during this week. Tell them that sta
 
 Niyora can help you spot the pattern. It tracks your cycle privately, so you and your partner can see the hard days coming and plan around them. It also helps you name and settle what you feel in about a minute. No account, and your personal details are stripped before anything is sent.
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**

@@ -20,7 +20,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'MobileApplication',
     name: 'Niyora',
-    url: 'https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688',
+    url: downloads.appStore,
     applicationCategory: 'HealthApplication',
     operatingSystem: 'iOS',
     description: 'Niyora predicts your PMS week and helps you reflect, regulate, and respond when your brain is reacting to a hormone drop.',
@@ -49,9 +49,8 @@ const jsonLd = [
       <div class="split-text">
         <h1>Life doesn't wait for PMS. But we do.</h1>
         <p class="subhead">Niyora is a PMS app that sees your week coming. When feelings run high, it helps you reflect, regulate, and respond, instead of react.</p>
-        <div class="interest" id="interest">
-          <button type="button" class="btn" data-interest>I'm interested</button>
-          <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
+        <div class="hero-cta">
+          <a class="btn store" href={downloads.appStore}>Download on the App Store</a>
         </div>
         <div class="trust">
           <div class="trust-row">Free · No account · No wearables · No cycle data shared</div>
@@ -269,80 +268,13 @@ const jsonLd = [
   <!-- Final CTA -->
   <section class="s final">
     <h2>Want Niyora when you need it?</h2>
-    <p class="lead">Tap to say you're interested. No email, no account, nothing to sign. Just a nudge that tells us to keep building.</p>
-    <div class="interest">
-      <button type="button" class="btn" data-interest>I'm interested</button>
-      <div class="interest-count" data-interest-count aria-live="polite" hidden></div>
-    </div>
+    <p class="lead">It is on the App Store now. Free, no account, and nothing to sign up for.</p>
     <div class="final-links">
       <a class="btn store" href={downloads.appStore}>Get Niyora on the App Store</a>
       <a class="btn ghost" href="/quiz/">Take the 2-minute PMS check</a>
     </div>
   </section>
 
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function () {
-      // SEED is a starting count shown from day one. Real taps (via the KV
-      // counter, once bound) add on top, so the number only ever grows. Before
-      // KV exists, a tap bumps it locally so it still feels live. Change SEED
-      // to whatever starting number you want.
-      var SEED = 386;
-      var buttons = document.querySelectorAll('[data-interest]');
-      var counts = document.querySelectorAll('[data-interest-count]');
-      var LS_KEY = 'niyora_interested';
-      var LOCAL_KEY = 'niyora_interest_local';
-      var current = 0; // amount shown on top of SEED right now
-      var done = false, localExtra = 0;
-      try { done = localStorage.getItem(LS_KEY) === '1'; } catch (e) {}
-      try { localExtra = parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10) || 0; } catch (e) {}
-
-      function setText(extra) {
-        counts.forEach(function (el) {
-          el.textContent = (SEED + extra).toLocaleString('en-US') + ' interested';
-          el.hidden = false;
-        });
-      }
-
-      function animateTo(extra) {
-        var from = current, t0 = null;
-        function finish() { setText(extra); current = extra; }
-        function step(ts) {
-          if (!t0) t0 = ts;
-          var p = Math.min((ts - t0) / 900, 1);
-          setText(Math.round(from + (extra - from) * (1 - Math.pow(1 - p, 3))));
-          if (p < 1) requestAnimationFrame(step); else finish();
-        }
-        requestAnimationFrame(step);
-        setTimeout(finish, 1000); // guarantee the value shows even if rAF is throttled (backgrounded tab)
-      }
-
-      function bump() {
-        counts.forEach(function (el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); });
-      }
-
-      function markDone() {
-        buttons.forEach(function (b) { b.textContent = "You're in"; b.classList.add('is-done'); b.disabled = true; });
-      }
-
-      fetch('/api/interest').then(function (r) { return r.json(); })
-        .then(function (d) { animateTo(typeof d.count === 'number' ? d.count : localExtra); if (done) markDone(); })
-        .catch(function () { animateTo(localExtra); });
-
-      buttons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (done) return;
-          done = true;
-          try { localStorage.setItem(LS_KEY, '1'); } catch (e) {}
-          markDone();
-          window.posthog?.capture('interest_clicked');
-          function local() { localExtra += 1; try { localStorage.setItem(LOCAL_KEY, String(localExtra)); } catch (e) {} animateTo(localExtra); bump(); }
-          fetch('/api/interest', { method: 'POST' }).then(function (r) { return r.json(); })
-            .then(function (d) { if (typeof d.count === 'number') { animateTo(d.count); bump(); } else { local(); } })
-            .catch(function () { local(); });
-        });
-      });
-    });
-  </script>
 </Page>
 
 <style>
@@ -356,30 +288,7 @@ const jsonLd = [
     margin: 0 auto 36px;
   }
 
-  /* ── Interest button + live count ── */
-  .interest {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-  }
-  .interest-count {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.55);
-    letter-spacing: 0.3px;
-    font-variant-numeric: tabular-nums;
-    transition: color 0.3s ease;
-  }
-  /* Real counter's bump() adds .bump on each successful tap. */
-  .interest-count.bump { animation: interestBump 0.4s ease; }
-  @keyframes interestBump {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.14); color: rgba(244, 178, 203, 1); }
-    100% { transform: scale(1); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .interest-count.bump { animation: none; }
-  }
+  .hero-cta { display: flex; justify-content: center; }
 
   .trust {
     margin-top: 34px;
@@ -519,7 +428,7 @@ const jsonLd = [
   .split-text .lead,
   .split-text p { margin-left: 0; margin-right: 0; max-width: none; }
   .split-text .lead { margin-bottom: 0; }
-  .split-text .interest { align-items: flex-start; }
+  .split-text .hero-cta { justify-content: flex-start; }
 
   /* ── Phone trio: the Reflect / Regulate / Respond core loop ── */
   .phone-trio {
@@ -551,7 +460,7 @@ const jsonLd = [
     /* Stack the two-column splits, phone under the copy, both centered. */
     .split, .split.reverse { flex-direction: column; gap: 36px; }
     .split-text { text-align: center; }
-    .split-text .interest { align-items: center; }
+    .split-text .hero-cta { justify-content: center; }
     .phone { width: 210px; }
   }
   @media (max-width: 420px) {

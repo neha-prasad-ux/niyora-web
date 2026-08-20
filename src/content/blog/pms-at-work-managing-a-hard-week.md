@@ -55,4 +55,4 @@ Niyora is built to help in exactly this window. In the moment, it helps you refl
 
 Want to see if this is your pattern? Try the [two-minute quiz](/quiz).
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**

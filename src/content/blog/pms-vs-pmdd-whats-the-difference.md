@@ -49,4 +49,4 @@ Niyora is built around that loop, Reflect, Regulate, Respond, in about a minute.
 
 Not sure where you land? [Take the 60-second quiz.](/quiz)
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**

@@ -48,4 +48,4 @@ Niyora walks you through this loop, R/R/R, in about a minute. It helps you name 
 
 Not sure where you land? [Take the 60-second quiz.](/quiz)
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**
