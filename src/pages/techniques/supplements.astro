@@ -1,0 +1,222 @@
+---
+import Page from '../../layouts/Page.astro';
+import { downloads } from '../../config/downloads';
+import { breadcrumbs } from '../../components/_breadcrumbs';
+
+const url = 'https://niyora.com/techniques/supplements/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Magnesium, calcium and vitamin D for PMS',
+  description:
+    'What the trials actually tested for calcium, magnesium and vitamin D in PMS, the dose that was used, how to set it up in a minute, and what supplements do not touch.',
+  url,
+  citation: [
+    'https://pubmed.ncbi.nlm.nih.gov/2656936/',
+    'https://pubmed.ncbi.nlm.nih.gov/3800293/',
+    'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6797739/',
+  ],
+};
+
+const crumbs = breadcrumbs([
+  { name: 'Techniques', href: '/techniques/' },
+  { name: 'Supplements', href: '/techniques/supplements/' },
+]);
+---
+
+<Page
+  title="Magnesium, calcium and vitamin D for PMS · Niyora"
+  description="Calcium has the one usable dose for PMS. Vitamin D was tested only in deficiency, magnesium has no tested dose at all. What each one really has behind it."
+  canonicalUrl={url}
+  jsonLd={[jsonLd, crumbs]}
+>
+  <section class="s hero">
+    <div class="eyebrow">Technique · Regulate</div>
+    <h1>Magnesium, calcium and vitamin D for PMS</h1>
+    <p class="lead">Three supplements come up every time PMS is discussed. Only one of them gives you a dose you can act on. The other two have a result without a number attached. This page gives you what was actually used, how to set it up in about a minute, and a straight answer on what none of it touches.</p>
+  </section>
+
+  <section class="s">
+    <h2>What each one actually has behind it</h2>
+    <div class="cards">
+      <div class="card is-here">
+        <div class="card-label">Calcium · strong</div>
+        <p>A crossover randomized trial used roughly 1000 to 1200 mg a day and found 73 percent fewer symptoms, against 15 percent on placebo. That is the strongest evidence on this page, and it was a daily habit across the whole cycle, not something taken in the week before a period.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Magnesium · moderate</div>
+        <p>The finding here is not a dose. Cellular magnesium, measured inside red blood cells, runs lower in PMS even when a standard serum blood test looks normal. That says something may be low inside your cells. It does not say how much to take, or that taking it fixes symptoms. Our research table holds no trial dose for magnesium, so this page will not give you one.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Vitamin D · moderate</div>
+        <p>A randomized trial found that supplementation improved symptoms and inflammation markers in people who were deficient. Deficiency is the condition of that result. If your vitamin D is already fine, the trial was not about you. Our row records the result, not the dose, so there is no number here to copy.</p>
+      </div>
+    </div>
+    <p class="note">Grades, sources and links to every paper live in the research table, not here. See <a href="/research/micronutrients/">calcium, magnesium, vitamin D in the research</a> for how each finding is graded and why.</p>
+  </section>
+
+  <section class="s">
+    <h2>Set it up in about a minute</h2>
+    <p class="lead">Six steps. The whole point is to do the tested thing properly, then judge it fairly.</p>
+    <ol class="howto">
+      <li><strong>Read what you already take.</strong> Multivitamins, fortified drinks and some antacids already contain calcium or vitamin D. The trial dose is a total for the day, not an extra layer on top of what you have.</li>
+      <li><strong>Start with calcium, because it is the one with the trial.</strong> The study used roughly 1000 to 1200 mg a day. That is the dose that was tested. It is not a prescription for you, and this page cannot be one.</li>
+      <li><strong>Split it across the day.</strong> Calcium is usually taken as two smaller amounts rather than one large one. That is common practice, not a finding from the trial.</li>
+      <li><strong>Take it every day, all cycle.</strong> The trial dosed daily, right through the month. Taking it only in the days before your period is not the thing that was tested.</li>
+      <li><strong>Get vitamin D tested before you take it.</strong> The result was found in people who were deficient, so a blood test is what tells you whether you are the person that trial was about.</li>
+      <li><strong>Put a date in your calendar three cycles out.</strong> PMS is scored cycle by cycle, so a week tells you nothing. Decide on that date whether anything changed, and stop if it did not.</li>
+    </ol>
+    <p class="note">This is not medical advice. Supplements interact with medication, and calcium and vitamin D need care if you have a kidney condition. Bring the numbers on this page to a doctor and let them decide what is right for you.</p>
+  </section>
+
+  <section class="s">
+    <h2>How long before you can tell</h2>
+    <div class="science">
+      <p>Our research row records what the calcium trial found, not how many cycles it took to get there. So I am not going to give you a week count and pretend it came from a study.</p>
+      <p>What I can say is how to judge it. Premenstrual symptoms are scored across a cycle, not across a day, and every cycle differs from the last one. One good month is not evidence, and one bad month is not failure. Three cycles is a reasonable window to look back over. That is a practical rule for judging, not a trial result.</p>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>What these three do not touch</h2>
+    <div class="science">
+      <p>The cause sits a layer below any of this. Women who feel awful before their period and women who feel fine have the same hormone levels, and the difference is how sensitively the nervous system reads a normal shift. That sensitivity is substantially inherited. <a href="/research/mechanism/">The graded findings on that</a> are the strongest in this field.</p>
+      <p>No supplement on this page changes it. Calcium's trial measured symptoms, not the shift underneath them. So treat this as something that may lower the volume, not something that removes the cause.</p>
+      <p>The other limit is timing. Every result here comes from a daily habit measured over cycles. None of it does anything in the ten minutes when a moment is actually landing on you. For that you need something that works on your body in about a minute.</p>
+    </div>
+    <div class="cta-row">
+      <a href="/techniques/breathing/" class="btn ghost">Breathing for the moment itself</a>
+      <a href="/research/mechanism/" class="btn ghost">What is actually happening</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Supplements run on a slower clock</h2>
+    <p class="lead">Niyora works in three steps. Supplements are the Regulate step, running in the background rather than in the moment.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Reflect</div>
+        <p>Name what just happened. Seeing that the reaction is your alarm running hot, not proof the situation is dangerous, takes some of the charge out of it.</p>
+      </div>
+      <div class="card is-here">
+        <div class="card-label">Regulate</div>
+        <p>This page, on a slow clock. A daily habit that may lower the baseline over cycles, while breathing or cold water handle the minute you are in.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Respond</div>
+        <p>With a steadier body, answer the message or face the task with a clearer head. You respond as yourself, not as the alarm.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>When it is not enough</h2>
+    <p class="lead">If three cycles pass and nothing has shifted, stop. Taking something that is not working costs you money and quietly convinces you that nothing helps.</p>
+    <p class="lead">And a supplement is the wrong tool entirely if your premenstrual window flattens your life every cycle, or if the low mood does not lift once your period starts. That is a conversation with a clinician, and no dose on this page is a substitute for it.</p>
+  </section>
+
+  <section class="s">
+    <h2>Keep reading</h2>
+    <div class="cta-row">
+      <a href="/pms/" class="btn ghost">All PMS symptoms</a>
+      <a href="/pms/anxiety/" class="btn ghost">Why anxiety spikes before your period</a>
+      <a href="/pms/overwhelm/" class="btn ghost">Premenstrual overwhelm</a>
+      <a href="/guide/" class="btn ghost">The full guide</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Know your own pattern first</h2>
+    <p class="lead">A supplement is easier to judge when you know which days are actually yours. Two minutes to see how your premenstrual window hits.</p>
+    <div class="cta-row">
+      <a href="/quiz/" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
+
+<style>
+  /* Page-specific only: the science block, the numbered how-to and the card
+     grid. Shared chrome (sheet, sections, dividers, type scale, buttons,
+     footer) comes from Page. */
+  .science {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+  }
+  .science p { font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin: 0 0 18px; }
+  .science p:last-child { margin-bottom: 0; }
+  .science a {
+    color: rgba(var(--accent-rgb), 0.95);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+  }
+  .science a:hover { border-bottom-color: rgba(var(--accent-rgb), 0.9); }
+
+  .howto {
+    width: 100%;
+    max-width: 720px;
+    margin: 8px auto 0;
+    padding-left: 22px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .howto li { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.74); padding-left: 6px; }
+  .howto li::marker { color: rgba(var(--accent-rgb), 0.9); font-size: 15px; }
+  .howto strong { font-weight: 500; color: rgba(255, 255, 255, 0.94); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
+    text-align: left;
+  }
+  .card {
+    padding: 24px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .card.is-here { border-color: rgba(var(--accent-rgb), 0.4); }
+  .card-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(var(--accent-rgb), 0.9);
+    margin-bottom: 12px;
+  }
+  .card p { font-size: 15px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.82); }
+
+  .note {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 24px auto 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .note a { color: rgba(var(--accent-rgb), 0.9); }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    .science p { font-size: 16px; }
+    .howto li { font-size: 16px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>

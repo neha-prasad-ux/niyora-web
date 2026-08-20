@@ -1,0 +1,218 @@
+---
+import Page from '../../layouts/Page.astro';
+import { downloads } from '../../config/downloads';
+import { breadcrumbs } from '../../components/_breadcrumbs';
+
+const url = 'https://niyora.com/techniques/breathing/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Breathing for premenstrual anxiety',
+  description:
+    'How a longer exhale slows your heart, three breathing patterns worth knowing, how long to run them, and an honest read on how well breathing has been tested for premenstrual anxiety.',
+  url,
+  citation: ['https://pmc.ncbi.nlm.nih.gov/articles/PMC11993963/'],
+};
+
+const crumbs = breadcrumbs([
+  { name: 'Techniques', href: '/techniques/' },
+  { name: 'Breathing', href: '/techniques/breathing/' },
+]);
+---
+
+<Page
+  title="Breathing exercises for PMS anxiety · Niyora"
+  description="A longer exhale slows your heart. Three breathing patterns for anxiety before your period, how long to run them, and what the evidence does not show."
+  canonicalUrl={url}
+  jsonLd={[jsonLd, crumbs]}
+>
+  <section class="s hero">
+    <div class="eyebrow">Technique · Regulate</div>
+    <h1>Breathing for premenstrual anxiety</h1>
+    <p class="lead">When anxiety climbs in the days before your period, changing how you breathe changes your heart rate within a few breaths. That much is plain physiology. Whether it helps premenstrual anxiety specifically is a separate question, and this page answers it honestly.</p>
+  </section>
+
+  <section class="s">
+    <h2>What a longer exhale actually does</h2>
+    <div class="science">
+      <p>Your heart rate is not steady. It rises a little as you breathe in and falls as you breathe out. That rise and fall is the vagus nerve changing its grip on your heart across the breath cycle. It is ordinary physiology, measurable in anyone, not a finding from a trial.</p>
+      <p>Make the out-breath longer than the in-breath and you spend more of each cycle in the part where the brake is on. Your heart slows. Your body starts producing the signal it produces after a threat has passed, which is the opposite of what a spiking alarm is telling you.</p>
+      <p>That matters premenstrually because of what your alarm is doing. Your nervous system reads a normal hormonal shift more sharply in the late luteal phase, which is <a href="/research/mechanism/">the part of this field with the most evidence behind it</a>. So the alarm is running loud for a real reason, and it is louder than the situation.</p>
+      <p>Breathing does not change any of that. It works on the other end of the loop, the body's own signal that the danger has passed.</p>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Do this now, in about a minute</h2>
+    <p class="lead">One pattern, six rounds. You do not need to sit down or close your eyes, and it works at a desk or on a bus.</p>
+    <ol class="howto">
+      <li><strong>Put one hand on your belly.</strong> Not your chest. You want to feel the lower hand move, which tells you the breath is going deep rather than staying high and fast.</li>
+      <li><strong>Breathe in through your nose for a count of four.</strong> Let the belly push your hand out. Do not fill your lungs to the top, that tends to tighten your chest.</li>
+      <li><strong>Breathe out through your mouth for a count of six.</strong> Slow and thin, as if through a straw. The out-breath is the part doing the work, so it is the count that has to stay long.</li>
+      <li><strong>Do not pause or hold.</strong> Straight from the out-breath into the next in-breath. Holding adds effort, and effort is what you are trying to take out.</li>
+      <li><strong>Repeat six times.</strong> Four seconds in and six seconds out is ten seconds a round, so six rounds is about a minute. Count the rounds on your fingers so you are not tracking two things at once.</li>
+      <li><strong>Check your hands and jaw.</strong> If they have loosened, the pattern landed. If nothing has shifted at all, run one more minute, then stop and try something else.</li>
+    </ol>
+  </section>
+
+  <section class="s">
+    <h2>Three patterns worth knowing</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Four in, six out</div>
+        <p>The default, and the one above. Nothing to remember, nothing to hold, and the exhale is longer than the inhale, which is the part that slows your heart. Use this unless you have a reason not to.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Double inhale, long exhale</div>
+        <p>Two in-breaths through the nose, the second one short and stacked on top of the first, then one long release through the mouth. Useful when you cannot seem to get a full breath in. It is widely taught, and it is not in our graded research table.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Box breathing, four by four</div>
+        <p>In for four, hold four, out for four, hold four. The one most people have heard of, and worth naming for one honest reason. Its exhale is not longer than its inhale, so if slowing your heart is the goal, it is not the pattern doing that job.</p>
+      </div>
+    </div>
+    <p class="note">How long to run it: a minute is enough to notice a change, and five to ten minutes is what people use when they have the time. Nobody has established a correct dose for premenstrual anxiety, so treat those numbers as practical, not proven.</p>
+  </section>
+
+  <section class="s">
+    <h2>Why breathing is here without a trial</h2>
+    <div class="science">
+      <p>Breathing is the technique this app leans on most, and it is not the technique with the best evidence behind it. I would rather say that here than let the page imply otherwise.</p>
+      <p>Our research table has no breathing row. Not a weak one, none at all. Nobody has run a trial of a breathing pattern for premenstrual anxiety, so there is nothing to grade.</p>
+      <p>What you have just read is reasoning from mechanism. The vagal effect of a long exhale is real and measurable, and it is a reasonable bridge to premenstrual anxiety, but a bridge is not a trial. Breathing is in the app because it is free, silent, works in a meeting, and needs no sink and no floor space. That is a practical case, not an evidence case.</p>
+    </div>
+    <div class="cta-row">
+      <a href="/techniques/muscle-relaxation/" class="btn ghost">The one with a premenstrual trial</a>
+      <a href="/research/gaps/" class="btn ghost">What nobody has studied</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>When it does not work</h2>
+    <p class="lead">For some people, paying close attention to the breath makes the anxiety worse rather than better, because the attention lands on a body that already feels wrong. That is a common clinical report rather than a graded finding, but it is common enough to plan for. If it is you, stop after a minute and use cold water on your face instead. It works from the outside in and asks nothing of your focus.</p>
+    <p class="lead">And a breath is a small tool. If the low mood does not lift once your period starts, it is not premenstrual, and no pattern on this page will reach it. Take that to a clinician.</p>
+  </section>
+
+  <section class="s">
+    <h2>Breathing is the middle step</h2>
+    <p class="lead">Niyora works in three steps, and breathing is squarely the middle one.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Reflect</div>
+        <p>Say what the feeling is before you try to move it. A long exhale on top of an unnamed panic tends to slide into holding your breath and waiting.</p>
+      </div>
+      <div class="card is-here">
+        <div class="card-label">Regulate</div>
+        <p>Six rounds of four in and six out. Breathing is the version of this step that needs no sink, no floor and nobody noticing.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Respond</div>
+        <p>Send the message once your heart has come down. The words you pick at the top of a spike are rarely the words you would stand behind an hour later.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Keep reading</h2>
+    <div class="cta-row">
+      <a href="/pms/anxiety/" class="btn ghost">Why anxiety spikes before your period</a>
+      <a href="/techniques/cold-water/" class="btn ghost">Cold water on the face</a>
+      <a href="/techniques/supplements/" class="btn ghost">Calcium, magnesium, vitamin D</a>
+      <a href="/guide/" class="btn ghost">The full guide</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Want this in your pocket</h2>
+    <p class="lead">Niyora counts the rounds so you do not have to, then hands you back the moment you were in. The quiz takes two minutes and shows you which days are actually yours.</p>
+    <div class="cta-row">
+      <a href="/quiz/" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
+
+<style>
+  /* Page-specific only: the science block, the numbered how-to and the card
+     grid. Shared chrome (sheet, sections, dividers, type scale, buttons,
+     footer) comes from Page. */
+  .science {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+  }
+  .science p { font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin: 0 0 18px; }
+  .science p:last-child { margin-bottom: 0; }
+  .science a {
+    color: rgba(var(--accent-rgb), 0.95);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+  }
+  .science a:hover { border-bottom-color: rgba(var(--accent-rgb), 0.9); }
+
+  .howto {
+    width: 100%;
+    max-width: 720px;
+    margin: 8px auto 0;
+    padding-left: 22px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .howto li { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.74); padding-left: 6px; }
+  .howto li::marker { color: rgba(var(--accent-rgb), 0.9); font-size: 15px; }
+  .howto strong { font-weight: 500; color: rgba(255, 255, 255, 0.94); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
+    text-align: left;
+  }
+  .card {
+    padding: 24px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .card.is-here { border-color: rgba(var(--accent-rgb), 0.4); }
+  .card-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(var(--accent-rgb), 0.9);
+    margin-bottom: 12px;
+  }
+  .card p { font-size: 15px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.82); }
+
+  .note {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 24px auto 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    .science p { font-size: 16px; }
+    .howto li { font-size: 16px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>

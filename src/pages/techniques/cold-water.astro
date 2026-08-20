@@ -1,0 +1,256 @@
+---
+import Page from '../../layouts/Page.astro';
+import { downloads } from '../../config/downloads';
+import { breadcrumbs } from '../../components/_breadcrumbs';
+
+const url = 'https://niyora.com/techniques/cold-water/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Cold water on your face to stop a panic spiral',
+  description:
+    'How cold on the face triggers the diving reflex and slows the heart, the exact method, what to do without a sink, who should not use it, and an honest read on the evidence.',
+  url,
+};
+
+const crumbs = breadcrumbs([
+  { name: 'Techniques', href: '/techniques/' },
+  { name: 'Cold water', href: '/techniques/cold-water/' },
+]);
+---
+
+<Page
+  title="Cold water on your face to stop a panic spiral · Niyora"
+  description="Cold on your face slows your heart in seconds and can break a panic spiral. How cold, how long, where on your face, no sink, and who should skip it."
+  canonicalUrl={url}
+  jsonLd={[jsonLd, crumbs]}
+>
+  <section class="s hero">
+    <div class="eyebrow">Technique · Regulate</div>
+    <h1>Cold water on your face to stop a panic spiral</h1>
+    <p class="lead">Cold on your face slows your heart through a reflex, not through effort. That makes it the one to reach for when the panic is loud enough that you cannot hold a count or follow an instruction. It also has a safety list, and that comes before the method on this page for a reason.</p>
+  </section>
+
+  <section class="s">
+    <h2>What cold on your face actually does</h2>
+    <div class="science">
+      <p>Your face has a reflex your arms and legs do not. Cold and wet across your forehead, eyes and upper cheeks is read by the trigeminal nerve as a face going into water. Your body responds the way it would if you were diving. Your heart slows, blood moves toward the core, and the vagus nerve pulls the brake on.</p>
+      <p>This is called the diving reflex, and it is ordinary physiology. It happens in anyone. It is not a belief, an intention, or a technique you have to be good at.</p>
+      <p>That matters in a panic spiral for a mechanical reason. A spiral runs as a loop. A racing heart is evidence to your brain that something is wrong, which raises the alarm, which raises the heart rate again. Cold on the face cuts into that loop at the body end, without asking your thinking mind to win an argument it is currently losing.</p>
+      <p>This is why cold water is a standard crisis skill in dialectical behaviour therapy. Our research table grades that row strong. Read the section further down before you take the grade at face value, because the grade and the certainty are not the same thing here.</p>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Read this part before you use it</h2>
+    <p class="lead">Cold on the face slows your heart on purpose. For most people that is the point. For some people it is a real risk.</p>
+    <ul class="warn">
+      <li>Do not use it if you have a heart condition, an arrhythmia, a resting heart rate that already runs low, or you take a beta blocker.</li>
+      <li>Do not use it if you have or are recovering from an eating disorder. A slowed heart is common in that situation, and cold on the face pushes it lower.</li>
+      <li>Skip it if you faint easily, and never do it in a bath, a pool, or open water. A sink, a bowl, or a cloth is the whole method.</li>
+      <li>If you are not sure whether you are in one of those groups, ask your doctor before you use it. This page is information, not medical advice.</li>
+    </ul>
+  </section>
+
+  <section class="s">
+    <h2>The method, step by step</h2>
+    <p class="lead">Six steps. Cold tap water and a sink is all it takes.</p>
+    <ol class="howto">
+      <li><strong>Fill a bowl or the sink with cold water.</strong> Cold from the tap is usually cold enough. The instruction taught in DBT is water around 10°C, roughly 50°F. If your tap runs warm, drop in two or three ice cubes and stir. Do not press ice straight onto your skin.</li>
+      <li><strong>Take a normal breath out, then hold.</strong> Do not gulp in a huge breath first. Holding at the end of a soft out-breath is what deepens the reflex, and it stops you inhaling water.</li>
+      <li><strong>Bend forward and put your face in.</strong> The part that has to be covered is the strip across your forehead, your eyes and the top of your cheeks. That is where the nerve endings are. Your chin and mouth do very little.</li>
+      <li><strong>Stay there about 20 to 30 seconds.</strong> Come up sooner if you need to breathe. The 30 second mark is the DBT instruction, not a proven dose, so treat it as a guide rather than a target to push past.</li>
+      <li><strong>Come up and breathe normally for a few seconds.</strong> Do not rush the next thing. Let your heart find its new speed before you decide anything.</li>
+      <li><strong>Repeat once if the spiral is still climbing.</strong> Twice is enough. If nothing has shifted after two rounds, stop and use something else rather than going again and again.</li>
+    </ol>
+  </section>
+
+  <section class="s">
+    <h2>What to do if there is no sink</h2>
+    <p class="lead">You are on a bus, at a desk, in someone else's kitchen. Cold and wet on the same strip of face is the whole requirement, so improvise around that.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">A cold wet cloth</div>
+        <p>Soak a flannel, a paper towel, or a sleeve in cold water, wring it out, and hold it flat across your eyes and forehead. Breathe out first and hold your breath while it sits there. This is the closest stand-in for the sink.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">A cold drink can or bottle</div>
+        <p>Straight from a fridge or a shop cooler. Roll it slowly across your forehead and under your eyes. Colder and wetter is stronger, so wet the skin first if you can.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Splash at a tap</div>
+        <p>A bathroom will do. Cup cold water in both hands, hold your breath, and press your face into your hands for a few seconds. Repeat five or six times rather than one quick splash.</p>
+      </div>
+    </div>
+    <p class="note">Cold water on your wrists or the back of your neck is a much weaker version of the same idea. It is better than nothing when your face is not an option, for example if you are wearing makeup you cannot redo, but expect less from it.</p>
+  </section>
+
+  <section class="s">
+    <h2>What the strong grade does and does not mean</h2>
+    <div class="science">
+      <p>The diving reflex itself is not in question. It is measurable in a lab, in anyone, and it does not depend on whether you believe in it.</p>
+      <p>The step after that is where I have to be careful. Our table grades this finding strong, and the source line reads "DBT / diving reflex lit". There is no single trial linked beside it, and the row is still marked as one I need to check. So the claim that cold reliably ends a panic spiral rests on the physiology plus decades of clinical use in DBT, not on a large randomized trial I can hand you.</p>
+      <p>Nobody has tested it for the days before your period either. There is no trial on cold water and premenstrual anxiety. What is well evidenced premenstrually is <a href="/research/mechanism/">why the alarm is loud in the first place</a>, and that is a different claim from this one.</p>
+      <p>So the reasoning is: your alarm is running hot for a real reason, and this is a physical way to quieten the body end of it. That is a mechanism argument with strong physiology behind it. It is not the same as a trial, and I would rather say so.</p>
+    </div>
+    <div class="cta-row">
+      <a href="/research/tools-with-evidence/" class="btn ghost">The graded rows, side by side</a>
+      <a href="/techniques/muscle-relaxation/" class="btn ghost">Muscle relaxation, which was trialled</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>What cold water cannot do</h2>
+    <p class="lead">Cold water is blunt. It is good at taking the top off a spike and poor at everything else. It will not touch a slow grinding week, it does nothing for the thought that started the spiral, and the calm it buys can fade within minutes if you go straight back into what set you off. Use the minute it gives you to do the next thing differently, not to brace for the next wave.</p>
+    <p class="lead">And reaching for a sink several times a week is information, not a routine. Panic that often has a cause worth naming with a clinician, and a bowl of cold water will not find it for you.</p>
+  </section>
+
+  <section class="s">
+    <h2>Cold water first, then the words</h2>
+    <p class="lead">Niyora works in three steps. Cold water is the middle one, and it is the version to reach for when the body is too loud to think over.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Reflect</div>
+        <p>Naming it comes after the cold here, not before. When the body is this loud, words arrive late, so do the physical thing first and reflect once you can hear yourself.</p>
+      </div>
+      <div class="card is-here">
+        <div class="card-label">Regulate</div>
+        <p>Twenty to thirty seconds at a sink. Of the three regulate tools this is the bluntest and the fastest, and the one that asks least of your attention.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Respond</div>
+        <p>Use the minute it buys. The calm fades if you walk straight back into what set it off, so the next move is the point of the whole thing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Keep reading</h2>
+    <div class="cta-row">
+      <a href="/blog/what-to-do-during-a-panic-spiral/" class="btn ghost">What to do during a panic spiral</a>
+      <a href="/techniques/breathing/" class="btn ghost">Breathing, when there is no sink</a>
+      <a href="/pms/overwhelm/" class="btn ghost">Premenstrual overwhelm</a>
+      <a href="/guide/" class="btn ghost">The full guide</a>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>Know which minute you are in</h2>
+    <p class="lead">Cold water is the right tool for a spike and the wrong one for a slow week. The quiz takes two minutes and shows you which of the two you tend to get.</p>
+    <div class="cta-row">
+      <a href="/quiz/" class="btn">Take the quiz</a>
+      <a href={downloads.appStore} class="btn ghost">Get Niyora</a>
+    </div>
+  </section>
+</Page>
+
+<style>
+  /* Page-specific only: the science block, the safety list, the numbered how-to
+     and the card grid. Shared chrome (sheet, sections, dividers, type scale,
+     buttons, footer) comes from Page. */
+  .science {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+  }
+  .science p { font-size: 18px; line-height: 1.65; color: rgba(255, 255, 255, 0.78); margin: 0 0 18px; }
+  .science p:last-child { margin-bottom: 0; }
+  .science a {
+    color: rgba(var(--accent-rgb), 0.95);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+  }
+  .science a:hover { border-bottom-color: rgba(var(--accent-rgb), 0.9); }
+
+  .warn {
+    list-style: none;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 26px 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.03);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .warn li { font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, 0.8); padding-left: 20px; position: relative; }
+  .warn li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(var(--accent-rgb), 0.9);
+  }
+
+  .howto {
+    width: 100%;
+    max-width: 720px;
+    margin: 8px auto 0;
+    padding-left: 22px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .howto li { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.74); padding-left: 6px; }
+  .howto li::marker { color: rgba(var(--accent-rgb), 0.9); font-size: 15px; }
+  .howto strong { font-weight: 500; color: rgba(255, 255, 255, 0.94); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
+    text-align: left;
+  }
+  .card {
+    padding: 24px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .card.is-here { border-color: rgba(var(--accent-rgb), 0.4); }
+  .card-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(var(--accent-rgb), 0.9);
+    margin-bottom: 12px;
+  }
+  .card p { font-size: 15px; line-height: 1.6; margin: 0; color: rgba(255, 255, 255, 0.82); }
+
+  .note {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 24px auto 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .s { padding: 56px 24px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+    .science p { font-size: 16px; }
+    .howto li { font-size: 16px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
