@@ -1,6 +1,7 @@
 ---
 import Page from '../../layouts/Page.astro';
 import { downloads } from '../../config/downloads';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { lanes, logPosition, stats, TICKS, laneByName } from './_gaps';
 
 // Chart geometry, in SVG user units. The container scrolls horizontally on
@@ -20,6 +21,11 @@ const animals = laneByName('PMS in animals');
 const suicide = laneByName('Self-harm / suicidality');
 const genetic = laneByName('Genetic');
 const env = laneByName('Environmental');
+
+const crumbs = breadcrumbs([
+  { name: 'Research', href: '/research/' },
+  { name: 'Research gaps', href: '/research/gaps/' },
+]);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -47,9 +53,9 @@ const jsonLd = {
 
 <Page
   title="What nobody has studied about your cycle · Niyora"
-  description={`I counted the published research across ${stats.laneCount} menstrual health topics. ${env.total} papers exist on hormone disruptors and cycle mood. ${genetic.total} on genetics, and not one randomized trial.`}
+  description={`I counted the research on ${stats.laneCount} menstrual health topics. ${env.total} papers exist on hormone disruptors and cycle mood. ${genetic.total} on genetics, and not one randomized trial.`}
   canonicalUrl="https://niyora.com/research/gaps/"
-  jsonLd={jsonLd}
+  jsonLd={[jsonLd, crumbs]}
 >
   <section class="s hero">
     <div class="eyebrow"><a href="/research/">Research</a></div>

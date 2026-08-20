@@ -1,12 +1,16 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }, { name: 'Niyora vs Clue', href: '/compare/niyora-vs-clue/' }]);
 ---
 
 <Page
-  title="Niyora vs Clue: predict your PMS window and get through it · Niyora"
-  description="Clue is a science-minded cycle tracker. It records and predicts, then stops. Niyora predicts your PMS window too, then adds the layer trackers do not have: reflect, regulate, and respond in about a minute, plus training that builds the skill. No account."
+  title="Niyora vs Clue: past the prediction, into the day · Niyora"
+  description="Clue is a science-minded cycle tracker. It records and predicts, then stops. Niyora predicts your PMS window too, then helps you through it. No account."
   canonicalUrl="https://niyora.com/compare/niyora-vs-clue/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">Niyora vs Clue</div>

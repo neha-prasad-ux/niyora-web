@@ -1,12 +1,16 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }, { name: 'Niyora vs Moody Month', href: '/compare/niyora-vs-moody-month/' }]);
 ---
 
 <Page
-  title="Niyora vs Moody Month: predict your PMS window and get through it · Niyora"
-  description="Moody Month tracks your mood and cycle and shows you trends, then stops. Niyora predicts your PMS window too, then helps you through it: reflect, regulate, respond in about a minute, plus training that builds the skill. No account."
+  title="Niyora vs Moody Month: trends vs the moment itself · Niyora"
+  description="Moody Month tracks your mood and shows you trends, then stops. Niyora predicts your PMS window too, then helps you through the days it points to."
   canonicalUrl="https://niyora.com/compare/niyora-vs-moody-month/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">Niyora vs Moody Month</div>

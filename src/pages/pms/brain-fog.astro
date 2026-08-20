@@ -1,12 +1,16 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([{ name: 'Symptoms', href: '/pms/' }, { name: 'Brain fog', href: '/pms/brain-fog/' }]);
 ---
 
 <Page
   title="PMS brain fog: why focus scatters before your period · Niyora"
   description="Feeling foggy and scattered before your period is common. Here is the science behind PMS brain fog, what actually shifts, and what helps you steady your focus."
   canonicalUrl="https://niyora.com/pms/brain-fog/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">PMS brain fog</div>

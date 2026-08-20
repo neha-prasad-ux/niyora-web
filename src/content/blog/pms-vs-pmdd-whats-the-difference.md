@@ -1,6 +1,6 @@
 ---
-title: "PMS vs PMDD: what's the difference, and when to see a doctor"
-description: "PMS vs PMDD explained in plain language: what separates ordinary premenstrual symptoms from PMDD, the signs worth taking to a doctor, and why PMDD is real and treatable."
+title: "PMS vs PMDD, and when to see a doctor"
+description: "PMS vs PMDD in plain language: what separates ordinary premenstrual symptoms from PMDD, the signs worth taking to a doctor, and why PMDD is treatable."
 date: 2026-08-15
 category: Blog
 tags: ["pmdd", "pms", "science", "health"]

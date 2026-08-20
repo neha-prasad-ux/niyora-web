@@ -1,12 +1,16 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([{ name: 'Symptoms', href: '/pms/' }, { name: 'Insomnia', href: '/pms/insomnia/' }]);
 ---
 
 <Page
   title="Can't sleep before your period? PMS insomnia explained · Niyora"
-  description="Lying awake in the days before your period is common. Here is the science behind PMS insomnia, why sleep gets lighter and the mind races, and what actually helps."
+  description="PMS insomnia is common and real. Here is the science behind why sleep gets lighter before your period and the mind races, and what actually helps."
   canonicalUrl="https://niyora.com/pms/insomnia/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">PMS insomnia</div>

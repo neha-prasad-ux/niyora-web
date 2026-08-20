@@ -1,11 +1,17 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { countries, grouped, stats } from './_trials';
 
 const today = new Date();
 const groups = grouped(today);
 const s = stats(today);
 const updated = today.toISOString().slice(0, 10);
+
+const crumbs = breadcrumbs([
+  { name: 'Research', href: '/research/' },
+  { name: 'Trials', href: '/research/trials/' },
+]);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -56,7 +62,7 @@ function ages(min: string | null, max: string | null): string {
   title="Menstrual health trials you could join · Niyora"
   description={`${s.current} clinical trials on periods, PMS and PMDD that are genuinely open, checked against the registry on ${updated}. Not affiliated with any of them.`}
   canonicalUrl="https://niyora.com/research/trials/"
-  jsonLd={[jsonLd, dataset]}
+  jsonLd={[jsonLd, dataset, crumbs]}
 >
   <section class="s hero">
     <div class="eyebrow"><a href="/research/">Research</a></div>

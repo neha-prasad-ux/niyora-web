@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
 
 const rows = [
@@ -10,12 +11,15 @@ const rows = [
   'Not read by humans',
   'No account, and your history stays encrypted on your phone',
 ];
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }, { name: 'Moon AI vs other AI', href: '/compare/moon-ai-vs-other-ai/' }]);
 ---
 
 <Page
-  title="Moon AI vs other AI: built for the hard moment, and to know almost nothing about you · Niyora"
-  description="Most AI is built to keep you talking and learns from what you type. Moon is built for one hard premenstrual moment, helps you through it, and is designed to know as little about you as possible."
+  title="Moon AI vs other AI: for the moment, not for chat · Niyora"
+  description="Most AI keeps you talking and learns from what you type. Moon is built for one premenstrual moment, and designed to know as little about you as it can."
   canonicalUrl="https://niyora.com/compare/moon-ai-vs-other-ai/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">Moon AI vs other AI</div>

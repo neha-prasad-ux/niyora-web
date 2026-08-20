@@ -1,6 +1,6 @@
 ---
 title: "How to stop overthinking at night"
-description: "How to stop overthinking at night when your mind will not shut off. A three-step method to name the loop, calm your body, and set the thoughts down so you can sleep."
+description: "How to stop overthinking at night when your mind will not shut off. Name the loop, calm your body, and set the thoughts down so you can sleep."
 date: 2026-08-15
 category: Blog
 tags: ["overthinking", "sleep", "how-to", "regulation"]

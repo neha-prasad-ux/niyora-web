@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
 
 const comparisons = [
@@ -29,12 +30,15 @@ const comparisons = [
     line: 'Most AI keeps you talking and learns from what you type. Moon is built for the hard moment and knows almost nothing about you.',
   },
 ];
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }, { name: 'Alternatives to mood trackers', href: '/compare/alternatives-to-mood-trackers/' }]);
 ---
 
 <Page
-  title="Alternatives to mood trackers: predict PMS and get through it · Niyora"
-  description="Looking for an alternative to mood and period trackers that only log and predict? Niyora tracks your PMS window too, then helps you through it: reflect, regulate, respond in about a minute, plus training that builds the skill. No account."
+  title="Alternatives to mood trackers that do more than log · Niyora"
+  description="Tired of trackers that only log and predict? Niyora predicts your PMS window too, then helps you through it: reflect, regulate, respond. No account."
   canonicalUrl="https://niyora.com/compare/alternatives-to-mood-trackers/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">Alternatives to mood trackers</div>

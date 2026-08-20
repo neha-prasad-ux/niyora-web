@@ -1,12 +1,16 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([{ name: 'Compare', href: '/compare/' }, { name: 'Niyora vs an AI companion', href: '/compare/niyora-vs-ai-companion/' }]);
 ---
 
 <Page
   title="Niyora vs an AI chatbot or companion app · Niyora"
-  description="A general AI companion keeps you talking. Niyora helps you need it less. Built only for the days before your period: reflect, regulate, respond in about a minute, then stop. No sign in."
+  description="A general AI companion keeps you talking. Niyora helps you need it less. Reflect, regulate, respond in about a minute, then stop. No sign in, no account."
   canonicalUrl="https://niyora.com/compare/niyora-vs-ai-companion/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">Niyora vs an AI companion</div>

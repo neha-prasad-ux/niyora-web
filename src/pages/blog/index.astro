@@ -1,6 +1,7 @@
 ---
 import Page from '../../layouts/Page.astro';
 import { getCollection } from 'astro:content';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -8,12 +9,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+const crumbs = breadcrumbs([{ name: 'Writing', href: '/blog/' }]);
 ---
 
 <Page
   title="Writing · Niyora"
   description="Notes on stress, women's health, and building Niyora in the open. Evidence-led, quietly written."
   canonicalUrl="https://niyora.com/blog/"
+  jsonLd={crumbs}
 >
   <section class="s">
     <div class="wrap">

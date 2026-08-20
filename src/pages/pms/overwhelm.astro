@@ -1,12 +1,16 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
 import { downloads } from '../../config/downloads';
+
+const crumbs = breadcrumbs([{ name: 'Symptoms', href: '/pms/' }, { name: 'Overwhelm', href: '/pms/overwhelm/' }]);
 ---
 
 <Page
   title="Feeling overwhelmed before your period, and how to steady it · Niyora"
-  description="When an ordinary load feels impossible before your period, that is premenstrual overwhelm. Here is the science behind it and what actually helps you steady the moment."
+  description="Premenstrual overwhelm is an ordinary load starting to feel impossible before your period. Here is the science behind it, and what steadies the moment."
   canonicalUrl="https://niyora.com/pms/overwhelm/"
+  jsonLd={crumbs}
 >
   <section class="s hero">
     <div class="eyebrow">Feeling overwhelmed before your period</div>
