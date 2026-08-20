@@ -76,4 +76,17 @@ describe('research clustering', () => {
       expect(Object.keys(row)).not.toContain('Gap / to add');
     }
   });
+
+  /**
+   * The research page tells the reader "I do not write studies show without a
+   * link". Four rows shipped without one, and the page had no way to notice.
+   * A finding nobody can check does not belong in the file at all.
+   */
+  it('gives every published finding a link the reader can open', () => {
+    const unlinked = allRows.filter((r) => !r.link?.startsWith('http'));
+    expect(
+      unlinked.map((r) => `n=${r.n} ${r.source}`),
+      'source these or take them out, the page promises a link for every finding',
+    ).toEqual([]);
+  });
 });

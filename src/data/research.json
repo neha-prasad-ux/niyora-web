@@ -96,12 +96,12 @@
       "vagal",
       "active-tool"
     ],
-    "finding": "Cold on the face triggers the diving reflex: slows heart, breaks panic (used in DBT)",
+    "finding": "Cold on the face triggers the diving reflex: heart rate starts dropping within about 10 seconds and vagal activity rises while the cold is on (meta-analysis, 17 studies, 311 people)",
     "grade": "strong",
-    "plain": "Cold water on your face resets your whole system in seconds.",
-    "source": "DBT / diving reflex lit",
-    "link": "",
-    "status": "needs-check"
+    "plain": "Cold water on your face slows your heart within seconds. It lasts about as long as the cold does.",
+    "source": "Ackermann et al., Psychophysiology 2023",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/36219506/",
+    "status": "ready"
   },
   {
     "n": 8,
@@ -357,8 +357,8 @@
     "finding": "Clinical overview of PMS: definition, prevalence, diagnostic criteria, management (StatPearls)",
     "grade": "moderate",
     "plain": "Premenstrual symptoms are a recognized medical condition, not something you're imagining.",
-    "source": "StatPearls / NCBI Bookshelf (verify link)",
-    "link": "",
+    "source": "StatPearls (NCBI Bookshelf) 2023",
+    "link": "https://www.ncbi.nlm.nih.gov/books/NBK560698/",
     "status": "idea"
   },
   {
@@ -373,8 +373,8 @@
     "finding": "Study of whether/why women seek help for menstrual-cycle mental health symptoms",
     "grade": "moderate",
     "plain": "Most women wait a long time before asking for help with this, and that's not a personal failing.",
-    "source": "npj Women's Health 2023",
-    "link": "",
+    "source": "npj Women's Health 2024",
+    "link": "https://doi.org/10.1038/s44294-023-00004-w",
     "status": "idea"
   },
   {
@@ -389,8 +389,23 @@
     "finding": "Clinical guide to recognizing and treating PMDD (SSRIs, hormonal options, lifestyle)",
     "grade": "moderate",
     "plain": "There are real, proven treatments for PMDD; knowing them helps you ask for the right help.",
-    "source": "Pharmaceutical Journal",
-    "link": "",
+    "source": "Pharmaceutical Journal 2025",
+    "link": "https://doi.org/10.1211/PJ.2025.1.388311",
     "status": "idea"
+  },
+  {
+    "n": 27,
+    "topic": "Acute stress",
+    "tags": [
+      "grounding",
+      "vagal",
+      "active-tool"
+    ],
+    "finding": "Cold water on the face is a standard DBT crisis skill (TIPP). Two small studies found lower heart rate and less self-reported panic, one of them found no change in mood, and no trial has tested the skill on its own",
+    "grade": "weak",
+    "plain": "Whether cold actually ends a panic spiral has only been tested on about 30 people at a time.",
+    "source": "Kyriakoulis et al., Frontiers in Psychiatry 2021",
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8667218/",
+    "status": "ready"
   }
 ]

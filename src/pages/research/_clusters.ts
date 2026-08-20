@@ -165,7 +165,7 @@ export function sourceLabel(row: ResearchRow): string {
     .replace(/\s+/g, ' ')
     .trim();
   if (cleaned && !/^appendix/i.test(cleaned)) return cleaned;
-  if (!row.link) return 'Source on file';
+  if (!row.link) return 'Source not verified';
   const host = new URL(row.link).hostname;
   return HOSTS[host] ?? host.replace(/^www\./, '');
 }
