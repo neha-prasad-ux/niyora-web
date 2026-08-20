@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/Page.astro';
+import { downloads } from '../../config/downloads';
 ---
 
 <Page
@@ -141,13 +142,12 @@ import Page from '../../layouts/Page.astro';
       </p>
       <p>
         <a class="inline" href="/changelog/">What's new</a> tracks what ships.
-        <a class="inline" href="/talk/">Say hello</a> if you want to shape it, or
-        tell us you're interested and we'll keep building.
+        <a class="inline" href="/talk/">Say hello</a> if you want to shape it.
       </p>
 
       <div class="links">
         <a class="link" href="/talk/">Say hello</a>
-        <a class="link" href="/#interest">I'm interested</a>
+        <a class="link" href={downloads.appStore}>Get the app</a>
       </div>
     </div>
   </section>

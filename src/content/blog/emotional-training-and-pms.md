@@ -46,4 +46,4 @@ The feelings do not disappear, and they are not supposed to. What changes is the
 
 Niyora is built to be that daily practice. One quiet minute, a short read on why you feel what you feel, and the right small step for the moment. Do it a little each day, and the hard week gets easier to hold. No account, and your personal details are stripped before anything is sent.
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**

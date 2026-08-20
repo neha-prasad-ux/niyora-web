@@ -1,5 +1,6 @@
 ---
 import { GROUPS, META } from './_nav';
+import { downloads } from '../config/downloads';
 
 const year = new Date().getFullYear();
 
@@ -13,7 +14,7 @@ const year = new Date().getFullYear();
         A private iPhone app for the days before your period. Reflect on a hard moment, regulate in
         about a minute, respond with a clearer head.
       </p>
-      <a href="/#interest" class="foot-cta">I'm interested</a>
+      <a href={downloads.appStore} class="foot-cta">Get the app</a>
     </div>
 
     <nav class="foot-cols" aria-label="Footer">

@@ -42,4 +42,4 @@ Hold onto this. What you feel is tied to a passing hormonal moment. When researc
 
 Niyora is built around this exact approach. It helps you name the feeling, understand why in a short read, and settle it in about a minute with the right small practice for how you feel. No account, and your personal details are stripped before anything is sent.
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**

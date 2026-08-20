@@ -1,5 +1,6 @@
 ---
 import { GROUPS, META } from './_nav';
+import { downloads } from '../config/downloads';
 ---
 
 <header class="site-header">
@@ -16,7 +17,7 @@ import { GROUPS, META } from './_nav';
         </div>
       </div>
     ))}
-    <a href="/#interest" class="site-nav-cta">I'm interested</a>
+    <a href={downloads.appStore} class="site-nav-cta">Get the app</a>
   </nav>
 
   <button class="nav-burger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">
@@ -32,7 +33,7 @@ import { GROUPS, META } from './_nav';
     ))}
     <div class="drawer-group drawer-meta">
       {META.map((m) => <a href={m.href}>{m.label}</a>)}
-      <a href="/#interest" class="drawer-cta">I'm interested</a>
+      <a href={downloads.appStore} class="drawer-cta">Get the app</a>
     </div>
   </div>
 </header>

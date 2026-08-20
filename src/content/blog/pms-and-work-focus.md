@@ -48,4 +48,4 @@ Niyora is built for this. In the moment, it helps you reflect on what you are fe
 
 Not sure this is your pattern? The [two-minute quiz](/quiz) can help you see it.
 
-**[Install Niyora.](https://apps.apple.com/app/niyora-pms-mood-relief/id6764561688)**
+**[Install Niyora.](https://apps.apple.com/app/niyora-pms-emotions/id6764561688)**
