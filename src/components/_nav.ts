@@ -62,6 +62,11 @@ export const GROUPS: NavGroup[] = [
     links: [
       { href: '/blog/', label: 'Writing' },
       { href: '/guide/', label: 'The PMS guide' },
+      { href: '/techniques/', label: 'Techniques that help' },
+      { href: '/techniques/breathing/', label: 'Breathing' },
+      { href: '/techniques/muscle-relaxation/', label: 'Muscle relaxation' },
+      { href: '/techniques/cold-water/', label: 'Cold water' },
+      { href: '/techniques/supplements/', label: 'Magnesium, calcium, vitamin D' },
       { href: '/faq/', label: 'FAQ' },
       { href: '/changelog/', label: "What's new" },
     ],

@@ -1,0 +1,133 @@
+---
+import Page from '../../layouts/Page.astro';
+import { breadcrumbs } from '../../components/_breadcrumbs';
+
+const techniques = [
+  {
+    href: '/techniques/breathing/',
+    name: 'Breathing',
+    grade: 'Mechanism, not trials',
+    line: 'A longer exhale slows your heart on the next beat. Three patterns, and an honest read of how well each one is tested.',
+  },
+  {
+    href: '/techniques/muscle-relaxation/',
+    name: 'Muscle relaxation',
+    grade: 'Strong evidence',
+    line: 'Tensing and releasing each muscle group in order. A 2024 randomized trial found it eased premenstrual symptoms.',
+  },
+  {
+    href: '/techniques/cold-water/',
+    name: 'Cold water',
+    grade: 'Strong physiology',
+    line: 'Cold on your face triggers a reflex that slows your heart in seconds. It works from the outside in, and asks nothing of your attention.',
+  },
+  {
+    href: '/techniques/supplements/',
+    name: 'Magnesium, calcium, vitamin D',
+    grade: 'Mixed evidence',
+    line: 'Calcium has the strongest trial. Vitamin D was tested only in deficiency. Magnesium has no tested dose at all.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Techniques for premenstrual symptoms',
+  description:
+    'Techniques for the days before your period, each with the evidence behind it stated plainly: breathing, progressive muscle relaxation, cold water, and the three supplements with trial data.',
+  url: 'https://niyora.com/techniques/',
+};
+
+const crumbs = breadcrumbs([{ name: 'Techniques', href: '/techniques/' }]);
+---
+
+<Page
+  title="Techniques that help before your period · Niyora"
+  description="Techniques for the days before your period, with the evidence for each stated plainly: breathing, muscle relaxation, cold water, and three supplements."
+  canonicalUrl="https://niyora.com/techniques/"
+  jsonLd={[jsonLd, crumbs]}
+>
+  <section class="s hero">
+    <div class="eyebrow">Techniques</div>
+    <h1>What to actually do, and how well it is tested</h1>
+    <p class="lead">
+      These are the Regulate step: things you do with your body when a feeling has already
+      arrived. Each page gives you the method in full, and says plainly how strong the evidence
+      behind it is. Some of it was measured in a trial. Some of it is reasoning from how the
+      nervous system works. You should know which is which.
+    </p>
+  </section>
+
+  <section class="s">
+    <div class="tech-grid">
+      {techniques.map((t) => (
+        <a class="tech" href={t.href}>
+          <span class="grade">{t.grade}</span>
+          <h2>{t.name}</h2>
+          <p>{t.line}</p>
+          <span class="go">Read this one</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="s">
+    <h2>A technique is not the whole thing</h2>
+    <p class="lead">
+      Settling your body is one step of three. Reflect on what the feeling is actually about,
+      regulate so your body is not making the decision, then respond. The guide walks through all
+      three, and the research section shows every finding these pages are built on.
+    </p>
+    <div class="cta-row">
+      <a href="/guide/" class="btn">Read the guide</a>
+      <a href="/research/tools-with-evidence/" class="btn ghost">Things actually tested</a>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .tech {
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .tech:hover { transform: translateY(-2px); border-color: rgba(var(--accent-rgb), 0.4); }
+  .grade {
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .tech h2 { font-size: 22px; margin: 8px 0 10px; letter-spacing: -0.2px; }
+  .tech p { font-size: 15px; line-height: 1.55; flex: 1; }
+  .go {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(var(--accent-rgb), 0.85);
+    margin-top: 16px;
+  }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+
+  @media (max-width: 620px) {
+    .s { padding: 56px 24px; }
+    .tech-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 26px; }
+  }
+</style>
