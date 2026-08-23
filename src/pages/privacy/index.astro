@@ -9,7 +9,7 @@ import Page from '../../layouts/Page.astro';
   canonicalUrl="https://niyora.com/privacy/"
 >
   <article class="legal">
-    <p class="last-updated">Last updated: 12 August 2026</p>
+    <p class="last-updated">Last updated: 23 August 2026</p>
     <h1>Niyora Privacy Policy</h1>
 
     <div class="promise">
@@ -22,7 +22,7 @@ import Page from '../../layouts/Page.astro';
     <ul>
       <li>Niyora has no accounts. There is no sign-up, no login, and we never ask for your name or email.</li>
       <li>The things you write, the feelings you name, and your history of moments are stored only on your device, encrypted. They are never uploaded to any server we run. We cannot see them.</li>
-      <li>To write a reflection back to you, and to check whether a moment needs crisis resources, the app sends the text you wrote to Google to be processed by an AI model. That is the only thing that leaves your phone.</li>
+      <li>To write a reflection back to you, and to check whether a moment needs crisis resources, the app sends the text you wrote to Google to be processed by an AI model. That is the only thing you write that leaves your phone.</li>
       <li>We do not sell your data. We do not use it for advertising. Your text is not used to train Google's AI models and is not read by a human as a matter of routine.</li>
       <li>Niyora is not a medical, therapy, or crisis service.</li>
     </ul>
@@ -40,7 +40,7 @@ import Page from '../../layouts/Page.astro';
 
     <h2>What leaves your device, to whom, and why</h2>
     <p>One thing, and only one thing, leaves your device: the text you write, sent for AI processing.</p>
-    <p>To turn what you wrote into a reflection, the app sends that text to Google. It travels through Firebase AI Logic to Google Cloud's Vertex AI service and is processed by the model <code>gemini-2.5-flash</code>. The generated reply comes back to your phone. This is what makes the reflections possible: an AI cannot respond to your words without receiving your words.</p>
+    <p>To turn what you wrote into a reflection, the app sends that text to Google. It travels through Firebase AI Logic to Google Cloud's Vertex AI service and is processed by the model <code>gemini-2.5-pro</code>. The generated reply comes back to your phone. This is what makes the reflections possible: an AI cannot respond to your words without receiving your words.</p>
     <p>The same path is used for crisis detection. When you write a moment, the text is also sent to the AI to judge whether the moment calls for real-world crisis resources rather than the app's normal flow. This is a safety check; it can only add crisis resources, never remove them.</p>
     <p>Because this is a direct call from your phone to Google, Google also receives your device's network (IP) address as part of the request, as with any internet connection.</p>
     <p>We use Google Cloud's Vertex AI under its enterprise terms. Under those terms, the text you send is not used to train or improve Google's AI models, and it is not reviewed by a human by default. Google processes it to generate the response and according to its own Google Cloud data handling commitments. We do not receive a copy, and we do not store it on our side.</p>
@@ -54,6 +54,11 @@ import Page from '../../layouts/Page.astro';
       <li>Names when a relationship or title makes it clear a person is meant (for example "my sister Sarah" or "Dr Patel"), and your own name when you introduce it ("my name is ...", "I'm ...").</li>
     </ul>
     <p>Be aware of what this does not do. The scrub is deliberately careful, not exhaustive. A bare name with no cue around it (for example "Sarah slapped me") is not caught and will be sent. Short numbers and other identifying details may pass through. Most importantly, the emotional content of what you write, the situation, the feelings, the story, is sent as written, because that is exactly what the AI needs in order to respond. If you would not want a specific detail to leave your device, do not write it.</p>
+
+    <h2>Paying for Premium</h2>
+    <p>Niyora Premium is bought through Apple's App Store, with Apple's own in-app purchase system. Apple takes the payment and holds the billing relationship with you. We never see your card, your billing address, or your Apple Account details. None of it reaches us.</p>
+    <p>There is no payment provider and no purchase-tracking tool in the app, and no server of ours for a receipt to be sent to. When the app needs to know whether your subscription is still active, it asks the App Store directly from your device. Apart from the AI processing described above, that check with Apple is the only other exchange the app has with the outside world, and it carries none of the text you have written.</p>
+    <p>The only thing kept from a purchase is a single flag on your phone, stored under the key <code>niyora:premium</code>, recording whether a subscription is currently active. It is what lets the app open the paid flow instantly and while you are offline. It lives in the app's own storage on your device, holds nothing else about the purchase, and goes when you delete the app.</p>
 
     <h2>What we do not do</h2>
     <ul>
