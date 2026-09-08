@@ -7,7 +7,7 @@ import { htmlToMarkdown, decode } from './html-to-md.mjs';
 const SITE = 'https://niyora.com';
 const DIST = 'dist';
 // Same exclusions as the sitemap: unpicked homepage variants and the sandbox.
-const SKIP = /^(lab|demo)(\/|$)/;
+const SKIP = /^(lab|demo|brand)(\/|$)/;
 
 const SECTIONS = [
   ['', 'Home'],

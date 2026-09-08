@@ -1,0 +1,433 @@
+---
+// The brand kit. A direct-link reference for the marketing team, not a page for
+// visitors: kept out of the header nav, the sitemap and the markdown twins, and
+// marked noindex below. Colour and type values are copied from the iOS app's
+// token files (src/theme/colors.ts, fonts.ts, typography.ts in the app repo).
+// If a token changes there, change it here.
+import Page from '../../layouts/Page.astro';
+
+const GROUND = [
+  { name: 'Background top', hex: '#0E0B14' },
+  { name: 'Background mid', hex: '#070609' },
+  { name: 'Background bottom', hex: '#000000' },
+  { name: 'Raised surface', hex: '#161221' },
+];
+
+const BRAND = [
+  { name: 'Brand violet', hex: '#7339AC' },
+  { name: 'Accent violet', hex: '#B581DA' },
+  { name: 'Accent rose', hex: '#E07192' },
+];
+
+const ORB = [
+  { name: 'Highlight', hex: '#FFFFFF', note: 'at 97%' },
+  { name: 'Mid', hex: '#E7E9EE' },
+  { name: 'Edge', hex: '#A5B8D5' },
+  { name: 'Halo', hex: '#8CA9D5', note: 'at 50%' },
+];
+
+const TIERS = [
+  { name: 'Spark', hex: '#E29E5A' },
+  { name: 'Glow', hex: '#E25A93' },
+  { name: 'Shine', hex: '#B35FDD' },
+  { name: 'Radiance', hex: '#5F74DD' },
+  { name: 'Brilliance', hex: '#649ED8' },
+];
+
+const INK = [
+  { name: 'Primary', hex: 'rgba(255,255,255,0.95)', label: 'white 95%' },
+  { name: 'Secondary', hex: 'rgba(255,255,255,0.70)', label: 'white 70%' },
+  { name: 'Tertiary', hex: 'rgba(255,255,255,0.55)', label: 'white 55%' },
+  { name: 'Faint', hex: 'rgba(255,255,255,0.40)', label: 'white 40%' },
+];
+
+const WEIGHTS = [
+  { w: 300, name: 'Light' },
+  { w: 400, name: 'Regular' },
+  { w: 500, name: 'Medium' },
+  { w: 600, name: 'SemiBold' },
+  { w: 700, name: 'Bold' },
+];
+
+const SCALE = [
+  { size: 32, lh: 38, ls: -0.2, weight: 600, cut: 'SemiBold', sample: "Life doesn't wait" },
+  { size: 26, lh: 32, ls: -0.2, weight: 600, cut: 'SemiBold', sample: 'Reflect. Regulate. Respond.' },
+  { size: 20, lh: 26, ls: -0.2, weight: 600, cut: 'SemiBold', sample: "Know which one you're in" },
+  { size: 16, lh: 22, ls: 0.15, weight: 500, cut: 'Medium', sample: 'Emphasis and card titles' },
+  { size: 14, lh: 21, ls: 0.2, weight: 400, cut: 'Regular', sample: 'Running body copy sits here.' },
+  { size: 12, lh: 17, ls: 0.2, weight: 300, cut: 'Light', sample: 'Captions, fine print, quiet hints' },
+];
+---
+
+<Page
+  title="Brand kit · Niyora"
+  description="Colour and type for the Niyora iPhone app. The palette, the Poppins scale, and the app icon, taken from the app's own design tokens."
+  canonicalUrl="https://niyora.com/brand/"
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+
+  <section class="s">
+    <img
+      class="mark"
+      src="/brand/niyora-app-icon-1024.png"
+      alt="The Niyora app icon: a pearl orb on a dark violet ground"
+      width="1024"
+      height="1024"
+    />
+    <p class="eyebrow">Brand kit</p>
+    <h1>Colour and type</h1>
+    <p class="lead">
+      Everything you need to make something that looks like Niyora. Taken from the app's own
+      design tokens, so it matches the product exactly.
+    </p>
+    <a class="btn" href="/brand/niyora-app-icon-1024.png" download="niyora-app-icon-1024.png">
+      Download the logo
+    </a>
+    <p class="note">1024 &times; 1024 PNG &middot; the shipped App Store icon</p>
+  </section>
+
+  <section class="s left">
+    <p class="eyebrow">Colour</p>
+    <h2>The palette</h2>
+    <p class="kit-lead">Click any swatch to copy its value.</p>
+
+    <div class="block">
+      <h3>Ground</h3>
+      <p class="note">
+        The app sits on near-black with an indigo cast. Never a pure grey, never a white
+        background. Backgrounds run top to bottom in this order.
+      </p>
+      <div class="swatches">
+        {GROUND.map((c) => (
+          <button class="swatch" type="button" data-copy={c.hex}>
+            <span class="chip" style={`background:${c.hex}`}></span>
+            <span class="sw-name">{c.name}</span>
+            <span class="sw-hex">{c.hex}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Brand</h3>
+      <p class="note">
+        Violet is Niyora. Rose is the cycle. Use one as the accent in a layout, not both
+        fighting, except in the hero gradient where the move from violet to rose is the point.
+      </p>
+      <div class="swatches">
+        {BRAND.map((c) => (
+          <button class="swatch" type="button" data-copy={c.hex}>
+            <span class="chip" style={`background:${c.hex}`}></span>
+            <span class="sw-name">{c.name}</span>
+            <span class="sw-hex">{c.hex}</span>
+          </button>
+        ))}
+        <button class="swatch" type="button" data-copy="linear-gradient(120deg,#6B36A1,#C445C4,#DA587F)">
+          <span class="chip" style="background:linear-gradient(120deg,#6B36A1,#C445C4,#DA587F)"></span>
+          <span class="sw-name">Hero gradient</span>
+          <span class="sw-hex">6B36A1 &rarr; DA587F</span>
+        </button>
+      </div>
+      <p class="note">
+        The hero gradient is reserved. It marks the big-commitment moments only, never an
+        ordinary button.
+      </p>
+    </div>
+
+    <div class="block">
+      <h3>The orb</h3>
+      <p class="note">
+        The one visual element that is the brand, and the app icon above. Pearly white-blue,
+        soft-edged, always a radial gradient with the light source up and to the left. It
+        breathes on a 5.5 second cadence. It never bounces, springs, or stops abruptly.
+      </p>
+      <div class="swatches">
+        {ORB.map((c) => (
+          <button class="swatch" type="button" data-copy={c.hex}>
+            <span class="chip" style={`background:${c.hex}`}></span>
+            <span class="sw-name">{c.name}</span>
+            <span class="sw-hex">{c.hex}{c.note ? ` ${c.note}` : ''}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Soul tiers</h3>
+      <p class="note">
+        Five stages of practice, in order. They tint the My Soul screen and this site's section
+        hues. Use them for progression or sequence, never as decorative accents.
+      </p>
+      <div class="swatches five">
+        {TIERS.map((c) => (
+          <button class="swatch" type="button" data-copy={c.hex}>
+            <span class="chip" style={`background:${c.hex}`}></span>
+            <span class="sw-name">{c.name}</span>
+            <span class="sw-hex">{c.hex}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Text on dark</h3>
+      <p class="note">
+        Four steps, and that is the whole set. The fourth is decorative only. Never put
+        anything a person has to read at 40 percent.
+      </p>
+      <div class="swatches">
+        {INK.map((c) => (
+          <button class="swatch" type="button" data-copy={c.hex}>
+            <span class="chip" style={`background:${c.hex}`}></span>
+            <span class="sw-name">{c.name}</span>
+            <span class="sw-hex">{c.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="s left">
+    <p class="eyebrow">Type</p>
+    <h2>Poppins, and nothing else</h2>
+    <p class="kit-lead">
+      One family across the entire product. No display face, no script face, no novelty face,
+      ever. It is free under the Open Font License, so you can use it anywhere without
+      clearing anything. Get the files from
+      <a href="https://fonts.google.com/specimen/Poppins" rel="noopener">Google Fonts</a>.
+      Every word on this page is set in it.
+    </p>
+
+    <div class="block">
+      <h3>Five weights</h3>
+      <div class="weights">
+        {WEIGHTS.map((f) => (
+          <div>
+            <span class="glyph" style={`font-weight:${f.w}`}>Aa</span>
+            <span class="note">{f.name} {f.w}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>The scale, six sizes</h3>
+      <p class="note">
+        Sizes are 12, 14, 16, 20, 26 and 32. Nothing sits between them. Line height runs about
+        1.2 on headings and 1.5 on body.
+      </p>
+      <div class="specimen">
+        {SCALE.map((r) => (
+          <div class="rung">
+            <span
+              style={`font-weight:${r.weight};font-size:${r.size}px;line-height:${r.lh}px;letter-spacing:${r.ls}px`}
+            >{r.sample}</span>
+            <span class="meta">{r.size} &middot; {r.cut}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>The wordmark</h3>
+      <p class="note">
+        Set in Medium at 13px, uppercase, with 3px of letter-spacing. The tracking is the whole
+        character of it. Do not tighten it, do not set it in title case, do not add a symbol
+        beside it.
+      </p>
+      <p class="wordmark">Niyora</p>
+    </div>
+
+    <div class="block">
+      <h3>Setting it</h3>
+      <ul class="rules">
+        <li>Pick the weight by choosing the right cut, never by faux-bolding a lighter one.</li>
+        <li>Headings run a tight &minus;0.2 tracking. Body runs a loose +0.2.</li>
+        <li>A subtitle is body copy in a dimmer colour, not body copy at a smaller size.</li>
+        <li>Spacing steps in fours: 4, 8, 12, 16, 20, 24, 32. The screen gutter is 20.</li>
+        <li>
+          Corners are 14 on small controls, 18 on buttons, 22 on cards, and fully round on
+          pills. A card is never a sharp rectangle.
+        </li>
+      </ul>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .mark {
+    width: 132px;
+    height: 132px;
+    border-radius: 30px;
+    display: block;
+    margin: 0 auto 28px;
+    box-shadow: 0 0 72px 16px rgba(140, 169, 213, 0.18), 0 20px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .note {
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 620px;
+    margin: 0;
+  }
+  .s:first-child .note { margin: 14px auto 0; }
+
+  .kit-lead {
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 640px;
+    margin: 0 0 8px;
+  }
+  .kit-lead a { color: rgba(255, 255, 255, 0.92); }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  /* ── Swatches ── */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 2px;
+  }
+  .swatches.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+  .swatch {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.16s ease;
+  }
+  .swatch:hover { border-color: rgba(255, 255, 255, 0.24); }
+  .swatch:focus-visible { outline: 2px solid rgba(var(--accent-rgb), 0.8); outline-offset: 2px; }
+  /* The ground colours are near-black on a near-black sheet. Without the inset
+     hairline the chip has no edge and the swatch reads as an empty card. */
+  .chip {
+    display: block;
+    width: 100%;
+    height: 66px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+  .sw-name {
+    padding: 0 12px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .sw-hex {
+    padding: 0 12px;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    font-variant-numeric: tabular-nums;
+  }
+  .swatch.copied .sw-hex { color: rgba(var(--accent-rgb), 0.95); }
+
+  /* ── Type specimen ── */
+  .weights {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .weights div { display: flex; flex-direction: column; gap: 4px; }
+  .glyph { font-size: 30px; line-height: 1.1; color: rgba(255, 255, 255, 0.94); }
+
+  .specimen { display: flex; flex-direction: column; }
+  .rung {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.94);
+  }
+  .rung:last-child { border-bottom: none; }
+  .rung .meta {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wordmark {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 6px 0 0;
+  }
+
+  .rules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 640px;
+  }
+  .rules li {
+    font-size: 14px;
+    line-height: 1.55;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    padding-left: 16px;
+    position: relative;
+  }
+  .rules li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 720px) {
+    .swatches,
+    .swatches.five { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .weights { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mark { width: 104px; height: 104px; border-radius: 24px; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.swatch').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const label = btn.querySelector('.sw-hex');
+      if (!label) return;
+      const original = label.textContent;
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+        label.textContent = 'Copied';
+      } catch {
+        label.textContent = btn.dataset.copy ?? original;
+      }
+      btn.classList.add('copied');
+      setTimeout(() => {
+        label.textContent = original;
+        btn.classList.remove('copied');
+      }, 1200);
+    });
+  });
+</script>

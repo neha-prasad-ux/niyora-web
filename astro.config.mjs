@@ -19,9 +19,10 @@ export default defineConfig({
   site: 'https://niyora.com',
   integrations: [
     // /lab holds unpicked homepage variants and /demo is a sandbox. Near-duplicate
-    // homepages in the index would compete with the real one.
+    // homepages in the index would compete with the real one. /brand is the brand
+    // kit, a direct link for the marketing team rather than a page for visitors.
     sitemap({
-      filter: (page) => !/\/(lab|demo)\//.test(page),
+      filter: (page) => !/\/(lab|demo|brand)\//.test(page),
       serialize: (item) => {
         const date = postDates[new URL(item.url).pathname];
         return date ? { ...item, lastmod: new Date(date).toISOString() } : item;
