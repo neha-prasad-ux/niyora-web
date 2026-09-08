@@ -18,7 +18,10 @@ function builtPages(dir: string, base = ''): string[] {
 
 /** Reachable from the /blog/ index, or deliberately hidden. */
 const EXEMPT = (p: string) =>
-  p === '/' || p.startsWith('/lab/') || (p.startsWith('/blog/') && p !== '/blog/');
+  p === '/' ||
+  p.startsWith('/lab/') ||
+  p === '/brand/' ||
+  (p.startsWith('/blog/') && p !== '/blog/');
 
 describe('site navigation', () => {
   it('points every nav link at a page that exists', () => {
