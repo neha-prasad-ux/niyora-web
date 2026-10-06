@@ -9,7 +9,7 @@ import Page from '../../layouts/Page.astro';
   canonicalUrl="https://niyora.com/privacy/"
 >
   <article class="legal">
-    <p class="last-updated">Last updated: 23 August 2026</p>
+    <p class="last-updated">Last updated: 5 October 2026</p>
     <h1>Niyora Privacy Policy</h1>
 
     <div class="promise">
@@ -40,7 +40,7 @@ import Page from '../../layouts/Page.astro';
 
     <h2>What leaves your device, to whom, and why</h2>
     <p>One thing, and only one thing, leaves your device: the text you write, sent for AI processing.</p>
-    <p>To turn what you wrote into a reflection, the app sends that text to Google. It travels through Firebase AI Logic to Google Cloud's Vertex AI service and is processed by the model <code>gemini-2.5-pro</code>. The generated reply comes back to your phone. This is what makes the reflections possible: an AI cannot respond to your words without receiving your words.</p>
+    <p>To turn what you wrote into a reflection, the app sends that text to Google. It travels through Firebase AI Logic to Google Cloud's Vertex AI service and is processed by Google's Gemini models: <code>gemini-3.1-pro-preview</code> writes the reflections and drafts and runs the safety check, and <code>gemini-3.8-flash</code> handles quick choices such as suggesting feelings. If Google retires a preview model, the app falls back to <code>gemini-2.5-pro</code>. The Gemini 3 models run on Google's global endpoint, so your text may be processed in a Google data center outside your country. The generated reply comes back to your phone. This is what makes the reflections possible: an AI cannot respond to your words without receiving your words.</p>
     <p>The same path is used for crisis detection. When you write a moment, the text is also sent to the AI to judge whether the moment calls for real-world crisis resources rather than the app's normal flow. This is a safety check; it can only add crisis resources, never remove them.</p>
     <p>Because this is a direct call from your phone to Google, Google also receives your device's network (IP) address as part of the request, as with any internet connection.</p>
     <p>We use Google Cloud's Vertex AI under its <a href="https://cloud.google.com/terms/service-terms">enterprise service terms</a>. Under those terms, the text you send is not used to train or improve Google's AI models, and it is not reviewed by a human by default. Google processes it to generate the response and according to its own Google Cloud data handling commitments. We do not receive a copy, and we do not store it on our side.</p>
