@@ -9,7 +9,7 @@ import Page from '../../layouts/Page.astro';
   canonicalUrl="https://niyora.com/privacy/"
 >
   <article class="legal">
-    <p class="last-updated">Last updated: 6 October 2026</p>
+    <p class="last-updated">Last updated: 10 October 2026</p>
     <h1>Niyora Privacy Policy</h1>
 
     <div class="promise">
@@ -23,6 +23,7 @@ import Page from '../../layouts/Page.astro';
       <li>Niyora has no accounts. There is no sign-up, no login, and we never ask for your name or email.</li>
       <li>The things you write, the feelings you name, and your history of moments are stored only on your device, encrypted. They are never uploaded to any server we run. We cannot see them.</li>
       <li>To write a reflection back to you, and to check whether a moment needs crisis resources, the app sends the text you wrote, and any photo you attach to that moment, to Google to be processed by an AI model. Those are the only things you create that leave your phone.</li>
+      <li>When the app opens, it also checks two Google and Expo services for its own settings and small app updates. Those requests carry a random installation ID and nothing you have written.</li>
       <li>If you connect Apple Health, Niyora reads your period dates to place your cycle. That data stays on your phone and is never sent anywhere.</li>
       <li>We do not sell your data. We do not use it for advertising. Your text is not used to train Google's AI models and is not read by a human as a matter of routine.</li>
       <li>Niyora is not a medical, therapy, or crisis service.</li>
@@ -47,6 +48,7 @@ import Page from '../../layouts/Page.astro';
     <p>Because this is a direct call from your phone to Google, Google also receives your device's network (IP) address as part of the request, as with any internet connection.</p>
     <p>We use Google Cloud's Vertex AI under its <a href="https://cloud.google.com/terms/service-terms">enterprise service terms</a>. Under those terms, the text you send is not used to train or improve Google's AI models, and it is not reviewed by a human by default. Google processes it to generate the response and according to its own Google Cloud data handling commitments. We do not receive a copy, and we do not store it on our side.</p>
     <p>To make sure only the genuine Niyora app can use this AI connection, the app uses Firebase App Check with Apple's App Attest. This attests that the request comes from the real, unmodified app on a real device. It is an anti-abuse measure; it does not identify you.</p>
+    <p>Two more requests leave your phone, and neither carries anything you have written or anything about how you use the app. To let us adjust which AI model Moon uses, and how long it waits, without shipping an app update, the app asks Firebase Remote Config, a Google service, for its current settings when it starts. And to deliver small fixes to the app's text and behaviour between App Store releases, it checks Expo's update service (EAS Update) for a newer version of the app's code. Each request carries a random installation ID created on your phone and, like any internet request, your device's IP address. Neither is used to identify you, track you, or advertise to you.</p>
 
     <h2>Apple Health</h2>
     <p>If you choose to connect Apple Health, Niyora asks iOS for permission to read one thing: your menstrual flow records, which tell the app when your periods were. It uses them to show your cycle on the calendar, to estimate your next period and your PMS window, and to time reminders. Niyora only reads. It never writes anything to Apple Health.</p>
@@ -63,7 +65,7 @@ import Page from '../../layouts/Page.astro';
 
     <h2>Paying for Premium</h2>
     <p>Niyora Premium is bought through Apple's App Store, with Apple's own in-app purchase system. Apple takes the payment and holds the billing relationship with you. We never see your card, your billing address, or your Apple Account details. None of it reaches us.</p>
-    <p>There is no payment provider and no purchase-tracking tool in the app, and no server of ours for a receipt to be sent to. When the app needs to know whether your subscription is still active, it asks the App Store directly from your device. Apart from the AI processing described above, that check with Apple is the only other exchange the app has with the outside world, and it carries none of the text you have written. (Reading Apple Health happens on your phone, between the app and iOS, and involves no network.)</p>
+    <p>There is no payment provider and no purchase-tracking tool in the app, and no server of ours for a receipt to be sent to. When the app needs to know whether your subscription is still active, it asks the App Store directly from your device. Apart from the AI processing and the settings and update checks described above, that check with Apple is the only other exchange the app has with the outside world, and it carries none of the text you have written. (Reading Apple Health happens on your phone, between the app and iOS, and involves no network.)</p>
     <p>The only thing kept from a purchase is a single flag on your phone, stored under the key <code>niyora:premium</code>, recording whether Premium is currently active, through a subscription or a lifetime purchase. It is what lets the app open the paid flow instantly and while you are offline. It lives in the app's own storage on your device, holds nothing else about the purchase, and goes when you delete the app.</p>
 
     <h2>What we do not do</h2>
